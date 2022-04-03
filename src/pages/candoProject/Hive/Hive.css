@@ -1,0 +1,14 @@
+.statusActive {
+  background-color: rgb(190, 215, 249);
+  padding: 8px;
+  width:80px;
+  text-align: center;
+  border-radius:8px ;
+}
+.statusDeactive {
+  background-color: rgb(219, 219, 219);
+  padding: 8px;
+  width:80px;
+  text-align: center;
+  border-radius:8px ;
+}

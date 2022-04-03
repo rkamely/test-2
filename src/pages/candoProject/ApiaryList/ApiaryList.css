@@ -1,0 +1,40 @@
+.circleRed,
+.circleYellow,
+.circleGreen {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 5px solid red;
+  line-height: 24px;
+  text-align: center;
+}
+.circleYellow {
+  border: 5px solid rgb(255, 176, 4);
+}
+.circleGreen {
+  border: 5px solid Green;
+}
+.downloadFile {
+  display: flex;align-items: center;
+  justify-content:center;
+  background-color: rgb(244, 244, 244);
+  border-radius:15px;
+  border: none;
+}
+.downloadExcel,.downloadPdf {
+  box-shadow:0px 3px 6px 0px rgba(0, 0 ,0, 0.16);
+ padding:24px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+cursor: pointer;  border-radius:15px
+
+}
+.downloadPdf {
+margin-right: 32px;
+
+}
+.title{
+  text-decoration: none;
+  color: #000;
+}

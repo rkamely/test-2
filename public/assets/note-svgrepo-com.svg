@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36" viewBox="0 0 36 36">
+  <defs>
+    <filter id="note-svgrepo-com" x="0" y="0" width="36" height="36" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#note-svgrepo-com)">
+    <path id="note-svgrepo-com-2" data-name="note-svgrepo-com" d="M19,3H5A2,2,0,0,0,3,5V19a2,2,0,0,0,2,2h8a1,1,0,0,0,.707-.293l7-7a1,1,0,0,0,.2-.293.929.929,0,0,0,.033-.093.991.991,0,0,0,.051-.259c0-.021.013-.041.013-.062V5a2,2,0,0,0-2-2ZM5,5H19v7H13a1,1,0,0,0-1,1v6H5Zm9,12.586V14h3.586Z" transform="translate(6 3)" fill="#1a73e9"/>
+  </g>
+</svg>
