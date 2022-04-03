@@ -83,6 +83,7 @@ export default makeStyles((theme) => ({
   inputText:{
     display: "flex",
     flexDirection:"column",
+    
   },
   TextField:{
     width: "250px",
@@ -112,6 +113,7 @@ export default makeStyles((theme) => ({
   },
   input: {
     display: "flex",
+ 
     justifyContent: "space-between",
     alignItems:"center",
     marginTop: "32px",
@@ -165,6 +167,7 @@ export default makeStyles((theme) => ({
 
 
   select: {
+    
     backgroundColor: "rgb( 244, 244 ,244)",
     borderRadius: "10px",
     "&:before": {
