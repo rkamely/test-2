@@ -12,7 +12,7 @@ export default makeStyles((theme) => ({
   },
   label: {
     whiteSpace: "nowrap",
-    marginLeft: "70px",
+    marginLeft: "50px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -86,10 +86,11 @@ export default makeStyles((theme) => ({
     
   },
   TextField:{
-    width: "250px",
+    width: "50%",
     background:"rgb( 244 244 244)",
     border:"none",
     borderRadius: "10px",
+
     "& label.Mui-focused": {
       color: "rgb( 26 ,115, 233) !important",
       borderRadius: "10px",
@@ -143,7 +144,7 @@ export default makeStyles((theme) => ({
     },
   },
   inputSelect: {
-    width: "250px",
+    width: "50%",
     display:"flex",
     height:"40px",
     backgroundColor: "rgb( 244, 244 ,244)",

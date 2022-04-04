@@ -52,7 +52,7 @@ function Adduser() {
       <Divider style={{marginTop:"8px"}}/>
 
       <Grid item  xs={6} sm={6} className={classes.TabHeader} >
-        <Grid ><NavLink to={`${url}`} className={classes.item} activeClassName={classes.activeItem}>وضعیت</NavLink></Grid>
+        <Grid><NavLink to={`${url}`} className={classes.item} activeClassName={classes.activeItem}>وضعیت</NavLink></Grid>
         <Grid><NavLink to={`${url}/netflix2`} className={classes.item} activeClassName={classes.activeItem}>صدا و تصویر</NavLink></Grid>
      </Grid> 
 
@@ -62,7 +62,7 @@ function Adduser() {
      <div>
         <Grid item xs={12} sm={12} className={classes.inputText}>
          <div className={classes.input}> 
-         <label className={classes.label}>نام </label>
+         <label className={classes.label}> نام </label>
           <TextField
             className={classes.TextField}
             required

@@ -57,6 +57,9 @@ import LoginWithPhone from "../../pages/candoProject/Login/Login";
 import FrequentlyQuestions from "../../pages/candoProject/Support/FrequentlyQuestions/FrequentlyQuestions";
 import SmsVerification from "../../pages/login/SmsVerification";
 import Edituser from "../Form/Setting/Edituser";
+import JobCalender from "../../pages/candoProject/JobCalender/JobCalender";
+import AddJob from "../Form/AddJob/AddJob";
+import AboutUs from "../../pages/candoProject/AboutUs/AboutUs";
 function Layout(props) {
   var classes = useStyles();
 
@@ -81,17 +84,17 @@ function Layout(props) {
             <Route path="/app/login/step2" component={SmsVerification} />
 
             <Route path="/app/dashboard" component={Dashboard} />
-            <Route path="/app/typography" component={Typography} />
+            <Route path="/app/User" component={TableofUser} />
             <Route path="/app/tables" component={Tables} />
-            <Route path="/app/notifications" component={Notifications} />
+            {/* <Route path="/app/notifications" component={Notifications} /> */}
+            <Route path="/app/Calendar" component={JobCalender} />
             <Route
               exact
               path="/app/ui"
               render={() => <Redirect to="/app/ui/icons" />}
             />
             <Route path="/app/ui/maps" component={Maps} />
-            <Route path="/app/ui/icons" component={Icons} />
-            <Route path="/app/ui/charts" component={Charts} />
+            <Route path="/app/AboutUs" component={AboutUs} />
             <Route path="/app/test" component={TestPage} />
             <Route path="/app/user" component={TableofUser} />
             {/* <Route path="/app/user" component={UserList} /> */}
