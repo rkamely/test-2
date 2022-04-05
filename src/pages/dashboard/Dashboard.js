@@ -37,7 +37,7 @@ import ApexLineChart from "../charts/components/ApexLineChart";
 import BigStat2 from "./components/BigStat/BigStat2";
 import Maps from "../maps/Maps";
 import MapComponent from "../maps/MapComponent";
-
+import MapBox from "../../components/MapBox/MapBox";
 
 const mainChartData = getMainChartData();
 const PieChartData = [
@@ -59,6 +59,9 @@ export default function Dashboard(props) {
       <h2 style={{color:"rgb( 255 ,176 ,4)"}}>خانه</h2>
 
       <Grid container spacing={3}>
+        {/* <Grid item  xs={12} style={{border:"1px solid red"}}>
+          <MapBox/>
+        </Grid> */}
         <Grid item lg={2} md={4} sm={6} xs={12}>
           <Widget
             color="secondary"

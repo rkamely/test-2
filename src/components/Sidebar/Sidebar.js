@@ -74,6 +74,12 @@ const structure = [
     link: "/app/typography",
     icon:<img src="/assets/usersSidebar.svg"/>,
   },
+  {
+    id: 1,
+    label: "کاربران",
+    link: "/app/user",
+    icon:<img src="/assets/usersSidebar.svg"/>,
+  },
   { id: 2, label: "جداول", link: "/app/tables", icon: <TableIcon /> },
   {
     id: 3,

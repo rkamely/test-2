@@ -83,6 +83,8 @@ function Layout(props) {
 
             <Route path="/app/dashboard" component={Dashboard} />
             <Route path="/app/typography" component={Typography} />
+            <Route path="/app/user" component={TableofUser} />
+
             <Route path="/app/tables" component={Tables} />
             <Route path="/app/notifications" component={Notifications} />
             <Route
