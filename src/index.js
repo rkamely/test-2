@@ -29,7 +29,7 @@ ReactDOM.render(
       <ThemeProvider theme={Themes.default}  >
        <StylesProvider jss={jss}> 
        <CssBaseline />
-        <App />ssdf
+        <App />
         </StylesProvider>
       </ThemeProvider>
     </UserProvider>

@@ -57,6 +57,7 @@ import LoginWithPhone from "../../pages/candoProject/Login/Login";
 import FrequentlyQuestions from "../../pages/candoProject/Support/FrequentlyQuestions/FrequentlyQuestions";
 import SmsVerification from "../../pages/login/SmsVerification";
 import Edituser from "../Form/Setting/Edituser";
+import AboutUsMain from "../../pages/candoProject/AboutUsMain/AboutUsMain";
 function Layout(props) {
   var classes = useStyles();
 
@@ -91,6 +92,7 @@ function Layout(props) {
             />
             <Route path="/app/ui/maps" component={Maps} />
             <Route path="/app/ui/icons" component={Icons} />
+            <Route path="/app/AboutUS" component={AboutUsMain} />
             <Route path="/app/ui/charts" component={Charts} />
             <Route path="/app/test" component={TestPage} />
             <Route path="/app/user" component={TableofUser} />

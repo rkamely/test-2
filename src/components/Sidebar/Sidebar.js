@@ -98,7 +98,7 @@ const structure = [
   {
     id: 5,
     label: "درباره ما",
-    link: "",
+    link:"/app/AboutUs",
     icon: <Dot size="small" color="secondary" />,
   },
   {
