@@ -57,9 +57,13 @@ import LoginWithPhone from "../../pages/candoProject/Login/Login";
 import FrequentlyQuestions from "../../pages/candoProject/Support/FrequentlyQuestions/FrequentlyQuestions";
 import SmsVerification from "../../pages/login/SmsVerification";
 import Edituser from "../Form/Setting/Edituser";
+<<<<<<< HEAD
 import JobCalender from "../../pages/candoProject/JobCalender/JobCalender";
 import AddJob from "../Form/AddJob/AddJob";
 import AboutUs from "../../pages/candoProject/AboutUs/AboutUs";
+=======
+import AboutUsMain from "../../pages/candoProject/AboutUsMain/AboutUsMain";
+>>>>>>> 44a57bb1ad30737fe2917e3a34a874b5c223453b
 function Layout(props) {
   var classes = useStyles();
 
@@ -84,7 +88,13 @@ function Layout(props) {
             <Route path="/app/login/step2" component={SmsVerification} />
 
             <Route path="/app/dashboard" component={Dashboard} />
+<<<<<<< HEAD
             <Route path="/app/User" component={TableofUser} />
+=======
+            <Route path="/app/typography" component={Typography} />
+            <Route path="/app/user" component={TableofUser} />
+
+>>>>>>> 44a57bb1ad30737fe2917e3a34a874b5c223453b
             <Route path="/app/tables" component={Tables} />
             {/* <Route path="/app/notifications" component={Notifications} /> */}
             <Route path="/app/Calendar" component={JobCalender} />
@@ -94,7 +104,13 @@ function Layout(props) {
               render={() => <Redirect to="/app/ui/icons" />}
             />
             <Route path="/app/ui/maps" component={Maps} />
+<<<<<<< HEAD
             <Route path="/app/AboutUs" component={AboutUs} />
+=======
+            <Route path="/app/ui/icons" component={Icons} />
+            <Route path="/app/AboutUS" component={AboutUsMain} />
+            <Route path="/app/ui/charts" component={Charts} />
+>>>>>>> 44a57bb1ad30737fe2917e3a34a874b5c223453b
             <Route path="/app/test" component={TestPage} />
             <Route path="/app/user" component={TableofUser} />
             {/* <Route path="/app/user" component={UserList} /> */}

@@ -80,7 +80,16 @@ const structure = [
     link: "/app/User",
     icon:<img src="/assets/usersSidebar.svg"/>,
   },
+<<<<<<< HEAD
 
+=======
+  {
+    id: 1,
+    label: "کاربران",
+    link: "/app/user",
+    icon:<img src="/assets/usersSidebar.svg"/>,
+  },
+>>>>>>> 44a57bb1ad30737fe2917e3a34a874b5c223453b
   { id: 2, label: "جداول", link: "/app/tables", icon: <TableIcon /> },
 
   {
@@ -96,7 +105,11 @@ const structure = [
   {
     id: 5,
     label: "درباره ما",
+<<<<<<< HEAD
     link: "/app/AboutUs",
+=======
+    link:"/app/AboutUs",
+>>>>>>> 44a57bb1ad30737fe2917e3a34a874b5c223453b
     icon: <Dot size="small" color="secondary" />,
   },
   
