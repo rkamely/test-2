@@ -15,8 +15,6 @@ import {
   TableChart,
   Accessibility,
   ArrowForwardRounded,
-  CalendarToday,
-  CalendarTodayOutlined,
 
 } from "@material-ui/icons";
 
@@ -49,7 +47,6 @@ const structure = [
   // { id: -4, label: "زنبورستان", link: "/app/user", icon:<img src="/assets/hive-svgrepo-com (1).svg"/> },
   { id: -4, label: "زنبورستان", link: "/app/ApiaryList", icon:<img src="/assets/hive-svgrepo-com (1).svg"/> },
 
-
   { id: -3, label: "پشتیبانی", link: "/app/industryList", icon: <LocationCity />, 
   children: [
     { label: "پیام های من", link: "/app/Support",color:"secondary" },
@@ -57,62 +54,59 @@ const structure = [
     { label: "سوالات متداول", link: "/app/FrequentlyQuestions"  },
   ],
 },
-
   {
     id: -2,
     label: "تازه ها",
     link: "/app/categoryList",
     icon:<img src="/assets/megaphone-svgrepo-com.svg"/>,
   },
-
   {
     id: -1,
     label: "آموزش",
     // link: "/app/ApiaryList",
     icon:<img src="/assets/mortarboard-education-svgrepo-com-1.svg"/>,
   },
-
   { id: -5, label: "محصولات", link: "/app/products", icon:<img src="/assets/mortarboard-education-svgrepo-com-1.svg"/>},
 
   {
     id: 1,
     label: "کاربران",
-    link: "/app/User",
+    link: "/app/typography",
     icon:<img src="/assets/usersSidebar.svg"/>,
   },
-<<<<<<< HEAD
-
-=======
   {
     id: 1,
     label: "کاربران",
     link: "/app/user",
     icon:<img src="/assets/usersSidebar.svg"/>,
   },
->>>>>>> 44a57bb1ad30737fe2917e3a34a874b5c223453b
   { id: 2, label: "جداول", link: "/app/tables", icon: <TableIcon /> },
-
   {
     id: 3,
     label: "تقویم کاری",
-    link: "/app/Calendar",
-    icon: <CalendarTodayOutlined />,
+    link: "/app/notifications",
+    icon: <NotificationsIcon />,
   },
-
+  {
+    id: 4,
+    label: "UI عناصر",
+    link: "/app/ui",
+    icon: <UIElementsIcon />,
+    children: [
+      { label: "Icons", link: "/app/ui/icons" },
+      { label: "Charts", link: "/app/ui/charts" },
+      { label: "Maps", link: "/app/ui/maps" },
+    ],
+  },
 
   { id: 10, type: "divider"  ,backgroundColor:"#fff"},
 
   {
     id: 5,
     label: "درباره ما",
-<<<<<<< HEAD
-    link: "/app/AboutUs",
-=======
     link:"/app/AboutUs",
->>>>>>> 44a57bb1ad30737fe2917e3a34a874b5c223453b
     icon: <Dot size="small" color="secondary" />,
   },
-  
   {
     id: 6,
     label: "تنظیمات",
