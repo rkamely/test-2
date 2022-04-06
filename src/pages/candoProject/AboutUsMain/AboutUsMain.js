@@ -10,7 +10,7 @@ export default function AboutUsMain() {
     <Grid container style={{paddingTop:"48px"}}>
       <Grid>
         <Typography variant="h1" color="secondary" style={{fontFamily: "Shabnam",fontWeight: 600}}>
-          درباره ما
+          درباره ما.
         </Typography>
       </Grid>
       <Grid
