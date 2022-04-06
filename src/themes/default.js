@@ -91,7 +91,7 @@ const defaultTheme = {
       },
       root: {
         backgroundColor: primary,
-        height:"100%"
+    
       },
     },
 

@@ -238,11 +238,13 @@ function Edituser() {
     <div>
         <Modal
           open={open}
+
+
           onClose={handleClose}
           aria-labelledby="parent-modal-title"
           aria-describedby="parent-modal-description"
         >
-          <Box sx={{ ...style, width: 1000 }} >
+          <Box sx={{ ...style, width: "70vw" }} >
             <AddJob/>
           </Box>
         </Modal>
