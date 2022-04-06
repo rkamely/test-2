@@ -1,0 +1,49 @@
+.demo-app {
+  display: flex;
+  min-height: 100%;
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 14px;
+
+  /* background: #fff; */
+}
+
+.demo-app-sidebar {
+  width: 300px;
+  line-height: 1.5;
+
+  border-right: 1px solid #d3e2e8;
+}
+
+.demo-app-sidebar-section {
+  padding: 2em;
+}
+
+.demo-app-main {
+  width: 80%;
+  border: 1px solid red;
+  padding: 3em;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+}
+.demo-app-left {
+  border: 1px solid red;
+
+  width: 20%;
+}
+.fc {
+  /* the calendar root */
+  max-width: 1100px;
+  margin: 0 auto;
+  border: "10px solid red";
+}
+.fc-widget-header {
+  border: "10px solid red";
+}
+.fc-toolbar-title {
+  color: rgb(227, 156, 0);
+  font-size: 1.25rem !important;
+}
+.fc-col-header-cell {
+  background: rgb(240, 240, 240);
+}

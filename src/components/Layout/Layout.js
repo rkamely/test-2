@@ -58,6 +58,7 @@ import FrequentlyQuestions from "../../pages/candoProject/Support/FrequentlyQues
 import SmsVerification from "../../pages/login/SmsVerification";
 import Edituser from "../Form/Setting/Edituser";
 import AboutUsMain from "../../pages/candoProject/AboutUsMain/AboutUsMain";
+import CalenderProject from "../../pages/candoProject/CalenderProject/CalenderProject";
 function Layout(props) {
   var classes = useStyles();
 
@@ -87,6 +88,8 @@ function Layout(props) {
 
             <Route path="/app/tables" component={Tables} />
             <Route path="/app/notifications" component={Notifications} />
+            <Route path="/app/Calender" component={CalenderProject} />
+
             <Route
               exact
               path="/app/ui"

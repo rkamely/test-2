@@ -40,6 +40,7 @@ import {
 } from "../../context/LayoutContext";
 import IndustryList from "../../pages/IndustriesList/IndustryList";
 import Product from "../../pages/ProductsList/ProductList";
+import CalenderProject from "../../pages/candoProject/CalenderProject/CalenderProject";
 
 const structure = [
   { id: 0, label: "خانه" , link:"/app/dashboard", icon:<img src="/assets/usersSidebar.svg"/>},
@@ -85,6 +86,12 @@ const structure = [
     id: 3,
     label: "تقویم کاری",
     link: "/app/notifications",
+    icon: <NotificationsIcon />,
+  },
+  {
+    id: 3,
+    label: "تقویم کاری",
+    link: "/app/Calender",
     icon: <NotificationsIcon />,
   },
   {
