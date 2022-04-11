@@ -146,6 +146,7 @@ export default function SimpleAccordion() {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
     },
   ];
+  
   const changeColor = (index) => {
     console.log(index);
   };

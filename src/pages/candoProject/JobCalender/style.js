@@ -33,4 +33,24 @@ export default makeStyles((theme) => ({
   boxShadow:"0px 3px 6px 0px rgba(0,0,0,0.16)"
   
 },
+inputSelect: {
+  width: "250px",
+  display:"flex",
+  height:"40px",
+  borderRadius: "8px",
+  border: "none",
+  // height: "40px",
+  fontFamily: "Shabnam",
+  "&	.MuiSelect-outlined":{
+  
+    borderRadius: "8px",
+  },
+  "&	.MuiSelect-outlined":{
+  
+    borderRadius: "8px",
+  },
+
+
+},
+
 }));

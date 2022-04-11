@@ -26,16 +26,21 @@ import interactionPlugin from '@fullcalendar/interaction'
 import { INITIAL_EVENTS, createEventId } from './event-utils'
 import allLocales from '@fullcalendar/core/locales-all';
 import "./CalenderProject.css"
+
+import FilterCalender from './FilterCalender'
 export default class CalenderProject extends React.Component {
 
   state = {
     weekendsVisible: true,
     currentEvents: []
   }
+
+
   render() {
       
     return (
       <div className='demo-app'>
+        
         {/* {this.renderSidebar()} */}
         <div className='demo-app-main'>
           <FullCalendar
@@ -70,7 +75,23 @@ export default class CalenderProject extends React.Component {
     
           />
         </div>
-         <div className='demo-app-left'>تقویم</div>
+
+
+
+
+
+
+         <div className='demo-app-left' style={{marginRight:"16px",borderRadius:"16px"}}>
+           <FilterCalender/>
+         </div>
+      
+      
+      
+      
+      
+      
+      
+      
       </div>
     )
   }

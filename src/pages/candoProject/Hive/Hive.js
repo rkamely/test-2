@@ -4,15 +4,17 @@ import {
   Button,
   Fade,
   IconButton,
+  MenuItem,
   Modal,
   Popover,
   Popper,
+  Select,
   Typography,
 } from "@material-ui/core";
 import React, { Children, useEffect, useState } from "react";
 import PageTitle from "../../../components/PageTitle/PageTitle";
 import axios from "axios";
-import { makeStyles } from "@material-ui/styles";
+import useStyles from "./styles";
 import "./Hive.css";
 import XLSX from "xlsx";
 import { Delete, Edit, Edit as EditIcon, MoreVertOutlined, Share } from "@material-ui/icons";
@@ -25,6 +27,7 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import "../../../Iran-Sans-normal";
 import ApiaryAddList from "../../../components/Form/ApiaryList/ApiaryAddList";
+import { makeStyles } from "@material-ui/styles";
 
 function  Hive() {
   const [open, setOpen] = useState(false);
@@ -33,7 +36,7 @@ function  Hive() {
   const [selectedRows, setSelectedRows] = useState();
 
   const [toolbar, setToolbar] = useState(false);
-  
+  const[Hive,setHive]=useState("all")
   const handleOpen = () => {
     setOpen(true);
   };
@@ -42,6 +45,11 @@ function  Hive() {
     setOpen(false);
     setdownloadOpen(false);
   };
+  
+  useEffect(()=>{
+    console.log("Hive",Hive)
+  },[Hive])
+
   const style = {
     position: "absolute",
     top: "50%",
@@ -80,14 +88,14 @@ function  Hive() {
       Queen: 0,
     },
   ]);
-  const useStyles = makeStyles({
-    Button: {
-      margin: "8px 0px",
-      fontFamily: "Shabnam",
-      cursor: "pointer",
-      width: "5%",
-    },
-  });
+  // const useStyles = makeStyles({
+  //   Button: {
+  //     margin: "8px 0px",
+  //     fontFamily: "Shabnam",
+  //     cursor: "pointer",
+  //     width: "5%",
+  //   },
+  // });
   
   const classes = useStyles();
 
@@ -448,6 +456,7 @@ function  Hive() {
           },
         }}
         options={{
+          
           columnsButton: true,
           actionsColumnIndex: -1,
           addRowPosition: "last",
@@ -567,7 +576,25 @@ function  Hive() {
           // ),
         }}
         actions={[
+          {
+            icon: () => <Select
+               labelId="demo-simple-select-label"
+               variant="outlined"
 
+               Id='demo-simple-select'
+               style={{width:100}}
+               value={Hive}
+               className={classes.inputSelect}
+               onChange={(e)=>setHive(e.target.value)}>
+                 <MenuItem value={"all"}><em>All</em></MenuItem>
+                 <MenuItem value={2019}>2019</MenuItem>
+                 <MenuItem value={2020}>2020</MenuItem>
+                 <MenuItem value={2021}>2021</MenuItem>
+            </Select>,
+
+            tooltip: "دانلود",
+            isFreeAction: true,
+          },
           {
             icon: () => (
               
@@ -725,6 +752,7 @@ function  Hive() {
             tooltip: "دانلود",
             isFreeAction: true,
           },
+
 
         ]}
       />

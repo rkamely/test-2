@@ -10,9 +10,11 @@ import {
     Fade,
     Grid,
     IconButton,
+    MenuItem,
     Modal,
     Popover,
     Popper,
+    Select,
     Typography,
   } from "@material-ui/core";
   import React, { Children, useEffect, useState } from "react";
@@ -49,7 +51,21 @@ import AddJob from "../../../components/Form/AddJob/AddJob";
     const [selectedRows, setSelectedRows] = useState();
   
     const [toolbar, setToolbar] = useState(false);
-    
+
+    const[Hive,setHive]=useState("all")
+    const[State,setState]=useState("all")
+    const[Priority,setPriority]=useState("all")
+
+    useEffect(()=>{
+      console.log("Hive",Hive)
+    },[Hive])
+    useEffect(()=>{
+      console.log("State",State)
+    },[State])
+    useEffect(()=>{
+      console.log("Priority",Priority)
+    },[Priority])
+
     const handleOpen = () => {
       setOpen(true);
     };
@@ -434,7 +450,7 @@ import AddJob from "../../../components/Form/AddJob/AddJob";
             },
           }}
           title=""
-          style={{ borderRadius: "25px" }}
+          style={{ borderRadius: "25px",minWidth:"1000px" }}
           data={Company}
           columns={columns}
           onSelectionChange={(rows) => setSelectedRows(rows)}
@@ -587,7 +603,63 @@ import AddJob from "../../../components/Form/AddJob/AddJob";
             // ),
           }}
           actions={[
+            {
+              icon: () => <Select
+                 labelId="demo-simple-select-label"
+                 variant="outlined"
+                 className={classes.inputSelect}
+                 Id='demo-simple-select'
+                 style={{width:100}}
+                 value={Hive}
+                 className={classes.inputSelect}
+                 onChange={(e)=>setHive(e.target.value)}>
+                   <MenuItem value={"all"}><em>All</em></MenuItem>
+                   <MenuItem value={2019}>2019</MenuItem>
+                   <MenuItem value={2020}>2020</MenuItem>
+                   <MenuItem value={2021}>2021</MenuItem>
+              </Select>,
   
+              tooltip: "دانلود",
+              isFreeAction: true,
+            },
+            {
+              icon: () => <Select
+                 labelId="demo-simple-select-label"
+                 variant="outlined"
+                 className={classes.inputSelect}
+                 Id='demo-simple-select'
+                 style={{width:100}}
+                 value={State}
+                 className={classes.inputSelect}
+                 onChange={(e)=>setState(e.target.value)}>
+                   <MenuItem value={"all"}><em>All</em></MenuItem>
+                   <MenuItem value={2019}>2019</MenuItem>
+                   <MenuItem value={2020}>2020</MenuItem>
+                   <MenuItem value={2021}>2021</MenuItem>
+              </Select>,
+  
+              tooltip: "دانلود",
+              isFreeAction: true,
+            },
+            {
+              icon: () => <Select
+                 labelId="demo-simple-select-label"
+                 variant="outlined"
+                 className={classes.inputSelect}
+                 Id='demo-simple-select'
+                 style={{width:100}}
+                 value={Priority}
+                 className={classes.inputSelect}
+                 onChange={(e)=>setPriority(e.target.value)}>
+                   <MenuItem value={"all"}><em>All</em></MenuItem>
+                   <MenuItem value={2019}>2019</MenuItem>
+                   <MenuItem value={2020}>2020</MenuItem>
+                   <MenuItem value={2021}>2021</MenuItem>
+              </Select>,
+  
+              tooltip: "دانلود",
+              isFreeAction: true,
+            },
             {
               icon: () => (
                 

@@ -20,15 +20,12 @@
 
 .demo-app-main {
   width: 80%;
-  border: 1px solid red;
   padding: 3em;
   background: #fff;
   border-radius: 16px;
   box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
 }
 .demo-app-left {
-  border: 1px solid red;
-
   width: 20%;
 }
 .fc {

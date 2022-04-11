@@ -85,7 +85,7 @@ const structure = [
   {
     id: 3,
     label: "تقویم کاری",
-    link: "/app/notifications",
+    link: "/app/JobCalender",
     icon: <NotificationsIcon />,
   },
   {

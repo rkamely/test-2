@@ -189,6 +189,12 @@ const defaultTheme = {
       iconButtonHidden:{
       border: "1px solid red"
       }
+    },
+    MuiAccordionSummary:{
+      root:{
+        padding:"0"
+      }
+        
     }
   },
 };
