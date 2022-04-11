@@ -13,7 +13,7 @@ import Widget from "../../../../components/Widget";
 import { Typography } from "../../../../components/Wrappers";
 
 export default function BigStat2(props) {
-  const { product, total, color, registrations, bounce } = props;
+  const { product, total, color, registrations, bounce ,icon} = props;
   const classes = useStyles();
   const theme = useTheme();
 
@@ -25,16 +25,20 @@ export default function BigStat2(props) {
       header={
   
           <Grid container   alignItems="center" justifyContent="space-between">
-     <div>  
-          <Typography variant="h5">{product}</Typography>
+     <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>  
+         <img src={icon}/>
+      <div style={{marginRight:"32px"}}>
+        
+          <Typography variant="h6">{product}</Typography>
           <div style={{marginTop:"16px" ,color:"rgb( 102, 103, 104)"}} >
-           <Typography variant="p"   colorBrightness="secondary" >
+      </div> 
+          <Typography variant="p"   colorBrightness="secondary" >
            {registrations[value].value}
           </Typography></div>
-   </div>     
+    </div>     
     <div style={{display:"flex"}
     }>
-    <Typography variant="h6" className={registrations[value].profit?classes.profitArrow:classes.profitArrowDanger}>{registrations[value].value}</Typography>
+    <Typography variant="p" style={{color:"#fff"}}  className={registrations[value].profit?classes.profitArrow:classes.profitArrowDanger}>{registrations[value].title2}</Typography>
 
     
     </div>

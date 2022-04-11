@@ -12,6 +12,7 @@ import classnames from "classnames";
 
 // styles
 import useStyles from "./styles";
+import Title from "../Typography/Title/Title";
 
 export default function Widget({
   children,
@@ -54,16 +55,12 @@ export default function Widget({
             header
           ) : (
             <React.Fragment>
-              <Grid item style={{ width: "100%" }}>
+              <Grid item style={{ width: "100%"}}>
                 <Grid item xs={12} container alignItems={"center"}>
-                  <img src={Img} style={{ marginLeft: "8px" }} />
-                  <Typography
-                    variant="p"
-                    color={color}
-                    style={{ fontWeight: "600" }}
-                  >
-                    {title}
-                  </Typography>
+                 {/* <div style={{border:"4px solid rgb( 255 ,176 ,4)",borderRadius:"50%",width:"35px",height:"35px",padding:"8px",marginLeft: "8px" ,display:"flex",alignItems:"center",justifyContent:"center"}}> */}
+                  <img src={Img} style={{marginLeft: "8px"}} />
+                  {/* </div> */}
+                  <Title title={title} variant="p"/>
                 </Grid>
               </Grid>
             </React.Fragment>

@@ -26,7 +26,7 @@ export default function BigStat(props) {
   
           <Grid container   alignItems="center" justifyContent="space-between">
    <div>  
-          <Typography variant="h5">{product}</Typography>
+          <Typography variant="h6">{product}</Typography>
           <div style={{marginTop:"16px" ,color:"rgb( 102, 103, 104)"}} >
            <Typography variant="p"   colorBrightness="secondary" >
            {registrations[value].value}
@@ -34,7 +34,7 @@ export default function BigStat(props) {
    </div>     
     <div style={{display:"flex"}
     }>
-    <Typography variant="h6" className={registrations[value].profit?classes.profitArrow:classes.profitArrowDanger}>{registrations[value].value}</Typography>
+    <Typography variant="p" style={{fontWeight:"bold"}}  className={registrations[value].profit?classes.profitArrowGreen:classes.profitArrowDangerRed}>{registrations[value].title2}</Typography>
       
             {/* <Typography variant="h6" className={classnames(classes.profitArrow, {
                 [!registrations[value].profit]: classes.profitArrowDanger,

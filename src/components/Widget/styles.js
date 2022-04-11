@@ -4,7 +4,7 @@ export default makeStyles(theme => ({
   widgetWrapper: {
     display: "flex",
     minHeight: "100%",
-    
+   
   },
   widgetHeader: {
     padding: theme.spacing(2),

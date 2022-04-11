@@ -31,9 +31,10 @@ const mock = {
 
 
   
-  bigStat: [
+  bigState: [
     {
       product: "جمع آوری عسل",
+      icon:"./assets/Group 11035.svg",
       total: {
         monthly: 4232,
         weekly: 1465,
@@ -44,7 +45,7 @@ const mock = {
       registrations: {
         monthly: { value: 830, profit: false },
         weekly: { value: 215, profit: true },
-        daily: { value: "به موقع", profit: true }
+        daily: { value: " زنبورستان ۱ -کندوی ۱ ", profit: true , title2:"26 آذر تا ۲۹ آذر"}
       },
       date: {
         monthly: { value: 4.5, profit: false },
@@ -53,7 +54,8 @@ const mock = {
       }
     },
     {
-      product: "جمع آوری عسل",
+      product: "بررسی ملکه",
+      icon:"./assets/Group 11035.svg",
       total: {
         monthly: 4232,
         weekly: 1465,
@@ -64,7 +66,7 @@ const mock = {
       registrations: {
         monthly: { value: 830, profit: false },
         weekly: { value: 215, profit: true },
-        daily: { value: "خارج از بازه", profit: false }
+        daily: { value: " زنبورستان ۱ -کندوی ۱ ", profit: false, title2:"26 آذر تا ۲۹ آذر" }
       },
       bounce: {
         monthly: { value: 4.5, profit: false },
@@ -73,7 +75,8 @@ const mock = {
       }
     },
     {
-      product: "جمع آوری عسل",
+      product: "بررسی بچه دهی",
+      icon:"./assets/Group 11035.svg",
       total: {
         monthly: 4232,
         weekly: 1465,
@@ -84,7 +87,7 @@ const mock = {
       registrations: {
         monthly: { value: 830, profit: false },
         weekly: { value: 215, profit: true },
-        daily: { value: "به موقع", profit: true }
+        daily: { value: " زنبورستان ۱ -کندوی ۱ ", profit: true,title2:"26 آذر تا ۲۹ آذر"}
       },
       bounce: {
         monthly: { value: 4.5, profit: false },
@@ -96,6 +99,53 @@ const mock = {
       },
     },
     {
+      product: "بررسی شاخون",
+      icon:"./assets/Group 11035.svg",
+      total: {
+        monthly: 4232,
+        weekly: 1465,
+        daily: 199,
+        percent: { value: 3.7, profit: false }
+      },
+      color: "primary",
+      registrations: {
+        monthly: { value: 830, profit: false },
+        weekly: { value: 215, profit: true },
+        daily: { value: " زنبورستان ۱ -کندوی ۱ ", profit: true, title2:"26 آذر تا ۲۹ آذر"}
+      },
+      bounce: {
+        monthly: { value: 4.5, profit: false },
+        weekly: { value: 3, profit: true },
+        daily: { value: 3.25, profit: true }
+      }
+    },
+    {
+      product: "جمع آوری عسل",
+      icon:"./assets/Group 11035.svg",
+      total: {
+        monthly: 754,
+        weekly: 180,
+        daily: 27,
+        percent: { value: 2.5, profit: true }
+      },
+      color: "warning",
+      registrations: {
+        monthly: { value: 32, profit: true },
+        weekly: { value: 8, profit: true },
+        daily: { value: " زنبورستان ۱ -کندوی ۱ ", profit: false, title2:"26 آذر تا ۲۹ آذر"}
+      },
+      bounce: {
+        monthly: { value: 2.5, profit: true },
+        weekly: { value: 4, profit: false },
+        daily: { value: 4.5, profit: false }
+      }
+    },
+
+  ],
+
+
+ DoneJob: [
+    {
       product: "جمع آوری عسل",
       total: {
         monthly: 4232,
@@ -107,7 +157,70 @@ const mock = {
       registrations: {
         monthly: { value: 830, profit: false },
         weekly: { value: 215, profit: true },
-        daily: { value: "به موقع", profit: true }
+        daily: { value: " زنبورستان ۱ -کندوی ۱ ", profit: true , title2:"به موقع"}
+      },
+      date: {
+        monthly: { value: 4.5, profit: false },
+        weekly: { value: 3, profit: true },
+        daily: { value: 3.25, profit: true }
+      }
+    },
+    {
+      product: "بررسی ملکه",
+      total: {
+        monthly: 4232,
+        weekly: 1465,
+        daily: 199,
+        percent: { value: 3.7, profit: false }
+      },
+      color: "primary",
+      registrations: {
+        monthly: { value: 830, profit: false },
+        weekly: { value: 215, profit: true },
+        daily: { value: " زنبورستان ۱ -کندوی ۱ ", profit: false, title2:"خارج از بازه" }
+      },
+      bounce: {
+        monthly: { value: 4.5, profit: false },
+        weekly: { value: 3, profit: true },
+        daily: { value: 3.25, profit: true }
+      }
+    },
+    {
+      product: "بررسی بچه دهی",
+      total: {
+        monthly: 4232,
+        weekly: 1465,
+        daily: 199,
+        percent: { value: 3.7, profit: false }
+      },
+      color: "primary",
+      registrations: {
+        monthly: { value: 830, profit: false },
+        weekly: { value: 215, profit: true },
+        daily: { value: " زنبورستان ۱ -کندوی ۱ ", profit: true, title2:"به موقع" }
+      },
+      bounce: {
+        monthly: { value: 4.5, profit: false },
+        weekly: { value: 3, profit: true },
+        daily: { value: 3.25, profit: true }
+      },
+      Zanborestan1:{
+         cando1:{paragraph:"زنبورستان ۱", cando:""}
+      },
+    },
+    {
+      product: "بررسی شاخون",
+      total: {
+        monthly: 4232,
+        weekly: 1465,
+        daily: 199,
+        percent: { value: 3.7, profit: false }
+      },
+      color: "primary",
+      registrations: {
+        monthly: { value: 830, profit: false },
+        weekly: { value: 215, profit: true },
+        daily: { value: " زنبورستان ۱ -کندوی ۱ ", profit: true, title2:"به موقع" }
       },
       bounce: {
         monthly: { value: 4.5, profit: false },
@@ -127,7 +240,7 @@ const mock = {
       registrations: {
         monthly: { value: 32, profit: true },
         weekly: { value: 8, profit: true },
-        daily: { value: "خارج از بازه", profit: false }
+        daily: { value: " زنبورستان ۱ -کندوی ۱ ", profit: false, title2:"خارج از بازه" }
       },
       bounce: {
         monthly: { value: 2.5, profit: true },
@@ -135,30 +248,8 @@ const mock = {
         daily: { value: 4.5, profit: false }
       }
     },
-    {
-      product: "جمع آوری عسل",
-      total: {
-        monthly: 1025,
-        weekly: 301,
-        daily: 44,
-        percent: { value: 3.1, profit: true }
-      },
-      color: "secondary",
-      registrations: {
-        monthly: { value: 230, profit: true },
-        weekly: { value: 58, profit: false },
-        daily: { value: "خارج از بازه", profit: false }
-      },
-      bounce: {
-        monthly: { value: 21.5, profit: false },
-        weekly: { value: 19.35, profit: false },
-        daily: { value: 10.1, profit: true }
-      }
-    }
+
   ],
-
-
-
 
 
 

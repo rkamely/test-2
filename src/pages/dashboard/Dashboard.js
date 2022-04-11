@@ -38,6 +38,7 @@ import BigStat2 from "./components/BigStat/BigStat2";
 import Maps from "../maps/Maps";
 import MapComponent from "../maps/MapComponent";
 import MapBox from "../../components/MapBox/MapBox";
+import Title from "../../components/Typography/Title/Title";
 
 const mainChartData = getMainChartData();
 const PieChartData = [
@@ -56,9 +57,10 @@ export default function Dashboard(props) {
 
   return (
     <>
-      <h2 style={{color:"rgb( 255 ,176 ,4)"}}>خانه</h2>
+    
+      <Title title="خانه" variant="h5"/>
 
-      <Grid container spacing={3}>
+      <Grid container spacing={3} style={{marginTop:"8px"}}>
         {/* <Grid item  xs={12} style={{border:"1px solid red"}}>
           <MapBox/>
         </Grid> */}
@@ -68,6 +70,64 @@ export default function Dashboard(props) {
             Img="/assets/hive-svgrepo-com (-1.svg"
             title="تعداد زنبورستان"
             upperTitle
+            style={{ fontWeight: 600}}
+            bodyClass={classes.fullHeightBody}
+            className={classes.card}
+          >
+            <Grid
+              container
+              item
+              alignItems="center"
+              justifyContent="space-between"
+              style={{ marginTop: "30px" }}
+            >
+              <Grid item>
+                <Typography
+                  variant="p"
+                  weight="Bold"
+                  noWrap
+                  style={{ fontWeight: 600 }}
+                >
+                  اکانت خودم
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="p" weight="Bold" noWrap>
+                  1
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              item
+              alignItems="center"
+              justifyContent="space-between"
+              style={{ marginTop: "30px" }}
+            >
+              <Grid item>
+                <Typography
+                  variant="p"
+                  weight="Bold"
+                  noWrap
+                  style={{ fontWeight: 600 }}
+                >
+                  اکانت
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="p" weight="Bold" noWrap>
+                  1
+                </Typography>
+              </Grid>
+            </Grid>
+          </Widget>
+        </Grid>
+        <Grid item lg={2} md={4} sm={6} xs={12}>
+          <Widget
+            color="secondary"
+            Img="/assets/hive-svgrepo-com (3).svg"
+            title="تعداد کندو"
+            upperTitle
             style={{ fontWeight: 600 }}
             bodyClass={classes.fullHeightBody}
             className={classes.card}
@@ -123,8 +183,124 @@ export default function Dashboard(props) {
         <Grid item lg={2} md={4} sm={6} xs={12}>
           <Widget
             color="secondary"
-            Img="/assets/hive-svgrepo-com (-1.svg"
-            title="تعداد زنبورستان"
+            Img="/assets/Group 11039.svg"
+            title="تعداد بازدید"
+            upperTitle
+            style={{ fontWeight: 600 }}
+            bodyClass={classes.fullHeightBody}
+            className={classes.card}
+          >
+            <Grid
+              container
+              item
+              alignItems="center"
+              justifyContent="space-between"
+              style={{ marginTop: "30px" }}
+            >
+              <Grid item>
+                <Typography
+                  variant="p"
+                  weight="Bold"
+                  noWrap
+                  style={{ fontWeight: 600 }}
+                >
+                  اکانت خودم
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="p" weight="Bold" noWrap>
+                  1
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              item
+              alignItems="center"
+              justifyContent="space-between"
+              style={{ marginTop: "30px" }}
+            >
+              <Grid item>
+                <Typography
+                  variant="p"
+                  weight="Bold"
+                  noWrap
+                  style={{ fontWeight: 600 }}
+                >
+                  اکانت
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="p" weight="Bold" noWrap>
+                  1
+                </Typography>
+              </Grid>
+            </Grid>
+          </Widget>
+        </Grid>
+        <Grid item lg={2} md={4} sm={6} xs={12}>
+          <Widget
+            color="secondary"
+            Img="/assets/power-svgrepo-com-1.svg"
+            title="میانگین قدرت"
+            upperTitle
+            style={{ fontWeight: 600 }}
+            bodyClass={classes.fullHeightBody}
+            className={classes.card}
+          >
+            <Grid
+              container
+              item
+              alignItems="center"
+              justifyContent="space-between"
+              style={{ marginTop: "30px" }}
+            >
+              <Grid item>
+                <Typography
+                  variant="p"
+                  weight="Bold"
+                  noWrap
+                  style={{ fontWeight: 600 }}
+                >
+                  اکانت خودم
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="p" weight="Bold" noWrap>
+                  1
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              item
+              alignItems="center"
+              justifyContent="space-between"
+              style={{ marginTop: "30px" }}
+            >
+              <Grid item>
+                <Typography
+                  variant="p"
+                  weight="Bold"
+                  noWrap
+                  style={{ fontWeight: 600 }}
+                >
+                  اکانت
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="p" weight="Bold" noWrap>
+                  1
+                </Typography>
+              </Grid>
+            </Grid>
+          </Widget>
+        </Grid>
+        <Grid item lg={2} md={4} sm={6} xs={12}>
+          <Widget
+            color="secondary"
+            Img="/assets/12425575071619191957.svg"
+            title="تعداد کارها"
             upperTitle
             style={{ fontWeight: 600 }}
             bodyClass={classes.fullHeightBody}
@@ -182,7 +358,7 @@ export default function Dashboard(props) {
           <Widget
             color="secondary"
             Img="/assets/hive-svgrepo-com (-1.svg"
-            title="تعداد زنبورستان"
+            title="تعداد کارها"
             upperTitle
             style={{ fontWeight: 600 }}
             bodyClass={classes.fullHeightBody}
@@ -236,180 +412,7 @@ export default function Dashboard(props) {
             </Grid>
           </Widget>
         </Grid>
-        <Grid item lg={2} md={4} sm={6} xs={12}>
-          <Widget
-            color="secondary"
-            Img="/assets/hive-svgrepo-com (-1.svg"
-            title="تعداد زنبورستان"
-            upperTitle
-            style={{ fontWeight: 600 }}
-            bodyClass={classes.fullHeightBody}
-            className={classes.card}
-          >
-            <Grid
-              container
-              item
-              alignItems="center"
-              justifyContent="space-between"
-              style={{ marginTop: "30px" }}
-            >
-              <Grid item>
-                <Typography
-                  variant="p"
-                  weight="Bold"
-                  noWrap
-                  style={{ fontWeight: 600 }}
-                >
-                  اکانت خودم
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="p" weight="Bold" noWrap>
-                  1
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              item
-              alignItems="center"
-              justifyContent="space-between"
-              style={{ marginTop: "30px" }}
-            >
-              <Grid item>
-                <Typography
-                  variant="p"
-                  weight="Bold"
-                  noWrap
-                  style={{ fontWeight: 600 }}
-                >
-                  اکانت
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="p" weight="Bold" noWrap>
-                  1
-                </Typography>
-              </Grid>
-            </Grid>
-          </Widget>
-        </Grid>
-        <Grid item lg={2} md={4} sm={6} xs={12}>
-          <Widget
-            color="secondary"
-            Img="/assets/hive-svgrepo-com (-1.svg"
-            title="تعداد زنبورستان"
-            upperTitle
-            style={{ fontWeight: 600 }}
-            bodyClass={classes.fullHeightBody}
-            className={classes.card}
-          >
-            <Grid
-              container
-              item
-              alignItems="center"
-              justifyContent="space-between"
-              style={{ marginTop: "30px" }}
-            >
-              <Grid item>
-                <Typography
-                  variant="p"
-                  weight="Bold"
-                  noWrap
-                  style={{ fontWeight: 600 }}
-                >
-                  اکانت خودم
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="p" weight="Bold" noWrap>
-                  1
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              item
-              alignItems="center"
-              justifyContent="space-between"
-              style={{ marginTop: "30px" }}
-            >
-              <Grid item>
-                <Typography
-                  variant="p"
-                  weight="Bold"
-                  noWrap
-                  style={{ fontWeight: 600 }}
-                >
-                  اکانت
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="p" weight="Bold" noWrap>
-                  1
-                </Typography>
-              </Grid>
-            </Grid>
-          </Widget>
-        </Grid>
-        <Grid item lg={2} md={4} sm={6} xs={12}>
-          <Widget
-            color="secondary"
-            Img="/assets/hive-svgrepo-com (-1.svg"
-            title="تعداد زنبورستان"
-            upperTitle
-            style={{ fontWeight: 600 }}
-            bodyClass={classes.fullHeightBody}
-            className={classes.card}
-          >
-            <Grid
-              container
-              item
-              alignItems="center"
-              justifyContent="space-between"
-              style={{ marginTop: "30px" }}
-            >
-              <Grid item>
-                <Typography
-                  variant="p"
-                  weight="Bold"
-                  noWrap
-                  style={{ fontWeight: 600 }}
-                >
-                  اکانت خودم
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="p" weight="Bold" noWrap>
-                  1
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              item
-              alignItems="center"
-              justifyContent="space-between"
-              style={{ marginTop: "30px" }}
-            >
-              <Grid item>
-                <Typography
-                  variant="p"
-                  weight="Bold"
-                  noWrap
-                  style={{ fontWeight: 600 }}
-                >
-                  اکانت
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="p" weight="Bold" noWrap>
-                  1
-                </Typography>
-              </Grid>
-            </Grid>
-          </Widget>
-        </Grid>
+
 
 
 
@@ -525,10 +528,8 @@ export default function Dashboard(props) {
           style={{ display: "flex" }}
         >
           <Grid className={classes.reminderJob} item lg={12} xs={12}>
-            <Typography variant="h5" color="secondary">
-              یادآوری کارها
-            </Typography>
-            {mock.bigStat.map((stat, index) => (
+           <Title title="يادآوری کارها" variant="h6"/>
+            {mock.bigState.map((stat, index) => (
               <Grid item lg={12} xs={12} style={{ display: "flex" }}>
                 <Grid
                   item
@@ -545,11 +546,8 @@ export default function Dashboard(props) {
             ))}
           </Grid>
           <Grid className={classes.workDone} item lg={12} xs={12}>
-            <Typography variant="h5" color="secondary">
-              {" "}
-              کارهای انجام شده
-            </Typography>
-            {mock.bigStat.map((stat, index) => (
+          <Title title="کارهای انجام شده" variant="h6"/>
+            {mock.DoneJob.map((stat, index) => (
               <Grid item lg={12} xs={12} style={{ display: "flex" }}>
                 <Grid
                   item
