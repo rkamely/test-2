@@ -56,7 +56,7 @@ export default makeStyles(theme => ({
     flexDirection:"row",
     alignItems:"center",
     justifyContent:"center",
-    border:"1px solid red"
+
   },
 /////////////
   sectionTitle: {

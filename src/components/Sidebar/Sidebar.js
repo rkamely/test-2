@@ -43,12 +43,12 @@ import Product from "../../pages/ProductsList/ProductList";
 import CalenderProject from "../../pages/candoProject/CalenderProject/CalenderProject";
 
 const structure = [
-  { id: 0, label: "خانه" , link:"/app/dashboard", icon:<img src="/assets/usersSidebar.svg"/>},
+  { id: 0, label: "خانه" , link:"/app/dashboard", icon:<img src="/assets/house.png"/>},
 
   // { id: -4, label: "زنبورستان", link: "/app/user", icon:<img src="/assets/hive-svgrepo-com (1).svg"/> },
   { id: -4, label: "زنبورستان", link: "/app/ApiaryList", icon:<img src="/assets/hive-svgrepo-com (1).svg"/> },
 
-  { id: -3, label: "پشتیبانی", link: "/app/industryList", icon: <LocationCity />, 
+  { id: -3, label: "پشتیبانی", link: "/app/Support", icon:<img src="/assets/customer-support-symbol-svgrepo-com-1.svg"/>, 
   children: [
     { label: "پیام های من", link: "/app/Support",color:"secondary" },
     { label: "پیام های پشتیبانی", link: "/app/SupportMessage" },
@@ -58,30 +58,24 @@ const structure = [
   {
     id: -2,
     label: "تازه ها",
-    link: "/app/categoryList",
+    link: "/app/new",
     icon:<img src="/assets/megaphone-svgrepo-com.svg"/>,
   },
   {
     id: -1,
     label: "آموزش",
-    // link: "/app/ApiaryList",
+    link: "/app/Education",
     icon:<img src="/assets/mortarboard-education-svgrepo-com-1.svg"/>,
   },
-  { id: -5, label: "محصولات", link: "/app/products", icon:<img src="/assets/mortarboard-education-svgrepo-com-1.svg"/>},
+  // { id: -5, label: "محصولات", link: "/app/products", icon:<img src="/assets/mortarboard-education-svgrepo-com-1.svg"/>},
 
-  {
-    id: 1,
-    label: "کاربران",
-    link: "/app/typography",
-    icon:<img src="/assets/usersSidebar.svg"/>,
-  },
+
   {
     id: 1,
     label: "کاربران",
     link: "/app/user",
     icon:<img src="/assets/usersSidebar.svg"/>,
   },
-  { id: 2, label: "جداول", link: "/app/tables", icon: <TableIcon /> },
   {
     id: 3,
     label: "تقویم کاری",
@@ -94,17 +88,7 @@ const structure = [
     link: "/app/Calender",
     icon: <NotificationsIcon />,
   },
-  {
-    id: 4,
-    label: "UI عناصر",
-    link: "/app/ui",
-    icon: <UIElementsIcon />,
-    children: [
-      { label: "Icons", link: "/app/ui/icons" },
-      { label: "Charts", link: "/app/ui/charts" },
-      { label: "Maps", link: "/app/ui/maps" },
-    ],
-  },
+
 
   { id: 10, type: "divider"  ,backgroundColor:"#fff"},
 
@@ -144,7 +128,7 @@ const changeIcon=()=>{
   setIcon(!icon)
 }
   return (
-    <Drawer
+    <Drawer 
       variant={isPermanent ? "permanent" : "temporary"}
       className={classNames(classes.drawer, {
         [classes.drawerOpen]: isSidebarOpened,
@@ -174,6 +158,11 @@ const changeIcon=()=>{
           }}/>}
         </IconButton>
       </div>
+
+
+
+
+
        {icon?<div className={classes.candoTopSidebar}> 
           <div className={classes.candoLogo}>
             <img src="/assets/Component 24 – 53.svg" alt="عکس زنبور" width="50px"/>
@@ -186,7 +175,10 @@ const changeIcon=()=>{
         <Divider style={
           {backgroundColor:"#fff"}
         }/>,
-        
+
+
+
+
         {structure.map((link) => (
            
           <SidebarLink

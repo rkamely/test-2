@@ -104,7 +104,9 @@ export default function SidebarLink({
             [classes.linkIconActive]: isLinkActive,
           })}
         >
-          {nested ? <Dot color={isLinkActive && "primary"} /> : icon}
+          {nested ? <Dot color={isLinkActive && "#000"} /> : icon}
+       
+
         </ListItemIcon>
         <ListItemText
           classes={{
@@ -152,9 +154,8 @@ export default function SidebarLink({
           unmountOnExit
           className={classes.nestedList}
         > 
-            <div style={{width:"8px", height:"18px",color:"red", backgroundColor:"red", transform:"translateY(42px)"}}></div>
 
-          <List className={classes.bardia} component="div" disablePadding style={{border:"1px solid red", transform:"translateX(-42px)"}}>
+          <List className={classes.bardia} component="div" disablePadding style={{borderRight:"2px solid rgb( 227 156 0)", transform:"translateX(-42px)"}}>
 
             {children.map(childrenLink => (
               <SidebarLink

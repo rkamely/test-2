@@ -36,6 +36,8 @@ import Adduser from "../../../components/Form/AddUser/Adduser";
 function  ApiaryList() {
   const [open, setOpen] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
+
   const [downloadOpen, setdownloadOpen] = useState(false);
 
   const [selectedRows, setSelectedRows] = useState();
@@ -47,6 +49,9 @@ function  ApiaryList() {
   };
   const handleEditOpen = () => {
     setOpenEdit(true);
+  };
+  const handleDeleteOpen = () => {
+    setOpenDelete(true);
   };
   const handleClose = () => {
     setOpen(false);
@@ -154,14 +159,7 @@ function  ApiaryList() {
     {
       title: "زنبورستان",
       field: "name",
-      validate: (rowDate) => {
-        if (rowDate.name === undefined || rowDate.name === "") {
-          return "این فیلد ضروری است";
-        } else if (rowDate.name.length < 2) {
-          return "نام شما حداقل باید دارای دو کاراکتر باشد";
-        }
-        return true;
-      },
+
       cellStyle: {
         textAlign: "right",
       },
@@ -358,6 +356,8 @@ function  ApiaryList() {
 
                             }}
                             onClick={() => onRowDelete(rowData)}
+                            // onClick={handleDeleteOpen}
+
                           >
                             <img src="/assets/trash-svgrepo-com-2.svg" style={{ margin: "0 0px 0 24px" }} />
                             حذف
@@ -390,7 +390,7 @@ function  ApiaryList() {
     //Binary string
     XLSX.write(workBook, { bookType: "xlsx", type: "binary" });
     //Download
-    XLSX.writeFile(workBook, "StudentsData.xlsx");
+    XLSX.writeFile(workBook, "لیست زنبورستان.xlsx");
   };
   const [searched, setSearched] = useState();
 
@@ -416,6 +416,7 @@ function  ApiaryList() {
   };
 
   const onRowDelete=(rowData) =>{
+    console.log("rowData23123",rowData)
     const updatedData=Company.filter((row)=>![rowData].includes(row))
     setCompany(updatedData);
   }
@@ -711,7 +712,7 @@ function  ApiaryList() {
 
           {
             icon: () => (
-              <div onClick={handleOpen}>
+              <div onClick={handleEditOpen}>
                 <img
                   style={{
                     backgroundColor: "rgb( 227, 156, 0)",
@@ -727,7 +728,7 @@ function  ApiaryList() {
                 />
               </div>
             ),
-            tooltip: "Export to Excel",
+            tooltip: "اضافه کردن زنبورستان",
             onClick: () => add(),
             isFreeAction: true,
           },
@@ -788,6 +789,21 @@ function  ApiaryList() {
       </div>
 
       
+      <div>
+
+        <Modal
+          open={openDelete}
+          onClose={handleClose}
+          aria-labelledby="parent-modal-title"
+          aria-describedby="parent-modal-description"
+        >
+          <Box sx={{ ...style, width: 1000 }} className="downloadFile" style={{ display: "flex" ,alignItems: "center",justifyContent: "center"}}>
+          {/* <button onClick={() => onRowDelete(rowData)}>Delete</button> */}
+          </Box>
+        </Modal>
+      </div>
+
+
       <div>
         <Modal
           open={downloadOpen}

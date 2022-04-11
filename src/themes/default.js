@@ -187,7 +187,7 @@ const defaultTheme = {
     },
     ForwardRef:{
       iconButtonHidden:{
-      border: "1px solid red"
+
       }
     },
     MuiAccordionSummary:{
