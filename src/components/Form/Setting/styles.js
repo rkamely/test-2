@@ -234,6 +234,9 @@ export default makeStyles((theme) => ({
         width:"30%",
         color:"#fff",
         fontFamily:"Shabnam",
-        fontWeight:"bold"
+        fontWeight:"bold",
+        "&:hover":{
+          backgroundColor:"blue",
+        }
       }
 }));

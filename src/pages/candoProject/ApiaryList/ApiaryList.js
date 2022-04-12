@@ -170,7 +170,7 @@ function  ApiaryList() {
       render: (rowData) => {
         console.log("rowData", rowData);
         return (
-          <Link to={`/app/Beehive/${rowData.id}`} className="title" style={{ display: "flex"}}>
+          <Link to={`/app/ApiaryList/Beehive/${rowData.id}`} className="title" style={{ display: "flex"}}>
             <p className="title">{rowData.name}</p>
           </Link>
         );

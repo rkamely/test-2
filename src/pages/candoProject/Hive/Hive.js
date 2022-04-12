@@ -116,7 +116,7 @@ function  Hive() {
         console.log("rowData", rowData);
         return (
           <Link
-            to={`/app/Beehive/Hive/${rowData.id}`}
+            to={`/app/ApiaryList/Beehive/Hive/${rowData.id}`}
             style={{ display: "flex" }}
           >
             {rowData.name}

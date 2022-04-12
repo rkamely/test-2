@@ -244,9 +244,10 @@ function Edituser() {
           aria-labelledby="parent-modal-title"
           aria-describedby="parent-modal-description"
         >
-          <Box sx={{ ...style, width: "70vw" }} >
-            <AddJob/>
+          <Box sx={{ ...style, width: "40vw" }} >
+            <EditPhoneNumber />
           </Box>
+          
         </Modal>
       </div>
 

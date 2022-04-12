@@ -85,6 +85,12 @@ function Layout(props) {
             <Route path="/app/login/step2" component={SmsVerification} />
 
             <Route path="/app/dashboard" component={Dashboard} />
+            <Route path="/app/ApiaryList/Beehive/Hive/:id" component={HiveStatus} />
+            {/* <Route path="/app/Beehive/Hive/:id/:id" component={Audio} /> */}
+
+            <Route path="/app/ApiaryList/Beehive/:id" component={Hive} />
+            <Route path="/app/ApiaryList" component={ApiaryList} />
+            
             <Route path="/app/typography" component={Typography} />
             <Route path="/app/user" component={TableofUser} />
 
@@ -121,11 +127,7 @@ function Layout(props) {
 
             <Route path="/app/CompanyList/:id" component={CompanyUpdateList} />
 
-            <Route path="/app/Beehive/Hive/:id" component={HiveStatus} />
-            {/* <Route path="/app/Beehive/Hive/:id/:id" component={Audio} /> */}
 
-            <Route path="/app/Beehive/:id" component={Hive} />
-            <Route path="/app/ApiaryList" component={ApiaryList} />
             <Route path="/app/Support/:id" component={SupportPage} />
             <Route path="/app/SupportMessage" component={SupportMessage} />
             <Route
