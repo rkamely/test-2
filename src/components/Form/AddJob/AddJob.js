@@ -7,7 +7,9 @@ import * as yup from "yup";
 import {
   Box,
   Button,
+  Checkbox,
   Divider,
+  FormControlLabel,
   Grid,
   MenuItem,
   Paper,
@@ -24,7 +26,8 @@ import {
 } from "react-router-dom";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 
-const AddJob = () => {
+const AddJob = (props) => {
+  console.log("props",props)
   const classes = useStyles();
   const [selectedDate, handleDateChange] = useState(moment());
   jMoment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
@@ -37,6 +40,8 @@ const AddJob = () => {
     // Reminder:yup.string().required("لطفا الویت را مشخص کنید"),
     jobTitle: yup.string().required("لطفا عنوان کار خود را وارد کنید"),
     email: yup.string().email("لطفا ایمیل معتبر وارد کنید"),
+    // Checkbox:yup.boolean()
+    // .oneOf([true], "این ")
   });
 
   const {
@@ -61,20 +66,21 @@ const AddJob = () => {
     { label: "بیماری زنبور", value: "بیماری زنبور" },
   ];
   return (
-    <Paper>
-      <Box px={3} py={2} className={classes.root}>
+    <Paper >
         <Typography
           variant="h6"
           align="center"
           margin="dense"
           color="secondary"
-          style={{ fontWeight: "bold" }}
+          style={{ fontWeight: "bold",marginTop:"16px" }}
         >
           کار جدید
         </Typography>
         <Divider style={{ marginTop: "8px", width: "100%" }} />
 
+      <Box px={3} py={2} className={classes.root} >
         <Grid container spacing={1} className={classes.container}>
+
     <Grid item xs={12}>
           <div style={{ display: "flex", width: "100%" }}>
             <Grid item xs={12} sm={12} className={classes.Select}>
@@ -134,7 +140,7 @@ const AddJob = () => {
               </Typography>
             </Grid>
           </div>
-          <Divider style={{ margin: "8px auto", width: "100%" }} />
+          <Divider style={{ margin: "32px auto 0", width: "100%" }} />
     </Grid>
 
 
@@ -253,7 +259,7 @@ const AddJob = () => {
               </Grid>
             </div>
           </div>
-          <Divider style={{ margin: "8px auto", width: "100%" }} />
+          <Divider style={{ margin: "32px auto 0", width: "100%" }} />
     </Grid>
 
 
@@ -413,7 +419,7 @@ const AddJob = () => {
               </div>
             </div>
           </div>
-          <Divider style={{ margin: "8px auto", width: "100%" }} />
+          <Divider style={{ margin: "32px auto 0", width: "100%" }} />
     </Grid>
 
 
@@ -437,7 +443,8 @@ const AddJob = () => {
             </div>
             <div style={{ display: "flex", width: "100%" }}>
               <Grid item xs={12} sm={12} className={classes.Select}>
-                <div className={classes.input}>
+                <div >
+                  <Grid className={classes.input}>
                   <label className={classes.label}>الویت</label>
                   <Select
                     className={classes.inputSelect}
@@ -457,7 +464,8 @@ const AddJob = () => {
                         </MenuItem>
                       );
                     })}
-                  </Select>
+                  </Select></Grid>
+
                 </div>
                 {/* {errors.select && <p>{errors.select.message}</p>} */}
                 <Typography
@@ -466,7 +474,23 @@ const AddJob = () => {
                   style={{ color: "red" }}
                 >
                   {errors.Beehive?.message}
-                </Typography>
+                </Typography> 
+                                 
+                <Grid item style={{margin:"16px 32px 0"}}>
+
+
+                  <FormControlLabel                   
+                    {...register("Checkbox")}
+                     control={<Checkbox  />} label="انجام شده" />
+                  </Grid>    
+{/* 
+                <Typography
+                  variant="inherit"
+                  color="textSecondary"
+                  style={{ color: "red" }}
+                >
+                  {errors.Checkbox?.message}
+                </Typography>  */}
               </Grid>
 
               <Grid item xs={12} sm={12} className={classes.Select}>
@@ -503,13 +527,14 @@ const AddJob = () => {
               </Grid>
             </div>
           </div>
-          <Divider style={{ margin: "8px auto", width: "100%" }} />
+          <Divider style={{ margin: "32px auto 0", width: "100%" }} />
     </Grid>    
+
         </Grid>
 
         <Box mt={8} style={{ width: "100%" }}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <Button variant="contained" className={classes.Button2}>
+            <Button variant="contained" className={classes.Button2} onClick={props.handleClose}>
               انصراف
             </Button>
 

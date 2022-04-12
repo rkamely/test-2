@@ -722,7 +722,7 @@ function  Hive() {
                 />
               </div>
             ),
-            tooltip: "Export to Excel",
+
             onClick: () => add(),
             isFreeAction: true,
           },
