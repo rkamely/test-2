@@ -59,7 +59,8 @@ import SmsVerification from "../../pages/login/SmsVerification";
 import Edituser from "../Form/Setting/Edituser";
 import AboutUsMain from "../../pages/candoProject/AboutUsMain/AboutUsMain";
 import CalenderProject from "../../pages/candoProject/CalenderProject/CalenderProject";
-import JobCalender from "../../pages/candoProject/JobCalender/JobCalender";
+import JobCalender from "../../pages/candoProject/CalenderProject/JobCalender/JobCalender";
+import main from "../../pages/candoProject/CalenderProject/main";
 function Layout(props) {
   var classes = useStyles();
 
@@ -89,8 +90,13 @@ function Layout(props) {
 
             <Route path="/app/tables" component={Tables} />
             <Route path="/app/notifications" component={Notifications} />
-            <Route path="/app/Calender" component={CalenderProject} /> 
-            <Route path="/app/JobCalender" component={JobCalender} /> 
+            {/* <Route path="/app/Calender" component={CalenderProject} />  */}
+            {/* <Route path="/app/JobCalender/:id/:id" component={CalenderProject} />  */}
+            {/* <Route path="/app/JobCalender/:id" component={JobCalender} />  */}
+
+            <Route path="/app/JobCalender" component={main} /> 
+            
+
             <Route
               exact
               path="/app/ui"

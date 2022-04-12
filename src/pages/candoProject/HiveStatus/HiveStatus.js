@@ -57,10 +57,10 @@ function HiveStatus() {
     <Grid item sm={6} >
 
       <Grid item  className={classes.TabHeader} >
-        <Grid ><NavLink to={`${url}`} className={classes.item} activeClassName={classes.activeItem}>وضعیت</NavLink></Grid>
-        <Grid><NavLink to={`${url}/netflix2`} className={classes.item} activeClassName={classes.activeItem}>صدا و تصویر</NavLink></Grid>
-        <Grid><NavLink to={`${url}/netflix3`} className={classes.item} activeClassName={classes.activeItem}> نمودار </NavLink></Grid>
-        <Grid><NavLink to={`${url}/netflix4`} className={classes.item} activeClassName={classes.activeItem}> تاریخچه </NavLink></Grid>
+        <Grid ><NavLink exact to={`${url}`} className={classes.item} activeClassName={classes.activeItem}>وضعیت</NavLink></Grid>
+        <Grid><NavLink to={`${url}/Sound`} className={classes.item} activeClassName={classes.activeItem}>صدا و تصویر</NavLink></Grid>
+        <Grid><NavLink to={`${url}/Diagram`} className={classes.item} activeClassName={classes.activeItem}> نمودار </NavLink></Grid>
+        <Grid><NavLink to={`${url}/History`} className={classes.item} activeClassName={classes.activeItem}> تاریخچه </NavLink></Grid>
       </Grid> 
 
 {/* 
@@ -69,18 +69,18 @@ function HiveStatus() {
          <Diagram /> */}
 
 
-         <Switch>
+      <Switch>
         <Route exact path={`${path}`}>
             <RightTopCard />
         </Route>
-        <Route path={`${path}/netflix2`}>
+        <Route path={`${path}/Sound`}>
             <Audio />
         </Route>
-        <Route path={`${path}/netflix3`}>
+        <Route path={`${path}/Diagram`}>
             <Diagram /> 
         </Route>
-
-      </Switch>            
+      </Switch>     
+             
     </Grid>
 
 

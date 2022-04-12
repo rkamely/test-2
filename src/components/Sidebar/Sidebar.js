@@ -68,27 +68,25 @@ const structure = [
     icon:<img src="/assets/mortarboard-education-svgrepo-com-1.svg"/>,
   },
   // { id: -5, label: "محصولات", link: "/app/products", icon:<img src="/assets/mortarboard-education-svgrepo-com-1.svg"/>},
-
-
   {
     id: 1,
     label: "کاربران",
     link: "/app/user",
     icon:<img src="/assets/usersSidebar.svg"/>,
   },
+  // {
+  //   id: 3,
+  //   label: "تقویم کاری",
+  //   link: "/app/JobCalender",
+  //   icon: <NotificationsIcon />,
+  // },
+
   {
     id: 3,
     label: "تقویم کاری",
     link: "/app/JobCalender",
     icon: <NotificationsIcon />,
   },
-  {
-    id: 3,
-    label: "تقویم کاری",
-    link: "/app/Calender",
-    icon: <NotificationsIcon />,
-  },
-
 
   { id: 10, type: "divider"  ,backgroundColor:"#fff"},
 

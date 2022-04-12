@@ -18,7 +18,7 @@ import {
     Typography,
   } from "@material-ui/core";
   import React, { Children, useEffect, useState } from "react";
-  import PageTitle from "../../../components/PageTitle/PageTitle";
+  import PageTitle from "../../../../components/PageTitle/PageTitle";
   import axios from "axios";
   import { makeStyles } from "@material-ui/styles";
 //   import "./ApiaryList.css";
@@ -26,23 +26,23 @@ import {
   import { Delete, Edit, Edit as EditIcon, MoreVertOutlined, Share } from "@material-ui/icons";
   import { Link } from "react-router-dom";
   import MaterialTable, { MTableToolbar } from "material-table";
-  import CompanyAddList from "../../../components/Form/ApiaryList/ApiaryAddList";
+  import CompanyAddList from "../../../../components/Form/ApiaryList/ApiaryAddList";
   import SearchBar from "material-ui-search-bar";
   import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
   import jsPDF from "jspdf";
   import "jspdf-autotable";
-  import "../../../Iran-Sans-normal";
-  import ApiaryAddList from "../../../components/Form/ApiaryList/ApiaryAddList";
-  import ApiaryUpdateList from "../../../components/Form/ApiaryList/ApiaryUpdateList";
-  import Adduser from "../../../components/Form/AddUser/Adduser";
-  import useStyles from "./style"; 
+  import "../../../../Iran-Sans-normal";
+  import ApiaryAddList from "../../../../components/Form/ApiaryList/ApiaryAddList";
+  import ApiaryUpdateList from "../../../../components/Form/ApiaryList/ApiaryUpdateList";
+  import Adduser from "../../../../components/Form/AddUser/Adduser";
+  import useStyles from "../style"; 
   import {
     BrowserRouter as Router,
 
     NavLink,
     useRouteMatch,
   } from "react-router-dom"
-import AddJob from "../../../components/Form/AddJob/AddJob";
+import AddJob from "../../../../components/Form/AddJob/AddJob";
   function  JobCalender() {
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
@@ -417,32 +417,11 @@ import AddJob from "../../../components/Form/AddJob/AddJob";
     const add = () => {
       return console.log("click");
     };
-    let { path, url } = useRouteMatch();
 
     return (
       <div>
   
-         <h2 style={{color:"rgb(227, 156, 0)"}}>زنبورستان</h2>
-         <Grid item xs={6} sm={6} className={classes.TabHeader}>
-              <Grid>
-                <NavLink
-                  to={`${url}/netflix1`}
-                  className={classes.item}
-                  activeClassName={classes.activeItem}
-                >
-                  تقویم  
-                </NavLink>
-              </Grid>
-              <Grid>
-                <NavLink
-                  to={`${url}/netflix2`}
-                  className={classes.item}
-                  activeClassName={classes.activeItem}
-                >
-                  کارها
-                </NavLink>
-              </Grid>
-            </Grid>
+
         <MaterialTable
           localization={{
             toolbar: {

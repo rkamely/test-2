@@ -19,7 +19,7 @@ function FilterCalender() {
     setExpanded(newExpanded ? panel : false);
   };
   return (
-            <Grid container style={{backgroundColor:"#fff", borderRadius: "12px",}}>
+    <Grid container style={{backgroundColor:"#fff", borderRadius: "12px",}}>
       <Grid
         item
         xs={12}
@@ -108,7 +108,7 @@ function FilterCalender() {
           
   
       </Grid>
-         </Grid>
+     </Grid>
   )
 }
 

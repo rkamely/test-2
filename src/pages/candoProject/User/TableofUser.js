@@ -692,7 +692,13 @@ import {
   MoreVertOutlined,
   Share,
 } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,NavLink,
+  useParams,useRouteMatch
+} from "react-router-dom" 
 import MaterialTable, { MTableToolbar } from "material-table";
 import CompanyAddList from "../../../components/Form/ApiaryList/ApiaryAddList";
 import SearchBar from "material-ui-search-bar";
@@ -714,6 +720,7 @@ function TableofUser() {
 
   const [toolbar, setToolbar] = useState(false);
   const[Hive,setHive]=useState("all")
+  let { path, url } = useRouteMatch();
 
   useEffect(()=>{
     console.log("Hive",Hive)
@@ -850,6 +857,7 @@ function TableofUser() {
       headerStyle: {
         textAlign: "right",
       },
+      
       render: (rowData) => {
         return (
           // <Link to={`/app/CompanyList/${rowData.id}`}>

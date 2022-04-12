@@ -7,20 +7,21 @@ export default makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
-    height: "50px",
+    height: "45px",
     boxShadow:
       " rgba(0, 0, 0, 0.1) 0px 60px 100px -100px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
-    color: "black",
+    color: "rgb(227 156 0)",
     fontWeight: "bold",
     borderRadius: "15px",
     fontSize: "1rem",
-    marginBottom:"16px;",
-    marginTop:"16px",
-    width:"30%"
+    marginBottom:"16px",
+    marginTop:"32px",
+   
   },    
   item:{
     textDecoration:"none",
     color: "black",
+    color: "rgb(227 156 0)",
  
   },
   activeItem:{
