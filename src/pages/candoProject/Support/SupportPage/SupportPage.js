@@ -172,13 +172,10 @@ function SupportPage() {
           backgroundColor: "#fff",
           padding: "48px ",
           borderRadius: "12px",
-          position: "absolute",
-
+          position: "fixed",
           bottom:0,
-          left:0,
-          right:0,
-   
-
+          left:20,
+          width:"80%",
         }}
       >
         <TextareaAutosize
