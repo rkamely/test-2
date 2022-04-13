@@ -1,6 +1,7 @@
 
 import {
   Box,
+  Breadcrumbs,
   Button,
   Fade,
   IconButton,
@@ -17,7 +18,7 @@ import axios from "axios";
 import useStyles from "./styles";
 import "./Hive.css";
 import XLSX from "xlsx";
-import { Delete, Edit, Edit as EditIcon, MoreVertOutlined, Share } from "@material-ui/icons";
+import { Delete, Edit, Edit as EditIcon, MoreVertOutlined, NavigateBefore, NavigateNext, Share } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import MaterialTable, { MTableToolbar } from "material-table";
 import CompanyAddList from "../../../components/Form/ApiaryList/ApiaryAddList";
@@ -28,8 +29,15 @@ import "jspdf-autotable";
 import "../../../Iran-Sans-normal";
 import ApiaryAddList from "../../../components/Form/ApiaryList/ApiaryAddList";
 import { makeStyles } from "@material-ui/styles";
+import Title from "../../../components/Typography/Title/Title";
+import { useLocation } from 'react-router-dom'
 
 function  Hive() {
+  const location = useLocation()
+  // window.localStorage.getItem(location.state.rowDatas)
+  // const rowDatas= window.localStorage.setItem()
+  // console.log("location",location)
+  // console.log("rowDatanew",rowDatas)
   const [open, setOpen] = useState(false);
   const [downloadOpen, setdownloadOpen] = useState(false);
 
@@ -117,7 +125,7 @@ function  Hive() {
         return (
           <Link
             to={`/app/ApiaryList/Beehive/Hive/${rowData.id}`}
-            style={{ display: "flex" }}
+            style={{ display: "flex",textDecoration:"none" ,color:"black",cursor:"pointer"}}
           >
             {rowData.name}
           </Link>
@@ -411,10 +419,30 @@ function  Hive() {
   const add = () => {
     return console.log("click");
   };
-  return (
-    <div>
+  
+  const breadcrumbs = [
 
-       <h2 style={{color:"rgb(227, 156, 0)"}}>زنبورستان</h2>
+    <Link
+      to="/app/ApiaryList"
+      key="1"
+      style={{textDecoration:"none",cursor:"pointer"}}
+    >
+          <Title key="2" title="زنبورستان "/>
+
+    </Link>,
+    <Title key="2" title="زنبورستان ۱"/>
+
+
+  ];
+  return (
+    
+    <div>
+      <Breadcrumbs 
+        separator={<NavigateBefore fontSize="large" style={{color:"rgb(227, 156, 0)"}} />}
+        aria-label="breadcrumb"
+      >
+        {breadcrumbs}
+      </Breadcrumbs>
       <MaterialTable
         localization={{
           toolbar: {
@@ -422,7 +450,7 @@ function  Hive() {
           },
         }}
         title=""
-        style={{ borderRadius: "25px" }}
+        style={{ borderRadius: "25px",marginTop:"32px" }}
         data={Company}
         columns={columns}
         onSelectionChange={(rows) => setSelectedRows(rows)}

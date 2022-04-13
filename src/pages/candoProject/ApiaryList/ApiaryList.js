@@ -73,7 +73,7 @@ function  ApiaryList() {
     pb: 3,
   };
 
-  const [Company, setCompany] = useState([
+  const [Apiary, setApiary] = useState([
     {
       id: "0",
       name: "زنبورستان1",
@@ -153,7 +153,7 @@ function  ApiaryList() {
   
   const classes = useStyles();
 
-  console.log(Company);
+  console.log(Apiary);
   const columns = [
 
     {
@@ -170,7 +170,7 @@ function  ApiaryList() {
       render: (rowData) => {
         console.log("rowData", rowData);
         return (
-          <Link to={`/app/ApiaryList/Beehive/${rowData.id}`} className="title" style={{ display: "flex"}}>
+          <Link to={{pathname:`/app/ApiaryList/Beehive/${rowData.id}` ,state:{rowData} }} className="title" style={{ display: "flex"}}  >
             <p className="title">{rowData.name}</p>
           </Link>
         );
@@ -267,7 +267,7 @@ function  ApiaryList() {
       },
       render: (rowData) => {
         return (
-          // <Link to={`/app/CompanyList/${rowData.id}`}>
+          // <Link to={`/app/ApiaryList/${rowData.id}`}>
           <div>
             <PopupState variant="popover" popupId="demo-popup-popover">
               {(popupState) => (
@@ -378,7 +378,7 @@ function  ApiaryList() {
     setdownloadOpen(true);
   };
   const downloadExcel = () => {
-    const newData = Company.map((row) => {
+    const newData = Apiary.map((row) => {
       delete row.tableData;
       return row;
     });
@@ -395,14 +395,14 @@ function  ApiaryList() {
   const [searched, setSearched] = useState();
 
   const requestSearch = (searchedVal) => {
-    const filteredRows = Company.map((rows) => {
+    const filteredRows = Apiary.map((rows) => {
       return rows.name;
       // console.log("rows.title",rows)
     }).filter((row) => {
       return row.toLowerCase().includes(searchedVal.toLowerCase());
     });
-    setCompany(filteredRows);
-    console.log("Company", Company);
+    setApiary(filteredRows);
+    console.log("Apiary", Apiary);
     console.log("filteredRows", filteredRows);
   };
   const cancelSearch = () => {
@@ -411,14 +411,14 @@ function  ApiaryList() {
   };
   const handleBulkDelete = () => {
     console.log(selectedRows);
-    const updatedData = Company.filter((row) => !selectedRows.includes(row));
-    setCompany(updatedData);
+    const updatedData = Apiary.filter((row) => !selectedRows.includes(row));
+    setApiary(updatedData);
   };
 
   const onRowDelete=(rowData) =>{
     console.log("rowData23123",rowData)
-    const updatedData=Company.filter((row)=>![rowData].includes(row))
-    setCompany(updatedData);
+    const updatedData=Apiary.filter((row)=>![rowData].includes(row))
+    setApiary(updatedData);
   }
 
   const downloadPdf = () => {
@@ -427,7 +427,7 @@ function  ApiaryList() {
     doc.autoTable({
       theme: "grid",
       columns: columns.map((col) => ({ ...col, dataKey: col.field })),
-      body: Company,
+      body: Apiary,
     });
     doc.setFont('Iran-Sans'); // set custom font
     doc.save("table.pdf");
@@ -442,12 +442,12 @@ function  ApiaryList() {
       <MaterialTable
         localization={{
           toolbar: {
-            searchPlaceholder: "dfsdfsdf",
+            searchPlaceholder: "زنبورستان",
           },
         }}
         title=""
         style={{ borderRadius: "25px" }}
-        data={Company}
+        data={Apiary}
         columns={columns}
         onSelectionChange={(rows) => setSelectedRows(rows)}
         localization={{
@@ -493,7 +493,7 @@ function  ApiaryList() {
           },
           selection: true,
           selectionProps: (rowData) => ({
-            // checked: Company?.includes(rowData.value) ? true: false,
+            // checked: Apiary?.includes(rowData.value) ? true: false,
             onClick: () => {
               console.log("clicked asdasda");
               setToolbar(true);
