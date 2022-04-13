@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import {
+  Avatar,
   Box,
   Button,
   Divider,
@@ -18,11 +19,12 @@ import {
   NavLink,
   useRouteMatch,
 } from "react-router-dom";
+import PreviewImage from "./PreviewImage";
 
 function Adduser() {
   const classes = useStyles();
-
   const phoneRegExp = /9([0-3][0-9])-?[0-9]{3}-?[0-9]{4}/;
+  const FILE_SIZE = 10000*10000;
 
   const validationSchema = yup.object().shape({
     phoneNumber: yup
@@ -35,6 +37,17 @@ function Adduser() {
     name: yup.string().required("لطفا نام خود را وارد کنید"),
     family: yup.string().required("لطفا نام خانوادگی خود را وارد کنید"),
     email: yup.string().email("لطفا ایمیل معتبر وارد کنید"),
+    // Img:yup
+    // .mixed()
+    // .required("لطفا یک فایل انتخاب کنید")
+    // .test(
+    //   "fileSize",
+    //   "قایل انتخابی حجم زیادی دارد",
+    //   (value) => {
+    //     console.log("vlaue",value?.size)
+    //     return value && value?.size <= FILE_SIZE
+    //   }
+    // ),
   });
 
   const {
@@ -45,6 +58,8 @@ function Adduser() {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
+  const[selectedFile,setSelectedFile]=useState(null)
+const fileRef=useRef(null)
   const onSubmit = (data) => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
@@ -52,7 +67,8 @@ function Adduser() {
   };
 
   const fileSelectHandler = (e) => {
-    console.log(e.target.files[0]);
+    console.log("salam",e.target.files[0]);
+    setSelectedFile(e.target.files[0]);
   };
   const fileUploadHandler = () => {};
 
@@ -75,7 +91,7 @@ function Adduser() {
         <Grid item xs={6} sm={6} className={classes.TabHeader}>
           <Grid>
             <NavLink
-              to={`${url}`}
+             exact to={`${url}`}
               className={classes.item}
               activeClassName={classes.activeItem}
             >
@@ -84,7 +100,7 @@ function Adduser() {
           </Grid>
           <Grid>
             <NavLink
-              to={`${url}/netflix2`}
+              to={`${url}/sound`}
               className={classes.item}
               activeClassName={classes.activeItem}
             >
@@ -219,11 +235,42 @@ function Adduser() {
             item
             xs={6}
             sm={6}
-            style={{ marginTop: "32px", border: "5px solid red" }}
+            className={classes.uploaderImageBox}
+ 
           >
-            آپلود عکس
-            <input type="file" onChange={fileSelectHandler} />
-            <button onClick={fileUploadHandler}>آپلود</button>
+            <Typography variant="p">آپلود عکس</Typography>
+        
+          {/* <input type="file"  onChange={fileSelectHandler}  accept="image/png, image/jpeg"   /> */}
+        <div className={classes.uploaderImage}>
+
+            { console.log("selectedFile",selectedFile)}
+{  selectedFile ? <PreviewImage file={selectedFile} />:<Avatar src="./assets/Mask Group 3.svg" alt=""  style={{width:"200px",height:"200px"}}/>
+}            <Button
+                 variant="contained"
+                 component="label"
+                 onChange={fileSelectHandler} 
+                 style={{fontFamily:"Shabnam"}}
+                 className={classes.EditPhoto}
+ 
+             >
+               <img src="./assets/edit-svgrepo-com.svg" style={{marginLeft:"8px"}}/>
+                ویرایش
+                
+               <input
+                  type="file"
+                   hidden
+                   accept= "image/jpg, image/jpeg , image/gif , image/png "
+                   {...register("Img")}
+               />
+           </Button>
+
+
+
+          </div>
+            {/* <button onClick={()=>{
+              // fileRef.current.onClick()
+            }}>آپلود
+            </button> */}
           </Grid>
         </Grid>
 

@@ -16,14 +16,29 @@ import {
   StylesProvider,
   jssPreset
 } from "@material-ui/core/styles";
+
+
+
+
+
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  useQuery,
+  gql
+} from "@apollo/client";
 // Configure JSS
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
 });
-
+const client = new ApolloClient({
+  uri: 'https://graphqlzero.almansi.me/api',
+  cache: new InMemoryCache()
+});
 
 ReactDOM.render(
-
+  <ApolloProvider client={client}>
   <LayoutProvider>
     <UserProvider>
       <ThemeProvider theme={Themes.default}  >
@@ -33,7 +48,8 @@ ReactDOM.render(
         </StylesProvider>
       </ThemeProvider>
     </UserProvider>
-  </LayoutProvider>,
+  </LayoutProvider>
+  </ApolloProvider>,
 
   document.getElementById("root"),
 );

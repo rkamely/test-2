@@ -57,6 +57,7 @@ function SmsVerification(props) {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
     history.push("/login/step2")
+    
 
   };
   // local
@@ -64,6 +65,7 @@ function SmsVerification(props) {
 
 
   return (
+    <div className="containerLogin">
     <div className="contact-form">
     {/* <img alt="" className="avatar" src="/assets/Untitled-1.svg"/> */}
     <h2 >کد تایید</h2>
@@ -91,7 +93,7 @@ function SmsVerification(props) {
       {errors.phoneNumber?.message}
     </Typography><br/>
     <Typography variant="p" color="textSecondary" style={{color:"white",fontFamily:"Shabnam",fontSize:"0.8rem"}}>
-      شماره تلفن اشتباه است؟<span style={{color:"rgb( 227 156 0  )",fontWeight:"600",cursor:"pointer"}}> ویرایش</span>
+      شماره تلفن اشتباه است؟<span style={{color:"rgb( 227 156 0  )",fontWeight:"600",cursor:"pointer"}} onClick={()=>history.push("/login")}> ویرایش</span>
     </Typography>
 
 
@@ -137,7 +139,7 @@ function SmsVerification(props) {
         <p><input type="checkbox"/>Remember Me</p> */}
  
     </div>
-    
+    </div>
   );
 }
 

@@ -40,6 +40,22 @@ import MapComponent from "../maps/MapComponent";
 import MapBox from "../../components/MapBox/MapBox";
 import Title from "../../components/Typography/Title/Title";
 
+import {
+
+  useQuery,
+  gql
+} from "@apollo/client";
+
+const GET_USER=gql`
+query {
+  post(id:10) {
+    id
+    title
+    body  
+  }
+}`
+
+
 const mainChartData = getMainChartData();
 const PieChartData = [
   { name: "Group A", value: 400, color: "primary" },
@@ -48,18 +64,25 @@ const PieChartData = [
   { name: "Group D", value: 200, color: "success" },
 ];
 
-export default function Dashboard(props) {
-  var classes = useStyles();
-  var theme = useTheme();
+export default function Dashboard(props) {  
+  const [mainChartState, setMainChartState] = useState("monthly");
+  const classes = useStyles();
+  const theme = useTheme();
+  const { loading, error, data } = useQuery(GET_USER);
 
+  // if (loading) return "Loading..."
+  // if(error) return `Error ${error.message}`
+  //  const {post:{body,id,title}}=data
   // local
-  var [mainChartState, setMainChartState] = useState("monthly");
+  //  console.log("id",id)
+  //  console.log("title",title)
+  //  console.log("body",body)
 
   return (
     <>
-    
+    {/* {id} */}
       <Title title="خانه" variant="h5"/>
-
+      {/* {title} */}
       <Grid container spacing={3} style={{marginTop:"8px"}}>
         {/* <Grid item  xs={12} style={{border:"1px solid red"}}>
           <MapBox/>
@@ -414,111 +437,6 @@ export default function Dashboard(props) {
         </Grid>
 
 
-
-
-
-
-        
-        {/* <Grid item xs={12}>
-          <Widget
-            bodyClass={classes.mainChartBody}
-            header={
-              <div className={classes.mainChartHeader}>
-                <Typography
-                  variant="h5"
-                  color="text"
-                  colorBrightness="secondary"
-                >
-                  Daily Line Chart
-                </Typography>
-                <div className={classes.mainChartHeaderLabels}>
-                  <div className={classes.mainChartHeaderLabel}>
-                    <Dot color="warning" />
-                    <Typography className={classes.mainChartLegentElement}>
-                      Tablet
-                    </Typography>
-                  </div>
-                  <div className={classes.mainChartHeaderLabel}>
-                    <Dot color="primary" />
-                    <Typography className={classes.mainChartLegentElement}>
-                      Mobile
-                    </Typography>
-                  </div>
-                  <div className={classes.mainChartHeaderLabel}>
-                    <Dot color="secondary" />
-                    <Typography className={classes.mainChartLegentElement}>
-                      Desktop
-                    </Typography>
-                  </div>
-                </div>
-                <Select
-                  value={mainChartState}
-                  onChange={(e) => setMainChartState(e.target.value)}
-                  input={
-                    <OutlinedInput
-                      labelWidth={0}
-                      classes={{
-                        notchedOutline: classes.mainChartSelectRoot,
-                        input: classes.mainChartSelect,
-                      }}
-                    />
-                  }
-                  autoWidth
-                >
-                  <MenuItem value="daily">Daily</MenuItem>
-                  <MenuItem value="weekly">Weekly</MenuItem>
-                  <MenuItem value="monthly">Monthly</MenuItem>
-                </Select>
-              </div>
-            }
-          >
-            <ResponsiveContainer width="100%" minWidth={500} height={350}>
-              <ComposedChart
-                margin={{ top: 0, right: -15, left: -15, bottom: 0 }}
-                data={mainChartData}
-              >
-                <YAxis
-                  ticks={[0, 2500, 5000, 7500]}
-                  tick={{ fill: theme.palette.text.hint + "80", fontSize: 14 }}
-                  stroke={theme.palette.text.hint + "80"}
-                  tickLine={false}
-                />
-                <XAxis
-                  tickFormatter={(i) => i + 1}
-                  tick={{ fill: theme.palette.text.hint + "80", fontSize: 14 }}
-                  stroke={theme.palette.text.hint + "80"}
-                  tickLine={false}
-                />
-                <Area
-                  type="natural"
-                  dataKey="desktop"
-                  fill={theme.palette.background.light}
-                  strokeWidth={0}
-                  activeDot={false}
-                />
-                <Line
-                  type="natural"
-                  dataKey="mobile"
-                  stroke={theme.palette.primary.main}
-                  strokeWidth={2}
-                  dot={false}
-                  activeDot={false}
-                />
-                <Line
-                  type="linear"
-                  dataKey="tablet"
-                  stroke={theme.palette.warning.main}
-                  strokeWidth={2}
-                  dot={{
-                    stroke: theme.palette.warning.dark,
-                    strokeWidth: 2,
-                    fill: theme.palette.warning.main,
-                  }}
-                />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </Widget>
-        </Grid> */}
 
         <Grid
           className={classes.Programs}

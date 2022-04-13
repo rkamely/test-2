@@ -81,8 +81,7 @@ function Layout(props) {
         >
           <div className={classes.fakeToolbar} />
           <Switch>
-            <Route path="/app/login" component={Login} />
-            <Route path="/app/login/step2" component={SmsVerification} />
+            {/* <Route path="onent={Login} /> */}
 
             <Route path="/app/dashboard" component={Dashboard} />
             <Route path="/app/ApiaryList/Beehive/Hive/:id" component={HiveStatus} />
@@ -93,13 +92,6 @@ function Layout(props) {
             
             <Route path="/app/typography" component={Typography} />
             <Route path="/app/user" component={TableofUser} />
-
-            <Route path="/app/tables" component={Tables} />
-            <Route path="/app/notifications" component={Notifications} />
-            {/* <Route path="/app/Calender" component={CalenderProject} />  */}
-            {/* <Route path="/app/JobCalender/:id/:id" component={CalenderProject} />  */}
-            {/* <Route path="/app/JobCalender/:id" component={JobCalender} />  */}
-
             <Route path="/app/JobCalender" component={main} /> 
             
 
@@ -108,26 +100,10 @@ function Layout(props) {
               path="/app/ui"
               render={() => <Redirect to="/app/ui/icons" />}
             />
-            <Route path="/app/ui/maps" component={Maps} />
-            <Route path="/app/ui/icons" component={Icons} />
+
             <Route path="/app/AboutUS" component={AboutUsMain} />
-            <Route path="/app/ui/charts" component={Charts} />
             <Route path="/app/test" component={TestPage} />
             <Route path="/app/user" component={TableofUser} />
-            {/* <Route path="/app/user" component={UserList} /> */}
-            <Route path="/app/industryList/:id" component={IndustryForm} />
-            <Route path="/app/industryList" component={IndustryList} />
-
-            <Route
-              path="/app/categoryList/:id"
-              component={CategoryUpdateForm}
-            />
-            <Route path="/app/categoryAddList" component={CategoryAddForm} />
-            <Route path="/app/categoryList" component={CategoryList} />
-
-            <Route path="/app/CompanyList/:id" component={CompanyUpdateList} />
-
-
             <Route path="/app/Support/:id" component={SupportPage} />
             <Route path="/app/SupportMessage" component={SupportMessage} />
             <Route
@@ -135,12 +111,35 @@ function Layout(props) {
               component={FrequentlyQuestions}
             />
             <Route path="/app/Support" component={Support} />
+            <Route path="/app/setting" component={Edituser} />
 
-            <Route path="/app/products/newproduct" component={NewProduct} />
+            {/* <Route path="/app/tables" component={Tables} /> */}
+            {/* <Route path="/app/notifications" component={Notifications} /> */}
+            {/* <Route path="/app/Calender" component={CalenderProject} />  */}
+            {/* <Route path="/app/JobCalender/:id/:id" component={CalenderProject} />  */}
+            {/* <Route path="/app/JobCalender/:id" component={JobCalender} />  */}
 
-            <Route path="/app/products/:id" component={ProductUpdateList} />
-            <Route path="/app/ProductAddList" component={ProductAddList} />
-            <Route path="/app/products" component={ProductList} />
+
+            {/* <Route path="/app/user" component={UserList} /> */}
+            {/* <Route path="/app/industryList/:id" component={IndustryForm} />
+            <Route path="/app/industryList" component={IndustryList} /> */}
+
+            {/* <Route
+              path="/app/categoryList/:id"
+              component={CategoryUpdateForm}
+            /> */}
+            {/* <Route path="/app/categoryAddList" component={CategoryAddForm} /> */}
+            {/* <Route path="/app/categoryList" component={CategoryList} /> */}
+
+            {/* <Route path="/app/CompanyList/:id" component={CompanyUpdateList} /> */}
+            {/* <Route path="/app/ui/icons" component={Icons} /> */}
+
+
+            {/* <Route path="/app/products/newproduct" component={NewProduct} /> */}
+
+            {/* <Route path="/app/products/:id" component={ProductUpdateList} /> */}
+            {/* <Route path="/app/ProductAddList" component={ProductAddList} /> */}
+            {/* <Route path="/app/products" component={ProductList} /> */}
             <Route path="/app/setting" component={Edituser} />
 
           </Switch>

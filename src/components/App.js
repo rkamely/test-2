@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
+import { HashRouter, Route, Switch, Redirect ,Router} from "react-router-dom";
 
 // components
 import Layout from "./Layout";
@@ -12,12 +12,16 @@ import Login from "../pages/login";
 import { useUserState } from "../context/UserContext";
 import SmsVerification from "../pages/login/SmsVerification";
 import CompleteInformation from "../pages/login/CompleteInformation";
+// import { createBrowserHistory } from "history";
 
+// const history = createBrowserHistory();
 export default function App() {
   // global
   var { isAuthenticated } = useUserState();
   console.log("isAuthenticated",isAuthenticated)
-  return (
+  return (    
+ 
+
     <HashRouter>
       <Switch>
         <Route exact path="/" render={() => <Redirect to="/app/dashboard" />} />
@@ -26,8 +30,10 @@ export default function App() {
           path="/app"
           render={() => <Redirect to="/app/dashboard" />}
         />
-        <PrivateRoute path="/app" component={Layout} />
-        <PublicRoute path="/login" component={SmsVerification} />
+        <PrivateRoute path="/app" component={Layout} /> 
+        <PublicRoute path="/login/smsVerification" component={SmsVerification} />
+        <Route  path="/login"  component={Login} />
+       
         <Route component={Error} />
       </Switch>
     </HashRouter>

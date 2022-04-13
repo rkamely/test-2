@@ -226,4 +226,31 @@ export default makeStyles((theme) => ({
         marginBottom:"16px;",
         marginTop:"16px"
       },
+      uploaderImageBox:{
+        marginTop: "32px",
+         display:"flex",
+         flexDirection:"column"
+      },
+      uploaderImage:{
+        display:"flex",  
+        flexDirection:"column",
+        alignItems:"center",
+        margin:"auto 0"
+
+      },
+      EditPhoto:{
+        background:"rgb( 255 176 4)",
+        borderBottomLeftRadius: "300px",  /* 100px of height + 10px of border */
+        borderBottomRightRadius: "300px",
+        borderBottom: 0,
+        width:"155px",
+        height:" 40px",
+      
+        transform:"translateY(-38px)",
+        "&:hover":{
+          background:"rgb( 255 176 4)",
+
+
+        }
+      }
 }));
