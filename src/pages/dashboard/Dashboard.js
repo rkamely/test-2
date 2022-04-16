@@ -37,7 +37,7 @@ import ApexLineChart from "../charts/components/ApexLineChart";
 import BigStat2 from "./components/BigStat/BigStat2";
 import Maps from "../maps/Maps";
 import MapComponent from "../maps/MapComponent";
-import MapBox from "../../components/MapBox/MapBox";
+// import MapBox from "../../components/MapBox/MapBox";
 import Title from "../../components/Typography/Title/Title";
 
 import {

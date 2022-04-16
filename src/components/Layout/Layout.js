@@ -111,7 +111,8 @@ function Layout(props) {
               component={FrequentlyQuestions}
             />
             <Route path="/app/Support" component={Support} />
-            <Route path="/app/setting" component={Edituser} />
+            <Route path="/app/setting"  component={Edituser} />
+          
 
             {/* <Route path="/app/tables" component={Tables} /> */}
             {/* <Route path="/app/notifications" component={Notifications} /> */}

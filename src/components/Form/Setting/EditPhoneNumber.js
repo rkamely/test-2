@@ -9,15 +9,11 @@ import useStyles from "./styles";
 function EditPhoneNumber() {
   const steps = [
     {
-      label: 'Select campaign settings',
-      description: `For each ad campaign that you create, you can control how much
-                you're willing to spend on clicks and conversions, which networks
-                and geographical locations you want your ads to show on, and more.`,
+      id:"1",
+     
     },
     {
-      label: 'Create an ad group',
-      description:
-        'An ad group contains one or more ads which target a shared set of keywords.',
+      id:"2",
     },
 
   ];
@@ -52,6 +48,8 @@ function EditPhoneNumber() {
     resolver: yupResolver(validationSchema)
   });
   const onSubmit = data => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
     // history.push("/login/step2")
@@ -72,10 +70,10 @@ function EditPhoneNumber() {
     
    <Grid style={{display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column"}}>
     <TextField
-
+      onClick={steps[activeStep].id == steps.length - 1 ? handleNext : console.log("inja code daryaft mishe mire server baraye taeed")}  className={classes.buttonLogin}
       style={{direction:"ltr"}}
       className={classes.TextField}
-      label="شماره تلفن"
+      label={steps[activeStep].id == steps.length - 1 ? '    شماره تلفن   ' : '   کد تایید را وارد نمایید'  }
       onChange={e => setLoginValue(e.target.value)}
 
       id="phoneNumber"
@@ -93,16 +91,18 @@ function EditPhoneNumber() {
 
    
 
+    <Button onClick={steps[activeStep].id == steps.length - 1 ? onSubmit : console.log("inja code daryaft mishe mire server baraye taeed")}  className={classes.buttonLogin} >{steps[activeStep].id == steps.length - 1 ? 'ثبت تمام پاسخ ها' : ' دریافت کد تایید'}</Button>
 
-
+{/* 
 <Button
     
     onClick={handleNext}
     variant="contained"
     className={classes.buttonLogin}
+    
   >
   دریافت کد تایید         
-</Button>
+</Button> */}
  </Grid>
     </div>
   )
