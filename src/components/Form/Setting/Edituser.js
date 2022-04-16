@@ -14,6 +14,7 @@ import Adduser from '../AddUser/Adduser';
 import EditPhoneNumber from './EditPhoneNumber';
 import AddSubmitCode from './AddSubmitCode';
 import AddJob from '../AddJob/AddJob';
+import Title from '../../Typography/Title/Title';
 
 function Edituser() {
     const [open, setOpen] = useState(false);
@@ -99,9 +100,7 @@ function Edituser() {
       marginTop: "24px",
     }}
   >
-    <Typography variant="h6" align="center" margin="dense" color='secondary' style={{fontWeight:"bold"}}>
-       کدتایید      
-    </Typography>
+<Title title="تنظیمات" variant="h5"/>
     <Grid
       item
       xs={12}

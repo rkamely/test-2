@@ -40,21 +40,18 @@ import MapComponent from "../maps/MapComponent";
 // import MapBox from "../../components/MapBox/MapBox";
 import Title from "../../components/Typography/Title/Title";
 
-import {
+import { useQuery, gql } from "@apollo/client";
+import MapBox from "../../components/MapBox/MapBox";
 
-  useQuery,
-  gql
-} from "@apollo/client";
-
-const GET_USER=gql`
-query {
-  post(id:10) {
-    id
-    title
-    body  
+const GET_USER = gql`
+  query {
+    post(id: 14) {
+      id
+      title
+      body
+    }
   }
-}`
-
+`;
 
 const mainChartData = getMainChartData();
 const PieChartData = [
@@ -64,36 +61,50 @@ const PieChartData = [
   { name: "Group D", value: 200, color: "success" },
 ];
 
-export default function Dashboard(props) {  
+export default function Dashboard(props) {
   const [mainChartState, setMainChartState] = useState("monthly");
   const classes = useStyles();
   const theme = useTheme();
-  const { loading, error, data } = useQuery(GET_USER);
+  const { loading, error, data,networkStatus,refetch } = useQuery(GET_USER,{notifyOnNetworkStatusChange:true});
 
-  // if (loading) return "Loading..."
-  // if(error) return `Error ${error.message}`
-  //  const {post:{body,id,title}}=data
-  // local
-  //  console.log("id",id)
-  //  console.log("title",title)
-  //  console.log("body",body)
+  if (loading) return "Loading...";
+  if (error) return `Error ${error.message}`;
+  const {
+    post: { body, id, title },
+  } = data;
+
+  console.log("id", id);
+  console.log("title", title);
+  console.log("body", body);
 
   return (
     <>
-    {/* {id} */}
-      <Title title="خانه" variant="h5"/>
-      {/* {title} */}
-      <Grid container spacing={3} style={{marginTop:"8px"}}>
-        {/* <Grid item  xs={12} style={{border:"1px solid red"}}>
-          <MapBox/>
-        </Grid> */}
+      {id}
+      <Title title="نقشه" variant="h5" />
+      {title}
+      {body}
+      <Grid
+        item
+        xs={12}
+        style={{
+          backgroundColor: " white",
+          padding: "16px",
+          overflow: "hidden",
+          borderRadius: "8px",
+          height: "300px",
+          marginTop: "16px",
+        }}
+      >
+        <MapBox />
+      </Grid>
+      <Grid container spacing={3} style={{ marginTop: "8px" }}>
         <Grid item lg={2} md={4} sm={6} xs={12}>
           <Widget
             color="secondary"
             Img="/assets/hive-svgrepo-com (-1.svg"
             title="تعداد زنبورستان"
             upperTitle
-            style={{ fontWeight: 600}}
+            style={{ fontWeight: 600 }}
             bodyClass={classes.fullHeightBody}
             className={classes.card}
           >
@@ -436,8 +447,6 @@ export default function Dashboard(props) {
           </Widget>
         </Grid>
 
-
-
         <Grid
           className={classes.Programs}
           item
@@ -446,7 +455,7 @@ export default function Dashboard(props) {
           style={{ display: "flex" }}
         >
           <Grid className={classes.reminderJob} item lg={12} xs={12}>
-           <Title title="يادآوری کارها" variant="h6"/>
+            <Title title="يادآوری کارها" variant="h6" />
             {mock.bigState.map((stat, index) => (
               <Grid item lg={12} xs={12} style={{ display: "flex" }}>
                 <Grid
@@ -464,7 +473,7 @@ export default function Dashboard(props) {
             ))}
           </Grid>
           <Grid className={classes.workDone} item lg={12} xs={12}>
-          <Title title="کارهای انجام شده" variant="h6"/>
+            <Title title="کارهای انجام شده" variant="h6" />
             {mock.DoneJob.map((stat, index) => (
               <Grid item lg={12} xs={12} style={{ display: "flex" }}>
                 <Grid
@@ -500,7 +509,7 @@ export default function Dashboard(props) {
           </Widget>
         </Grid> */}
         {/* <Maps /> */}
-    {/* <MapComponent/> */}
+        {/* <MapComponent/> */}
       </Grid>
     </>
   );
