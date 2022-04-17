@@ -34,6 +34,7 @@
     "formik": "^2.2.9",
     "fullcalendar": "^5.10.2",
     "graphql": "^16.3.0",
+    "jalali-moment": "^3.3.11",
     "jspdf": "^2.1.0",
     "jss-rtl": "^0.3.0",
     "leaflet": "^1.7.1",

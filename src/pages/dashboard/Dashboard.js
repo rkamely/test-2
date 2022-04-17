@@ -42,6 +42,7 @@ import Title from "../../components/Typography/Title/Title";
 
 import { useQuery, gql } from "@apollo/client";
 import MapBox from "../../components/MapBox/MapBox";
+import Calender from "../candoProject/Calender/Calender";
 
 const GET_USER = gql`
   query {
@@ -65,7 +66,9 @@ export default function Dashboard(props) {
   const [mainChartState, setMainChartState] = useState("monthly");
   const classes = useStyles();
   const theme = useTheme();
-  const { loading, error, data,networkStatus,refetch } = useQuery(GET_USER,{notifyOnNetworkStatusChange:true});
+  const { loading, error, data, networkStatus, refetch } = useQuery(GET_USER, {
+    notifyOnNetworkStatusChange: true,
+  });
 
   if (loading) return "Loading...";
   if (error) return `Error ${error.message}`;
@@ -80,9 +83,10 @@ export default function Dashboard(props) {
   return (
     <>
       {id}
-      <Title title="نقشه" variant="h5" />
+      <Title title="نقشه" variant="h6" />
       {title}
       {body}
+      {/* map */}
       <Grid
         item
         xs={12}
@@ -97,6 +101,7 @@ export default function Dashboard(props) {
       >
         <MapBox />
       </Grid>
+      {/* second part */}
       <Grid container spacing={3} style={{ marginTop: "8px" }}>
         <Grid item lg={2} md={4} sm={6} xs={12}>
           <Widget
@@ -446,7 +451,13 @@ export default function Dashboard(props) {
             </Grid>
           </Widget>
         </Grid>
+        {/* calender */}
+        <Grid  item lg={12} xs={12}>
+        <Title title="تقویم" variant="h6" />
+          <Calender />
+        </Grid>
 
+        {/* last part */}
         <Grid
           className={classes.Programs}
           item

@@ -1,0 +1,25 @@
+.selected {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(255 176 4);
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  padding: 6px;
+  align-items: center;
+  cursor: pointer;
+  
+}
+.before {
+  color: rgb(173, 173, 173);
+  margin-top: 8px;  display: flex; justify-content: center;
+}
+
+.day,
+.today {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 8px;
+}
