@@ -14,6 +14,7 @@ export default makeStyles((theme) => ({
     justifyContent: "center",
     cursor: "pointer",
     marginTop: "8px",
+
   },
   body: {
     display: "flex",
