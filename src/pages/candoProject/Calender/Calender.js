@@ -37,7 +37,7 @@ function Calender() {
           <div className={classes.day}>
             {week.map((day) => (
                 <div
-                  style={{ marginRight: "8px", border: "1px solid blue" }}
+                  style={{ marginRight: "8px"}}
                   onClick={() => setValue(day)}
                 >
                   {/* <div className={classes.day}>{day.format("MMMM").toString()}</div> */}

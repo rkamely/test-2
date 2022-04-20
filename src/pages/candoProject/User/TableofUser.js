@@ -1372,7 +1372,7 @@ function TableofUser() {
           aria-labelledby="parent-modal-title"
           aria-describedby="parent-modal-description"
         >
-          <Box sx={{ ...style, width: 1000 }}>
+          <Box sx={{ ...style, width: 1000,overflow: "hidden" }}>
             <Adduser />
           </Box>
         </Modal>

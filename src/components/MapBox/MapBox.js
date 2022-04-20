@@ -1,7 +1,7 @@
 import * as React from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
 
-const MapBox = () => {
+const MapBox = ({style}) => {
   const [viewport, setViewport] = React.useState({
     latitude: 35.715298,
     longitude: 51.404343,
@@ -11,6 +11,7 @@ const MapBox = () => {
   });
   return (
     <ReactMapGL
+      style={style}
       mapStyle="mapbox://styles/bardia1375/cl1m1lpll00dv15qs77gj36mn"
       mapboxApiAccessToken="pk.eyJ1IjoiYmFyZGlhMTM3NSIsImEiOiJja3pxdzhlN3MwYTJ4MnFvMWh2eng0NXZuIn0.f4BgA_h-avnIWW8LhFGZLw"
       {...viewport}
