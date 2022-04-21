@@ -21,7 +21,15 @@ export default makeStyles((theme) => ({
     fontFamily: "Shabnam",
 
   },
-
+  Title:{
+    fontWeight: "bold" 
+  },
+  errorTitle:{ 
+    color: "red"
+  },
+  Divider1:{
+    marginTop: "8px" 
+  },
   // Button1: {
   //   marginTop: "8px",
   //   display: "flex",
@@ -42,6 +50,14 @@ export default makeStyles((theme) => ({
   //     borderWidth: 2,
   //   },
   // },
+  PreviewImage:{
+    width:"200px",
+    height:"200px"
+  },
+  button:{
+    display: "flex", 
+    justifyContent: "space-between"
+  },
   Button1: {
     fontFamily: "Shabnam",
     cursor: "pointer",

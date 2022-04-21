@@ -82,11 +82,11 @@ const fileRef=useRef(null)
           align="center"
           margin="dense"
           color="secondary"
-          style={{ fontWeight: "bold" }}
+          className={classes.Title}
         >
           کاربر جدید
         </Typography>
-        <Divider style={{ marginTop: "8px" }} />
+        <Divider className={classes.Divider1} />
 
         <Grid item xs={6} sm={6} className={classes.TabHeader}>
           <Grid>
@@ -129,7 +129,7 @@ const fileRef=useRef(null)
               <Typography
                 variant="inherit"
                 color="textSecondary"
-                style={{ color: "red" }}
+                className={classes.errorTitle}
               >
                 {errors.name?.message}
               </Typography>
@@ -153,7 +153,7 @@ const fileRef=useRef(null)
               <Typography
                 variant="inherit"
                 color="textSecondary"
-                style={{ color: "red" }}
+                className={classes.errorTitle}
               >
                 {errors.family?.message}
               </Typography>
@@ -177,7 +177,7 @@ const fileRef=useRef(null)
               <Typography
                 variant="inherit"
                 color="textSecondary"
-                style={{ color: "red" }}
+                className={classes.errorTitle}
               >
                 {errors.Username?.message}
               </Typography>
@@ -201,7 +201,7 @@ const fileRef=useRef(null)
               <Typography
                 variant="inherit"
                 color="textSecondary"
-                style={{ color: "red" }}
+                className={classes.errorTitle}
               >
                 {errors.phoneNumber?.message}
               </Typography>
@@ -225,7 +225,8 @@ const fileRef=useRef(null)
               <Typography
                 variant="inherit"
                 color="textSecondary"
-                style={{ color: "red" }}
+                className={classes.errorTitle}
+         
               >
                 {errors.email?.message}
               </Typography>
@@ -244,7 +245,7 @@ const fileRef=useRef(null)
         <div className={classes.uploaderImage}>
 
             { console.log("selectedFile",selectedFile)}
-{  selectedFile ? <PreviewImage file={selectedFile} />:<Avatar src="./assets/Mask Group 3.svg" alt=""  style={{width:"200px",height:"200px"}}/>
+{  selectedFile ? <PreviewImage file={selectedFile} />:<Avatar src="./assets/Mask Group 3.svg" alt=""   className={classes.PreviewImage}/>
 }            <Button
                  variant="contained"
                  component="label"
@@ -275,7 +276,7 @@ const fileRef=useRef(null)
         </Grid>
 
         <Box mt={8} style={{ width: "100%" }}>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div  className={classes.button}>
             <Button variant="contained" className={classes.Button2}>
               انصراف
             </Button>
