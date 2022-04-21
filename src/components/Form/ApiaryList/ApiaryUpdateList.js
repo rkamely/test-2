@@ -66,11 +66,12 @@ const ApiaryUpdateList = () => {
             align="center"
             margin="dense"
             color="secondary"
-            style={{ fontWeight: "bold" }}
+            className={classes.Title}
+
           >
             افزودن زنبورستان
           </Typography>
-          <Divider style={{ marginTop: "32px" }} />
+          <Divider className={classes.Divider}/>
 
           <Grid container spacing={1} className={classes.container}>
             <div>
@@ -94,7 +95,7 @@ const ApiaryUpdateList = () => {
                 <Typography
                   variant="inherit"
                   color="textSecondary"
-                  style={{ color: "red" }}
+                  className={classes.errorTitle}
                 >
                   {errors.name?.message}
                 </Typography>
@@ -123,7 +124,7 @@ const ApiaryUpdateList = () => {
                 <Typography
                   variant="inherit"
                   color="textSecondary"
-                  style={{ color: "red" }}
+                  className={classes.errorTitle}
                 >
                   {errors.select?.message}
                 </Typography>
@@ -153,7 +154,7 @@ const ApiaryUpdateList = () => {
                 <Typography
                   variant="inherit"
                   color="textSecondary"
-                  style={{ color: "red" }}
+                  className={classes.errorTitle}
                 >
                   {errors.select2?.message}
                 </Typography>
@@ -183,7 +184,7 @@ const ApiaryUpdateList = () => {
                 <Typography
                   variant="inherit"
                   color="textSecondary"
-                  style={{ color: "red" }}
+                  className={classes.errorTitle}
                 >
                   {errors.select3?.message}
                 </Typography>
@@ -213,7 +214,7 @@ const ApiaryUpdateList = () => {
                 <Typography
                   variant="inherit"
                   color="textSecondary"
-                  style={{ color: "red" }}
+                  className={classes.errorTitle}
                 >
                   {errors.select4?.message}
                 </Typography>
@@ -243,7 +244,7 @@ const ApiaryUpdateList = () => {
                 <Typography
                   variant="inherit"
                   color="textSecondary"
-                  style={{ color: "red" }}
+                  className={classes.errorTitle}
                 >
                   {errors.select5?.message}
                 </Typography>
@@ -252,12 +253,10 @@ const ApiaryUpdateList = () => {
             <Grid
               item
               xs={6}
-              style={{
-                borderRadius: "8px",
-                height: "250px",
-              }}
+              className={classes.Map}
+
             >
-              <div style={{ marginTop: "32px", fontWeight: "bold" }}>
+              <div className={classes.mapTitle}>
                 انتخاب مکان از روی نقشه
               </div>
               <MapBox style={style} />
@@ -265,7 +264,7 @@ const ApiaryUpdateList = () => {
           </Grid>
 
           <Box mt={8} style={{ width: "100%" }}>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div className={classes.button}>
               <Button variant="contained" className={classes.Button2}>
                 انصراف
               </Button>

@@ -10,6 +10,12 @@ export default makeStyles((theme) => ({
     flexDirection:"row",
     justifyContent:"space-between",
   },
+  Title:{
+    fontWeight: "bold" 
+  },
+  errorTitle:{ 
+    color: "red"
+  },
   label: {
     whiteSpace: "nowrap",
     marginRight: "25px",
@@ -22,6 +28,9 @@ export default makeStyles((theme) => ({
 
   },
 
+  Divider:{
+    marginTop: "32px"
+  },
   // Button1: {
   //   marginTop: "8px",
   //   display: "flex",
@@ -42,6 +51,17 @@ export default makeStyles((theme) => ({
   //     borderWidth: 2,
   //   },
   // },
+  Map:{
+    borderRadius: "8px",
+                height: "250px",
+  },
+  mapTitle:{
+    marginTop: "32px" , fontWeight: "bold"
+  },
+  button:{
+    display: "flex", 
+    justifyContent: "space-between"
+  },
   Button1: {
     fontFamily: "Shabnam",
     cursor: "pointer",
