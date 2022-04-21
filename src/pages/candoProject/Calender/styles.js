@@ -6,7 +6,8 @@ export default makeStyles((theme) => ({
         padding: "8px 0px",
         borderRadius:"8px",
         marginTop:"16px",
-        overflow:"hidden"
+
+        // overflow:"hidden"
     },
   day: {
     display: "flex",
