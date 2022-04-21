@@ -156,5 +156,18 @@ export default makeStyles((theme) => ({
       marginLeft: "0px",
     },
   },
-
+  mapBox:{
+    backgroundColor: " white",
+    padding: "16px",
+    overflow: "hidden",
+    borderRadius: "8px",
+    height: "300px",
+    marginTop: "16px",
+  },
+  firstTitleBox:{
+    marginTop: "30px"
+  },
+  secondPart:{
+    marginTop: "8px" 
+  }
 }));

@@ -1,26 +1,10 @@
 import React, { useState } from "react";
 import {
   Grid,
-  LinearProgress,
-  Select,
-  OutlinedInput,
-  MenuItem,
-  Button,
+
 } from "@material-ui/core";
 import { useTheme } from "@material-ui/styles";
-import {
-  ResponsiveContainer,
-  ComposedChart,
-  AreaChart,
-  LineChart,
-  Line,
-  Area,
-  PieChart,
-  Pie,
-  Cell,
-  YAxis,
-  XAxis,
-} from "recharts";
+
 
 // styles
 import useStyles from "./styles";
@@ -54,18 +38,10 @@ const GET_USER = gql`
   }
 `;
 
-const mainChartData = getMainChartData();
-const PieChartData = [
-  { name: "Group A", value: 400, color: "primary" },
-  { name: "Group B", value: 300, color: "secondary" },
-  { name: "Group C", value: 300, color: "warning" },
-  { name: "Group D", value: 200, color: "success" },
-];
+
 
 export default function Dashboard(props) {
-  const [mainChartState, setMainChartState] = useState("monthly");
   const classes = useStyles();
-  const theme = useTheme();
   const { loading, error, data, networkStatus, refetch } = useQuery(GET_USER, {
     notifyOnNetworkStatusChange: true,
   });
@@ -86,22 +62,20 @@ export default function Dashboard(props) {
       <Title title="نقشه" variant="h6" />
 
       {/* map */}
+
+      
       <Grid
         item
         xs={12}
-        style={{
-          backgroundColor: " white",
-          padding: "16px",
-          overflow: "hidden",
-          borderRadius: "8px",
-          height: "300px",
-          marginTop: "16px",
-        }}
+        className={classes.mapBox}
       >
         <MapBox />
       </Grid>
+
+
       {/* second part */}
-      <Grid container spacing={3} style={{ marginTop: "8px" }}>
+
+      <Grid container spacing={3} className={classes.secondPart}>
         <Grid item lg={2} md={4} sm={6} xs={12}>
           <Widget
             color="secondary"
@@ -117,7 +91,8 @@ export default function Dashboard(props) {
               item
               alignItems="center"
               justifyContent="space-between"
-              style={{ marginTop: "30px" }}
+              className={classes.firstTitleBox}
+           
             >
               <Grid item>
                 <Typography
@@ -135,12 +110,15 @@ export default function Dashboard(props) {
                 </Typography>
               </Grid>
             </Grid>
+
+            
             <Grid
               container
               item
               alignItems="center"
               justifyContent="space-between"
-              style={{ marginTop: "30px" }}
+              className={classes.firstTitleBox}
+           
             >
               <Grid item>
                 <Typography
@@ -175,7 +153,7 @@ export default function Dashboard(props) {
               item
               alignItems="center"
               justifyContent="space-between"
-              style={{ marginTop: "30px" }}
+              className={classes.firstTitleBox}
             >
               <Grid item>
                 <Typography
@@ -198,7 +176,7 @@ export default function Dashboard(props) {
               item
               alignItems="center"
               justifyContent="space-between"
-              style={{ marginTop: "30px" }}
+              className={classes.firstTitleBox}
             >
               <Grid item>
                 <Typography
@@ -233,7 +211,8 @@ export default function Dashboard(props) {
               item
               alignItems="center"
               justifyContent="space-between"
-              style={{ marginTop: "30px" }}
+              className={classes.firstTitleBox}
+
             >
               <Grid item>
                 <Typography
@@ -256,7 +235,7 @@ export default function Dashboard(props) {
               item
               alignItems="center"
               justifyContent="space-between"
-              style={{ marginTop: "30px" }}
+              className={classes.firstTitleBox}
             >
               <Grid item>
                 <Typography
@@ -291,7 +270,8 @@ export default function Dashboard(props) {
               item
               alignItems="center"
               justifyContent="space-between"
-              style={{ marginTop: "30px" }}
+              className={classes.firstTitleBox}
+
             >
               <Grid item>
                 <Typography
@@ -314,7 +294,8 @@ export default function Dashboard(props) {
               item
               alignItems="center"
               justifyContent="space-between"
-              style={{ marginTop: "30px" }}
+              className={classes.firstTitleBox}
+
             >
               <Grid item>
                 <Typography
@@ -349,7 +330,7 @@ export default function Dashboard(props) {
               item
               alignItems="center"
               justifyContent="space-between"
-              style={{ marginTop: "30px" }}
+              className={classes.firstTitleBox}
             >
               <Grid item>
                 <Typography
@@ -372,7 +353,7 @@ export default function Dashboard(props) {
               item
               alignItems="center"
               justifyContent="space-between"
-              style={{ marginTop: "30px" }}
+              className={classes.firstTitleBox}
             >
               <Grid item>
                 <Typography
@@ -450,11 +431,14 @@ export default function Dashboard(props) {
             </Grid>
           </Widget>
         </Grid>
+
+
         {/* calender */}
         <Grid  item lg={12} xs={12}>
         <Title title="تقویم" variant="h6" />
           <Calender />
         </Grid>
+
 
         {/* last part */}
         <Grid
@@ -502,24 +486,6 @@ export default function Dashboard(props) {
           </Grid>
         </Grid>
 
-        {/* <Grid item xs={12}>
-          <Widget
-            title="Support Requests"
-            upperTitle
-            noBodyPadding
-            bodyClass={classes.tableWidget}
-          >
-            <Table data={mock.table} />
-          </Widget>
-        </Grid>
-
-        <Grid item xs={12} md={12}>
-          <Widget title="Apex Line Chart" upperTitle noBodyPadding fullWidth>
-            <ApexLineChart />
-          </Widget>
-        </Grid> */}
-        {/* <Maps /> */}
-        {/* <MapComponent/> */}
       </Grid>
     </>
   );
