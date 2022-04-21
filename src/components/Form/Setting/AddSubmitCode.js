@@ -42,14 +42,15 @@ function AddSubmitCode() {
 
   return (
     <div >
-    <Typography variant="h6" align="center" margin="dense" color='secondary' style={{fontWeight:"bold"}}>
-کد تایید    </Typography>
-    <Divider style={{marginTop:"16px"}}/>
-    <Typography variant="h6" align="center" margin="dense" color='primary' style={{fontWeight:"bold", margin:"24px 0px"}}>
+    <Typography variant="h6" align="center" margin="dense" color='secondary' className={classes.Title}>
+         کد تایید    
+    </Typography>
+    <Divider  className={classes.Divider}/>
+    <Typography variant="h6" align="center" margin="dense" color='primary' className={classes.codeTitle} >
        کد تایید را وارد کنید.    
     </Typography>
     
-   <Grid style={{display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column"}}>
+   <Grid className={classes.main} >
     <TextField
 
       style={{direction:"ltr"}}
@@ -66,7 +67,7 @@ function AddSubmitCode() {
       {...register('phoneNumber')}
       error={errors.phoneNumber ? true : false}
     />
-   <Typography variant="inherit" color="textSecondary" style={{color:"red"}}>
+   <Typography variant="inherit" color="textSecondary" className={classes.errorMessage}>
       {errors.phoneNumber?.message}
     </Typography><br/>
 

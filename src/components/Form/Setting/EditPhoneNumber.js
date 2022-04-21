@@ -60,15 +60,15 @@ function EditPhoneNumber() {
 
   return (
     <div >
-    <Typography variant="h6" align="center" margin="dense" color='secondary' style={{fontWeight:"bold"}}>
+    <Typography variant="h6" align="center" margin="dense" color='secondary' className={classes.Title}>
        ویرایش شماره تلفن      
     </Typography>
-    <Divider style={{marginTop:"16px"}}/>
-    <Typography variant="h6" align="center" margin="dense" color='primary' style={{fontWeight:"bold", margin:"24px 0px"}}>
+    <Divider className={classes.Divider}/>
+    <Typography variant="h6" align="center" margin="dense" color='primary' className={classes.codeTitle}>
        شماره تلفن جدید را وارد کنید    
     </Typography>
     
-   <Grid style={{display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column"}}>
+   <Grid className={classes.main}>
     <TextField
       onClick={steps[activeStep].id == steps.length - 1 ? handleNext : console.log("inja code daryaft mishe mire server baraye taeed")}  className={classes.buttonLogin}
       style={{direction:"ltr"}}
@@ -85,7 +85,7 @@ function EditPhoneNumber() {
       {...register('phoneNumber')}
       error={errors.phoneNumber ? true : false}
     />
-   <Typography variant="inherit" color="textSecondary" style={{color:"red"}}>
+   <Typography variant="inherit" color="textSecondary" className={classes.errorMessage}>
       {errors.phoneNumber?.message}
     </Typography><br/>
 

@@ -21,7 +21,24 @@ export default makeStyles((theme) => ({
     fontFamily: "Shabnam",
 
   },
-
+  Title:{
+    fontWeight: "bold"
+  },
+  Divider:{
+    marginTop:"16px"
+  },
+  codeTitle:{
+    fontWeight:"bold", margin:"24px 0px"
+  },
+  main:{
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"center",
+    flexDirection:"column"
+  },
+  errorMessage:{
+color:"red"
+  },
   // Button1: {
   //   marginTop: "8px",
   //   display: "flex",
