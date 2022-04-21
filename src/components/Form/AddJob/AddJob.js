@@ -72,17 +72,17 @@ const AddJob = (props) => {
           align="center"
           margin="dense"
           color="secondary"
-          style={{ fontWeight: "bold",marginTop:"16px" }}
+          className={classes.Title}
         >
           کار جدید
         </Typography>
-        <Divider style={{ marginTop: "8px", width: "100%" }} />
+        <Divider className={classes.Divider1} />
 
       <Box px={3} py={2} className={classes.root} >
         <Grid container spacing={1} className={classes.container}>
 
     <Grid item xs={12}>
-          <div style={{ display: "flex", width: "100%" }}>
+          <div className={classes.box}>
             <Grid item xs={12} sm={12} className={classes.Select}>
               <div className={classes.input}>
                 <label className={classes.label}>نام کاربر</label>
@@ -110,7 +110,7 @@ const AddJob = (props) => {
               <Typography
                 variant="inherit"
                 color="textSecondary"
-                style={{ color: "red" }}
+                className={classes.errorMessage}
               >
                 {errors.Username?.message}
               </Typography>
@@ -134,30 +134,26 @@ const AddJob = (props) => {
               <Typography
                 variant="inherit"
                 color="textSecondary"
-                style={{ color: "red" }}
+                className={classes.errorMessage}
               >
                 {errors.jobTitle?.message}
               </Typography>
             </Grid>
           </div>
-          <Divider style={{ margin: "32px auto 0", width: "100%" }} />
+          <Divider className={classes.Divider2} />
     </Grid>
 
 
 
     <Grid item xs={12}>
-          <div style={{ width: "100%",marginBottom:"8px" }}>
+          <div  className={classes.box2}>
             <div>
               <Typography
                 variant="h6"
                 align="center"
                 margin="dense"
                 color="primary"
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "1rem",
-                  marginTop: "8px",
-                }}
+                className={classes.subTitle}
               >
                 دسته بندی
               </Typography>
@@ -191,7 +187,7 @@ const AddJob = (props) => {
                 </NavLink>
               </Grid>
             </Grid>
-            <div style={{ display: "flex", width: "100%" }}>
+            <div className={classes.box}>
               <Grid item xs={12} sm={12} className={classes.Select}>
                 <div className={classes.input}>
                   <label className={classes.label}>زنبورستان</label>
@@ -219,7 +215,7 @@ const AddJob = (props) => {
                 <Typography
                   variant="inherit"
                   color="textSecondary"
-                  style={{ color: "red" }}
+                  className={classes.errorMessage}
                 >
                   {errors.Beehive?.message}
                 </Typography>
@@ -252,31 +248,28 @@ const AddJob = (props) => {
                 <Typography
                   variant="inherit"
                   color="textSecondary"
-                  style={{ color: "red" }}
+                  className={classes.errorMessage}
                 >
                   {errors.Hive?.message}
                 </Typography>
               </Grid>
             </div>
           </div>
-          <Divider style={{ margin: "32px auto 0", width: "100%" }} />
+          <Divider className={classes.Divider2}  />
     </Grid>
 
 
 
     <Grid item xs={12} >
-          <div style={{ width: "100%",marginBottom:"8px" }}>
+          <div className={classes.box2}>
             <div>
               <Typography
                 variant="h6"
                 align="center"
                 margin="dense"
                 color="primary"
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "1rem",
-                  marginTop: "8px"
-                }}
+                className={classes.subTitle}
+
               >
                 زمانبندی
               </Typography>
@@ -312,7 +305,7 @@ const AddJob = (props) => {
                   <Typography
                     variant="inherit"
                     color="textSecondary"
-                    style={{ color: "red" }}
+                    className={classes.errorMessage}
                   >
                     {errors.Beehive?.message}
                   </Typography>
@@ -344,7 +337,7 @@ const AddJob = (props) => {
                   <Typography
                     variant="inherit"
                     color="textSecondary"
-                    style={{ color: "red" }}
+                   className={classes.errorMessage}
                   >
                     {errors.Beehive?.message}
                   </Typography>
@@ -379,7 +372,7 @@ const AddJob = (props) => {
                   <Typography
                     variant="inherit"
                     color="textSecondary"
-                    style={{ color: "red" }}
+                    className={classes.errorMessage}
                   >
                     {errors.Hive?.message}
                   </Typography>
@@ -411,7 +404,7 @@ const AddJob = (props) => {
                   <Typography
                     variant="inherit"
                     color="textSecondary"
-                    style={{ color: "red" }}
+                    className={classes.errorMessage}
                   >
                     {errors.Hive?.message}
                   </Typography>
@@ -419,29 +412,25 @@ const AddJob = (props) => {
               </div>
             </div>
           </div>
-          <Divider style={{ margin: "32px auto 0", width: "100%" }} />
+          <Divider className={classes.Divider2}  />
     </Grid>
 
 
 
     <Grid item xs={12}>
-          <div style={{ width: "100%",marginBottom:"8px" }}>
+          <div className={classes.box2}>
             <div>
               <Typography
                 variant="h6"
                 align="center"
                 margin="dense"
                 color="primary"
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "1rem",
-                  marginTop: "8px",
-                }}
+                className={classes.subTitle}
               >
                 فعالیت
               </Typography>
             </div>
-            <div style={{ display: "flex", width: "100%" }}>
+            <div className={classes.box}>
               <Grid item xs={12} sm={12} className={classes.Select}>
                 <div >
                   <Grid className={classes.input}>
@@ -471,14 +460,12 @@ const AddJob = (props) => {
                 <Typography
                   variant="inherit"
                   color="textSecondary"
-                  style={{ color: "red" }}
+                  className={classes.errorMessage}
                 >
                   {errors.Beehive?.message}
                 </Typography> 
                                  
-                <Grid item style={{margin:"16px 32px 0"}}>
-
-
+                <Grid item className={classes.checkBox} >
                   <FormControlLabel                   
                     {...register("Checkbox")}
                      control={<Checkbox  />} label="انجام شده" />
@@ -487,7 +474,7 @@ const AddJob = (props) => {
                 <Typography
                   variant="inherit"
                   color="textSecondary"
-                  style={{ color: "red" }}
+                  className={classes.errorMessage}
                 >
                   {errors.Checkbox?.message}
                 </Typography>  */}
@@ -520,20 +507,20 @@ const AddJob = (props) => {
                 <Typography
                   variant="inherit"
                   color="textSecondary"
-                  style={{ color: "red" }}
+                  className={classes.errorMessage}
                 >
                   {errors.Hive?.message}
                 </Typography>
               </Grid>
             </div>
           </div>
-          <Divider style={{ margin: "32px auto 0", width: "100%" }} />
+          <Divider className={classes.Divider2}  />
     </Grid>    
 
         </Grid>
 
         <Box mt={8} style={{ width: "100%" }}>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div className={classes.buttonBox} >
             <Button variant="contained" className={classes.Button2} onClick={props.handleClose}>
               انصراف
             </Button>

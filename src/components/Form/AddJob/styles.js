@@ -11,6 +11,21 @@ export default makeStyles((theme) => ({
     flexDirection:"row",
     justifyContent:"space-between",
   },
+  Title:{
+    fontWeight: "bold",marginTop:"16px"
+  },
+  subTitle:{
+    fontWeight: "bold",
+    fontSize: "1rem",
+    marginTop: "8px"
+  },
+
+  Divider1:{
+    marginTop: "8px", width: "100%"
+  },
+  Divider2:{
+    margin: "32px auto 0", width: "100%"
+  },
   label: {
     whiteSpace: "nowrap",
     marginLeft: "50px",
@@ -22,27 +37,13 @@ export default makeStyles((theme) => ({
     fontFamily: "Shabnam",
 
   },
-
-  // Button1: {
-  //   marginTop: "8px",
-  //   display: "flex",
-  //   fontFamily: "Shabnam",
-  //   cursor: "pointer",
-  //   border: "none",
-  //   marginTop: "100px",
-  //   backgroundColor: "rgb( 255, 255, 255)",
-  //   boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
-  //   color: "#000",
-  //   width: "16%",
-  //   padding: "16px 0px",
-  //   borderRadius: "16px",
-  //   fontWeight: "bold",
-  //   fontSize: "16px",
-  //   "&:hover": {
-  //     backgroundColor: "#fff",
-  //     borderWidth: 2,
-  //   },
-  // },
+  box:{
+    display: "flex",
+     width: "100%" 
+  },
+  box2:{
+    width: "100%",marginBottom:"8px" 
+  },
   Button1: {
     fontFamily: "Shabnam",
     cursor: "pointer",
@@ -231,4 +232,13 @@ export default makeStyles((theme) => ({
         marginBottom:"16px;",
         marginTop:"16px"
       },
+      errorMessage:{
+        color: "red" 
+      },
+      checkBox:{
+        margin:"16px 32px 0"
+      },
+      buttonBox:{
+        display: "flex", justifyContent: "space-between"
+      }
 }));
