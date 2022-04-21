@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import {
   Paper,
-  IconButton,
-  Menu,
-  MenuItem,
-  Typography,
   Grid,
 } from "@material-ui/core";
 import { MoreVert as MoreIcon } from "@material-ui/icons";
@@ -31,10 +27,6 @@ export default function Widget({
 }) {
   const classes = useStyles();
 
-  // local
-  const [moreButtonRef, setMoreButtonRef] = useState(null);
-  const [isMoreMenuOpen, setMoreMenuOpen] = useState(false);
-
   return (
     <div className={classes.widgetWrapper} style={style && { ...style }}>
       <Paper
@@ -57,9 +49,7 @@ export default function Widget({
             <React.Fragment>
               <Grid item style={{ width: "100%"}}>
                 <Grid item xs={12} container alignItems={"center"}>
-                 {/* <div style={{border:"4px solid rgb( 255 ,176 ,4)",borderRadius:"50%",width:"35px",height:"35px",padding:"8px",marginLeft: "8px" ,display:"flex",alignItems:"center",justifyContent:"center"}}> */}
-                  <img src={Img} style={{marginLeft: "8px"}} />
-                  {/* </div> */}
+                  <img src={Img}  className={classes.Img}/>
                   <Title title={title} variant="p"/>
                 </Grid>
               </Grid>

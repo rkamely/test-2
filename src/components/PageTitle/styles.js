@@ -7,7 +7,7 @@ export default makeStyles(theme => ({
     marginBottom: theme.spacing(4),
     marginTop: theme.spacing(5),
   },
-  typo: {
+  Typography: {
     color: theme.palette.text.hint,
   },
   button: {

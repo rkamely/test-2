@@ -43,5 +43,8 @@ export default makeStyles(theme => ({
   },
   noWidgetShadow: {
     boxShadow: 'none'
+  },
+  Img:{
+    marginLeft: "8px"
   }
 }));
