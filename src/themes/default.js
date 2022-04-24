@@ -72,6 +72,7 @@ const defaultTheme = {
       list: {
         backgroundColor: "#fff",
         fontFamily: "Shabnam",
+        height: "auto !important"
       },
       paper: {
         boxShadow:
