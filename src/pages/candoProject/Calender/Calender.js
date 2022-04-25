@@ -7,7 +7,7 @@ import CalenderHeader from "./CalenderHeader";
 import dayStyles from "./dayStyle";
 import { Divider } from "@material-ui/core";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import 'swiper/swiper-bundle.min.css'
 import 'swiper/swiper.min.css'
