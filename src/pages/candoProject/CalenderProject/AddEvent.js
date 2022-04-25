@@ -18,7 +18,12 @@ function AddEvent() {
     <div>
       <form onSubmit={onSubmit}>
           <input placeholder="Title" value={title} onChange={e=>setTitle(e.target.value)}/>
-          Date
+          <div>
+            <label>startDate</label>
+          </div>
+          <div>
+            <label>startDate</label>
+          </div>
       </form>
     </div>
   );

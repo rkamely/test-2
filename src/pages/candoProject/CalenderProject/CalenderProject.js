@@ -56,6 +56,7 @@ export default class CalenderProject extends React.Component {
   render() {
     return (
       <div className="demo-app">
+
         {/* {this.renderSidebar()} */}
         <div className="demo-app-main">
           <FullCalendar
@@ -143,7 +144,7 @@ export default class CalenderProject extends React.Component {
 
   handleDateSelect = (selectInfo) => {
     //add line in table
-    let title = prompt("Please enter a new title for your event");
+    let title = prompt("لطفا نام ایونت خود را انتخاب کنید");
     let calendarApi = selectInfo.view.calendar;
 
     calendarApi.unselect(); // clear date selection
@@ -163,7 +164,7 @@ export default class CalenderProject extends React.Component {
   handleEventClick = (clickInfo) => {
     if (
       window.confirm(
-        `Are you sure you want to delete the event '${clickInfo.event.title}'`,
+        `آیا شما میخواهید این ایونت را حذف کنید؟ '${clickInfo.event.title}'`,
       )
     ) {
       clickInfo.event.remove();
