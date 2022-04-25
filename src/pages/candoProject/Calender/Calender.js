@@ -36,8 +36,6 @@ function Calender() {
       slidesPerView={12}
       onSlideChange={() => console.log('slide change')}
       onSwiper={(swiper) => console.log(swiper)}
-  
-
       // scrollbar={{ draggable: true }}
     >
         {calender.map((week) => (
@@ -66,7 +64,8 @@ function Calender() {
                 </SwiperSlide>
             ))}
           </div>
-        ))}</Swiper>
+        ))}
+        </Swiper>
       </div>
     </div>
   );

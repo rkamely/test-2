@@ -19,7 +19,7 @@ function CalenderHeader({ value, setValue }) {
 
   return (
     <div className={classes.Header}>
-      <div  className={classes.arrow} onClick={() => setValue(prevDay())}>
+      <div className={classes.arrow} onClick={() => setValue(prevDay())}>
         <ArrowForwardIosRounded/>
       </div>
       <div>
