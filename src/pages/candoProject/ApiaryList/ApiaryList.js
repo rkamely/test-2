@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Dialog,
   Fade,
   IconButton,
   Modal,
@@ -43,7 +44,17 @@ function ApiaryList() {
   const [selectedRows, setSelectedRows] = useState();
 
   const [toolbar, setToolbar] = useState(false);
+  const [scroll, setScroll] = useState('paper');
+  const handleClickOpen = (scrollType) => () => {
+    setOpen(true);
 
+    setScroll(scrollType);
+  };
+  const handleClickEdit = (scrollType) => () => {
+
+    setOpenEdit(true)
+    setScroll(scrollType);
+  };
   const handleOpen = () => {
     setOpen(true);
   };
@@ -297,7 +308,7 @@ function ApiaryList() {
                   >
                     <div style={{ borderRadius: " 16px", padding: " 16px" }}>
                       <Link
-                        onClick={handleEditOpen}
+                        onClick={handleClickEdit('body')}
                         style={{
                           display: "flex",
                           alignItems: "center",
@@ -456,7 +467,7 @@ function ApiaryList() {
   };
 
   const downloadPdf=()=>{
-    
+
   }
   return (
     <div>
@@ -643,7 +654,7 @@ function ApiaryList() {
                           style={{ borderRadius: " 16px", padding: " 16px" }}
                         >
                           <Link
-                            onClick={handleEditOpen}
+                            onClick={handleClickEdit('body')}
                             style={{
                               display: "flex",
                               alignItems: "center",
@@ -726,7 +737,7 @@ function ApiaryList() {
 
           {
             icon: () => (
-              <div onClick={handleOpen}>
+              <div onClick={handleClickOpen('body')}>
                 <img
                   style={{
                     backgroundColor: "rgb( 227, 156, 0)",
@@ -743,7 +754,7 @@ function ApiaryList() {
               </div>
             ),
             tooltip: "اضافه کردن زنبورستان",
-            onClick: () => add(),
+      
             isFreeAction: true,
           },
           {
@@ -777,29 +788,37 @@ function ApiaryList() {
         ]}
       />
       <div>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="parent-modal-title"
-          aria-describedby="parent-modal-description"
+        <Dialog
+          PaperProps={{
+            style: { borderRadius: 12,width:"70%"}
+          }}
+        open={open}
+        onClose={handleClose}
+        scroll={scroll}
+        aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description"
+        maxWidth="xl"
         >
-          <Box sx={{ ...style, width: 1000, overflow: "hidden" }}>
             <ApiaryAddList />
-          </Box>
-        </Modal>
+   
+        </Dialog>
       </div>
 
       <div>
-        <Modal
-          open={openEdit}
-          onClose={handleClose}
-          aria-labelledby="parent-modal-title"
-          aria-describedby="parent-modal-description"
+        <Dialog
+          PaperProps={{
+            style: { borderRadius: 12,width:"70%" }
+          }}
+        open={openEdit}
+        onClose={handleClose}
+        scroll={scroll}
+        aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description"
+        maxWidth="xl"
         >
-          <Box sx={{ ...style, width: 1000 }}>
             <ApiaryUpdateList />
-          </Box>
-        </Modal>
+          
+        </Dialog>
       </div>
 
       <div>

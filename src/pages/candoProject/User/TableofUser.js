@@ -670,6 +670,7 @@
 import {
   Box,
   Button,
+  Dialog,
   Fade,
   IconButton,
   MenuItem,
@@ -717,18 +718,28 @@ function TableofUser() {
   const [downloadOpen, setdownloadOpen] = useState(false);
 
   const [selectedRows, setSelectedRows] = useState();
+  const [scroll, setScroll] = useState('paper');
 
   const [toolbar, setToolbar] = useState(false);
   const[Hive,setHive]=useState("all")
   let { path, url } = useRouteMatch();
-
+  const handleClickOpen = (scrollType) => () => {
+    setOpen(true);
+   
+    setScroll(scrollType);
+  };
+  const handleClickEdit= (scrollType) => () => {
+    setOpenEdit(true);
+   
+    setScroll(scrollType);
+  };
   useEffect(()=>{
     console.log("Hive",Hive)
   },[Hive])
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
   const handleEditOpen = () => {
     setOpenEdit(true);
   };
@@ -1232,8 +1243,8 @@ function TableofUser() {
                           style={{ borderRadius: " 16px", padding: " 16px" }}
                         >
                           <Link
-                            onClick={handleEditOpen}
-                            style={{
+                              onClick={handleClickEdit('body')} 
+                             style={{
                               display: "flex",
                               alignItems: "center",
                               justifyContent: "flex-start",
@@ -1315,7 +1326,7 @@ function TableofUser() {
 
           {
             icon: () => (
-              <div onClick={handleOpen}>
+              <div onClick={handleClickOpen('body')}>
                 <img
                   style={{
                     backgroundColor: "rgb( 227, 156, 0)",
@@ -1331,8 +1342,8 @@ function TableofUser() {
                 />
               </div>
             ),
-            tooltip: "Export to Excel",
-            onClick: () => add(),
+            tooltip: "اضافه کردن کاربر",
+    
             isFreeAction: true,
           },
           {
@@ -1366,29 +1377,36 @@ function TableofUser() {
         ]}
       />
       <div>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="parent-modal-title"
-          aria-describedby="parent-modal-description"
+        <Dialog
+          PaperProps={{
+            style: { borderRadius: 12,width:"60%" }
+          }}
+        open={open}
+        onClose={handleClose}
+        scroll={scroll}
+        aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description"
+        maxWidth="xl"
         >
-          <Box sx={{ ...style, width: 1000,overflow: "hidden" }}>
             <Adduser />
-          </Box>
-        </Modal>
+    
+        </Dialog>
       </div>
 
       <div>
-        <Modal
-          open={openEdit}
-          onClose={handleClose}
-          aria-labelledby="parent-modal-title"
-          aria-describedby="parent-modal-description"
+        <Dialog
+          PaperProps={{
+            style: { borderRadius: 12,width:"60%" }
+          }}
+        open={openEdit}
+        onClose={handleClose}
+        scroll={scroll}
+        aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description"
+        maxWidth="xl"
         >
-          <Box sx={{ ...style, width: 1000 }}>
-            <ApiaryUpdateList />
-          </Box>
-        </Modal>
+            <Adduser />
+        </Dialog>
       </div>
 
       <div>

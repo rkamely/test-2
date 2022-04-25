@@ -7,6 +7,7 @@
 import {
     Box,
     Button,
+    Dialog,
     Fade,
     Grid,
     IconButton,
@@ -51,11 +52,15 @@ import AddJob from "../../../../components/Form/AddJob/AddJob";
     const [selectedRows, setSelectedRows] = useState();
   
     const [toolbar, setToolbar] = useState(false);
-
+    const [scroll, setScroll] = useState('paper');
     const[Hive,setHive]=useState("all")
     const[State,setState]=useState("all")
     const[Priority,setPriority]=useState("all")
-
+    const handleClickOpen = (scrollType) => () => {
+      setOpenEdit(true);
+      setScroll(scrollType);
+      setOpen(true)
+    };
     useEffect(()=>{
       console.log("Hive",Hive)
     },[Hive])
@@ -275,7 +280,7 @@ import AddJob from "../../../../components/Form/AddJob/AddJob";
                             style={{ borderRadius: " 16px", padding: " 16px" }}
                           >
                             <Link
-                             onClick={handleEditOpen}
+                             onClick={handleClickOpen('body')}
                               style={{
                             
                                 display: "flex",
@@ -669,7 +674,7 @@ import AddJob from "../../../../components/Form/AddJob/AddJob";
                             style={{ borderRadius: " 16px", padding: " 16px" }}
                           >
                             <Link
-                             onClick={handleEditOpen}
+                             onClick={handleClickOpen('body')}
                               style={{
                                 display: "flex",
                                 alignItems: "center",
@@ -751,7 +756,8 @@ import AddJob from "../../../../components/Form/AddJob/AddJob";
   
             {
               icon: () => (
-                <div onClick={handleOpen}>
+                <div   onClick={handleClickOpen('body')}
+                >
                   <img
                     style={{
                       backgroundColor: "rgb( 227, 156, 0)",
@@ -767,7 +773,7 @@ import AddJob from "../../../../components/Form/AddJob/AddJob";
                   />
                 </div>
               ),
-              tooltip: "Export to Excel",
+              tooltip: "اضافه کردن کار",
               
               isFreeAction: true,
             },
@@ -801,30 +807,30 @@ import AddJob from "../../../../components/Form/AddJob/AddJob";
           ]}
         />
         <div>
-          <Modal
+          <Dialog
             open={open}
             onClose={handleClose}
             aria-labelledby="parent-modal-title"
             aria-describedby="parent-modal-description"
+            maxWidth="md"
+
           >
-            <Box sx={{ ...style, width: 1000 }} >
               <AddJob />
-            </Box>
-          </Modal>
+          </Dialog>
         </div>
   
   
         <div>
-          <Modal
-            open={openEdit}
-            onClose={handleClose}
-            aria-labelledby="parent-modal-title"
-            aria-describedby="parent-modal-description"
-          >
-            <Box sx={{ ...style, width: 1000 }} >
-            <ApiaryUpdateList />
-            </Box>
-          </Modal>
+        <Dialog
+        open={openEdit}
+        onClose={handleClose}
+        scroll={scroll}
+        aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description"
+        maxWidth="md"
+      >
+             <AddJob onClick={handleClose}/>
+       </Dialog>
         </div>
   
         

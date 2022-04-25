@@ -3,6 +3,7 @@ import {
   Box,
   Breadcrumbs,
   Button,
+  Dialog,
   Fade,
   IconButton,
   MenuItem,
@@ -45,6 +46,12 @@ function  Hive() {
 
   const [toolbar, setToolbar] = useState(false);
   const[Hive,setHive]=useState("all")
+  const [scroll, setScroll] = useState('paper');
+  const handleClickOpen = (scrollType) => () => {
+    setOpen(true);
+
+    setScroll(scrollType);
+  };
   const handleOpen = () => {
     setOpen(true);
   };
@@ -283,6 +290,7 @@ function  Hive() {
                   >
                     <div style={{ borderRadius: " 16px", padding: " 16px" }}>
                       <div
+                      
                         style={{
                           display: "flex",
                           alignItems: "center",
@@ -734,7 +742,7 @@ function  Hive() {
 
           {
             icon: () => (
-              <div onClick={handleOpen}>
+              <div onClick={handleClickOpen('body')}>
                 <img
                   style={{
                     backgroundColor: "rgb( 227, 156, 0)",
@@ -750,7 +758,7 @@ function  Hive() {
                 />
               </div>
             ),
-
+        
             onClick: () => add(),
             isFreeAction: true,
           },
@@ -785,16 +793,19 @@ function  Hive() {
         ]}
       />
       <div>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="parent-modal-title"
-          aria-describedby="parent-modal-description"
+        <Dialog
+          PaperProps={{
+            style: { borderRadius: 12,width:"70%" }
+          }}
+        open={open}
+        onClose={handleClose}
+        scroll={scroll}
+        aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description"
+        maxWidth="xl"
         >
-          <Box sx={{ ...style, width: 1000 }} >
             <ApiaryAddList />
-          </Box>
-        </Modal>
+        </Dialog>
       </div>
 
       <div>
