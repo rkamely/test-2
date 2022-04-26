@@ -44,7 +44,7 @@ export default makeStyles((theme) => ({
       marginLeft: "0px",
     },
   },
-  mapBox:{
+  mapBox: {
     backgroundColor: " white",
     padding: "16px",
     overflow: "hidden",
@@ -52,10 +52,14 @@ export default makeStyles((theme) => ({
     height: "300px",
     marginTop: "16px",
   },
-  firstTitleBox:{
-    marginTop: "30px"
+  firstTitleBox: {
+    marginTop: "30px",
   },
-  secondPart:{
-    marginTop: "8px" 
-  }
+  secondPart: {
+    marginTop: "8px",
+  },
+  fiveBox: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
 }));
