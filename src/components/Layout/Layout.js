@@ -16,7 +16,6 @@ import Typography from "../../pages/typography";
 // context
 import { useLayoutState } from "../../context/LayoutContext";
 
-import TestPage from "../../pages/test/testPage";
 // pages
 import TableofUser from "../../pages/candoProject/User/TableofUser";
 import Hive from "../../pages/candoProject/Hive/Hive";
@@ -76,7 +75,6 @@ function Layout(props) {
             />
 
             <Route path="/app/AboutUS" component={AboutUsMain} />
-            <Route path="/app/test" component={TestPage} />
             <Route path="/app/user" component={TableofUser} />
             <Route path="/app/Support/:id" component={SupportPage} />
             <Route path="/app/SupportMessage" component={SupportMessage} />

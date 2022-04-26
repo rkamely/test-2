@@ -1,21 +1,28 @@
 import { makeStyles } from "@material-ui/styles";
 
 export default makeStyles((theme) => ({
-    container:{
-        backgroundColor:"white",
-        padding: "8px 0px",
-        borderRadius:"8px",
-        marginTop:"16px",
+  container: {
+    backgroundColor: "white",
+    padding: "8px 0px",
+    borderRadius: "8px",
+    marginTop: "16px",
 
-        // overflow:"hidden"
-    },
+    // overflow:"hidden"
+  },
   day: {
     display: "flex",
     width: "100%",
     justifyContent: "center",
     cursor: "pointer",
     marginTop: "8px",
+  },
+  dayBox: {
+    marginRight: "8px",
 
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   },
   body: {
     display: "flex",
@@ -35,10 +42,9 @@ export default makeStyles((theme) => ({
   },
   Header: {
     display: "flex",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
-  arrow:{
-      cursor: "pointer"
-  }
-
+  arrow: {
+    cursor: "pointer",
+  },
 }));

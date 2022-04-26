@@ -43,8 +43,8 @@ function Calender() {
             {week.map((day) => (
                 <SwiperSlide >
                 <div
+                className={classes.dayBox}
 
-                  style={{ marginRight: "8px"}}
                   onClick={() => setValue(day)}
                 >
                   {/* <div className={classes.day}>{day.format("MMMM").toString()}</div> */}

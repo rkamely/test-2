@@ -19,8 +19,6 @@ import Table from "./components/Table/Table";
 import BigStat from "./components/BigStat/BigStat";
 import ApexLineChart from "../charts/components/ApexLineChart";
 import BigStat2 from "./components/BigStat/BigStat2";
-import Maps from "../maps/Maps";
-import MapComponent from "../maps/MapComponent";
 // import MapBox from "../../components/MapBox/MapBox";
 import Title from "../../components/Typography/Title/Title";
 
@@ -28,33 +26,33 @@ import { useQuery, gql } from "@apollo/client";
 import MapBox from "../../components/MapBox/MapBox";
 import Calender from "../candoProject/Calender/Calender";
 
-const GET_USER = gql`
-  query {
-    post(id: 14) {
-      id
-      title
-      body
-    }
-  }
-`;
+// const GET_USER = gql`
+//   query {
+//     post(id: 14) {
+//       id
+//       title
+//       body
+//     }
+//   }
+// `;
 
 
 
 export default function Dashboard(props) {
   const classes = useStyles();
-  const { loading, error, data, networkStatus, refetch } = useQuery(GET_USER, {
-    notifyOnNetworkStatusChange: true,
-  });
+  // const { loading, error, data, networkStatus, refetch } = useQuery(GET_USER, {
+  //   notifyOnNetworkStatusChange: true,
+  // });
 
-  if (loading) return "Loading...";
-  if (error) return `Error ${error.message}`;
-  const {
-    post: { body, id, title },
-  } = data;
+  // if (loading) return "Loading...";
+  // if (error) return `Error ${error.message}`;
+  // const {
+  //   post: { body, id, title },
+  // } = data;
 
-  console.log("id", id);
-  console.log("title", title);
-  console.log("body", body);
+  // console.log("id", id);
+  // console.log("title", title);
+  // console.log("body", body);
 
   return (
     <>
