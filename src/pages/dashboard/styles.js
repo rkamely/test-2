@@ -9,6 +9,7 @@ export default makeStyles((theme) => ({
       desktop: 1200,
     },
   },
+
   card: {
     minHeight: "100%",
     display: "flex",

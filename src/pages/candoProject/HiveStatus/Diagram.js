@@ -19,13 +19,15 @@ import {
 } from "recharts";
 import Dot from "../../../components/Sidebar/components/Dot";
 import Widget from "../../../components/Widget/Widget";
-import useStyles from "../../dashboard/styles";
+// import useStyles from "../../dashboard/styles";
+import useStyles from "./Style";
 import TableDiagram from "./tableDiagram";
 
 function Diagram() {
   const data = [
     {
-      product: "شنبه",
+      day: "10:52",
+      week: "شنبه",
       bardia: 200,
       total2: 200,
       total: {
@@ -48,7 +50,8 @@ function Diagram() {
       },
     },
     {
-      product: "یکشنبه",
+      day: "12:52",
+      week: "یک شنبه",
       bardia: 300,
       total2: 300,
       total: {
@@ -70,7 +73,8 @@ function Diagram() {
       },
     },
     {
-      product: "دوشنبه",
+      day: "15:52",
+      week: "دوشنبه",
       bardia: 800,
       total: {
         monthly: 500,
@@ -137,7 +141,7 @@ function Diagram() {
   var theme = useTheme();
   var [mainChartState, setMainChartState] = useState("monthly");
   // const mainChartData = getMainChartData();
- const [date,setDate]=useState(mainChartState)
+  const [date, setDate] = useState(mainChartState);
   // function getMainChartData() {
   //   var resultArray = [];
   //   var tablet = getRandomData(31, 350, 650, 750, 100);
@@ -200,21 +204,13 @@ function Diagram() {
         );
     return null;
   };
-
+  const openDatepicker =()=>{}
   return (
     <Grid item xs={12}>
       <Widget
         bodyClass={classes.mainChartBody}
         header={
-          <div className={classes.mainChartHeader}>
-            <Typography
-              variant="p"
-              color="text"
-              colorBrightness="secondary"
-              style={{ fontFamily: "Shabnam" }}
-            >
-              تاریخ شروع
-            </Typography>
+          <Grid item xs={12} className={classes.mainChartHeader}>
             {/* <div className={classes.mainChartHeaderLabels}>
               <div className={classes.mainChartHeaderLabel}>
                 <Dot color="warning" />
@@ -235,30 +231,58 @@ function Diagram() {
                 </Typography>
               </div>
             </div> */}
-            <Select
-              style={{
-                backgroundColor: "#fff",
-                width: "30%",
-                borderRadius: "8px",
-              }}
-              value={mainChartState}
-              onChange={(e) => setMainChartState(e.target.value)}
-              input={
-                <OutlinedInput
-                  labelWidth={0}
-                  classes={{
-                    notchedOutline: classes.mainChartSelectRoot,
-                    input: classes.mainChartSelect,
-                  }}
-                />
-              }
-              autoWidth
-            >
-              <MenuItem value="daily">روزانه</MenuItem>
-              <MenuItem value="weekly">هفتگی</MenuItem>
-              <MenuItem value="monthly">ماهیانه</MenuItem>
-            </Select>
-          </div>
+            <Grid>
+              <Select
+                style={{
+                  backgroundColor: "#fff",
+                  width: "100%",
+                  borderRadius: "8px",
+                }}
+                value={mainChartState}
+                onChange={(e) => setMainChartState(e.target.value)}
+                input={
+                  <OutlinedInput
+                    labelWidth={0}
+                    classes={{
+                      notchedOutline: classes.mainChartSelectRoot,
+                      input: classes.mainChartSelect,
+                    }}
+                  />
+                }
+                autoWidth
+              >
+                <MenuItem value="daily">روزانه</MenuItem>
+                <MenuItem value="weekly">هفتگی</MenuItem>
+                <MenuItem value="monthly">ماهیانه</MenuItem>
+              </Select>
+            </Grid>
+
+            <Grid>
+              <Grid>
+                <Typography
+                  variant="p"
+                  color="text"
+                  colorBrightness="secondary"
+                  style={{ fontFamily: "Shabnam" }}
+                >
+                  تاریخ شروع
+                </Typography>
+              </Grid>
+              <Grid>
+                <Typography
+                  variant="p"
+                  color="text"
+                  colorBrightness="secondary"
+                  style={{ fontFamily: "Shabnam" }}
+                >
+                  1400/03/20
+                </Typography>
+              </Grid>
+              <Grid>
+              <img src="./assets/calender-svgrepo-com.svg" onClick={openDatepicker} />
+              </Grid>
+            </Grid>
+          </Grid>
         }
       >
         {/* Diagram */}
@@ -267,19 +291,18 @@ function Diagram() {
             margin={{ top: 0, right: -15, left: -15, bottom: 0 }}
             data={data}
           >
-          <YAxis
-            allowDataOverflow
-            domain={[0, 1000]}
-            type="number"
-            yAxisId="1"
-          />
-          <YAxis
-            orientation="left"
-            allowDataOverflow
-            domain={[0, 1000]}
-            type="number"
-        
-          />
+            <YAxis
+              allowDataOverflow
+              domain={[0, 1000]}
+              type="number"
+              yAxisId="1"
+            />
+            <YAxis
+              orientation="left"
+              allowDataOverflow
+              domain={[0, 1000]}
+              type="number"
+            />
             <YAxis
               orientation="right"
               allowDataOverflow
@@ -287,12 +310,13 @@ function Diagram() {
               type="number"
               yAxisId="3"
             />
-            <Tooltip content={<CustomizedTooltip />} />
+            {/* <Tooltip content={<CustomizedTooltip />} /> */}
+            <Tooltip />
             <XAxis
               // type="number"
               // ticks={[10, 20, 30 ,100]}
               // domain={[10, 100]}
-              dataKey="product"
+              dataKey="week"
               tickFormatter={[]}
               tick={{ fill: theme.palette.text.hint + "80", fontSize: 14 }}
               stroke={theme.palette.text.hint + "80"}
@@ -304,7 +328,7 @@ function Diagram() {
                 <Line
                   // label={{ fill: "red", marginTop: "16px" }}
                   dataKey="total[monthly]"
-                  stroke={ theme.palette.red.main}
+                  stroke={theme.palette.red.main}
                   strokeWidth={2}
                   name="رطوبت"
                   onMouseOver={() => (tooltip = "mobile")}

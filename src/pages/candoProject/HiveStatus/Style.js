@@ -20,6 +20,7 @@ export default makeStyles((theme) => ({
     color: "rgb( 227, 156, 0)",
  
   },
+  
   activeItem:{
   background:"#fff",
   padding:"4px 16px",
@@ -129,5 +130,11 @@ export default makeStyles((theme) => ({
     "&:hover":{
       background: "blue",
     }
+  },
+  mainChartHeader:{
+    border:"2px solid red",    
+    display:"flex",
+    justifyContent:"space-between",
+    alignItems:"center"
   }
 }));
