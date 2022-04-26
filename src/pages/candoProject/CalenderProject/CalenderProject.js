@@ -28,6 +28,7 @@ import "./CalenderProject.css";
 
 import FilterCalender from "./FilterCalender";
 import moment from "moment";
+import AddJob from "../../../components/Form/AddJob/AddJob";
 export default class CalenderProject extends React.Component {
   constructor() {
     super();
@@ -40,12 +41,10 @@ export default class CalenderProject extends React.Component {
 
   onEventAdded = (event) => {
     let calenderApi = this.calenderRef.current.getApi();
-    calenderApi.addEvent({
-      start: moment(event.start).toDate(),
-      end: moment(event.end).toDate(),
-      title: event.title,
-    });
+    calenderApi.addEvent(event);
+    console.log("event",event);
   };
+
   async handleEventAdd(data) {
     //axios.post("url",data.event)
   }
@@ -56,11 +55,12 @@ export default class CalenderProject extends React.Component {
   render() {
     return (
       <div className="demo-app">
-
+{/* <AddJob onEventAdded={event=>this.onEventAdded(event)} /> */}
         {/* {this.renderSidebar()} */}
         <div className="demo-app-main">
           <FullCalendar
-            ref={this.calenderRef}
+            ref={this.calenderRef} 
+            initialView="dayGridMonth"
             locales={allLocales}
             locale="fa"
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
@@ -70,7 +70,7 @@ export default class CalenderProject extends React.Component {
               right: "dayGridMonth,timeGridWeek,timeGridDay",
             }}
             columnHeader={false}
-            initialView="dayGridMonth"
+           
             editable={true}
             selectable={true}
             selectMirror={true}
@@ -101,7 +101,26 @@ export default class CalenderProject extends React.Component {
         >
           <FilterCalender />
         </div>
+
+
+
+        
+     {/* <Dialog
+        open={open}
+        onClose={handleClose}
+        scroll={scroll}
+        aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description"
+        maxWidth="md"
+      >
+             <AddJob onClick={handleClose}/>
+      </Dialog> */}
+
+
       </div>
+
+
+
     );
   }
 
@@ -136,11 +155,11 @@ export default class CalenderProject extends React.Component {
   //     )
   //   }
 
-  handleWeekendsToggle = () => {
-    this.setState({
-      weekendsVisible: !this.state.weekendsVisible,
-    });
-  };
+  // handleWeekendsToggle = () => {
+  //   this.setState({
+  //     weekendsVisible: !this.state.weekendsVisible,
+  //   });
+  // };
 
   handleDateSelect = (selectInfo) => {
     //add line in table
@@ -188,18 +207,18 @@ function renderEventContent(eventInfo) {
   );
 }
 
-function renderSidebarEvent(event) {
-  console.log(event);
-  return (
-    <li key={event.id}>
-      <b>
-        {formatDate(event.start, {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-        })}
-      </b>
-      <i>{event.title}</i>
-    </li>
-  );
-}
+// function renderSidebarEvent(event) {
+//   console.log(event);
+//   return (
+//     <li key={event.id}>
+//       <b>
+//         {formatDate(event.start, {
+//           year: "numeric",
+//           month: "short",
+//           day: "numeric",
+//         })}
+//       </b>
+//       <i>{event.title}</i>
+//     </li>
+//   );
+// }

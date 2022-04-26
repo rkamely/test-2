@@ -1,32 +1,32 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 
-function AddEvent() {
-    const[title,setTitle]=useState()
-    const[start,setStart]=useState(new Date())
-    const[end,setEnd]=useState(new Date())
+// function AddEvent() {
+//     const[title,setTitle]=useState()
+//     const[start,setStart]=useState(new Date())
+//     const[end,setEnd]=useState(new Date())
 
-    const onSubmit =(event)=>{
-        event.preventDefault();
-        onEventAdded({
-            title,
-            start,
-            end
-        })
-        onclose()
-    }
-  return (
-    <div>
-      <form onSubmit={onSubmit}>
-          <input placeholder="Title" value={title} onChange={e=>setTitle(e.target.value)}/>
-          <div>
-            <label>startDate</label>
-          </div>
-          <div>
-            <label>startDate</label>
-          </div>
-      </form>
-    </div>
-  );
-}
+//     const onSubmit =(event)=>{
+//         event.preventDefault();
+//         onEventAdded({
+//             title,
+//             start,
+//             end
+//         })
+//         onclose()
+//     }
+//   return (
+//     <div>
+//       <form onSubmit={onSubmit}>
+//           <input placeholder="Title" value={title} onChange={e=>setTitle(e.target.value)}/>
+//           <div>
+//             <label>startDate</label>
+//           </div>
+//           <div>
+//             <label>startDate</label>
+//           </div>
+//       </form>
+//     </div>
+//   );
+// }
 
-export default AddEvent;
+// export default AddEvent;

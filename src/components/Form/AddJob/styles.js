@@ -4,27 +4,29 @@ export default makeStyles((theme) => ({
   root: {
     width: "100%",
     fontFamily: "Shabnam",
-
   },
-  container:{
-    display:"flex",
-    flexDirection:"row",
-    justifyContent:"space-between",
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
-  Title:{
-    fontWeight: "bold",marginTop:"16px"
+  Title: {
+    fontWeight: "bold",
+    marginTop: "16px",
   },
-  subTitle:{
+  subTitle: {
     fontWeight: "bold",
     fontSize: "1rem",
-    marginTop: "8px"
+    marginTop: "8px",
   },
 
-  Divider1:{
-    marginTop: "8px", width: "100%"
+  Divider1: {
+    marginTop: "8px",
+    width: "100%",
   },
-  Divider2:{
-    margin: "32px auto 0", width: "100%"
+  Divider2: {
+    margin: "32px auto 0",
+    width: "100%",
   },
   label: {
     whiteSpace: "nowrap",
@@ -35,14 +37,14 @@ export default makeStyles((theme) => ({
     border: "none",
     fontWeight: "bold",
     fontFamily: "Shabnam",
-
   },
-  box:{
+  box: {
     display: "flex",
-     width: "100%" 
+    width: "100%",
   },
-  box2:{
-    width: "100%",marginBottom:"8px" 
+  box2: {
+    width: "100%",
+    marginBottom: "8px",
   },
   Button1: {
     fontFamily: "Shabnam",
@@ -52,7 +54,7 @@ export default makeStyles((theme) => ({
     padding: "8px 0px",
     borderRadius: "16px",
     backgroundColor: "rgb( 26 ,115, 233)",
-    color:"#fff",
+    color: "#fff",
 
     boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
     fontWeight: "bold",
@@ -82,15 +84,14 @@ export default makeStyles((theme) => ({
       color: "#000",
     },
   },
-  inputText:{
+  inputText: {
     display: "flex",
-    flexDirection:"column",
-    
+    flexDirection: "column",
   },
-  TextField:{
+  TextField: {
     width: "50%",
-    background:"rgb( 244 244 244)",
-    border:"none",
+    background: "rgb( 244 244 244)",
+    border: "none",
     borderRadius: "10px",
 
     "& label.Mui-focused": {
@@ -110,20 +111,19 @@ export default makeStyles((theme) => ({
       "&.Mui-focused fieldset": {
         border: "2px solid rgb(255 ,176, 4) !important",
         borderRadius: "10px",
-
       },
     },
   },
   input: {
     display: "flex",
- 
+
     justifyContent: "space-between",
-    alignItems:"center",
+    alignItems: "center",
     marginTop: "32px",
     fontFamily: "Shabnam",
     border: "none",
     "& label.Mui-focused": {
-      border:"5px solid red",
+      border: "5px solid red",
       color: "red !important",
       borderRadius: "10px",
     },
@@ -133,112 +133,162 @@ export default makeStyles((theme) => ({
     },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
-        border: "none", 
+        border: "none",
         borderRadius: "10px",
       },
 
       "&.Mui-focused fieldset": {
-        border: "2px solid red !important",
-        borderRadius: "10px",  
+        borderRadius: "10px",
         border: "2px solid rgb(255 ,176, 4) !important",
+      },
+    },
+  },
+  inputDate:{
+    display: "flex",
+    height: "40px",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: "32px",
+    fontFamily: "Shabnam",
+    border: "none", "& label.Mui-focused": {
+      border: "5px solid red",
+      color: "red !important",
+      borderRadius: "10px",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "2px solid red !important",
+      borderRadius: "10px",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        border: "none",
+        borderRadius: "10px",
+        padding:"0 !important",
+      },
 
+      "&.Mui-focused fieldset": {
+        borderRadius: "10px",
+        border: "2px solid rgb(255 ,176, 4) !important",
       },
     },
   },
   inputSelect: {
     width: "50%",
-    display:"flex",
-    height:"40px",
+    display: "flex",
+    height: "40px",
     backgroundColor: "rgb( 244, 244 ,244)",
     boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
     borderRadius: "10px",
     border: "none",
     // height: "40px",
     fontFamily: "Shabnam",
-    "&	.MuiSelect-outlined":{
-    
+    "&	.MuiSelect-outlined": {
       borderRadius: "10px",
     },
-    "&	.MuiSelect-outlined":{
-    
+    "&	.MuiSelect-outlined": {
       borderRadius: "10px",
     },
-
- 
   },
 
-
+  Datepicker: {
+    width: "50%",
+    display: "flex",
+    height: "40px",
+    backgroundColor: "rgb( 244, 244 ,244)",
+    boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
+    borderRadius: "10px",
+    border: "none",
+    // height: "40px",
+    fontFamily: "Shabnam",
+    "&	.MuiSelect-outlined": {
+      borderRadius: "10px",height: "40px",
+    },
+    "&	.MuiSelect-outlined": {
+      borderRadius: "10px",height: "40px",
+    },
+  },
 
   select: {
-    
     backgroundColor: "rgb( 244, 244 ,244)",
     borderRadius: "10px",
     "&:before": {
-      border: "none",    backgroundColor: "#fff",outline: "2px solid red",
+      border: "none",
+      backgroundColor: "#fff",
+      outline: "2px solid red",
       borderRadius: "10px",
     },
     "&:hover": {
-      border: "none",    backgroundColor: "#fff",outline: "2px solid red",
+      border: "none",
+      backgroundColor: "#fff",
+      outline: "2px solid red",
       borderRadius: "10px",
     },
     "&:after": {
-      border: "none", backgroundColor: "#fff",outline: "2px solid red",      borderRadius: "10px",
+      border: "none",
+      backgroundColor: "#fff",
+      outline: "2px solid red",
+      borderRadius: "10px",
     },
     "&:not(.Mui-disabled):hover::before": {
-      border: "none", backgroundColor: "#fff",outline: "2px solid red",      borderRadius: "10px",
+      border: "none",
+      backgroundColor: "#fff",
+      outline: "2px solid red",
+      borderRadius: "10px",
     },
   },
   icon: {
-    fill: "green"
+    fill: "green",
   },
   text: {
-    border: "none",backgroundColor: "#fff",outline: "2px solid red"
+    border: "none",
+    backgroundColor: "#fff",
+    outline: "2px solid red",
   },
   outline: {
     "&:before": {
-    borderColor: "red"
+      borderColor: "red",
     },
     "&:after": {
-    borderColor: "red"
-    }},
-    item:{
-        textDecoration:"none",
-        color: "rgb( 227, 156, 0)",
-     
-      },
-      activeItem:{
-      background:"#fff",
-      padding:"4px 16px",
-      borderRadius:"8px",
-      color:"#000",
-      textDecoration:"none",
-      cursor:"pointer",
-      boxShadow:"0px 3px 6px 0px rgba(0,0,0,0.16)"
-      
+      borderColor: "red",
     },
-    TabHeader: {
-        backgroundColor: "rgb( 255 ,242, 212)",
-        margin:"0 auto",
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "center",
-        height: "50px",
-        boxShadow:
-          " rgba(0, 0, 0, 0.1) 0px 60px 100px -100px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
-        color: "rgb( 227, 156, 0)",
-        fontWeight: "bold",
-        borderRadius: "15px",
-        fontSize: "1rem",
-        marginBottom:"16px;",
-        marginTop:"16px"
-      },
-      errorMessage:{
-        color: "red" 
-      },
-      checkBox:{
-        margin:"16px 32px 0"
-      },
-      buttonBox:{
-        display: "flex", justifyContent: "space-between"
-      }
+  },
+  item: {
+    textDecoration: "none",
+    color: "rgb( 227, 156, 0)",
+  },
+  activeItem: {
+    background: "#fff",
+    padding: "4px 16px",
+    borderRadius: "8px",
+    color: "#000",
+    textDecoration: "none",
+    cursor: "pointer",
+    boxShadow: "0px 3px 6px 0px rgba(0,0,0,0.16)",
+  },
+  TabHeader: {
+    backgroundColor: "rgb( 255 ,242, 212)",
+    margin: "0 auto",
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center",
+    height: "50px",
+    boxShadow:
+      " rgba(0, 0, 0, 0.1) 0px 60px 100px -100px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
+    color: "rgb( 227, 156, 0)",
+    fontWeight: "bold",
+    borderRadius: "15px",
+    fontSize: "1rem",
+    marginBottom: "16px;",
+    marginTop: "16px",
+  },
+  errorMessage: {
+    color: "red",
+  },
+  checkBox: {
+    margin: "16px 32px 0",
+  },
+  buttonBox: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
 }));
