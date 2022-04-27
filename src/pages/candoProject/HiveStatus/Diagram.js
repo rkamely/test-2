@@ -31,7 +31,7 @@ function Diagram() {
       bardia: 200,
       total2: 200,
       total: {
-        monthly: 423,
+        monthly: 50,
         weekly: 200,
         daily: 199,
         percent: { value: 3.7, profit: false },
@@ -55,7 +55,7 @@ function Diagram() {
       bardia: 300,
       total2: 300,
       total: {
-        monthly: 600,
+        monthly: 80,
         weekly: 800,
         daily: 280,
         percent: { value: 3.7, profit: false },
@@ -77,7 +77,7 @@ function Diagram() {
       week: "دوشنبه",
       bardia: 800,
       total: {
-        monthly: 500,
+        monthly: 100,
         weekly: 900,
         daily: 550,
         percent: { value: 3.7, profit: false },
@@ -292,40 +292,48 @@ function Diagram() {
             data={data}
           >
             <YAxis
+              tickMargin={32}
               allowDataOverflow
-              domain={[0, 1000]}
+              domain={[0, 100]}
               type="number"
               yAxisId="1"
+              stroke="blue"
             />
             <YAxis
+              tickMargin={32}
               orientation="left"
               allowDataOverflow
               domain={[0, 1000]}
               type="number"
+              stroke="red"
             />
             <YAxis
+              tickMargin={32}
               orientation="right"
               allowDataOverflow
               domain={[0, 1000]}
               type="number"
               yAxisId="3"
+              stroke="green"
             />
             {/* <Tooltip content={<CustomizedTooltip />} /> */}
-            <Tooltip />
+
             <XAxis
               // type="number"
               // ticks={[10, 20, 30 ,100]}
               // domain={[10, 100]}
               dataKey="week"
               tickFormatter={[]}
-              tick={{ fill: theme.palette.text.hint + "80", fontSize: 14 }}
-              stroke={theme.palette.text.hint + "80"}
+              tick={{ fill: theme.palette.primary.main, fontSize: 14 }}
+              stroke={theme.palette.primary.main}
               tickLine={false}
             />
-            {data.map((el) => {
+            <Tooltip />
+            {/* {data.map((el) => {
               console.log(el.total["monthly"]);
               return (
                 <Line
+                  type="natural"
                   // label={{ fill: "red", marginTop: "16px" }}
                   dataKey="total[monthly]"
                   stroke={theme.palette.red.main}
@@ -339,60 +347,70 @@ function Diagram() {
                   }}
                 />
               );
-            })}
+            })} */}
             {console.log("data.total", data.total)}
             {console.log("date", date)}
             <Line
               type="natural"
+              // label={{ fill: "red", marginTop: "16px" }}
+              dataKey="total[monthly]"
+              stroke={theme.palette.blue.main}
+              strokeWidth={2}
+              name="رطوبت"
+              onMouseOver={() => (tooltip = "mobile")}
+              dot={{
+                stroke: theme.palette.blue.dark,
+                strokeWidth: 2,
+                fill: theme.palette.blue.main,
+              }}
+            />
+            <Line
+              type="natural"
               // dataKey={data.total(mainChartState)}
-              stroke={theme.palette.secondary.main}
+              stroke={theme.palette.green.main}
               dataKey="total[daily]"
               strokeWidth={2}
               name="وزن"
               onMouseOver={() => (tooltip = "desktop")}
               dot={{
-                stroke: theme.palette.primary.dark,
+                stroke: theme.palette.green.dark,
                 strokeWidth: 2,
-                fill: theme.palette.primary.main,
+                fill: "green",
               }}
             />
             <Line
               // label
               type="natural"
               dataKey="total[weekly]"
-              stroke={theme.palette.warning.main}
+              stroke={theme.palette.red.main}
               strokeWidth={2}
               name="دما"
               onMouseOver={() => (tooltip = "tablet")}
               dot={{
-                stroke: theme.palette.primary.dark,
+                stroke: theme.palette.red.dark,
                 strokeWidth: 2,
-                fill: theme.palette.primary.main,
+                fill: theme.palette.red.main,
               }}
             />
           </ComposedChart>
         </ResponsiveContainer>
 
-        <Grid
-          item
-          xs={12}
-          className={classes.mainChartHeaderLabels}
-        >
+        <Grid item xs={12} className={classes.mainChartHeaderLabels}>
           <div className={classes.mainChartHeaderLabel}>
-            <Dot color="warning" className={classes.dot}/>
-            
+            <Dot color="blue" className={classes.dot} />
+
             <Typography className={classes.mainChartLegentElement}>
               رطوبت
             </Typography>
           </div>
           <div className={classes.mainChartHeaderLabel}>
-            <Dot color="primary" className={classes.dot}/>
+            <Dot color="green" className={classes.dot} />
             <Typography className={classes.mainChartLegentElement}>
               وزن
             </Typography>
           </div>
           <div className={classes.mainChartHeaderLabel}>
-            <Dot color="red" className={classes.dot}/>
+            <Dot color="red" className={classes.dot} />
             <Typography className={classes.mainChartLegentElement}>
               دما
             </Typography>

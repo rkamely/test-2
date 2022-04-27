@@ -5,7 +5,9 @@ const secondary = "rgb( 255 ,176 ,4)";
 const warning = "#FFC260";
 const success = "#3CD4A0";
 const info = "#9013FE";
-const red="red"
+const red="red";
+const green="rgb(33 ,192, 99)";
+const blue="rgb(26 ,115 ,233)"
 const lightenRate = 7.5;
 const darkenRate = 15;
 
@@ -39,9 +41,19 @@ const defaultTheme = {
       dark: tinycolor(info).darken(darkenRate).toHexString(),
     },
     red: {
-      main: info,
+      main: red,
       light: tinycolor(red).lighten(lightenRate).toHexString(),
       dark: tinycolor(red).darken(darkenRate).toHexString(),
+    },
+    green: {
+      main: green,
+      light: tinycolor(green).lighten(lightenRate).toHexString(),
+      dark: tinycolor(green).darken(darkenRate).toHexString(),
+    },
+    blue: {
+      main: blue,
+      light: tinycolor(blue).lighten(lightenRate).toHexString(),
+      dark: tinycolor(blue).darken(darkenRate).toHexString(),
     },
     text: {
       primary: "#4A4A4A",
