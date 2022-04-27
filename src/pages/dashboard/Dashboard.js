@@ -61,14 +61,14 @@ export default function Dashboard(props) {
       {/* second part */}
 
       <Grid container spacing={3} className={classes.secondPart}>
-        <Grid item xs={12} className={classes.fiveBox}>
-          <Grid item lg={2} md={4} sm={6} xs={12}>
+        <Grid item xs={12}  style={{display: "flex"}}>
+          <Grid item lg={3} md={4} sm={6} xs={12} >
             <Widget
               color="secondary"
               Img="/assets/hive-svgrepo-com (-1.svg"
               title="تعداد زنبورستان"
               upperTitle
-              style={{ fontWeight: 600 }}
+              style={{ fontWeight: 600,marginLeft: 30}}
               bodyClass={classes.fullHeightBody}
               className={classes.card}
             >
@@ -121,13 +121,13 @@ export default function Dashboard(props) {
               </Grid>
             </Widget>
           </Grid>
-          <Grid item lg={2} md={4} sm={6} xs={12}>
+          <Grid item lg={3} md={4} sm={6} xs={12}>
             <Widget
               color="secondary"
               Img="/assets/hive-svgrepo-com (3).svg"
               title="تعداد کندو"
               upperTitle
-              style={{ fontWeight: 600 }}
+              style={{ fontWeight: 600,marginLeft: 30}}
               bodyClass={classes.fullHeightBody}
               className={classes.card}
             >
@@ -179,13 +179,13 @@ export default function Dashboard(props) {
               </Grid>
             </Widget>
           </Grid>
-          <Grid item lg={2} md={4} sm={6} xs={12}>
+          <Grid item lg={3} md={4} sm={6} xs={12}>
             <Widget
               color="secondary"
               Img="/assets/Group 11039.svg"
               title="تعداد بازدید"
               upperTitle
-              style={{ fontWeight: 600 }}
+              style={{ fontWeight: 600,marginLeft: 15}}
               bodyClass={classes.fullHeightBody}
               className={classes.card}
             >
@@ -237,13 +237,13 @@ export default function Dashboard(props) {
               </Grid>
             </Widget>
           </Grid>
-          <Grid item lg={2} md={4} sm={6} xs={12}>
+          <Grid item lg={3} md={4} sm={6} xs={12}>
             <Widget
               color="secondary"
               Img="/assets/power-svgrepo-com-1.svg"
               title="میانگین قدرت"
               upperTitle
-              style={{ fontWeight: 600 }}
+              style={{ fontWeight: 600,marginLeft: 15,marginRight:15}}
               bodyClass={classes.fullHeightBody}
               className={classes.card}
             >
@@ -295,13 +295,13 @@ export default function Dashboard(props) {
               </Grid>
             </Widget>
           </Grid>
-          <Grid item lg={2} md={4} sm={6} xs={12}>
+          <Grid item lg={3} md={4} sm={6} xs={12}>
             <Widget
               color="secondary"
               Img="/assets/12425575071619191957.svg"
               title="تعداد کارها"
               upperTitle
-              style={{ fontWeight: 600 }}
+              style={{ fontWeight: 600,marginRight: 15}}
               bodyClass={classes.fullHeightBody}
               className={classes.card}
             >

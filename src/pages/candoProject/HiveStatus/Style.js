@@ -13,24 +13,22 @@ export default makeStyles((theme) => ({
     fontWeight: "bold",
     borderRadius: "15px",
     fontSize: "18px",
-    marginBottom:"16px;"
+    marginBottom: "16px;",
   },
-  item:{
-    textDecoration:"none",
+  item: {
+    textDecoration: "none",
     color: "rgb( 227, 156, 0)",
- 
   },
-  
-  activeItem:{
-  background:"#fff",
-  padding:"4px 16px",
-  borderRadius:"8px",
-  color:"#000",
-  textDecoration:"none",
-  cursor:"pointer",
-  boxShadow:"0px 3px 6px 0px rgba(0,0,0,0.16)"
 
-},
+  activeItem: {
+    background: "#fff",
+    padding: "4px 16px",
+    borderRadius: "8px",
+    color: "#000",
+    textDecoration: "none",
+    cursor: "pointer",
+    boxShadow: "0px 3px 6px 0px rgba(0,0,0,0.16)",
+  },
   greenHeader: {
     display: "flex",
     width: "100%",
@@ -83,58 +81,80 @@ export default makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
   },
-  midPartAudio:{
+  midPartAudio: {
     boxShadow: " rgba(0, 0, 0, 0.16) 0px 0px 4px 0px",
     boxSizing: "border-box",
     borderRadius: "15px",
-    padding: "32px"
+    padding: "32px",
   },
-  DialogActions:{
-    display:"flex",
-    alignItems:"center",
-    justifyContent:"space-evenly",
-    marginTop:"16px"
+  DialogActions: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    marginTop: "16px",
   },
-  DialogBox:{
-       width:"500px",
-       padding:"40px 20px"
-
+  DialogBox: {
+    width: "500px",
+    padding: "40px 20px",
   },
-  ButtonHiveSubmitYes:{
+  ButtonHiveSubmitYes: {
     background: theme.palette.secondary.main,
-    fontWeight:600,
-    padding:"4px 32px",
-    "&:hover":{
-      background:  theme.palette.secondary.main,
-    }
+    fontWeight: 600,
+    padding: "4px 32px",
+    "&:hover": {
+      background: theme.palette.secondary.main,
+    },
   },
-  ButtonHiveSubmitNo:{
+  ButtonHiveSubmitNo: {
     background: "rgb( 244 244 244)",
-    fontWeight:600,
-    padding:"4px 32px"
-
+    fontWeight: 600,
+    padding: "4px 32px",
   },
 
-  ButtonHiveSubmitNoFinish:{
-    display:"none"
+  ButtonHiveSubmitNoFinish: {
+    display: "none",
   },
-  ButtonHiveSubmitFinish:{
+  ButtonHiveSubmitFinish: {
     background: "blue",
-    fontWeight:600,
-    width:"50%",
-    color:"#fff",
-    padding:"4px 48px",
-    fontWeight:"bold",
-    fontFamily:"Shabnam",
-    borderRadius:"12px",
-    "&:hover":{
+    fontWeight: 600,
+    width: "50%",
+    color: "#fff",
+    padding: "4px 48px",
+    fontWeight: "bold",
+    fontFamily: "Shabnam",
+    borderRadius: "12px",
+    "&:hover": {
       background: "blue",
-    }
+    },
   },
-  mainChartHeader:{
-    border:"2px solid red",    
-    display:"flex",
-    justifyContent:"space-between",
-    alignItems:"center"
+  mainChartHeader: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "rgb( 244 ,244 ,244)",
+    padding: "0 16px",
+    borderRadius: "12px",
+  },
+  select: {
+    backgroundColor: "#fff",
+    width: "100%",
+    borderRadius: "8px",
+    margin: "8px 0",
+  },
+  mainChartHeaderLabels: { display: "flex",alignItems: "center",   borderRadius: "12px",backgroundColor: "rgb(244 244 244)", padding: "12px",
+},
+  mainChartHeaderLabel:{display: "flex",alignItems: "center",justifyContent: "center",marginRight: "16px"},
+  mainChartLegentElement:{marginLeft: "8px" },
+  leftHeader: {
+    display: "flex",
+    alignItems: "center",
+  },
+  
+  date: {
+    margin: "16px 8px",
+  },
+  dot:{
+    marginLeft: "16px",
+    border:"1px solid red"
   }
 }));

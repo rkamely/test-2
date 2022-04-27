@@ -204,7 +204,7 @@ function Diagram() {
         );
     return null;
   };
-  const openDatepicker =()=>{}
+  const openDatepicker = () => {};
   return (
     <Grid item xs={12}>
       <Widget
@@ -233,11 +233,7 @@ function Diagram() {
             </div> */}
             <Grid>
               <Select
-                style={{
-                  backgroundColor: "#fff",
-                  width: "100%",
-                  borderRadius: "8px",
-                }}
+                className={classes.select}
                 value={mainChartState}
                 onChange={(e) => setMainChartState(e.target.value)}
                 input={
@@ -257,7 +253,7 @@ function Diagram() {
               </Select>
             </Grid>
 
-            <Grid>
+            <Grid className={classes.leftHeader}>
               <Grid>
                 <Typography
                   variant="p"
@@ -274,12 +270,16 @@ function Diagram() {
                   color="text"
                   colorBrightness="secondary"
                   style={{ fontFamily: "Shabnam" }}
+                  className={classes.date}
                 >
                   1400/03/20
                 </Typography>
               </Grid>
               <Grid>
-              <img src="./assets/calender-svgrepo-com.svg" onClick={openDatepicker} />
+                <img
+                  src="./assets/calender-svgrepo-com.svg"
+                  onClick={openDatepicker}
+                />
               </Grid>
             </Grid>
           </Grid>
@@ -376,31 +376,26 @@ function Diagram() {
         <Grid
           item
           xs={12}
-          style={{
-            borderRadius: "16px",
-            backgroundColor: "rgb(244 244 244)",
-            padding: "12px 0",
-          }}
+          className={classes.mainChartHeaderLabels}
         >
-          <div className={classes.mainChartHeaderLabels}>
-            <div className={classes.mainChartHeaderLabel}>
-              <Dot color="warning" />
-              <Typography className={classes.mainChartLegentElement}>
-                رطوبت
-              </Typography>
-            </div>
-            <div className={classes.mainChartHeaderLabel}>
-              <Dot color="primary" />
-              <Typography className={classes.mainChartLegentElement}>
-                وزن
-              </Typography>
-            </div>
-            <div className={classes.mainChartHeaderLabel}>
-              <Dot color="red" />
-              <Typography className={classes.mainChartLegentElement}>
-                دما
-              </Typography>
-            </div>
+          <div className={classes.mainChartHeaderLabel}>
+            <Dot color="warning" className={classes.dot}/>
+            
+            <Typography className={classes.mainChartLegentElement}>
+              رطوبت
+            </Typography>
+          </div>
+          <div className={classes.mainChartHeaderLabel}>
+            <Dot color="primary" className={classes.dot}/>
+            <Typography className={classes.mainChartLegentElement}>
+              وزن
+            </Typography>
+          </div>
+          <div className={classes.mainChartHeaderLabel}>
+            <Dot color="red" className={classes.dot}/>
+            <Typography className={classes.mainChartLegentElement}>
+              دما
+            </Typography>
           </div>
         </Grid>
 
