@@ -55,9 +55,19 @@ function SmsVerification(props) {
   });
   const onSubmit = data => {
     console.log(JSON.stringify(data, null, 2));
-    alert(JSON.stringify(data, null, 2));
-    history.push("/login/step2")
+    alert(JSON.stringify(data, null, 2)); 
+    let Permission=true
+    if(Permission){
+         loginUser(
+    userDispatch,
+    loginValue,
+    props.history,
+    setIsLoading,
+    setError,
+  )
     
+    }
+ 
 
   };
   // local
@@ -104,14 +114,8 @@ function SmsVerification(props) {
 
 
 <Button
- onClick={() =>        
-  loginUser(
-    userDispatch,
-    loginValue,
-    props.history,
-    setIsLoading,
-    setError,
-  )
+ onClick={
+ handleSubmit(onSubmit)
 }
 
 // disabled={
@@ -121,7 +125,6 @@ function SmsVerification(props) {
 // }
     variant="contained"
     className={classes.buttonLogin}
-    // onClick={handleSubmit(onSubmit)}
   >
   ثبت کد تایید         
 </Button>

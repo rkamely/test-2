@@ -276,21 +276,29 @@ import {
   Fade,
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
-import classnames from "classnames";
-
-// styles
-import useStyles from "./styles";
-import "./styles.css"
-// logo
-import logo from "./logo.svg";
-import google from "../../images/google.svg";
 import { useParams ,useHistory} from "react-router";
-
-
 import { useUserDispatch, loginUser } from "../../context/UserContext";
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import {gql,useMutation} from "@apollo/client";
+
+// styles
+import useStyles from "./styles";
+import "./styles.css"
+
+
+
+// const SEND_SMS=gql`
+// mutation($phoneNumber: String!) {
+//   sendSms(phoneNumber: $phoneNumber) {
+//     device {
+//       id
+//       validUntil
+//     }
+//   }
+// }
+// `
 
 function Login(props) {
   var classes = useStyles();
@@ -308,7 +316,9 @@ function Login(props) {
  
 
   });
-
+ 
+  
+   
   const {
     register,
     control,
@@ -320,11 +330,29 @@ function Login(props) {
   const onSubmit = data => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
+    // sendSms({
+    //   variables:{
+    //     phoneNumber:{
+    //       device:{
+    //         // validUntil
+
+    //       }
+    //     }
+    //   }
+    // })
     history.push("./login/smsVerification")
+
 
   };
   // local
+const handleChangenumber=(e)=>{
+ setNumber(e.target.value)
+}
+ const[number,setNumber]=useState({phone:""})
+//  const[sendSms,{data,error,loading}]=useMutation(SEND_SMS)
 
+//  if (loading) return "در حال گرفتن اطلاعات از سرور"
+ 
 
 
   return (
@@ -335,7 +363,7 @@ function Login(props) {
               <p >برای ورود به کندووان پلاس شماره تلفن همراه خود را وارد کنید تا کد تایید برای شما پیامک شود</p>
               
               <TextField
-      
+               onChange={(e)=>handleChangenumber(e)}
               style={{direction:"ltr"}}
                 className={classes.TextField}
               label="شماره موبایل"
