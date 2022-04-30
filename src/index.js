@@ -33,10 +33,10 @@ const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
 });
 const client = new ApolloClient({
-  uri: 'https://graphqlzero.almansi.me/api',
+  uri: 'http://188.121.121.225/backend/graphql/',
   cache: new InMemoryCache()
 });
-
+// https://graphqlzero.almansi.me/api
 ReactDOM.render(
   <ApolloProvider client={client}>
   <LayoutProvider>
