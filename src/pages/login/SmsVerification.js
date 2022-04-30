@@ -72,7 +72,6 @@ function SmsVerification(props) {
         otpToken: data.verifyNumber.toString(),
       },
     });
-
     loginUser(userDispatch, loginValue, props.history, setIsLoading, setError);
   };
   // local
