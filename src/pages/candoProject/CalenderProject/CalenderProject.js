@@ -42,7 +42,7 @@ export default class CalenderProject extends React.Component {
   onEventAdded = (event) => {
     let calenderApi = this.calenderRef.current.getApi();
     calenderApi.addEvent(event);
-    console.log("event",event);
+    console.log("event", event);
   };
 
   async handleEventAdd(data) {
@@ -55,11 +55,11 @@ export default class CalenderProject extends React.Component {
   render() {
     return (
       <div className="demo-app">
-{/* <AddJob onEventAdded={event=>this.onEventAdded(event)} /> */}
+        {/* <AddJob onEventAdded={event=>this.onEventAdded(event)} /> */}
         {/* {this.renderSidebar()} */}
         <div className="demo-app-main">
           <FullCalendar
-            ref={this.calenderRef} 
+            ref={this.calenderRef}
             initialView="dayGridMonth"
             locales={allLocales}
             locale="fa"
@@ -70,7 +70,6 @@ export default class CalenderProject extends React.Component {
               right: "dayGridMonth,timeGridWeek,timeGridDay",
             }}
             columnHeader={false}
-           
             editable={true}
             selectable={true}
             selectMirror={true}
@@ -102,10 +101,7 @@ export default class CalenderProject extends React.Component {
           <FilterCalender />
         </div>
 
-
-
-        
-     {/* <Dialog
+        {/* <Dialog
         open={open}
         onClose={handleClose}
         scroll={scroll}
@@ -115,12 +111,7 @@ export default class CalenderProject extends React.Component {
       >
              <AddJob onClick={handleClose}/>
       </Dialog> */}
-
-
       </div>
-
-
-
     );
   }
 

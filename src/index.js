@@ -26,17 +26,45 @@ import {
   InMemoryCache,
   ApolloProvider,
   useQuery,
-  gql
+  gql,
+  ApolloLink,
+  HttpLink
 } from "@apollo/client";
 // Configure JSS
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
 });
+
+
+// const client = new ApolloClient({
+//   uri: 'http://188.121.121.225/backend/graphql/',
+//   // headers:
+//   cache: new InMemoryCache()
+// });
+
+const authLink = new ApolloLink((operation, forward) => {
+  if (isLoggedIn()) {
+    operation.setContext({
+      headers: {
+        'authorization': 'jwt ' + getAccessToken()
+      }
+    });
+  }
+  return forward(operation);
+});
+
+
+
 const client = new ApolloClient({
-  uri: 'https://graphqlzero.almansi.me/api',
+  link: ApolloLink.from([
+    authLink,
+    new HttpLink({uri: 'http://188.121.121.225/backend/graphql/'})
+  ]),
   cache: new InMemoryCache()
 });
 
+
+// https://graphqlzero.almansi.me/api
 ReactDOM.render(
   <ApolloProvider client={client}>
   <LayoutProvider>

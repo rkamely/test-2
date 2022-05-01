@@ -21,6 +21,7 @@ import {
   Edit as EditIcon,
   MoreVertOutlined,
   Share,
+  TramRounded,
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import MaterialTable, { MTableToolbar } from "material-table";
@@ -44,15 +45,14 @@ function ApiaryList() {
   const [selectedRows, setSelectedRows] = useState();
 
   const [toolbar, setToolbar] = useState(false);
-  const [scroll, setScroll] = useState('paper');
+  const [scroll, setScroll] = useState("paper");
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
 
     setScroll(scrollType);
   };
   const handleClickEdit = (scrollType) => () => {
-
-    setOpenEdit(true)
+    setOpenEdit(true);
     setScroll(scrollType);
   };
   const handleOpen = () => {
@@ -83,7 +83,7 @@ function ApiaryList() {
     px: 4,
     pb: 3,
   };
-
+const [bazshavad,setbazshavad]=useState(true)
   const [Apiary, setApiary] = useState([
     {
       id: "0",
@@ -295,7 +295,7 @@ function ApiaryList() {
                     style={{ cursor: "pointer" }}
                   />
 
-                  <Popover
+                 {bazshavad?<Popover
                     {...bindPopover(popupState)}
                     anchorOrigin={{
                       vertical: "bottom",
@@ -308,7 +308,7 @@ function ApiaryList() {
                   >
                     <div style={{ borderRadius: " 16px", padding: " 16px" }}>
                       <Link
-                        onClick={handleClickEdit('body')}
+                        onClick={handleClickEdit("body")}
                         style={{
                           display: "flex",
                           alignItems: "center",
@@ -380,7 +380,9 @@ function ApiaryList() {
                         حذف
                       </div>
                     </div>
-                  </Popover>
+                  </Popover>:null} 
+
+
                 </div>
               )}
             </PopupState>
@@ -398,7 +400,7 @@ function ApiaryList() {
     const newData = Apiary.map((row) => {
       // bug
       // delete row.tableData;
-      console.log("row",row.tableData)
+      console.log("row", row.tableData);
       return row;
     });
     const workSheet = XLSX.utils.json_to_sheet(newData);
@@ -429,16 +431,19 @@ function ApiaryList() {
     setSearched("");
     requestSearch(searched);
   };
+
   const handleBulkDelete = () => {
     console.log(selectedRows);
     const updatedData = Apiary.filter((row) => !selectedRows.includes(row));
     setApiary(updatedData);
+    
   };
 
   const onRowDelete = (rowData) => {
     console.log("rowData23123", rowData);
     const updatedData = Apiary.filter((row) => ![rowData].includes(row));
     setApiary(updatedData);
+    setbazshavad(!bazshavad)
   };
 
   // const downloadPdf = () => {
@@ -466,9 +471,7 @@ function ApiaryList() {
     return console.log("click");
   };
 
-  const downloadPdf=()=>{
-
-  }
+  const downloadPdf = () => {};
   return (
     <div>
       <h2 style={{ color: "rgb(227, 156, 0)" }}>زنبورستان</h2>
@@ -654,7 +657,7 @@ function ApiaryList() {
                           style={{ borderRadius: " 16px", padding: " 16px" }}
                         >
                           <Link
-                            onClick={handleClickEdit('body')}
+                            onClick={handleClickEdit("body")}
                             style={{
                               display: "flex",
                               alignItems: "center",
@@ -721,6 +724,7 @@ function ApiaryList() {
                             <img
                               src="/assets/trash-svgrepo-com-2.svg"
                               style={{ margin: "0 8px 0 16px" }}
+                              alt=""
                             />
                             حذف
                           </div>
@@ -737,7 +741,7 @@ function ApiaryList() {
 
           {
             icon: () => (
-              <div onClick={handleClickOpen('body')}>
+              <div onClick={handleClickOpen("body")}>
                 <img
                   style={{
                     backgroundColor: "rgb( 227, 156, 0)",
@@ -754,7 +758,7 @@ function ApiaryList() {
               </div>
             ),
             tooltip: "اضافه کردن زنبورستان",
-      
+
             isFreeAction: true,
           },
           {
@@ -790,34 +794,32 @@ function ApiaryList() {
       <div>
         <Dialog
           PaperProps={{
-            style: { borderRadius: 12,width:"70%"}
+            style: { borderRadius: 12, width: "70%" },
           }}
-        open={open}
-        onClose={handleClose}
-        scroll={scroll}
-        aria-labelledby="scroll-dialog-title"
-        aria-describedby="scroll-dialog-description"
-        maxWidth="xl"
+          open={open}
+          onClose={handleClose}
+          scroll={scroll}
+          aria-labelledby="scroll-dialog-title"
+          aria-describedby="scroll-dialog-description"
+          maxWidth="xl"
         >
-            <ApiaryAddList />
-   
+          <ApiaryAddList />
         </Dialog>
       </div>
 
       <div>
         <Dialog
           PaperProps={{
-            style: { borderRadius: 12,width:"70%" }
+            style: { borderRadius: 12, width: "70%" },
           }}
-        open={openEdit}
-        onClose={handleClose}
-        scroll={scroll}
-        aria-labelledby="scroll-dialog-title"
-        aria-describedby="scroll-dialog-description"
-        maxWidth="xl"
+          open={openEdit}
+          onClose={handleClose}
+          scroll={scroll}
+          aria-labelledby="scroll-dialog-title"
+          aria-describedby="scroll-dialog-description"
+          maxWidth="xl"
         >
-            <ApiaryUpdateList />
-          
+          <ApiaryUpdateList />
         </Dialog>
       </div>
 

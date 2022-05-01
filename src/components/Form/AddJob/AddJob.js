@@ -66,7 +66,7 @@ const AddJob = (props) => {
     // event.preventDefault();
     props.onEventAdded({
       title,
-      selectedDate,
+      start,
       end,
     });
     // props.onClose()
@@ -80,6 +80,7 @@ const AddJob = (props) => {
     { label: "برداشت عسل", value: "برداشت عسل" },
     { label: "بیماری زنبور", value: "بیماری زنبور" },
   ];
+
   return (
     <Paper>
       <Typography
@@ -132,10 +133,10 @@ const AddJob = (props) => {
 
               <Grid item xs={12} sm={12} className={classes.inputText}>
                 <div className={classes.input}>
-                  <label className={classes.label}>عنوان کار </label>
+                  <label className={classes.label}> عنوان کار </label>
                   <TextField
                     value={title}
-                    onChange={e=>setTitle(e.target.value)}
+                    onChange={(e) => setTitle(e.target.value)}
                     className={classes.TextField}
                     required
                     id="jobTitle"
@@ -312,7 +313,7 @@ const AddJob = (props) => {
                             date ? date.format("jYYYY/jMM/jDD") : ""
                           }
                           value={selectedDate}
-                          onChange={(date)=>handleDateChange(date)}
+                          onChange={(date) => handleDateChange(date)}
                           // onChange={date => { handleDateChange(date); setStart(date) }}
                         />
                       </MuiPickersUtilsProvider>

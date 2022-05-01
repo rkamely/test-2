@@ -56,7 +56,6 @@
 //             <Tab label="New User" classes={{ root: classes.tab }} />
 //           </Tabs>
 
-
 //           {activeTabId === 0 && (
 //             <React.Fragment>
 //               <Typography variant="h1" className={classes.greeting}>
@@ -141,7 +140,6 @@
 //               </div>
 //             </React.Fragment>
 //           )}
-
 
 //           {activeTabId === 1 && (
 //             <React.Fragment>
@@ -249,7 +247,6 @@
 //             </React.Fragment>
 //           )}
 
-
 //         </div>
 //         <Typography color="primary" className={classes.copyright}>
 //         © 2014-{new Date().getFullYear()} <a style={{ textDecoration: 'none', color: 'inherit' }} href="https://flatlogic.com" rel="noopener noreferrer" target="_blank">Flatlogic</a>, LLC. All rights reserved.
@@ -260,9 +257,6 @@
 // }
 
 // export default withRouter(Login);
-
-
-
 
 import React, { useState } from "react";
 import {
@@ -285,64 +279,66 @@ import {gql,useMutation} from "@apollo/client";
 
 // styles
 import useStyles from "./styles";
-import "./styles.css"
+import "./styles.css";
+// logo
+import logo from "./logo.svg";
+import google from "../../images/google.svg";
+import { useParams, useHistory } from "react-router";
 
-
-
-// const SEND_SMS=gql`
-// mutation($phoneNumber: String!) {
-//   sendSms(phoneNumber: $phoneNumber) {
-//     device {
-//       id
-//       validUntil
-//     }
-//   }
-// }
-// `
+import { useUserDispatch, loginUser } from "../../context/UserContext";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { gql, useMutation } from "@apollo/client";
 
 function Login(props) {
   var classes = useStyles();
-  const history=useHistory()
+  const history = useHistory();
 
   // global
   var userDispatch = useUserDispatch();
   // const phoneRegExp = /09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}/
-  const phoneRegExp = /9([0-3][0-9])-?[0-9]{3}-?[0-9]{4}/
+  const phoneRegExp = /09([0-3][0-9])-?[0-9]{3}-?[0-9]{4}/;
 
   const validationSchema = yup.object().shape({
-
-
-    phoneNumber:yup.string().matches(phoneRegExp, 'شماره موبایل را بدون صفر و با حروف انگلیسی وارد کنید')
- 
-
+    phoneNumber: yup
+      .string()
+      .matches(
+        phoneRegExp,
+        "شماره موبایل را بدون صفر و با حروف انگلیسی وارد کنید",
+      ),
   });
- 
   
-   
+  const SEND_SMS = gql`
+    mutation($phoneNumber: String!) {
+      sendSms(phoneNumber: $phoneNumber) {
+        device {
+          validUntil
+          id
+        }
+      }
+    }
+  `;
+
   const {
     register,
     control,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm({
-    resolver: yupResolver(validationSchema)
+    resolver: yupResolver(validationSchema),
   });
-  const onSubmit = data => {
+  // const [phone,setPhone ]=useState("")
+  const onSubmit = (data) => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
-    // sendSms({
-    //   variables:{
-    //     phoneNumber:{
-    //       device:{
-    //         // validUntil
-
-    //       }
-    //     }
-    //   }
-    // })
-    history.push("./login/smsVerification")
-
-
+    history.push("./login/smsVerification");
+    console.log("phone", data.phoneNumber.toString());
+    sendSms({
+      variables: {
+        phoneNumber: data.phoneNumber.toString(),
+      },
+    });
   };
   // local
 const handleChangenumber=(e)=>{
@@ -351,52 +347,55 @@ const handleChangenumber=(e)=>{
  const[number,setNumber]=useState({phone:""})
 //  const[sendSms,{data,error,loading}]=useMutation(SEND_SMS)
 
-//  if (loading) return "در حال گرفتن اطلاعات از سرور"
- 
+  const [sendSms, { loading }] = useMutation(SEND_SMS);
 
+  if (loading) return "صفحه در حال بارگیری است لطفا منتظر بمانید";
 
   return (
-<div className="containerLogin">
-          <div className="contact-form">
-	          	{/* <img alt="" className="avatar" src="/assets/Untitled-1.svg"/> */}
-              <h2 >ورود</h2>
-              <p >برای ورود به کندووان پلاس شماره تلفن همراه خود را وارد کنید تا کد تایید برای شما پیامک شود</p>
-              
-              <TextField
-               onChange={(e)=>handleChangenumber(e)}
-              style={{direction:"ltr"}}
-                className={classes.TextField}
-              label="شماره موبایل"
-                placeholder="+98 | "
-                id="phoneNumber"
-                name="phoneNumber"
-                variant="outlined"
-                fullWidth
-                margin="normal"
-                size="small"
-                {...register('phoneNumber')}
-                error={errors.phoneNumber ? true : false}
-              />
-              <Typography variant="inherit" color="textSecondary" style={{color:"rgb( 227 156 0)"}}>
-                {errors.phoneNumber?.message}
-              </Typography>
-          <Button
-              
-              variant="contained"
-              className={classes.buttonLogin}
-              onClick={handleSubmit(onSubmit)}
-            >
-            دریافت کد تایید          
-         </Button>
-         
+    <div className="containerLogin">
+      <div className="contact-form">
+        {/* <img alt="" className="avatar" src="/assets/Untitled-1.svg"/> */}
+        <h2>ورود</h2>
+        <p>
+          برای ورود به کندووان پلاس شماره تلفن همراه خود را وارد کنید تا کد
+          تایید برای شما پیامک شود
+        </p>
 
-	                {/* <input placeholder="Enter Email" type="email"/>
+        <TextField
+          style={{ direction: "ltr" }}
+          // onChange={(e)=>setPhone(e.target.value)}
+          className={classes.TextField}
+          label="شماره موبایل"
+          placeholder="+98 | "
+          id="phoneNumber"
+          name="phoneNumber"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          size="small"
+          {...register("phoneNumber")}
+          error={errors.phoneNumber ? true : false}
+        />
+        <Typography
+          variant="inherit"
+          color="textSecondary"
+          style={{ color: "rgb( 227 156 0)" }}
+        >
+          {errors.phoneNumber?.message}
+        </Typography>
+        <Button
+          variant="contained"
+          className={classes.buttonLogin}
+          onClick={handleSubmit(onSubmit)}
+        >
+          دریافت کد تایید
+        </Button>
+
+        {/* <input placeholder="Enter Email" type="email"/>
 			            <input placeholder="Enter Password" type="password"/> <input type="submit" value="Sign in"/>
 		            	<p><input type="checkbox"/>Remember Me</p> */}
-	         
-	        </div>
-</div>
-    
+      </div>
+    </div>
   );
 }
 
