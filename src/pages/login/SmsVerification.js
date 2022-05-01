@@ -60,23 +60,42 @@ function SmsVerification(props) {
     resolver: yupResolver(validationSchema),
   });
   const onSubmit = (data) => {
+    
+
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
     // history.push("/login/step2")
-    console.log("otpToken", data.verifyNumber.toString());
+    console.log("otpToken", data.verifyNumber);
     console.log("phoneNumber", data.phoneNumber);
 
-    verifyOtp({
+   return verifyOtp({
       variables: {
-        // phoneNumber: data.phoneNumber.toString(),
-        otpToken: data.verifyNumber.toString(),
+        phoneNumber: data.phoneNumber,
+        otpToken: data.verifyNumber,
       },
     });
-    loginUser(userDispatch, loginValue, props.history, setIsLoading, setError);
+    // loginUser(userDispatch, loginValue, props.history, setIsLoading, setError);
   };
   // local
 
-  const [verifyOtp, { loading }] = useMutation(VERIFY_OTP);
+  const [verifyOtp, { loading }] = useMutation(VERIFY_OTP,{
+    onCompleted:(data)=>{
+      console.log("data",data)
+      console.log("iscorrectToken?", data.verifyOtp.token);
+      localStorage.setItem('id_token', data.verifyOtp.token)
+      setError(null)
+      setIsLoading(false)
+      userDispatch({ type: 'LOGIN_SUCCESS' })
+    },
+    onError:(data)=>{
+      console.log("login",loginValue)
+      userDispatch({ type: "LOGIN_FAILURE" });
+      setError(true);
+      setIsLoading(false);
+    }
+    
+    
+  });
 
   if (loading) return "صفحه در حال بارگیری است لطفا منتظر بمانید";
 

@@ -12,15 +12,22 @@ import Login from "../pages/login";
 import { useUserState } from "../context/UserContext";
 import SmsVerification from "../pages/login/SmsVerification";
 import CompleteInformation from "../pages/login/CompleteInformation";
+import { useAppApolloClient } from "./config/apolloClient";
+import { ApolloProvider } from "@apollo/client";
 // import { createBrowserHistory } from "history";
 
 // const history = createBrowserHistory();
 export default function App() {
   // global
-  var { isAuthenticated } = useUserState();
+  const { isAuthenticated } = useUserState();
   console.log("isAuthenticated",isAuthenticated)
+
+
+  const apolloClient = useAppApolloClient();
+
   return (    
  
+    <ApolloProvider client={apolloClient}>
 
     <HashRouter>
       <Switch>
@@ -37,6 +44,7 @@ export default function App() {
         <Route component={Error} />
       </Switch>
     </HashRouter>
+    </ApolloProvider>
   );
 
   // #######################################################################
@@ -82,4 +90,5 @@ export default function App() {
       />
     );
   }
+  
 }

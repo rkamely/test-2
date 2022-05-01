@@ -42,31 +42,50 @@ const jss = create({
 //   cache: new InMemoryCache()
 // });
 
-const authLink = new ApolloLink((operation, forward) => {
-  if (isLoggedIn()) {
-    operation.setContext({
-      headers: {
-        'authorization': 'jwt ' + getAccessToken()
-      }
-    });
-  }
-  return forward(operation);
-});
 
 
 
-const client = new ApolloClient({
-  link: ApolloLink.from([
-    authLink,
-    new HttpLink({uri: 'http://188.121.121.225/backend/graphql/'})
-  ]),
-  cache: new InMemoryCache()
-});
+// const authLink = new ApolloLink((operation, forward) => {
+//   if (isLoggedIn()) {
+//     operation.setContext({
+//       headers: {
+//         'authorization': 'jwt ' + getAccessToken()
+//          authorization: `jwt ${authToken}`
+//       }
+//     });
+//   }
+//   return forward(operation);
+// });
+
+// const authMiddleware = (authToken) =>
+//   new ApolloLink((operation, forward) => {
+//     // add the authorization to the headers
+//     if (authToken) {
+//       operation.setContext({
+//         headers: {
+//           authorization: `Bearer ${authToken}`,
+//         },
+//       });
+//     }
+
+//     return forward(operation);
+//   });
+
+// const httpLink = new HttpLink({ uri: "http://localhost:1337/graphql" });
+// const client = new ApolloClient({
+//   link: authMiddleware(authToken).concat(httpLink),
+//   cache:  new InMemoryCache({})  
+//   // link: ApolloLink.from([
+//   //   // authLink,
+//   //   new HttpLink({uri: 'http://188.121.121.225/backend/graphql/'})
+//   // ]),
+// });
 
 
 // https://graphqlzero.almansi.me/api
 ReactDOM.render(
-  <ApolloProvider client={client}>
+  
+  // <ApolloProvider client={cliapolloClientent}>
   <LayoutProvider>
     <UserProvider>
       <ThemeProvider theme={Themes.default}  >
@@ -76,8 +95,8 @@ ReactDOM.render(
         </StylesProvider>
       </ThemeProvider>
     </UserProvider>
-  </LayoutProvider>
-  </ApolloProvider>,
+  </LayoutProvider>,
+  // </ApolloProvider>,
 
   document.getElementById("root"),
 );

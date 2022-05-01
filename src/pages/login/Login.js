@@ -280,16 +280,9 @@ import {gql,useMutation} from "@apollo/client";
 // styles
 import useStyles from "./styles";
 import "./styles.css";
-// logo
-import logo from "./logo.svg";
-import google from "../../images/google.svg";
-import { useParams, useHistory } from "react-router";
 
-import { useUserDispatch, loginUser } from "../../context/UserContext";
-import { useForm, Controller } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { gql, useMutation } from "@apollo/client";
+
+
 
 function Login(props) {
   var classes = useStyles();
