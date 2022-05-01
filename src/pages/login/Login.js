@@ -321,11 +321,31 @@ function Login(props) {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
-  // const [phone,setPhone ]=useState("")
+
+const handleChangenumber=(event)=>{
+  // setState(e.target.value)
+  const { name, value } = event.target;
+  setState((prevState) => ({
+    ...prevState,
+    [name]: value
+  }));
+}
+ const[state,setState]=useState({phoneNumber:""})
+//  const[sendSms,{data,error,loading}]=useMutation(SEND_SMS)
+ console.log("state",state)
+  const [sendSms, {data,error,loading}] = useMutation(SEND_SMS);
+
+  if (loading) return "صفحه در حال بارگیری است لطفا منتظر بمانید";
+
   const onSubmit = (data) => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
-    history.push("./login/smsVerification");
+    history.push(
+    { 
+      pathname:  "./login/smsVerification",
+      state
+    }
+    );
     console.log("phone", data.phoneNumber.toString());
     sendSms({
       variables: {
@@ -333,17 +353,6 @@ function Login(props) {
       },
     });
   };
-  // local
-const handleChangenumber=(e)=>{
- setNumber(e.target.value)
-}
- const[number,setNumber]=useState({phone:""})
-//  const[sendSms,{data,error,loading}]=useMutation(SEND_SMS)
-
-  const [sendSms, { loading }] = useMutation(SEND_SMS);
-
-  if (loading) return "صفحه در حال بارگیری است لطفا منتظر بمانید";
-
   return (
     <div className="containerLogin">
       <div className="contact-form">
@@ -356,7 +365,7 @@ const handleChangenumber=(e)=>{
 
         <TextField
           style={{ direction: "ltr" }}
-          // onChange={(e)=>setPhone(e.target.value)}
+          onChange={handleChangenumber}
           className={classes.TextField}
           label="شماره موبایل"
           placeholder="+98 | "

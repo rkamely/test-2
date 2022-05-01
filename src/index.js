@@ -30,6 +30,7 @@ import {
   ApolloLink,
   HttpLink
 } from "@apollo/client";
+import { CookiesProvider } from "react-cookie";
 // Configure JSS
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
@@ -86,7 +87,8 @@ const jss = create({
 ReactDOM.render(
   
   // <ApolloProvider client={cliapolloClientent}>
-  <LayoutProvider>
+  <CookiesProvider>
+   <LayoutProvider>
     <UserProvider>
       <ThemeProvider theme={Themes.default}  >
        <StylesProvider jss={jss}> 
@@ -95,7 +97,8 @@ ReactDOM.render(
         </StylesProvider>
       </ThemeProvider>
     </UserProvider>
-  </LayoutProvider>,
+   </LayoutProvider>
+  </CookiesProvider>,
   // </ApolloProvider>,
 
   document.getElementById("root"),

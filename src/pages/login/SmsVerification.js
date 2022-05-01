@@ -25,6 +25,7 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { gql, useMutation } from "@apollo/client";
+import { useAuthToken } from "../../components/config/auth";
 
 function SmsVerification(props) {
   const classes = useStyles();
@@ -59,6 +60,8 @@ function SmsVerification(props) {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
+  const [_, setAuthToken, removeAuthtoken] = useAuthToken();
+
   const onSubmit = (data) => {
     
 
@@ -66,11 +69,11 @@ function SmsVerification(props) {
     alert(JSON.stringify(data, null, 2));
     // history.push("/login/step2")
     console.log("otpToken", data.verifyNumber);
-    console.log("phoneNumber", data.phoneNumber);
-
-   return verifyOtp({
+    console.log("phoneNumber", props.location);
+    removeAuthtoken()
+    return verifyOtp({
       variables: {
-        phoneNumber: data.phoneNumber,
+        // phoneNumber: data.phoneNumber,
         otpToken: data.verifyNumber,
       },
     });
@@ -80,25 +83,25 @@ function SmsVerification(props) {
 
   const [verifyOtp, { loading }] = useMutation(VERIFY_OTP,{
     onCompleted:(data)=>{
+      console.log("login",loginValue)
       console.log("data",data)
-      console.log("iscorrectToken?", data.verifyOtp.token);
-      localStorage.setItem('id_token', data.verifyOtp.token)
+      console.log("iscorrectToken?",data.verifyOtp.token);
+      // localStorage.setItem('id_token', data.verifyOtp.token)
+      setAuthToken(data.verifyOtp.token);
       setError(null)
       setIsLoading(false)
       userDispatch({ type: 'LOGIN_SUCCESS' })
     },
     onError:(data)=>{
-      console.log("login",loginValue)
+      console.log("data",data)
       userDispatch({ type: "LOGIN_FAILURE" });
       setError(true);
       setIsLoading(false);
-    }
-    
-    
+    }   
   });
+  
 
   if (loading) return "صفحه در حال بارگیری است لطفا منتظر بمانید";
-
   return (
     <div className="containerLogin">
       <div className="contact-form">
