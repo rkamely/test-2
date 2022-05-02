@@ -55,9 +55,8 @@ export default class CalenderProject extends React.Component {
   render() {
     return (
       <div className="demo-app">
-        {/* <AddJob onEventAdded={event=>this.onEventAdded(event)} /> */}
-        {/* {this.renderSidebar()} */}
-        <div className="demo-app-main">
+        <AddJob onEventAdded={event=>this.onEventAdded(event)} />
+         <div className="demo-app-main">
           <FullCalendar
             ref={this.calenderRef}
             initialView="dayGridMonth"
@@ -82,7 +81,10 @@ export default class CalenderProject extends React.Component {
             datesSet={(date) => this.handleDateSet(date)}
             eventContent={renderEventContent} // custom render function
             eventClick={this.handleEventClick}
-            eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
+            eventsSet={this.handleEvents} 
+            
+            
+            // called after events are initialized/added/changed/removed
             /* you can update a remote database when these fire:
             eventAdd={function(){}}
             eventChange={function(){}}

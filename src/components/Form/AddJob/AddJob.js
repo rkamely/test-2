@@ -30,6 +30,7 @@ import {
   MuiPickersUtilsProvider,
   TimePicker,
 } from "@material-ui/pickers";
+import { date } from "yup/lib/locale";
 
 const AddJob = (props) => {
   console.log("props", props);
@@ -57,7 +58,6 @@ const AddJob = (props) => {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
-  const [title, setTitle] = useState("salam");
   const [start, setStart] = useState(new Date());
   const [end, setEnd] = useState(new Date());
   const onSubmit = (data) => {
@@ -65,7 +65,7 @@ const AddJob = (props) => {
     alert(JSON.stringify(data, null, 2));
     // event.preventDefault();
     props.onEventAdded({
-      title,
+      title:date.jobTitle,
       start,
       end,
     });
@@ -135,8 +135,6 @@ const AddJob = (props) => {
                 <div className={classes.input}>
                   <label className={classes.label}> عنوان کار </label>
                   <TextField
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
                     className={classes.TextField}
                     required
                     id="jobTitle"
