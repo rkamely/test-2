@@ -329,6 +329,7 @@ const handleChangenumber=(event)=>{
     ...prevState,
     [name]: value
   }));
+
 }
  const[state,setState]=useState({phoneNumber:""})
 //  const[sendSms,{data,error,loading}]=useMutation(SEND_SMS)
@@ -346,6 +347,7 @@ const handleChangenumber=(event)=>{
       state
     }
     );
+    localStorage.setItem("data",data.phoneNumber.toString())
     console.log("phone", data.phoneNumber.toString());
     sendSms({
       variables: {

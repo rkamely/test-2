@@ -65,23 +65,25 @@ function SmsVerification(props) {
   const onSubmit = (data) => {
     
 
-    console.log(JSON.stringify(data, null, 2));
-    alert(JSON.stringify(data, null, 2));
-    // history.push("/login/step2")
-    console.log("otpToken", data.verifyNumber);
-    console.log("phoneNumber", props.location);
-    removeAuthtoken()
-    return verifyOtp({
-      variables: {
-        // phoneNumber: data.phoneNumber,
-        otpToken: data.verifyNumber,
-      },
-    });
-    // loginUser(userDispatch, loginValue, props.history, setIsLoading, setError);
+    // console.log(JSON.stringify(data, null, 2));
+    // alert(JSON.stringify(data, null, 2));
+    // // history.push("/login/step2")
+    // console.log("otpToken", data.verifyNumber);
+    // const phone=localStorage.getItem("data")
+    // console.log("phoneNumber",phone)
+    // removeAuthtoken()
+    // return verifyOtp({
+    //   variables: {
+    //     phoneNumber: phone,
+    //     otpToken: data.verifyNumber,
+    //   },
+    // });
+    loginUser(userDispatch, loginValue, props.history, setIsLoading, setError);
   };
   // local
 
   const [verifyOtp, { loading }] = useMutation(VERIFY_OTP,{
+    
     onCompleted:(data)=>{
       console.log("login",loginValue)
       console.log("data",data)
