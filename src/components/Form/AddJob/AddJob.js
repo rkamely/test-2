@@ -46,6 +46,7 @@ const AddJob = (props) => {
     // Reminder:yup.string().required("لطفا الویت را مشخص کنید"),
     jobTitle: yup.string().required("لطفا عنوان کار خود را وارد کنید"),
     email: yup.string().email("لطفا ایمیل معتبر وارد کنید"),
+    startTime: yup.date().nullable(),
     // Checkbox:yup.boolean()
     // .oneOf([true], "این ")
   });
@@ -53,22 +54,26 @@ const AddJob = (props) => {
   const {
     register,
     control,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
-  const [start, setStart] = useState(new Date());
+  const [start, setStart] = useState(new Date(2022, 4, 19));
   const [end, setEnd] = useState(new Date());
   const onSubmit = (data) => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
     // event.preventDefault();
     props.onEventAdded({
-      title:date.jobTitle,
-      start,
-      end,
+      title: data.jobTitle,
+      start: new Date(data.dateInput),
+      time: data.startTime,
+      end: new Date(data.endDate),
     });
+
+    console.log("data.startTime");
     // props.onClose()
     // history.push("/login/step2")
   };
@@ -80,6 +85,8 @@ const AddJob = (props) => {
     { label: "برداشت عسل", value: "برداشت عسل" },
     { label: "بیماری زنبور", value: "بیماری زنبور" },
   ];
+
+  console.log("whatch", watch("dateInput"));
 
   return (
     <Paper>
@@ -298,21 +305,16 @@ const AddJob = (props) => {
                     <div className={classes.inputDate}>
                       <label className={classes.label}>از تاریخ</label>
                       <MuiPickersUtilsProvider utils={JalaliUtils} locale="fa">
-                        <DatePicker
-                          value={start}
-                          // onChange={(date) => setStart(date)}
-                          className={classes.Datepicker}
-                          inputVariant="outlined"
-                          clearable
-                          okLabel="تأیید"
-                          cancelLabel="لغو"
-                          clearLabel="پاک کردن"
-                          labelFunc={(date) =>
-                            date ? date.format("jYYYY/jMM/jDD") : ""
-                          }
-                          value={selectedDate}
-                          onChange={(date) => handleDateChange(date)}
-                          // onChange={date => { handleDateChange(date); setStart(date) }}
+                        <Controller
+                          control={control}
+                          name="dateInput"
+                          render={({ field }) => (
+                            <DatePicker
+                              placeholderText="Select date"
+                              onChange={(date) => field.onChange(date)}
+                              selected={field.value}
+                            />
+                          )}
                         />
                       </MuiPickersUtilsProvider>
                     </div>
@@ -327,28 +329,22 @@ const AddJob = (props) => {
                   </Grid>
                   <Grid item xs={12} sm={12} className={classes.Select}>
                     <div className={classes.input}>
-                      {" "}
                       <MuiPickersUtilsProvider
                         utils={JalaliUtils}
                         locale="fa"
                         className={classes.input}
                       >
-                        <label className={classes.label}>ساعت</label>
-
-                        <TimePicker
-                          value={end}
-                          onChange={(date) => setEnd(date)}
-                          className={classes.Datepicker}
-                          inputVariant="outlined"
-                          clearable
-                          okLabel="تأیید"
-                          cancelLabel="لغو"
-                          clearLabel="پاک کردن"
-                          labelFunc={(time) =>
-                            time ? time.format("HH:mm") : ""
-                          }
-                          value={selectedDate}
-                          onChange={handleDateChange}
+                        <label className={classes.label}>از ساعت</label>
+                        <Controller
+                          control={control}
+                          name="startTime"
+                          render={({ field }) => (
+                            <TimePicker
+                              placeholderText="Select date"
+                              onChange={(date) => field.onChange(date)}
+                              selected={field.value}
+                            />
+                          )}
                         />
                       </MuiPickersUtilsProvider>
                     </div>
@@ -358,7 +354,7 @@ const AddJob = (props) => {
                       color="textSecondary"
                       className={classes.errorMessage}
                     >
-                      {errors.Beehive?.message}
+                      {errors.startTime?.message}
                     </Typography>
                   </Grid>
                 </div>
@@ -367,25 +363,19 @@ const AddJob = (props) => {
                   <Grid item xs={12} sm={12} className={classes.Select}>
                     <div className={classes.input}>
                       <label className={classes.label}>تا تاریخ</label>
-                      <Select
-                        className={classes.inputSelect}
-                        required
-                        variant="outlined"
-                        {...register("Hive")}
-                        error={errors.Hive ? true : false}
-
-                        // onChange={(e) =>
-                        //   setValue("select", e.target.value, { shouldValidate: true })
-                        // } // Using setValue
-                      >
-                        {options?.map((option) => {
-                          return (
-                            <MenuItem key={option.value} value={option.value}>
-                              {option.label ?? option.value}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
+                      <MuiPickersUtilsProvider utils={JalaliUtils} locale="fa">
+                        <Controller
+                          control={control}
+                          name="endDate"
+                          render={({ field }) => (
+                            <DatePicker
+                              placeholderText="Select date"
+                              onChange={(date) => field.onChange(date)}
+                              selected={field.value}
+                            />
+                          )}
+                        />
+                      </MuiPickersUtilsProvider>
                     </div>
                     {/* {errors.select && <p>{errors.select.message}</p>} */}
                     <Typography
@@ -398,12 +388,12 @@ const AddJob = (props) => {
                   </Grid>
                   <Grid item xs={12} sm={12} className={classes.Select}>
                     <div className={classes.input}>
-                      <label className={classes.label}>ساعت</label>
+                      <label className={classes.label}>تا ساعت</label>
                       <Select
                         className={classes.inputSelect}
                         required
                         variant="outlined"
-                        {...register("Hive")}
+                        {...register("endTime")}
                         error={errors.Hive ? true : false}
 
                         // onChange={(e) =>
