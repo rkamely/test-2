@@ -28,7 +28,7 @@ export default function App() {
   return (    
  
     <ApolloProvider client={apolloClient}>
-
+     
     <HashRouter>
       <Switch>
         <Route exact path="/" render={() => <Redirect to="/app/dashboard" />} />

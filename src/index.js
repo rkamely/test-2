@@ -19,17 +19,6 @@ import {
 
 
 
-
-
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  useQuery,
-  gql,
-  ApolloLink,
-  HttpLink
-} from "@apollo/client";
 import { CookiesProvider } from "react-cookie";
 // Configure JSS
 const jss = create({
@@ -37,53 +26,6 @@ const jss = create({
 });
 
 
-// const client = new ApolloClient({
-//   uri: 'http://188.121.121.225/backend/graphql/',
-//   // headers:
-//   cache: new InMemoryCache()
-// });
-
-
-
-
-// const authLink = new ApolloLink((operation, forward) => {
-//   if (isLoggedIn()) {
-//     operation.setContext({
-//       headers: {
-//         'authorization': 'jwt ' + getAccessToken()
-//          authorization: `jwt ${authToken}`
-//       }
-//     });
-//   }
-//   return forward(operation);
-// });
-
-// const authMiddleware = (authToken) =>
-//   new ApolloLink((operation, forward) => {
-//     // add the authorization to the headers
-//     if (authToken) {
-//       operation.setContext({
-//         headers: {
-//           authorization: `Bearer ${authToken}`,
-//         },
-//       });
-//     }
-
-//     return forward(operation);
-//   });
-
-// const httpLink = new HttpLink({ uri: "http://localhost:1337/graphql" });
-// const client = new ApolloClient({
-//   link: authMiddleware(authToken).concat(httpLink),
-//   cache:  new InMemoryCache({})  
-//   // link: ApolloLink.from([
-//   //   // authLink,
-//   //   new HttpLink({uri: 'http://188.121.121.225/backend/graphql/'})
-//   // ]),
-// });
-
-
-// https://graphqlzero.almansi.me/api
 ReactDOM.render(
   
   // <ApolloProvider client={cliapolloClientent}>

@@ -174,10 +174,6 @@ export default makeStyles((theme) => ({
     
       borderRadius: "10px",
     },
-    "&	.MuiSelect-outlined":{
-    
-      borderRadius: "10px",
-    },
 
  
   },

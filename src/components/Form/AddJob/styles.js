@@ -5,15 +5,18 @@ export default makeStyles((theme) => ({
     width: "100%",
     fontFamily: "Shabnam",
   },
+
   container: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
   },
+
   Title: {
     fontWeight: "bold",
     marginTop: "16px",
   },
+
   subTitle: {
     fontWeight: "bold",
     fontSize: "1rem",
@@ -137,20 +140,21 @@ export default makeStyles((theme) => ({
         borderRadius: "10px",
       },
 
-      "&.Mui-focused fieldset": {
+    "&.Mui-focused fieldset": {
         borderRadius: "10px",
         border: "2px solid rgb(255 ,176, 4) !important",
       },
     },
   },
-  inputDate:{
+  inputDate: {
     display: "flex",
     height: "40px",
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: "32px",
     fontFamily: "Shabnam",
-    border: "none", "& label.Mui-focused": {
+    border: "none",
+    "& label.Mui-focused": {
       border: "5px solid red",
       color: "red !important",
       borderRadius: "10px",
@@ -163,7 +167,7 @@ export default makeStyles((theme) => ({
       "& fieldset": {
         border: "none",
         borderRadius: "10px",
-        padding:"0 !important",
+        padding: "0 !important",
       },
 
       "&.Mui-focused fieldset": {
@@ -201,10 +205,12 @@ export default makeStyles((theme) => ({
     // height: "40px",
     fontFamily: "Shabnam",
     "&	.MuiSelect-outlined": {
-      borderRadius: "10px",height: "40px",
+      borderRadius: "10px",
+      height: "40px",
     },
     "&	.MuiSelect-outlined": {
-      borderRadius: "10px",height: "40px",
+      borderRadius: "10px",
+      height: "40px",
     },
   },
 

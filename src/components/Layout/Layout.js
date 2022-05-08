@@ -2,7 +2,6 @@ import React from "react";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import classnames from "classnames";
 
-
 // styles
 import useStyles from "./styles";
 
@@ -11,7 +10,6 @@ import Header from "../Header";
 import Sidebar from "../Sidebar";
 import Dashboard from "../../pages/dashboard";
 import Typography from "../../pages/typography";
-
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";
@@ -57,16 +55,18 @@ function Layout(props) {
             {/* <Route path="onent={Login} /> */}
 
             <Route path="/app/dashboard" component={Dashboard} />
-            <Route path="/app/ApiaryList/Beehive/Hive/:id" component={HiveStatus} />
+            <Route
+              path="/app/ApiaryList/Beehive/Hive/:id"
+              component={HiveStatus}
+            />
             {/* <Route path="/app/Beehive/Hive/:id/:id" component={Audio} /> */}
 
             <Route path="/app/ApiaryList/Beehive/:id" component={Hive} />
             <Route path="/app/ApiaryList" component={ApiaryList} />
-            
+
             <Route path="/app/typography" component={Typography} />
             <Route path="/app/user" component={TableofUser} />
-            <Route path="/app/JobCalender" component={main} /> 
-            
+            <Route path="/app/JobCalender" component={main} />
 
             <Route
               exact
@@ -83,16 +83,8 @@ function Layout(props) {
               component={FrequentlyQuestions}
             />
             <Route path="/app/Support" component={Support} />
-            <Route path="/app/setting"  component={Edituser} />
-          
-
-
-
-
             <Route path="/app/setting" component={Edituser} />
-
           </Switch>
-
         </div>
       </>
     </div>

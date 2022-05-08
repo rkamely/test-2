@@ -30,26 +30,7 @@ export default makeStyles((theme) => ({
   Divider1:{
     marginTop: "8px" 
   },
-  // Button1: {
-  //   marginTop: "8px",
-  //   display: "flex",
-  //   fontFamily: "Shabnam",
-  //   cursor: "pointer",
-  //   border: "none",
-  //   marginTop: "100px",
-  //   backgroundColor: "rgb( 255, 255, 255)",
-  //   boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
-  //   color: "#000",
-  //   width: "16%",
-  //   padding: "16px 0px",
-  //   borderRadius: "16px",
-  //   fontWeight: "bold",
-  //   fontSize: "16px",
-  //   "&:hover": {
-  //     backgroundColor: "#fff",
-  //     borderWidth: 2,
-  //   },
-  // },
+
   PreviewImage:{
     width:"200px",
     height:"200px"
@@ -170,12 +151,6 @@ export default makeStyles((theme) => ({
     
       borderRadius: "10px",
     },
-    "&	.MuiSelect-outlined":{
-    
-      borderRadius: "10px",
-    },
-
- 
   },
 
 
@@ -268,5 +243,8 @@ export default makeStyles((theme) => ({
 
 
         }
+      },
+      Edit:{
+        marginLeft:"8px"
       }
 }));

@@ -254,7 +254,7 @@ const fileRef=useRef(null)
                  className={classes.EditPhoto}
  
              >
-               <img src="./assets/edit-svgrepo-com.svg" style={{marginLeft:"8px"}}/>
+               <img src="./assets/edit-svgrepo-com.svg" className={classes.Edit}/>
                 ویرایش
                 
                <input

@@ -28,25 +28,22 @@ import "jspdf-autotable";
 import "../../../Iran-Sans-normal";
 import ApiaryAddList from "../../../components/Form/ApiaryList/ApiaryAddList";
 import ApiaryUpdateList from "../../../components/Form/ApiaryList/ApiaryUpdateList";
-import { gql, useQuery } from '@apollo/client';
+import { gql, useQuery } from "@apollo/client";
 
 const GET_APIARIES = gql`
-query{
-  apiaries{
-    edges{
-      node{
-        id
-        name
-
+  query {
+    apiaries {
+      edges {
+        node {
+          id
+          name
+        }
       }
     }
   }
-}
 `;
 
-
 function ApiaryList() {
-  
   const [open, setOpen] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
@@ -94,7 +91,7 @@ function ApiaryList() {
     px: 4,
     pb: 3,
   };
-const [bazshavad,setbazshavad]=useState(true)
+  const [bazshavad, setbazshavad] = useState(true);
 
   const [Apiary, setApiary] = useState([
     {
@@ -165,8 +162,6 @@ const [bazshavad,setbazshavad]=useState(true)
     },
   ]);
 
-
-
   const useStyles = makeStyles({
     Button: {
       margin: "8px 0px",
@@ -175,11 +170,7 @@ const [bazshavad,setbazshavad]=useState(true)
       width: "5%",
     },
   });
-const classes = useStyles();
-
-
-
-  
+  const classes = useStyles();
 
   console.log(Apiary);
   const columns = [
@@ -312,94 +303,94 @@ const classes = useStyles();
                     style={{ cursor: "pointer" }}
                   />
 
-                 {bazshavad?<Popover
-                    {...bindPopover(popupState)}
-                    anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "center",
-                    }}
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "center",
-                    }}
-                  >
-                    <div style={{ borderRadius: " 16px", padding: " 16px" }}>
-                      <Link
-                        onClick={handleClickEdit("body")}
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "flex-start",
-                          cursor: "pointer",
-                        }}
-                      >
-                        <Edit style={{ marginLeft: "16px" }} />
-                        ویرایش
-                      </Link>
-                      <hr
-                        style={{
-                          borderTop: "1px solid rgb( 240, 240, 240)",
-                          height: "2px",
-                        }}
-                      />
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "flex-start",
-                          cursor: "pointer",
-                        }}
-                      >
-                        <Share style={{ marginLeft: "16px" }} />
-                        اشتراک گذاری
-                      </div>
-                      <hr
-                        style={{
-                          borderTop: "1px solid rgb( 240, 240, 240)",
-                          height: "2px",
-                        }}
-                      />
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "flex-start",
-                          cursor: "pointer",
-                        }}
-                      >
-                        <img
-                          src="/assets/move-svgrepo-com.svg"
-                          style={{ margin: "0 0px 0 24px" }}
+                  {bazshavad ? (
+                    <Popover
+                      {...bindPopover(popupState)}
+                      anchorOrigin={{
+                        vertical: "bottom",
+                        horizontal: "center",
+                      }}
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "center",
+                      }}
+                    >
+                      <div style={{ borderRadius: " 16px", padding: " 16px" }}>
+                        <Link
+                          onClick={handleClickEdit("body")}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "flex-start",
+                            cursor: "pointer",
+                          }}
+                        >
+                          <Edit style={{ marginLeft: "16px" }} />
+                          ویرایش
+                        </Link>
+                        <hr
+                          style={{
+                            borderTop: "1px solid rgb( 240, 240, 240)",
+                            height: "2px",
+                          }}
                         />
-                        انتقال
-                      </div>
-                      <hr
-                        style={{
-                          borderTop: "1px solid rgb( 240, 240, 240)",
-                          height: "2px",
-                        }}
-                      />
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          color: "red",
-                          justifyContent: "flex-start",
-                          cursor: "pointer",
-                        }}
-                        onClick={() => onRowDelete(rowData)}
-                        // onClick={handleDeleteOpen}
-                      >
-                        <img
-                          src="/assets/trash-svgrepo-com-2.svg"
-                          style={{ margin: "0 0px 0 24px" }}
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "flex-start",
+                            cursor: "pointer",
+                          }}
+                        >
+                          <Share style={{ marginLeft: "16px" }} />
+                          اشتراک گذاری
+                        </div>
+                        <hr
+                          style={{
+                            borderTop: "1px solid rgb( 240, 240, 240)",
+                            height: "2px",
+                          }}
                         />
-                        حذف
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "flex-start",
+                            cursor: "pointer",
+                          }}
+                        >
+                          <img
+                            src="/assets/move-svgrepo-com.svg"
+                            style={{ margin: "0 0px 0 24px" }}
+                          />
+                          انتقال
+                        </div>
+                        <hr
+                          style={{
+                            borderTop: "1px solid rgb( 240, 240, 240)",
+                            height: "2px",
+                          }}
+                        />
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            color: "red",
+                            justifyContent: "flex-start",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => onRowDelete(rowData)}
+                          // onClick={handleDeleteOpen}
+                        >
+                          <img
+                            src="/assets/trash-svgrepo-com-2.svg"
+                            style={{ margin: "0 0px 0 24px" }}
+                          />
+                          حذف
+                        </div>
                       </div>
-                    </div>
-                  </Popover>:null} 
-
-
+                    </Popover>
+                  ) : null}
                 </div>
               )}
             </PopupState>
@@ -453,27 +444,26 @@ const classes = useStyles();
     console.log(selectedRows);
     const updatedData = Apiary.filter((row) => !selectedRows.includes(row));
     setApiary(updatedData);
-    
   };
 
   const onRowDelete = (rowData) => {
     console.log("rowData23123", rowData);
     const updatedData = Apiary.filter((row) => ![rowData].includes(row));
     setApiary(updatedData);
-    setbazshavad(!bazshavad)
+    setbazshavad(!bazshavad);
   };
 
   const downloadPdf = () => {
     const doc = new jsPDF();
     doc.text("جزییات زنبورستان", 20, 10);
-    console.log("doc",doc.text)
+    console.log("doc", doc.text);
     doc.autoTable({
       theme: "grid",
       columns: columns.map((col) => ({ ...col, dataKey: col.field })),
       body: Apiary,
     });
-    console.log("Apiary",Apiary)
-    console.log("columns",columns)
+    console.log("Apiary", Apiary);
+    console.log("columns", columns);
     // doc.addFileToVFS("Shabnam-normal.ttf", font);
     doc.addFont("Shabnam-normal.ttf", "Shabnam", "normal");
     doc.setFont("font");
@@ -485,17 +475,14 @@ const classes = useStyles();
     return console.log("click");
   };
 
-
   // const { loading, error, data } = useQuery(GET_APIARIES)
   // if (loading) return 'صفحه در حال لود شدن است'
   // if (error) return `Error! ${error.message}`
 
   return (
-    
     <div>
+      <h2 style={{ color: "rgb(227, 156, 0)" }}>زنبورستان</h2>
 
-      <h2 style={{ color: "rgb(227, 156, 0)" }}>زنبورستان</h2>     
- 
       <MaterialTable
         localization={{
           toolbar: {
@@ -814,6 +801,7 @@ const classes = useStyles();
           },
         ]}
       />
+
       <div>
         <Dialog
           PaperProps={{
