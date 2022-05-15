@@ -38,8 +38,6 @@ import {
   useLayoutDispatch,
   toggleSidebar,
 } from "../../context/LayoutContext";
-import IndustryList from "../../pages/IndustriesList/IndustryList";
-import Product from "../../pages/ProductsList/ProductList";
 import CalenderProject from "../../pages/candoProject/CalenderProject/CalenderProject";
 
 const structure = [
