@@ -17,7 +17,7 @@ export default function Error() {
       <div className={classes.logotype}>
         <img className={classes.logotypeIcon} src={logo} alt="logo" />
         <Typography variant="h3" color="white" className={classes.logotypeText}>
-          Material Admin
+          اوه اوه لینک رو اشتباه زدی :)
         </Typography>
       </div>
       <Paper classes={{ root: classes.paperRoot }}>
@@ -29,7 +29,7 @@ export default function Error() {
           404
         </Typography>
         <Typography variant="h5" color="primary" className={classes.textRow}>
-          Oops. Looks like the page you're looking for no longer exists
+          صفحه موردنظر شما یافت نشد!
         </Typography>
         <Typography
           variant="h6"
@@ -37,7 +37,7 @@ export default function Error() {
           colorBrightness="secondary"
           className={classnames(classes.textRow, classes.safetyText)}
         >
-          But we're here to bring you back to safety
+          برای بازگشت و ادامه کار روی دکمه زیر کلیک کنید{" "}
         </Typography>
         <Button
           variant="contained"
@@ -47,7 +47,7 @@ export default function Error() {
           size="large"
           className={classes.backButton}
         >
-          Back to Home
+          برگشت به خانه
         </Button>
       </Paper>
     </Grid>
