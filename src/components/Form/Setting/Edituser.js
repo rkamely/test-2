@@ -52,13 +52,33 @@ function Edituser() {
   
     });
 
+    const [data, setData] = useState([
+      {
+        id: 1,
+        titleQuestion:
+          "باسلام زنبوردار عزیز از طریق لینک زیر اپلیکیشن کندووان پلاس را بروز رسانی کنید.",
+        name: "جعفر",
+        Date: "1400/01/01",
+        Time: "12:14",
+      },
+      {
+        id: 1,
+        titleQuestion: "ممنون از شما حتما رسیدگی خواهد شد.",
+        name: "رضا",
+        Date: "1400/01/01",
+        Time: "12:14",
+      },
+    ]);
+
+
     const {
         register,
         control,
         handleSubmit,
         formState: { errors }
       } = useForm({
-        resolver: yupResolver(validationSchema)
+        resolver: yupResolver(validationSchema),
+        defaultValues: data
       });
       const onSubmit = data => {
         console.log(JSON.stringify(data, null, 2));
@@ -70,23 +90,6 @@ function Edituser() {
 
 
 
-    const [data, setData] = useState([
-        {
-          id: 1,
-          titleQuestion:
-            "باسلام زنبوردار عزیز از طریق لینک زیر اپلیکیشن کندووان پلاس را بروز رسانی کنید.",
-          name: "جعفر",
-          Date: "1400/01/01",
-          Time: "12:14",
-        },
-        {
-          id: 1,
-          titleQuestion: "ممنون از شما حتما رسیدگی خواهد شد.",
-          name: "رضا",
-          Date: "1400/01/01",
-          Time: "12:14",
-        },
-      ]);
   return (
     <Grid
     container

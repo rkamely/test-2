@@ -711,6 +711,7 @@ import ApiaryAddList from "../../../components/Form/ApiaryList/ApiaryAddList";
 import ApiaryUpdateList from "../../../components/Form/ApiaryList/ApiaryUpdateList";
 import Adduser from "../../../components/Form/User/Adduser";
 import useStyles from "./styles";
+import EditUser from "../../../components/Form/User/EditUser";
 
 function TableofUser() {
   const [open, setOpen] = useState(false);
@@ -1405,7 +1406,7 @@ function TableofUser() {
         aria-describedby="scroll-dialog-description"
         maxWidth="xl"
         >
-            <Adduser />
+            <EditUser/>
         </Dialog>
       </div>
 
