@@ -258,7 +258,7 @@
 
 // export default withRouter(Login);
 
-import React, { useState } from "react";
+import React, { useRef, useState ,useContext } from "react";
 import {
   Grid,
   CircularProgress,
@@ -275,8 +275,8 @@ import { useUserDispatch, loginUser } from "../../context/UserContext";
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import {gql,useMutation} from "@apollo/client";
-
+import axios from "../api/axios"
+import  AuthContext from  "../context/AuthProvider"
 // styles
 import useStyles from "./styles";
 import "./styles.css";
@@ -285,9 +285,15 @@ import "./styles.css";
 
 
 function Login(props) {
+
+  const { setAuth } = useContext(AuthContext)
+
+
   var classes = useStyles();
   const history = useHistory();
-
+  const errRef = useRef();
+  const[state,setState]=useState({phoneNumber:""})
+  const [errMsg, setErrMsg] = useState('');
   // global
   var userDispatch = useUserDispatch();
   // const phoneRegExp = /09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}/
@@ -302,16 +308,7 @@ function Login(props) {
       ),
   });
   
-  const SEND_SMS = gql`
-    mutation($phoneNumber: String!) {
-      sendSms(phoneNumber: $phoneNumber) {
-        device {
-          validUntil
-          id
-        }
-      }
-    }
-  `;
+
 
   const {
     register,
@@ -321,6 +318,7 @@ function Login(props) {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
+  
 
 const handleChangenumber=(event)=>{
   // setState(e.target.value)
@@ -331,33 +329,52 @@ const handleChangenumber=(event)=>{
   }));
 
 }
- const[state,setState]=useState({phoneNumber:""})
-//  const[sendSms,{data,error,loading}]=useMutation(SEND_SMS)
- console.log("state",state)
-  const [sendSms, {data,error,loading}] = useMutation(SEND_SMS);
 
-  if (loading) return "صفحه در حال بارگیری است لطفا منتظر بمانید";
+
+ console.log("state",state)
+
 
   const onSubmit = (data) => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
-    history.push(
-    { 
-      pathname:  "./login/smsVerification",
-      state
-    }
-    );
-    localStorage.setItem("data",data.phoneNumber.toString())
-    console.log("phone", data.phoneNumber.toString());
-    sendSms({
-      variables: {
-        phoneNumber: data.phoneNumber.toString(),
-      },
-    });
+    // data.preventDefault();
+    try{
+          //  const response = axios.post("",JSON.stringify(data.phoneNumber),{
+          //       headers: { 'Content-Type': 'application/json' },
+          //       withCredentials: true
+          //  })
+          //  console.log(response.data);
+          //  console.log(JSON.stringify(response))       
+
+           history.push(
+           { 
+             pathname:  "./login/smsVerification",
+             state
+           }
+           );
+           localStorage.setItem("data",data.phoneNumber.toString())
+           console.log("phone", data.phoneNumber.toString());
+
+    }catch (err) {
+      if (!err?.response) {
+          setErrMsg(' پاسخی از سرور دریافت نشد لطفا از وصل بودن اینترنت خود اطمینان حاصل نمایید و مجدد تلاش کنید');
+      } else {
+        setErrMsg('ارتباط با سرور برقرار نشد لطفا مجدد تلاش کنید')
+      }
+    // else if (err.response?.status === 409) {
+    //       setErrMsg('شماره موبایل قبل وارد شده است');
+          
+    //   }
+      errRef.current.focus();
+  }
+ 
   };
+
   return (
     <div className="containerLogin">
       <div className="contact-form">
+      <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+
         {/* <img alt="" className="avatar" src="/assets/Untitled-1.svg"/> */}
         <h2>ورود</h2>
         <p>

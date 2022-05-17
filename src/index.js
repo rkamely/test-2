@@ -20,6 +20,7 @@ import {
 
 
 import { CookiesProvider } from "react-cookie";
+import { AuthProvider } from "./pages/context/AuthProvider";
 // Configure JSS
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
@@ -33,10 +34,12 @@ ReactDOM.render(
    <LayoutProvider>
     <UserProvider>
       <ThemeProvider theme={Themes.default}  >
-       <StylesProvider jss={jss}> 
-       <CssBaseline />
-        <App />
-        </StylesProvider>
+         <AuthProvider>
+            <StylesProvider jss={jss}> 
+            <CssBaseline />
+            <App />
+           </StylesProvider>
+         </AuthProvider>
       </ThemeProvider>
     </UserProvider>
    </LayoutProvider>

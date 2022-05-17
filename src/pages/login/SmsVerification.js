@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import {
   Grid,
   CircularProgress,
@@ -11,13 +11,13 @@ import {
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
+import axios from "../api/axios"
+import  AuthContext from  "../context/AuthProvider"
 
 // styles
 import useStyles from "./styles";
 import "./styles.css";
-// logo
-import logo from "./logo.svg";
-import google from "../../images/google.svg";
+
 import { useParams, useHistory } from "react-router";
 
 import { useUserDispatch, loginUser } from "../../context/UserContext";
@@ -28,11 +28,16 @@ import { gql, useMutation } from "@apollo/client";
 import { useAuthToken } from "../../components/config/auth";
 
 function SmsVerification(props) {
+  const { setAuth } = useContext(AuthContext)
+
   const classes = useStyles();
   const history = useHistory();
   const [loginValue, setLoginValue] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  var [error, setError] = useState(null);
+  
+  const [errMsg, setErrMsg] = useState('');
+  const errRef = useRef();
+
 
   // global
   const userDispatch = useUserDispatch();
@@ -43,14 +48,7 @@ function SmsVerification(props) {
     verifyNumber: yup.string().required("لطفا کد تایید را وارد کنید"),
   });
 
-  const VERIFY_OTP = gql`
-    mutation($otpToken: String!, $phoneNumber: String!) {
-      verifyOtp(phoneNumber: $phoneNumber, otpToken: $otpToken) {
-        token
-        reason
-      }
-    }
-  `;
+
 
   const {
     register,
@@ -62,51 +60,74 @@ function SmsVerification(props) {
   });
   const [_, setAuthToken, removeAuthtoken] = useAuthToken();
 
-  const onSubmit = (data) => {
-    
 
-    // console.log(JSON.stringify(data, null, 2));
-    // alert(JSON.stringify(data, null, 2));
-    // // history.push("/login/step2")
-    // console.log("otpToken", data.verifyNumber);
-    // const phone=localStorage.getItem("data")
-    // console.log("phoneNumber",phone)
+
+
+  const onSubmit = (data) => {
+    console.log(JSON.stringify(data, null, 2));
+    alert(JSON.stringify(data, null, 2));
+    // history.push("/login/step2")
+    const phone=localStorage.getItem("data")
+    console.log("phoneNumber",phone)
     // removeAuthtoken()
-    // return verifyOtp({
-    //   variables: {
-    //     phoneNumber: phone,
-    //     otpToken: data.verifyNumber,
-    //   },
-    // });
-    loginUser(userDispatch, loginValue, props.history, setIsLoading, setError);
-  };
+
+//کد زیر اعمال شود
+    // try{
+    //      const response = axios.post("",JSON.stringify({phone:phone,verifyNumber:data.verifyNumber}),{
+    //       headers: { 'Content-Type': 'application/json' },
+    //       withCredentials: true
+    //  })
+    //       const accessToken = response?.data?.accessToken;   
+    //       setAuth({phone:phone,verifyNumber:data.verifyNumber,accessToken})
+    //        userDispatch({ type: 'LOGIN_SUCCESS' })
+    //        console.log(response.data);
+    //        console.log(response?.accessToken);
+    //        console.log(JSON.stringify(response))      
+    // }catch (err) {
+    //   if (!err?.response) {
+    //       setErrMsg(' پاسخی از سرور دریافت نشد لطفا از وصل بودن اینترنت خود اطمینان حاصل نمایید و مجدد تلاش کنید');
+    //   } else {
+    //       setErrMsg('ارتباط با سرور برقرار نشد لطفا مجدد تلاش کنید')
+    //   }
+    //   errRef.current.focus();
+
+    // };
+
+
+
+        loginUser(userDispatch, loginValue, props.history, setIsLoading, setErrMsg);
+};
   // local
 
-  const [verifyOtp, { loading }] = useMutation(VERIFY_OTP,{
+
+
+  
+  // const [verifyOtp, { loading }] = useMutation(VERIFY_OTP,{
     
-    onCompleted:(data)=>{
-      console.log("login",loginValue)
-      console.log("data",data)
-      console.log("iscorrectToken?",data.verifyOtp.token);
-      // localStorage.setItem('id_token', data.verifyOtp.token)
-      setAuthToken(data.verifyOtp.token);
-      setError(null)
-      setIsLoading(false)
-      userDispatch({ type: 'LOGIN_SUCCESS' })
-    },
-    onError:(data)=>{
-      console.log("data",data)
-      userDispatch({ type: "LOGIN_FAILURE" });
-      setError(true);
-      setIsLoading(false);
-    }   
-  });
+  //   onCompleted:(data)=>{
+  //     console.log("login",loginValue)
+  //     console.log("data",data)
+  //     console.log("iscorrectToken?",data.verifyOtp.token);
+  //     // localStorage.setItem('id_token', data.verifyOtp.token)
+  //     setAuthToken(data.verifyOtp.token);
+  //     setError(null)
+  //     setIsLoading(false)
+  //     userDispatch({ type: 'LOGIN_SUCCESS' })
+  //   },
+  //   onError:(data)=>{
+  //     console.log("data",data)
+  //     userDispatch({ type: "LOGIN_FAILURE" });
+  //     setError(true);
+  //     setIsLoading(false);
+  //   }   
+  // });
   
 
-  if (loading) return "صفحه در حال بارگیری است لطفا منتظر بمانید";
   return (
     <div className="containerLogin">
       <div className="contact-form">
+      {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
+
         {/* <img alt="" className="avatar" src="/assets/Untitled-1.svg"/> */}
         <h2>کد تایید</h2>
         <p>

@@ -27,7 +27,6 @@ export default function App() {
 
   return (    
  
-    <ApolloProvider client={apolloClient}>
      
     <HashRouter>
       <Switch>
@@ -44,7 +43,7 @@ export default function App() {
         <Route component={Error} />
       </Switch>
     </HashRouter>
-    </ApolloProvider>
+
   );
 
   // #######################################################################
