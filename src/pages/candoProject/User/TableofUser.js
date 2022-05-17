@@ -709,7 +709,7 @@ import "jspdf-autotable";
 import "../../../Iran-Sans-normal";
 import ApiaryAddList from "../../../components/Form/ApiaryList/ApiaryAddList";
 import ApiaryUpdateList from "../../../components/Form/ApiaryList/ApiaryUpdateList";
-import Adduser from "../../../components/Form/AddUser/Adduser";
+import Adduser from "../../../components/Form/User/Adduser";
 import useStyles from "./styles";
 
 function TableofUser() {

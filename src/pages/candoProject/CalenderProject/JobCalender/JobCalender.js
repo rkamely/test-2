@@ -35,7 +35,7 @@ import {
   import "../../../../Iran-Sans-normal";
   import ApiaryAddList from "../../../../components/Form/ApiaryList/ApiaryAddList";
   import ApiaryUpdateList from "../../../../components/Form/ApiaryList/ApiaryUpdateList";
-  import Adduser from "../../../../components/Form/AddUser/Adduser";
+  import Adduser from "../../../../components/Form/User/Adduser";
   import useStyles from "../style"; 
   import {
     BrowserRouter as Router,
@@ -43,7 +43,7 @@ import {
     NavLink,
     useRouteMatch,
   } from "react-router-dom"
-import AddJob from "../../../../components/Form/AddJob/AddJob";
+import AddJob from "../../../../components/Form/JobUser/AddJob";
   function  JobCalender() {
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);

@@ -33,6 +33,12 @@ const ApiaryUpdateList = () => {
     select4: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
     select5: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
   });
+
+  const preLoadValues = {
+    name:"زنبورستان ۱",
+    select:"تغذیه زنبور"
+  }
+
   const {
     register,
     control,
@@ -40,6 +46,7 @@ const ApiaryUpdateList = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
+    defaultValues:preLoadValues
   });
   const onSubmit = (data) => {
     console.log(JSON.stringify(data, null, 2));
@@ -57,6 +64,7 @@ const ApiaryUpdateList = () => {
     overflow: "hidden",
     marginTop: "16px",
   };
+
   return (
     <Fragment>
       <Paper>
@@ -83,8 +91,7 @@ const ApiaryUpdateList = () => {
                     className={classes.TextField}
                     required
                     id="name"
-                    name="name"
-                    value={options[1].value}
+                    name="firstname"
                     variant="outlined"
                     fullWidth
                     margin="dense"
@@ -96,6 +103,7 @@ const ApiaryUpdateList = () => {
                   variant="inherit"
                   color="textSecondary"
                   className={classes.errorTitle}
+
                 >
                   {errors.name?.message}
                 </Typography>
@@ -108,6 +116,8 @@ const ApiaryUpdateList = () => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
+                    name = "select"
+                    defaultValue={options[1].value}
                     {...register("select")}
                     error={errors.select ? true : false}
                     // value={}
@@ -137,6 +147,7 @@ const ApiaryUpdateList = () => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
+                    defaultValue={options[1].value}
                     {...register("select2")}
                     error={errors.select2 ? true : false}
                     // value={}
@@ -167,6 +178,7 @@ const ApiaryUpdateList = () => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
+                    defaultValue={options[2].value}
                     {...register("select3")}
                     error={errors.select3 ? true : false}
                     // value={}
@@ -197,6 +209,8 @@ const ApiaryUpdateList = () => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
+                    defaultValue={options[3].value}
+
                     {...register("select4")}
                     error={errors.select4 ? true : false}
                     // value={}
@@ -227,6 +241,8 @@ const ApiaryUpdateList = () => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
+                    defaultValue={options[1].value}
+
                     {...register("select5")}
                     error={errors.select5 ? true : false}
                     // value={}

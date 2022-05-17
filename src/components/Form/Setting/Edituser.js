@@ -10,10 +10,10 @@ import {
 
   } from "react-router-dom" 
 import useStyles from "./styles";
-import Adduser from '../AddUser/Adduser';
+import Adduser from '../User/Adduser';
 import EditPhoneNumber from './EditPhoneNumber';
 import AddSubmitCode from './AddSubmitCode';
-import AddJob from '../AddJob/AddJob';
+import AddJob from '../JobUser/AddJob';
 import Title from '../../Typography/Title/Title';
 
 function Edituser() {

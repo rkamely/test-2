@@ -17,7 +17,7 @@ import {
   useParams,
   useRouteMatch,
 } from "react-router-dom";
-import AddJob from "../../../components/Form/AddJob/AddJob";
+import AddJob from "../../../components/Form/JobUser/AddJob";
 import Title from "../../../components/Typography/Title/Title";
 import CalenderProject from "./CalenderProject";
 import JobCalender from "./JobCalender/JobCalender";

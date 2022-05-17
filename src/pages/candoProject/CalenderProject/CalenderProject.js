@@ -28,7 +28,7 @@ import "./CalenderProject.css";
 
 import FilterCalender from "./FilterCalender";
 import moment from "moment";
-import AddJob from "../../../components/Form/AddJob/AddJob";
+import AddJob from "../../../components/Form/JobUser/AddJob";
 export default class CalenderProject extends React.Component {
   constructor() {
     super();
