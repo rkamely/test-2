@@ -62,3 +62,10 @@
     color: white;
     
 }
+.errmsg{
+	background-color: crimson;
+	color: white;
+	border-radius: 12px;
+	padding: 8px !important;
+
+}

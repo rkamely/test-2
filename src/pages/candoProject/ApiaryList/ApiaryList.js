@@ -16,6 +16,7 @@ import {
   Delete,
   Edit,
   Edit as EditIcon,
+  Info,
   MoreVertOutlined,
   Share,
   TramRounded,
@@ -62,6 +63,10 @@ function ApiaryList() {
   const handleClickEdit = (scrollType) => () => {
     setOpenEdit(true);
     setScroll(scrollType);
+  };  
+  const handleDeleteOpen = (scrollType) => () => {
+    setOpenDelete(true);
+    setScroll(scrollType);
   };
   const handleOpen = () => {
     setOpen(true);
@@ -69,14 +74,18 @@ function ApiaryList() {
   const handleEditOpen = () => {
     setOpenEdit(true);
   };
-  const handleDeleteOpen = () => {
-    setOpenDelete(true);
-  };
+  // const handleDeleteOpen = () => {
+  //   setOpenDelete(true);
+  // };
   const handleClose = () => {
     setOpen(false);
     setdownloadOpen(false);
     setOpenEdit(false);
+    setOpenDelete(false);
   };
+  const Information=()=>{
+        console.log("salamsaddfsdfsd");
+  }
   const style = {
     position: "absolute",
     top: "50%",
@@ -91,7 +100,6 @@ function ApiaryList() {
     px: 4,
     pb: 3,
   };
-  const [bazshavad, setbazshavad] = useState(true);
 
   const [Apiary, setApiary] = useState([
     {
@@ -294,16 +302,18 @@ function ApiaryList() {
         return (
           // <Link to={`/app/ApiaryList/${rowData.id}`}>
           <div>
-            <PopupState variant="popover" popupId="demo-popup-popover">
+          <PopupState variant="popover" popupId="demo-popup-popover">
               {(popupState) => (
                 <div>
-                  <MoreVertOutlined
+                  <MoreVertOutlined 
                     variant="contained"
                     {...bindTrigger(popupState)}
                     style={{ cursor: "pointer" }}
+                    
+
                   />
 
-                  {bazshavad ? (
+            
                     <Popover
                       {...bindPopover(popupState)}
                       anchorOrigin={{
@@ -379,7 +389,8 @@ function ApiaryList() {
                             justifyContent: "flex-start",
                             cursor: "pointer",
                           }}
-                          onClick={() => onRowDelete(rowData)}
+
+                          onClick={() => onRowDelete(rowData,popupState)}
                           // onClick={handleDeleteOpen}
                         >
                           <img
@@ -390,7 +401,7 @@ function ApiaryList() {
                         </div>
                       </div>
                     </Popover>
-                  ) : null}
+                  
                 </div>
               )}
             </PopupState>
@@ -441,18 +452,22 @@ function ApiaryList() {
   };
 
   const handleBulkDelete = () => {
-    console.log(selectedRows);
+    if(window.confirm("آیا از حدف این مورد اطمینان دارید؟")){
+      // const response = await axios.delete(`https://sdfsdf/${selectedRows[0].id}`)
+    console.log("selectedRows",selectedRows);
     const updatedData = Apiary.filter((row) => !selectedRows.includes(row));
     setApiary(updatedData);
-  };
+  }};
 
-  const onRowDelete = (rowData) => {
+  const onRowDelete = (rowData,popupState) => {
+    if(window.confirm("آیا از حدف این مورد اطمینان دارید؟")){
+      // const response = await axios.delete(`https://sdfsdf/${rowData.id}`)
     console.log("rowData23123", rowData);
     const updatedData = Apiary.filter((row) => ![rowData].includes(row));
     setApiary(updatedData);
-    setbazshavad(!bazshavad);
-  };
-
+    popupState.close();
+  }};
+  
   const downloadPdf = () => {
     const doc = new jsPDF();
     doc.text("جزییات زنبورستان", 20, 10);
@@ -650,6 +665,7 @@ function ApiaryList() {
                         variant="contained"
                         {...bindTrigger(popupState)}
                         style={{ cursor: "pointer" }}
+
                       />
 
                       <Popover
@@ -736,7 +752,7 @@ function ApiaryList() {
                               style={{ margin: "0 8px 0 16px" }}
                               alt=""
                             />
-                            حذف
+                             حذف
                           </div>
                         </div>
                       </Popover>
@@ -850,7 +866,7 @@ function ApiaryList() {
               justifyContent: "center",
             }}
           >
-            {/* <button onClick={() => onRowDelete(rowData)}>Delete</button> */}
+            <button onClick={() => handleBulkDelete(selectedRows)}>Delete</button>
           </Box>
         </Modal>
       </div>

@@ -79,6 +79,9 @@ function SmsVerification(props) {
     //  })
     //       const accessToken = response?.data?.accessToken;   
     //       setAuth({phone:phone,verifyNumber:data.verifyNumber,accessToken})
+    //       // if(accessToken){
+    //       //   userDispatch({ type: 'LOGIN_SUCCESS' })
+    //       // }
     //        userDispatch({ type: 'LOGIN_SUCCESS' })
     //        console.log(response.data);
     //        console.log(response?.accessToken);
@@ -126,7 +129,7 @@ function SmsVerification(props) {
   return (
     <div className="containerLogin">
       <div className="contact-form">
-      {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
+      {errMsg? <p ref={errRef} className="errmsg" aria-live="assertive">{errMsg}</p>:null}
 
         {/* <img alt="" className="avatar" src="/assets/Untitled-1.svg"/> */}
         <h2>کد تایید</h2>

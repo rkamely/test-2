@@ -402,16 +402,22 @@ function  Hive() {
     setSearched("");
     requestSearch(searched);
   };
-  const handleBulkDelete = () => {
-    console.log(selectedRows);
+  const handleBulkDelete = async() => {
+    if(window.confirm("آیا از حدف این مورد اطمینان دارید؟")){
+      // const response = await axios.delete(`https://sdfsdf/${selectedRows[0].id}`)
+      console.log("selectedRows",selectedRows[0].id)
+   
     const updatedData = Company.filter((row) => !selectedRows.includes(row));
     setCompany(updatedData);
-  };
+  }};
 
-  const onRowDelete=(rowData) =>{
+  const onRowDelete= async(rowData) => {
+    if(window.confirm("آیا از حدف این مورد اطمینان دارید؟")){
+      // const response = await axios.delete(`https://sdfsdf/${rowData.id}`)
+      console.log("rowData",rowData.id)
     const updatedData=Company.filter((row)=>![rowData].includes(row))
     setCompany(updatedData);
-  }
+  }};
 
   const downloadPdf = () => {
     const doc = new jsPDF();
