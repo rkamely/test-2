@@ -809,7 +809,7 @@ function TableofUser() {
         console.log("rowData", rowData);
         return (
           <Link
-            to={`/app/Beehive/${rowData.id}`}
+            // to={`/app/user/${rowData.id}`}
             className="title"
             style={{ display: "flex" }}
           >

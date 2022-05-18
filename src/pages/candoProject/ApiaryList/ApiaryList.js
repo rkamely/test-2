@@ -32,31 +32,20 @@ import ApiaryUpdateList from "../../../components/Form/ApiaryList/ApiaryUpdateLi
 import { gql, useQuery } from "@apollo/client";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 
-const GET_APIARIES = gql`
-  query {
-    apiaries {
-      edges {
-        node {
-          id
-          name
-        }
-      }
-    }
-  }
-`;
+
 
 function ApiaryList() {
   const [open, setOpen] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
-
   const [downloadOpen, setdownloadOpen] = useState(false);
-
   const [selectedRows, setSelectedRows] = useState();
-
   const [toolbar, setToolbar] = useState(false);
   const [scroll, setScroll] = useState("paper");
+  const [errorMessage,setErrMessage] = useState()
+  const [error,setIserror] = useState()
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
 
@@ -102,7 +91,6 @@ function ApiaryList() {
     px: 4,
     pb: 3,
   };
-
   const [Apiary, setApiary] = useState([
     {
       id: "0",
@@ -171,6 +159,20 @@ function ApiaryList() {
       NeedToVisit: "5",
     },
   ]);
+
+
+  // useEffect(() => {
+  //   axios.get("")
+  //     .then(res => {
+  //       setApiary(res.data.data)
+  //     })
+  //     .catch(error=>{
+  //       setErrMessage(["Cannot load user data"])
+  //       setIserror(true)
+  //     })
+  // }, [])
+
+
 
   const useStyles = makeStyles({
     Button: {
@@ -327,14 +329,16 @@ function ApiaryList() {
                         horizontal: "center",
                       }}
                     >
-                      <div style={{ borderRadius: " 16px", padding: " 16px" }}>
+                      <div style={{ borderRadius: " 16px", padding: " 16px",textDecoration:"none"}}>
                         <Link
+                          to={`/app/ApiaryList/${rowData.id}`}
                           onClick={handleClickEdit("body")}
                           style={{
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "flex-start",
                             cursor: "pointer",
+                            color:"#000" 
                           }}
                         >
                           <Edit style={{ marginLeft: "16px" }} />
@@ -399,7 +403,7 @@ function ApiaryList() {
                             src="/assets/trash-svgrepo-com-2.svg"
                             style={{ margin: "0 0px 0 24px" }}
                           />
-                          حذف
+                         S حذف
                         </div>
                       </div>
                     </Popover>
@@ -685,7 +689,9 @@ function ApiaryList() {
                         <div
                           style={{ borderRadius: " 16px", padding: " 16px" }}
                         >
+                   
                           <Link
+                            to={`/app/ApiaryList/${selectedRows}`}
                             onClick={handleClickEdit("body")}
                             style={{
                               display: "flex",

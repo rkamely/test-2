@@ -13,16 +13,22 @@ import {
 } from "@material-ui/core";
 import useStyles from "./styles";
 
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import MapBox from "../../../components/MapBox/MapBox";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+
 
 const ApiaryUpdateList = ({Apiary,setApiary}) => {
+  const params = useParams();
+  console.log("params", params.id)
   console.log("props.Apiary",Apiary);
   const classes = useStyles();
+  const [errorMessage,setErrMessage] = useState()
+  const [error,setIserror] = useState()
   const validationSchema = yup.object().shape({
     name: yup
       .string()
@@ -52,22 +58,65 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
   });
 
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
-    // const response = axios.put(`https://sdfsdfsdf/${Apiary}`,data)
-    // const updatedApiary=[Apiary]
-    // const index = updatedApiary.indexOf(data);
-    // updatedApiary[index]={...data};
-    // setApiary({Apiary:updatedApiary})
+    const response = await axios.put(`https://sdfsdfsdf/${params.id}`, data)
+    const updatedApiary=[Apiary]
+    const index = updatedApiary.indexOf(data);
+    updatedApiary[index]={...data};
+    setApiary({Apiary:updatedApiary})
+    // setApiary(updatedApiary)
   };
 
+  // useEffect(() => {
+  //   axios.get(`https://sdfsdfsdf/${params.id}`)
+  //     .then(res => {
+  //       setApiary(res.data.data)
+  //     })
+  //     .catch(error=>{
+  //       setErrMessage(["Cannot load user data"])
+  //       setIserror(true)
+  //     })
+  // }, [])
+
   const options = [
-    { label: "همه", value: "همه" },
-    { label: "تغذیه زنبور", value: "تغذیه زنبور" },
-    { label: "برداشت عسل", value: "برداشت عسل" },
-    { label: "بیماری زنبور", value: "بیماری زنبور" },
+    { label: "بومی", value: "بومی" },
+    { label: "کارنیکا", value: "کارنیکا" },
+    { label: "ایتالیایی", value: "ایتالیایی" },
+    { label: "قفقازی", value: "قفقازی" },
+    { label: "سایر", value: "سایر" },
   ];
+  const optopns2 = [  
+    { label: "لانگستروت", value: "لانگستروت" },
+    { label: "دادانت", value: "دادانت" },
+    { label: "آکواریومی", value: "آکواریومی" },
+    { label: "سایر", value: "سایر" },
+  ]
+  const optopns6 = [  
+    { label: "لانگستروت", value: "لانگستروت" },
+    { label: "دادانت", value: "دادانت" },
+    { label: "آکواریومی", value: "آکواریومی" },
+    { label: "سایر", value: "سایر" },
+  ]
+  const optopns7 = [  
+    { label: "باغ", value: "باغ" },
+    { label: "مزرعه", value: "مزرعه" },
+    { label: "مرتع کوهستانی", value: "مرتع کوهستانی" },
+    { label: "دشت", value: "دشت" },
+    { label: "سایر", value: "سایر" },
+  ]
+  const optopns4 = [  
+    { label: "پرورش ملکه", value: "پرورش ملکه" },
+    { label: "ژل رویال" , value: "ژل رویال" },
+    { label: "تولید عسل", value: "تولید عسل" },
+    { label: "سایر", value: "سایر" },
+  ]
+  const optopns3 = [  
+    { label: "شهری", value: "شهری" },
+    { label: "روستایی" , value: "روستایی" },
+
+  ]
   const style = {
     borderRadius: "12px",
     overflow: "hidden",
@@ -126,12 +175,12 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                     required
                     variant="outlined"
                     name = "select"
-                    defaultValue={options[1].value}
+                    defaultValue={optopns2[1].value}
                     {...register("select")}
                     error={errors.select ? true : false}
                     // value={}
                   >
-                    {options?.map((option) => {
+                    {optopns2?.map((option) => {
                       return (
                         <MenuItem key={option.value} value={option.value}>
                           {option.label ?? option.value}
@@ -156,12 +205,12 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
-                    defaultValue={options[1].value}
+                    defaultValue={optopns3[1].value}
                     {...register("select2")}
                     error={errors.select2 ? true : false}
                     // value={}
                   >
-                    {options?.map((option) => {
+                    {optopns3?.map((option) => {
                       return (
                         <MenuItem key={option.value} value={option.value}>
                           {option.label ?? option.value}
@@ -250,13 +299,13 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
-                    defaultValue={options[1].value}
+                    defaultValue={optopns4[1].value}
 
                     {...register("select5")}
                     error={errors.select5 ? true : false}
                     // value={}
                   >
-                    {options?.map((option) => {
+                    {optopns4?.map((option) => {
                       return (
                         <MenuItem key={option.value} value={option.value}>
                           {option.label ?? option.value}

@@ -62,7 +62,8 @@ function Layout(props) {
             {/* <Route path="/app/Beehive/Hive/:id/:id" component={Audio} /> */}
 
             <Route path="/app/ApiaryList/Beehive/:id" component={Hive} />
-            <Route path="/app/ApiaryList" component={ApiaryList} />
+            <Route path="/app/ApiaryList/" component={ApiaryList} />
+            <Route path="/app/ApiaryList/:id" component={ApiaryList} />
 
             <Route path="/app/typography" component={Typography} />
             <Route path="/app/user" component={TableofUser} />
