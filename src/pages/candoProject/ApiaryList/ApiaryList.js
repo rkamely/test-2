@@ -30,6 +30,8 @@ import "../../../Iran-Sans-normal";
 import ApiaryAddList from "../../../components/Form/ApiaryList/ApiaryAddList";
 import ApiaryUpdateList from "../../../components/Form/ApiaryList/ApiaryUpdateList";
 import { gql, useQuery } from "@apollo/client";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const GET_APIARIES = gql`
   query {
@@ -466,6 +468,7 @@ function ApiaryList() {
     const updatedData = Apiary.filter((row) => ![rowData].includes(row));
     setApiary(updatedData);
     popupState.close();
+   
   }};
   
   const downloadPdf = () => {
@@ -830,7 +833,7 @@ function ApiaryList() {
           aria-describedby="scroll-dialog-description"
           maxWidth="xl"
         >
-          <ApiaryAddList />
+          <ApiaryAddList Apiary={Apiary} setApiary={setApiary}/>
         </Dialog>
       </div>
 
@@ -846,7 +849,7 @@ function ApiaryList() {
           aria-describedby="scroll-dialog-description"
           maxWidth="xl"
         >
-          <ApiaryUpdateList />
+          <ApiaryUpdateList Apiary={Apiary} setApiary={setApiary}/>
         </Dialog>
       </div>
 

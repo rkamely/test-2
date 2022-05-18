@@ -19,8 +19,9 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Divider from "@material-ui/core/Divider";
+import axios from "axios";
 
-const ApiaryAddList = () => {
+const ApiaryAddList = ({Apiary,setApiary}) => {
   const classes = useStyles();
   const validationSchema = yup.object().shape({
     name: yup
@@ -42,9 +43,11 @@ const ApiaryAddList = () => {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
+    const response = await axios.post("https://reqres.in/api/users", data);
+    setApiary({ Apiary: [...Apiary, data] });
   };
 
   const options = [
@@ -73,6 +76,7 @@ const ApiaryAddList = () => {
           
           <Divider className={classes.Divider}/>
           <Grid container spacing={1} className={classes.container}>
+
             <div>
               <Grid item xs={12} sm={12} className={classes.inputText}>
                 <div className={classes.input}>
@@ -263,6 +267,7 @@ const ApiaryAddList = () => {
                 </Typography>
               </Grid>
             </div>
+
             <Grid
               item
               xs={6}

@@ -18,8 +18,10 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import MapBox from "../../../components/MapBox/MapBox";
+import axios from "axios";
 
-const ApiaryUpdateList = () => {
+const ApiaryUpdateList = ({Apiary,setApiary}) => {
+  console.log("props.Apiary",Apiary);
   const classes = useStyles();
   const validationSchema = yup.object().shape({
     name: yup
@@ -48,9 +50,16 @@ const ApiaryUpdateList = () => {
     resolver: yupResolver(validationSchema),
     defaultValues:preLoadValues
   });
+
+
   const onSubmit = (data) => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
+    // const response = axios.put(`https://sdfsdfsdf/${Apiary}`,data)
+    // const updatedApiary=[Apiary]
+    // const index = updatedApiary.indexOf(data);
+    // updatedApiary[index]={...data};
+    // setApiary({Apiary:updatedApiary})
   };
 
   const options = [
