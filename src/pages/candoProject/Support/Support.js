@@ -17,7 +17,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 function Support() {
   const [open, setOpen] = useState(false);
-  const [bardia, setbardia] = useState(true);
+  const [AddTickets, setAddTickets] = useState(true);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -26,6 +26,7 @@ function Support() {
   const handleClose = () => {
     setOpen(false);
   };
+
 
   const classes = useStyles();
   const [data, setData] = useState([
@@ -79,11 +80,11 @@ function Support() {
     },
   ]);
   const waveHello = () => {
-    setbardia(false);
+    setAddTickets(false);
   };
 
   const wavebye = () => {
-    setbardia(true);
+    setAddTickets(true);
   };
 
   return (
@@ -142,8 +143,8 @@ function Support() {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        {console.log(bardia)}
-        {bardia ? (
+        {console.log(AddTickets)}
+        {AddTickets ? (
           <AddTicket
             input={false}
             handleClose={handleClose}

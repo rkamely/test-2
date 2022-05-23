@@ -102,4 +102,18 @@ fontFamily: "Shabnam"
     alignItems: "center",
     padding:"32px 48px"
   },
+  input:{
+
+  },
+  inputSelect: {
+    width: "200px",
+
+  },
+  MuiMenu:{
+    border:"2px solid red !important"
+  },
+
+  errorTitle:{ 
+    color: "red"
+  },
 }));

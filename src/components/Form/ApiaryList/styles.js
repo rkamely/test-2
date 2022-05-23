@@ -178,8 +178,6 @@ export default makeStyles((theme) => ({
  
   },
 
-
-
   select: {
     backgroundColor: "rgb( 244, 244 ,244)",
     borderRadius: "10px",
@@ -198,6 +196,7 @@ export default makeStyles((theme) => ({
       border: "none", backgroundColor: "#fff",outline: "2px solid red",      borderRadius: "10px",
     },
   },
+
   icon: {
     fill: "green"
   },

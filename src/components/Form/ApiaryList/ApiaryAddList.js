@@ -43,6 +43,7 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
+  
   const onSubmit = async(data) => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));

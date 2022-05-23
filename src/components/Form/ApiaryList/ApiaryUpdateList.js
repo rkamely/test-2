@@ -294,7 +294,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
 
               <Grid item xs={12} sm={12}>
                 <div className={classes.input}>
-                  <label className={classes.label}>کاربرد </label>
+                  <label className={classes.label}> کاربرد </label>
                   <Select
                     className={classes.inputSelect}
                     required

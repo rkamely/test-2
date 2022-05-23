@@ -41,11 +41,11 @@ function SmsVerification(props) {
 
   // global
   const userDispatch = useUserDispatch();
-  // const phoneRegExp = /09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}/
-  const phoneRegExp = /9([0-3][0-9])-?[0-9]{3}-?[0-9]{4}/;
+  // const mobileRegExp = /09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}/
+  const mobileRegExp = /09([0-3][0-9])-?[0-9]{3}-?[0-9]{4}/;
 
   const validationSchema = yup.object().shape({
-    verifyNumber: yup.string().required("لطفا کد تایید را وارد کنید"),
+    code: yup.string().required("لطفا کد تایید را وارد کنید"),
   });
 
 
@@ -63,42 +63,53 @@ function SmsVerification(props) {
 
 
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    const mobile=localStorage.getItem("data")
     console.log(JSON.stringify(data, null, 2));
-    alert(JSON.stringify(data, null, 2));
+    alert(JSON.stringify({code:data.code,mobile:mobile}, null, 2));
     // history.push("/login/step2")
-    const phone=localStorage.getItem("data")
-    console.log("phoneNumber",phone)
+    console.log("mobileNumber",mobile)
     // removeAuthtoken()
 
 //کد زیر اعمال شود
-    // try{
-    //      const response = axios.post("",JSON.stringify({phone:phone,verifyNumber:data.verifyNumber}),{
-    //       headers: { 'Content-Type': 'application/json' },
-    //       withCredentials: true
-    //  })
-    //       const accessToken = response?.data?.accessToken;   
-    //       setAuth({phone:phone,verifyNumber:data.verifyNumber,accessToken})
-    //       // if(accessToken){
-    //       //   userDispatch({ type: 'LOGIN_SUCCESS' })
-    //       // }
-    //        userDispatch({ type: 'LOGIN_SUCCESS' })
-    //        console.log(response.data);
-    //        console.log(response?.accessToken);
-    //        console.log(JSON.stringify(response))      
-    // }catch (err) {
-    //   if (!err?.response) {
-    //       setErrMsg(' پاسخی از سرور دریافت نشد لطفا از وصل بودن اینترنت خود اطمینان حاصل نمایید و مجدد تلاش کنید');
-    //   } else {
-    //       setErrMsg('ارتباط با سرور برقرار نشد لطفا مجدد تلاش کنید')
-    //   }
-    //   errRef.current.focus();
+    try{
+         const response = await axios.post("http://188.121.121.225/api/auth/verify",{code:data.code,mobile:mobile},{
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true
+          }).then( (respons) => respons.data )
 
-    // };
+          const token = response?.data?.token;   
+          setAuth({mobile:mobile,code:data.code,token})
+
+          if(response?.token){
+            userDispatch({ type: 'LOGIN_SUCCESS' })
+          }
+          //  userDispatch({ type: 'LOGIN_SUCCESS' })
+
+           console.log("response",response);
+           console.log(response?.token);
+           console.log(response?.message);
+
+    } catch (err) {
+      console.log("err.response",err.response);
+      if (!err?.response) {
+          setErrMsg(' پاسخی از سرور دریافت نشد لطفا از وصل بودن اینترنت خود اطمینان حاصل نمایید و مجدد تلاش کنید');
+      } else if (err.response?.status === 400) {
+        setErrMsg('لطفا کد تایید را درست وارد نمایید');
+          setTimeout(()=>{
+            setErrMsg('');
+
+          },3000)
+      } else {
+          setErrMsg('ارتباط با سرور برقرار نشد لطفا مجدد تلاش کنید')
+      }
+      errRef.current.focus();
+
+    };
 
 
 
-        loginUser(userDispatch, loginValue, props.history, setIsLoading, setErrMsg);
+        // loginUser(userDispatch, loginValue, props.history, setIsLoading, setErrMsg);
 };
   // local
 
@@ -144,21 +155,21 @@ function SmsVerification(props) {
           className={classes.TextField}
           label="کد تایید"
           onChange={(e) => setLoginValue(e.target.value)}
-          id="verifyNumber"
-          name="verifyNumber"
+          id="code"
+          name="code"
           variant="outlined"
           fullWidth
           margin="normal"
           size="small"
-          {...register("verifyNumber")}
-          error={errors.verifyNumber ? true : false}
+          {...register("code")}
+          error={errors.code ? true : false}
         />
         <Typography
           variant="inherit"
           color="textSecondary"
           style={{ color: "red" }}
         >
-          {errors.verifyNumber?.message}
+          {errors.code?.message}
         </Typography>
         <br />
         <Typography
