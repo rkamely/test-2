@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { HashRouter, Route, Switch, Redirect, Router } from "react-router-dom";
 
 // components
@@ -15,6 +15,7 @@ import CompleteInformation from "../pages/login/CompleteInformation";
 import { useAppApolloClient } from "./config/apolloClient";
 import { ApolloProvider } from "@apollo/client";
 import AuthContext from "../pages/context/AuthProvider";
+import axios from "../pages/api/axios";
 // import { createBrowserHistory } from "history";
 
 // const history = createBrowserHistory();
@@ -26,6 +27,18 @@ export default function App() {
 
   const apolloClient = useAppApolloClient();
 
+  useEffect(() => {
+    const fetchData = async () =>{
+      try {
+        const {data: response} = await axios.get('http://188.121.121.225/api/auth/me');   
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <HashRouter>
       <Switch>
@@ -36,7 +49,7 @@ export default function App() {
           render={() => <Redirect to="/app/dashboard" />}
         />
         <PrivateRoute path="/app" component={Layout} />
-        
+
         {true ? (
           <PublicRoute
             path="/login/CompleteInformation"
