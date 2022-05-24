@@ -11,8 +11,8 @@ import {
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
-import axios from "../api/axios"
-import  AuthContext from  "../context/AuthProvider"
+import axios from "../api/axios";
+import AuthContext from "../context/AuthProvider";
 
 // styles
 import useStyles from "./styles";
@@ -28,16 +28,15 @@ import { gql, useMutation } from "@apollo/client";
 import { useAuthToken } from "../../components/config/auth";
 
 function SmsVerification(props) {
-  const { setAuth } = useContext(AuthContext)
+  const {auth, setAuth } = useContext(AuthContext);
 
   const classes = useStyles();
   const history = useHistory();
   const [loginValue, setLoginValue] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  
-  const [errMsg, setErrMsg] = useState('');
-  const errRef = useRef();
 
+  const [errMsg, setErrMsg] = useState("");
+  const errRef = useRef();
 
   // global
   const userDispatch = useUserDispatch();
@@ -47,8 +46,6 @@ function SmsVerification(props) {
   const validationSchema = yup.object().shape({
     code: yup.string().required("لطفا کد تایید را وارد کنید"),
   });
-
-
 
   const {
     register,
@@ -60,64 +57,65 @@ function SmsVerification(props) {
   });
   const [_, setAuthToken, removeAuthtoken] = useAuthToken();
 
-
-
-
   const onSubmit = async (data) => {
-    const mobile=localStorage.getItem("data")
+    const mobile = localStorage.getItem("data");
     console.log(JSON.stringify(data, null, 2));
-    alert(JSON.stringify({code:data.code,mobile:mobile}, null, 2));
+    alert(JSON.stringify({ code: data.code, mobile: mobile }, null, 2));
     // history.push("/login/step2")
-    console.log("mobileNumber",mobile)
+    console.log("mobileNumber", mobile);
     // removeAuthtoken()
 
-//کد زیر اعمال شود
-    try{
-         const response = await axios.post("http://188.121.121.225/api/auth/verify",{code:data.code,mobile:mobile},{
-          headers: { 'Content-Type': 'application/json' },
-          withCredentials: true
-          }).then( (respons) => respons.data )
+    //کد زیر اعمال شود
+    try {
+      const response = await axios
+        .post(
+          "http://188.121.121.225/api/auth/verify",
+          { code: data.code, mobile: mobile },
+          {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+          },
+        )
+        .then((respons) => respons.data);
 
-          const token = response?.data?.token;   
-          setAuth({mobile:mobile,code:data.code,token})
+      const token = response?.token;
+      // setAuth({mobile:mobile,code:data.code,token})
 
-          if(response?.token){
-            userDispatch({ type: 'LOGIN_SUCCESS' })
-          }
-          //  userDispatch({ type: 'LOGIN_SUCCESS' })
-
-           console.log("response",response);
-           console.log(response?.token);
-           console.log(response?.message);
-
+      if (response?.token) {
+        // userDispatch({ type: 'LOGIN_SUCCESS' })
+        localStorage.setItem("id_token", token);
+        setAuth({ mobile: mobile, code: data.code, token });
+        history.push("/login/CompleteInformation");
+      }
+      console.log("auth", auth);
+      //  userDispatch({ type: 'LOGIN_SUCCESS' })
+      console.log("token", token);
+      console.log("response", response);
+      console.log(response?.token);
+      console.log(response?.message);
     } catch (err) {
-      console.log("err.response",err.response);
+      console.log("err.response", err.response);
       if (!err?.response) {
-          setErrMsg(' پاسخی از سرور دریافت نشد لطفا از وصل بودن اینترنت خود اطمینان حاصل نمایید و مجدد تلاش کنید');
+        setErrMsg(
+          " پاسخی از سرور دریافت نشد لطفا از وصل بودن اینترنت خود اطمینان حاصل نمایید و مجدد تلاش کنید",
+        );
       } else if (err.response?.status === 400) {
-        setErrMsg('لطفا کد تایید را درست وارد نمایید');
-          setTimeout(()=>{
-            setErrMsg('');
-
-          },3000)
+        setErrMsg("لطفا کد تایید را درست وارد نمایید");
+        setTimeout(() => {
+          setErrMsg("");
+        }, 3000);
       } else {
-          setErrMsg('ارتباط با سرور برقرار نشد لطفا مجدد تلاش کنید')
+        setErrMsg("لطفا کد تایید را درست وارد نمایید");
       }
       errRef.current.focus();
+    }
 
-    };
-
-
-
-        // loginUser(userDispatch, loginValue, props.history, setIsLoading, setErrMsg);
-};
+    // loginUser(userDispatch, loginValue, props.history, setIsLoading, setErrMsg);
+  };
   // local
 
-
-
-  
   // const [verifyOtp, { loading }] = useMutation(VERIFY_OTP,{
-    
+
   //   onCompleted:(data)=>{
   //     console.log("login",loginValue)
   //     console.log("data",data)
@@ -133,14 +131,17 @@ function SmsVerification(props) {
   //     userDispatch({ type: "LOGIN_FAILURE" });
   //     setError(true);
   //     setIsLoading(false);
-  //   }   
+  //   }
   // });
-  
 
   return (
     <div className="containerLogin">
       <div className="contact-form">
-      {errMsg? <p ref={errRef} className="errmsg" aria-live="assertive">{errMsg}</p>:null}
+        {errMsg ? (
+          <p ref={errRef} className="errmsg" aria-live="assertive">
+            {errMsg}
+          </p>
+        ) : null}
 
         {/* <img alt="" className="avatar" src="/assets/Untitled-1.svg"/> */}
         <h2>کد تایید</h2>

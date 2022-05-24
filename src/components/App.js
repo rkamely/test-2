@@ -1,5 +1,5 @@
-import React from "react";
-import { HashRouter, Route, Switch, Redirect ,Router} from "react-router-dom";
+import React, { useContext } from "react";
+import { HashRouter, Route, Switch, Redirect, Router } from "react-router-dom";
 
 // components
 import Layout from "./Layout";
@@ -14,20 +14,19 @@ import SmsVerification from "../pages/login/SmsVerification";
 import CompleteInformation from "../pages/login/CompleteInformation";
 import { useAppApolloClient } from "./config/apolloClient";
 import { ApolloProvider } from "@apollo/client";
+import AuthContext from "../pages/context/AuthProvider";
 // import { createBrowserHistory } from "history";
 
 // const history = createBrowserHistory();
 export default function App() {
   // global
   const { isAuthenticated } = useUserState();
-  console.log("isAuthenticated",isAuthenticated)
-
+  console.log("isAuthenticated", isAuthenticated);
+  const { auth, setAuth } = useContext(AuthContext);
 
   const apolloClient = useAppApolloClient();
 
-  return (    
- 
-     
+  return (
     <HashRouter>
       <Switch>
         <Route exact path="/" render={() => <Redirect to="/app/dashboard" />} />
@@ -36,14 +35,24 @@ export default function App() {
           path="/app"
           render={() => <Redirect to="/app/dashboard" />}
         />
-        <PrivateRoute path="/app" component={Layout} /> 
-        <PublicRoute path="/login/smsVerification" component={SmsVerification} />
-        <Route  path="/login"  component={Login} />
-       
+        <PrivateRoute path="/app" component={Layout} />
+        
+        {true ? (
+          <PublicRoute
+            path="/login/CompleteInformation"
+            component={CompleteInformation}
+          />
+        ) : null}
+
+        <PublicRoute
+          path="/login/smsVerification"
+          component={SmsVerification}
+        />
+        <Route path="/login/" component={Login} />
+
         <Route component={Error} />
       </Switch>
     </HashRouter>
-
   );
 
   // #######################################################################
@@ -52,7 +61,7 @@ export default function App() {
     return (
       <Route
         {...rest}
-        render={props =>
+        render={(props) =>
           isAuthenticated ? (
             React.createElement(component, props)
           ) : (
@@ -74,8 +83,7 @@ export default function App() {
     return (
       <Route
         {...rest}
-        render={props =>
-          
+        render={(props) =>
           isAuthenticated ? (
             <Redirect
               to={{
@@ -89,5 +97,4 @@ export default function App() {
       />
     );
   }
-  
 }
