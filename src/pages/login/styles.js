@@ -1,26 +1,25 @@
 import { makeStyles } from "@material-ui/styles";
-import Image from './Untitled-1.png'; // Import using relative path
+import Image from "./Untitled-1.png"; // Import using relative path
 
-export default makeStyles(theme => ({
-  buttonLogin:{
-    padding:"8px 0",
-    backgroundColor:"rgb( 227 156 0  ) ",
-    color:"#fff",
-    width:"100%",
-    marginTop:"32px",
-   borderRadius:"8px",
-   fontFamily:"Shabnam",
-   fontWeight:"600",
-   cursor:"pointer",
-   "&:hover":{
-    backgroundColor:"rgb( 227 156 0  ) ",
-
-   }
-  },
-  TextField:{
+export default makeStyles((theme) => ({
+  buttonLogin: {
+    padding: "8px 0",
+    backgroundColor: "rgb( 227 156 0  ) ",
+    color: "#fff",
     width: "100%",
-    background:"rgb( 244 244 244)",
-    border:"none",
+    marginTop: "32px",
+    borderRadius: "8px",
+    fontFamily: "Shabnam",
+    fontWeight: "600",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "rgb( 227 156 0  ) ",
+    },
+  },
+  TextField: {
+    width: "100%",
+    background: "rgb( 244 244 244)",
+    border: "none",
     borderRadius: "10px",
     "& label.Mui-focused": {
       color: "rgb( 26 ,115, 233) !important",
@@ -39,55 +38,58 @@ export default makeStyles(theme => ({
       "&.Mui-focused fieldset": {
         border: "2px solid rgb(255 ,176, 4) !important",
         borderRadius: "10px",
-
       },
     },
   },
-    loginLoader: {
-    margin: "32px -20px",
-    color:"red"
+  ButtonAndLoading: {
+
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  
-//   /////////////////////////
-//   container :{  
-//     // backgroundImage: `url(/Untitled-1.png)`,    backgroundPosition : "center center",
-//     // border:"5px solid red",
-//     background: "red",
-//     // height:"100vh",
-//     // width:"100vw",
-//     '&::before':{
-//     content: '',
-//     position: "fixed",
-//     width: "100vw",
-//     height: "100vh",
-//     background:"red",
-//     border:"10px solid red",
-//     backgroundImage: `url(${Image})`,
-//     backgroundPosition : "center center",
-//     backgroundRepeat: "no-repeat",
-//     backgroundAttachment: "fixed",
-// //  -webkit-background-size: "cover",
-//     backgroundSize: "cover",
-//     // -webkit-filter: blur(10px),
-//     // -moz-filter: blur(10px),
-//     filter: "blur(10px)",
-//   }},
 
-  
-//   contactForm:{
-//     position: "absolute",
-//     top: "50%",
-//     left: "50%",
-//     transform: "translate(-50%, -50%)",
-//     width: "400px",
-//     height: "350px",
-//     padding: "80px 40px",
-//     background: "rgba(0, 0, 0, 0.5)",
-//   },
-  
+  loginLoader: {
+ marginTop:"16px",
+    color: "red",
+  },
+
+  //   /////////////////////////
+  //   container :{
+  //     // backgroundImage: `url(/Untitled-1.png)`,    backgroundPosition : "center center",
+  //     // border:"5px solid red",
+  //     background: "red",
+  //     // height:"100vh",
+  //     // width:"100vw",
+  //     '&::before':{
+  //     content: '',
+  //     position: "fixed",
+  //     width: "100vw",
+  //     height: "100vh",
+  //     background:"red",
+  //     border:"10px solid red",
+  //     backgroundImage: `url(${Image})`,
+  //     backgroundPosition : "center center",
+  //     backgroundRepeat: "no-repeat",
+  //     backgroundAttachment: "fixed",
+  // //  -webkit-background-size: "cover",
+  //     backgroundSize: "cover",
+  //     // -webkit-filter: blur(10px),
+  //     // -moz-filter: blur(10px),
+  //     filter: "blur(10px)",
+  //   }},
+
+  //   contactForm:{
+  //     position: "absolute",
+  //     top: "50%",
+  //     left: "50%",
+  //     transform: "translate(-50%, -50%)",
+  //     width: "400px",
+  //     height: "350px",
+  //     padding: "80px 40px",
+  //     background: "rgba(0, 0, 0, 0.5)",
+  //   },
+
   ///////////////////////
-
-
 
   // container: {
   //   height: "100vh",
