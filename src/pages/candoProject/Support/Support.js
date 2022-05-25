@@ -6,10 +6,13 @@ import {
   Slide,
   Typography,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AddTicket from "./addTicket";
 import useStyles from "./Style";
 import { Link } from "react-router-dom";
+import AuthContext from "../../context/AuthProvider";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import axios from "axios";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -18,7 +21,35 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 function Support() {
   const [open, setOpen] = useState(false);
   const [AddTickets, setAddTickets] = useState(true);
+  const [newUser , setNewUser] = useState(true)
+  // global
+  // var layoutState = useLayoutState();
+  const {  auth  } = useContext(AuthContext)
+  /////////////////////////////////////////////////////////////////////////////////////////
+  const axiosInstance = useAxiosPrivate()
+  const bardia = localStorage.getItem("id_token")
+  console.log("bardia",bardia);
+  useEffect(() => {
+    const fetchData = async () =>{
+      // setLoading(true);
+      try {
+        const {data: response} = await axios.get("http://188.121.121.225/api/ticket/getUserTickets",{
+          headers: {
+            'token': `${bardia}` 
+          },
+        },);
+        setNewUser(response.newUser);
+        console.log(response);
+        console.log("newUser",response.newUser);
+      } catch (error) {
+        console.error(error.message);
+      }
+      // setLoading(false);
+    }
+    fetchData();
+  }, []);
 
+  /////////////////////////////////////////////////////////////////////////////////////////
   const handleClickOpen = () => {
     setOpen(true);
   };
