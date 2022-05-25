@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   Grid,
   CircularProgress,
@@ -57,6 +57,10 @@ function SmsVerification(props) {
   });
   const [_, setAuthToken, removeAuthtoken] = useAuthToken();
 
+
+
+
+
   const onSubmit = async (data) => {
     const mobile = localStorage.getItem("data");
     console.log(JSON.stringify(data, null, 2));
@@ -79,18 +83,25 @@ function SmsVerification(props) {
         .then((respons) => respons.data);
 
       const token = response?.token;
+      const newPerson = response.data.newUser
       // setAuth({mobile:mobile,code:data.code,token})
 
-      if (response?.token) {
-        // userDispatch({ type: 'LOGIN_SUCCESS' })
-        localStorage.setItem("id_token", token);
-        setAuth({ mobile: mobile, code: data.code, token });
-        history.push("/login/CompleteInformation");
+      if (token) {
+        if(newPerson){
+          localStorage.setItem("id_token", token);
+          setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson});
+           userDispatch({ type: 'LOGIN_SUCCESS' })
+          history.push("/login/CompleteInformation")
+        } else {
+          localStorage.setItem("id_token", token);
+          history.push("/login/CompleteInformation")
+        }
+
       }
       console.log("auth", auth);
       //  userDispatch({ type: 'LOGIN_SUCCESS' })
       console.log("token", token);
-      console.log("response", response);
+      console.log("response", response.data.newUser);
       console.log(response?.token);
       console.log(response?.message);
     } catch (err) {
@@ -110,29 +121,14 @@ function SmsVerification(props) {
       errRef.current.focus();
     }
 
+    
+
+
     // loginUser(userDispatch, loginValue, props.history, setIsLoading, setErrMsg);
   };
-  // local
 
-  // const [verifyOtp, { loading }] = useMutation(VERIFY_OTP,{
 
-  //   onCompleted:(data)=>{
-  //     console.log("login",loginValue)
-  //     console.log("data",data)
-  //     console.log("iscorrectToken?",data.verifyOtp.token);
-  //     // localStorage.setItem('id_token', data.verifyOtp.token)
-  //     setAuthToken(data.verifyOtp.token);
-  //     setError(null)
-  //     setIsLoading(false)
-  //     userDispatch({ type: 'LOGIN_SUCCESS' })
-  //   },
-  //   onError:(data)=>{
-  //     console.log("data",data)
-  //     userDispatch({ type: "LOGIN_FAILURE" });
-  //     setError(true);
-  //     setIsLoading(false);
-  //   }
-  // });
+  console.log("auuuuuuutttttthhhhhh",auth);
 
   return (
     <div className="containerLogin">

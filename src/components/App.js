@@ -27,17 +27,12 @@ export default function App() {
 
   const apolloClient = useAppApolloClient();
 
-  useEffect(() => {
-    const fetchData = async () =>{
-      try {
-        const {data: response} = await axios.get('http://188.121.121.225/api/auth/me');   
-      } catch (error) {
-        console.error(error.message);
-      }
-    }
+  console.log("new use ro bede bezanim berim!!!",auth);
+  console.log("new use ro bede bezanim berim!!!", auth.newUser);
 
-    fetchData();
-  }, []);
+    
+
+
 
   return (
     <HashRouter>
@@ -49,14 +44,10 @@ export default function App() {
           render={() => <Redirect to="/app/dashboard" />}
         />
         <PrivateRoute path="/app" component={Layout} />
-
-        {true ? (
-          <PublicRoute
+        <PublicRoute
             path="/login/CompleteInformation"
             component={CompleteInformation}
           />
-        ) : null}
-
         <PublicRoute
           path="/login/smsVerification"
           component={SmsVerification}

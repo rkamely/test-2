@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Grid,
   CircularProgress,
@@ -24,8 +24,8 @@ import { useUserDispatch, loginUser } from "../../context/UserContext";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import axios from "../api/axios";
 import AuthContext from "../context/AuthProvider";
+import axios from "axios";
 
 function CompleteInformation(props) {
   var classes = useStyles();
@@ -45,6 +45,9 @@ console.log("setAuth",setAuth);
     email: yup.string().email("لطفا ایمیل معتبر وارد کنید"),
   });
   const [isLoading, setIsLoading] = useState(false);
+
+
+
 
   const {
     register,
@@ -69,7 +72,9 @@ console.log("setAuth",setAuth);
       //     },
       //   )
       //   .then((respons) => respons.data);
+
       userDispatch({ type: "LOGIN_SUCCESS" });
+
     
     } catch (err) {
       console.log("err.response", err.response);
