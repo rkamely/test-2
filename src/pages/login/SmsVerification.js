@@ -82,7 +82,18 @@ function SmsVerification(props) {
           setAuth({mobile:mobile,code:data.code,token})
 
           if(response?.token){
-            userDispatch({ type: 'LOGIN_SUCCESS' })
+           
+              // localStorage.setItem('id_token', 1)
+              setErrMsg(null)
+              setIsLoading(false)
+              userDispatch({ type: 'LOGIN_SUCCESS' })
+              // history.push('/app/dashboard')
+           
+          } else {
+            userDispatch({ type: "LOGIN_FAILURE" });
+            setErrMsg("ارتباط با سرور برقرار نشد لطفا دوباره تلاش کنید");
+            setIsLoading(false);
+          
           }
           //  userDispatch({ type: 'LOGIN_SUCCESS' })
 
