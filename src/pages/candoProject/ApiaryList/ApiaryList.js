@@ -75,7 +75,6 @@ function ApiaryList() {
     setOpenDelete(false);
   };
   const Information=()=>{
-        console.log("salamsaddfsdfsd");
   }
   const style = {
     position: "absolute",

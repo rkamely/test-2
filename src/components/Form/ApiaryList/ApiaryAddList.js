@@ -51,12 +51,26 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
     setApiary({ Apiary: [...Apiary, data] });
   };
 
-  const options = [
-    { label: "همه", value: "همه" },
-    { label: "تغذیه زنبور", value: "تغذیه زنبور" },
-    { label: "برداشت عسل", value: "برداشت عسل" },
-    { label: "بیماری زنبور", value: "بیماری زنبور" },
-  ];
+
+  const options = [  
+    { label: "باغ", value: "باغ" },
+    { label: "مزرعه", value: "مزرعه" },
+    { label: "مرتع کوهستانی", value: "مرتع کوهستانی" },
+    { label: "دشت", value: "دشت" },
+    { label: "سایر", value: "سایر" },
+  ]
+  const option2 = [  
+    { label: "شهری", value: "شهری" },
+    { label: "روستایی" , value: "روستایی" },
+  ]
+  const option3 = [  
+    { label: "پرورش ملکه", value: "پرورش ملکه" },
+    { label: "ژل رویال" , value: "ژل رویال" },
+    { label: "تولید عسل", value: "تولید عسل" },
+    { label: "سایر", value: "سایر" },
+  ]
+
+
   const style = {
     borderRadius: "12px",
     overflow: "hidden",
@@ -150,7 +164,7 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
                     //   setValue("select", e.target.value, { shouldValidate: true })
                     // } // Using setValue
                   >
-                    {options?.map((option) => {
+                    {option2?.map((option) => {
                       return (
                         <MenuItem key={option.value} value={option.value}>
                           {option.label ?? option.value}
@@ -169,7 +183,7 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
                 </Typography>
               </Grid>
 
-              <Grid item xs={12} sm={12}>
+              {/* <Grid item xs={12} sm={12}>
                 <div className={classes.input}>
                   <label className={classes.label}>استان</label>
                   <Select
@@ -193,16 +207,16 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
                   </Select>
                 </div>
                 {/* {errors.select && <p>{errors.select.message}</p>} */}
-                <Typography
+                {/* <Typography
                   variant="inherit"
                   color="textSecondary"
                   className={classes.errorTitle}
                 >
                   {errors.select3?.message}
                 </Typography>
-              </Grid>
+              </Grid>  */}
 
-              <Grid item xs={12} sm={12}>
+              {/* <Grid item xs={12} sm={12}>
                 <div className={classes.input}>
                   <label className={classes.label}>شهر </label>
                   <Select
@@ -226,14 +240,14 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
                   </Select>
                 </div>
                 {/* {errors.select && <p>{errors.select.message}</p>} */}
-                <Typography
+                {/* <Typography
                   variant="inherit"
                   color="textSecondary"
                   className={classes.errorTitle}
                 >
                   {errors.select4?.message}
                 </Typography>
-              </Grid>
+              </Grid>  */}
 
               <Grid item xs={12} sm={12}>
                 <div className={classes.input}>
@@ -249,7 +263,7 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
                     //   setValue("select", e.target.value, { shouldValidate: true })
                     // } // Using setValue
                   >
-                    {options?.map((option) => {
+                    {option3?.map((option) => {
                       return (
                         <MenuItem key={option.value} value={option.value}>
                           {option.label ?? option.value}

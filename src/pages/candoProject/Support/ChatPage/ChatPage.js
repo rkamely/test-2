@@ -1,10 +1,40 @@
 import { Button, Grid, TextareaAutosize, Typography } from "@material-ui/core";
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Widget from "../../../../components/Widget/Widget";
 import useStyles from "./Style";
 
 function SupportPage() {
   const classes = useStyles();
+  const [newTicket , setNewTicket] = useState([])
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+  
+    const bardia = localStorage.getItem("id_token")
+    console.log("bardia",bardia);
+    useEffect(() => {
+      const fetchData = async () =>{
+        // setLoading(true);
+        try {
+          const {data: response} = await axios.get("http://188.121.121.225/api/ticket/getUserTickets",{
+            headers: {
+              'token': `${bardia}` 
+            },
+          },);
+          console.log( "show response" , response.data);
+          setNewTicket(response.data )
+          
+        } catch (error) {
+          console.error(error.message);
+        }
+        // setLoading(false);
+      }
+      fetchData();
+    }, []);
+  
+  
+    /////////////////////////////////////////////////////////////////////////////////////////
+
   const [data, setData] = useState([
     {
       id: 1,
@@ -164,6 +194,9 @@ function SupportPage() {
             </>
           );
         })}
+
+
+        
       </Grid>
 
       {/* bottom Page */}

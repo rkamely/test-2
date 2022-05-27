@@ -39,9 +39,9 @@ console.log("setAuth",setAuth);
   const phoneRegExp = /9([0-3][0-9])-?[0-9]{3}-?[0-9]{4}/;
 
   const validationSchema = yup.object().shape({
-    Username: yup.string().required("لطفا نام کاربری خود را وارد کنید"),
-    name: yup.string().required("لطفا نام خود را وارد کنید"),
-    family: yup.string().required("لطفا نام خانوادگی خود را وارد کنید"),
+    username: yup.string().required("لطفا نام کاربری خود را وارد کنید"),
+    firstname: yup.string().required("لطفا نام خود را وارد کنید"),
+    lastname: yup.string().required("لطفا نام خانوادگی خود را وارد کنید"),
     email: yup.string().email("لطفا ایمیل معتبر وارد کنید"),
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -58,21 +58,24 @@ console.log("setAuth",setAuth);
     resolver: yupResolver(validationSchema),
   });
   const onSubmit = async (data) => {
+    const bardia = localStorage.getItem("id_token")
+    console.log("bardia",bardia);
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
     try {
       setIsLoading(true);
       // const response = await axios
-      //   .post(
-      //     "http://188.121.121.225/api/auth/verify",
-      //     {},
-      //     {
-      //       headers: { "Content-Type": "application/json" },
+      //   .post( 
+      //     "http://188.121.121.225/api/auth/profile/628c8a12c01a7af0c2731da4",
+      //     data,{
+      //     headers: {
+      //       'token': `${bardia}` ,
       //       withCredentials: true,
-      //     },
+
+      //     },}
       //   )
       //   .then((respons) => respons.data);
-
+       
       userDispatch({ type: "LOGIN_SUCCESS" });
 
     
@@ -93,63 +96,63 @@ console.log("setAuth",setAuth);
           style={{ direction: "ltr" }}
           className={classes.TextField}
           label="نام کاربری"
-          id="Username"
-          name="Username"
+          id="username"
+          name="username"
           variant="outlined"
           fullWidth
           margin="normal"
           size="small"
-          {...register("Username")}
-          error={errors.phoneNumber ? true : false}
+          {...register("username")}
+          error={errors.username ? true : false}
         />
         <Typography
           variant="inherit"
           color="textSecondary"
           style={{ color: "red" }}
         >
-          {errors.Username?.message}
+          {errors.username?.message}
         </Typography>
 
         <TextField
           style={{ direction: "ltr" }}
           className={classes.TextField}
           label="نام"
-          id="name"
-          name="name"
+          id="firstname"
+          name="firstname"
           variant="outlined"
           fullWidth
           margin="normal"
           size="small"
-          {...register("name")}
-          error={errors.phoneNumber ? true : false}
+          {...register("firstname")}
+          error={errors.firstname ? true : false}
         />
         <Typography
           variant="inherit"
           color="textSecondary"
           style={{ color: "red" }}
         >
-          {errors.name?.message}
+          {errors.firstname?.message}
         </Typography>
 
         <TextField
           style={{ direction: "ltr" }}
           className={classes.TextField}
           label="نام خانوادگی"
-          id="family"
-          name="family"
+          id="lastname"
+          name="lastname"
           variant="outlined"
           fullWidth
           margin="normal"
           size="small"
-          {...register("family")}
-          error={errors.phoneNumber ? true : false}
+          {...register("lastname")}
+          error={errors.lastname ? true : false}
         />
         <Typography
           variant="inherit"
           color="textSecondary"
           style={{ color: "red" }}
         >
-          {errors.family?.message}
+          {errors.lastname?.message}
         </Typography>
 
         <TextField

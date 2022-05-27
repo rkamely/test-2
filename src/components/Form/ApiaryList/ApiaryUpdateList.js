@@ -80,43 +80,27 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
   //     })
   // }, [])
 
-  const options = [
-    { label: "بومی", value: "بومی" },
-    { label: "کارنیکا", value: "کارنیکا" },
-    { label: "ایتالیایی", value: "ایتالیایی" },
-    { label: "قفقازی", value: "قفقازی" },
-    { label: "سایر", value: "سایر" },
-  ];
-  const optopns2 = [  
-    { label: "لانگستروت", value: "لانگستروت" },
-    { label: "دادانت", value: "دادانت" },
-    { label: "آکواریومی", value: "آکواریومی" },
-    { label: "سایر", value: "سایر" },
-  ]
-  const optopns6 = [  
-    { label: "لانگستروت", value: "لانگستروت" },
-    { label: "دادانت", value: "دادانت" },
-    { label: "آکواریومی", value: "آکواریومی" },
-    { label: "سایر", value: "سایر" },
-  ]
-  const optopns7 = [  
+
+  const option = [  
     { label: "باغ", value: "باغ" },
     { label: "مزرعه", value: "مزرعه" },
     { label: "مرتع کوهستانی", value: "مرتع کوهستانی" },
     { label: "دشت", value: "دشت" },
     { label: "سایر", value: "سایر" },
   ]
-  const optopns4 = [  
+  const option2 = [  
+    { label: "شهری", value: "شهری" },
+    { label: "روستایی" , value: "روستایی" },
+  ]
+  const option3 = [  
     { label: "پرورش ملکه", value: "پرورش ملکه" },
     { label: "ژل رویال" , value: "ژل رویال" },
     { label: "تولید عسل", value: "تولید عسل" },
     { label: "سایر", value: "سایر" },
   ]
-  const optopns3 = [  
-    { label: "شهری", value: "شهری" },
-    { label: "روستایی" , value: "روستایی" },
 
-  ]
+
+  
   const style = {
     borderRadius: "12px",
     overflow: "hidden",
@@ -144,7 +128,6 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
               <Grid item xs={12} sm={12} className={classes.inputText}>
                 <div className={classes.input}>
                   <label className={classes.label}>نام زنبورستان</label>
-                  {console.log("options", options[0].value)}
                   <TextField
                     className={classes.TextField}
                     required
@@ -175,12 +158,12 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                     required
                     variant="outlined"
                     name = "select"
-                    defaultValue={optopns2[1].value}
+                    defaultValue={option[1].value}
                     {...register("select")}
                     error={errors.select ? true : false}
                     // value={}
                   >
-                    {optopns2?.map((option) => {
+                    {option?.map((option) => {
                       return (
                         <MenuItem key={option.value} value={option.value}>
                           {option.label ?? option.value}
@@ -205,12 +188,12 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
-                    defaultValue={optopns3[1].value}
+                    defaultValue={option2[1].value}
                     {...register("select2")}
                     error={errors.select2 ? true : false}
                     // value={}
                   >
-                    {optopns3?.map((option) => {
+                    {option2?.map((option) => {
                       return (
                         <MenuItem key={option.value} value={option.value}>
                           {option.label ?? option.value}
@@ -229,7 +212,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                 </Typography>
               </Grid>
 
-              <Grid item xs={12} sm={12}>
+              {/* <Grid item xs={12} sm={12}>
                 <div className={classes.input}>
                   <label className={classes.label}>استان</label>
                   <Select
@@ -251,16 +234,16 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                   </Select>
                 </div>
                 {/* {errors.select && <p>{errors.select.message}</p>} */}
-                <Typography
+                {/* <Typography
                   variant="inherit"
                   color="textSecondary"
                   className={classes.errorTitle}
                 >
                   {errors.select3?.message}
                 </Typography>
-              </Grid>
+              </Grid> */} 
 
-              <Grid item xs={12} sm={12}>
+              {/* <Grid item xs={12} sm={12}>
                 <div className={classes.input}>
                   <label className={classes.label}>شهر </label>
                   <Select
@@ -283,14 +266,14 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                   </Select>
                 </div>
                 {/* {errors.select && <p>{errors.select.message}</p>} */}
-                <Typography
+                {/* <Typography
                   variant="inherit"
                   color="textSecondary"
                   className={classes.errorTitle}
                 >
                   {errors.select4?.message}
                 </Typography>
-              </Grid>
+              </Grid>  */}
 
               <Grid item xs={12} sm={12}>
                 <div className={classes.input}>
@@ -299,13 +282,13 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
-                    defaultValue={optopns4[1].value}
+                    defaultValue={option3[1].value}
 
                     {...register("select5")}
                     error={errors.select5 ? true : false}
                     // value={}
                   >
-                    {optopns4?.map((option) => {
+                    {option3?.map((option) => {
                       return (
                         <MenuItem key={option.value} value={option.value}>
                           {option.label ?? option.value}

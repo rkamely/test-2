@@ -13,27 +13,42 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useStyles from "./Style";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import AuthContext from "../../context/AuthProvider";
 
 function AddTicket(props) {
   {
     console.log(props.input);
   }
   const validationSchema = yup.object().shape({
-    name: yup
-      .string()
-      .required("لطفا تعداد QRCODE درخواستی را وارد نمایید."),
+    // name: yup
+    //   .string()
+    //   .required("لطفا تعداد QRCODE درخواستی را وارد نمایید."),
 
-    select: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
-    request: yup
+    title: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
+    text: yup
       .string()
       .required("لطفا درخواست خود را وارد نمایید."),
       });
+
+  const [newTicket , setNewTicket] = useState()
+
+
+  const bardia = localStorage.getItem("id_token")
+  console.log("bardia",bardia);
+
+
+
+
+
+
+
+
   const {
     register,
     control,
@@ -67,7 +82,13 @@ function AddTicket(props) {
   const onSubmit = async(data) => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
-    // const response = await axios.post("https://reqres.in/api/users", data);
+
+    const response = await axios.post("http://188.121.121.225/api/ticket", data , {
+      headers: {
+        'token': `${bardia}` 
+      }
+    });
+    console.log("response ro see kon to addticket",response);
     // setData({ data: [...data, data] });
     props.handleClose()
   };
@@ -103,7 +124,7 @@ function AddTicket(props) {
           overflowY: "auto",
         }}
       >
-        {props.input ? (
+       
           <div
             style={{ display: "flex", alignItems: "center", marginTop: "32px" }}
           >
@@ -122,8 +143,8 @@ function AddTicket(props) {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
-                    {...register("select")}
-                    error={errors.select ? true : false}
+                    {...register("title")}
+                    error={errors.title ? true : false}
                   >
                     {options?.map((option) => {
                       return (
@@ -134,50 +155,16 @@ function AddTicket(props) {
                     })}
                   </Select>
                 </div>
-                {/* {errors.select && <p>{errors.select.message}</p>} */}
+                {/* {errors.title && <p>{errors.title.message}</p>} */}
                 <Typography
                   variant="inherit"
                   className={classes.errorTitle}
                 >
-                  {errors.select?.message}
+                  {errors.title?.message}
                 </Typography>
               </Grid>
           </div>
-        ) : (
-          <div
-            style={{ display: "flex", alignItems: "center", marginTop: "16px" }}
-          >
-            <h2
-              style={{
-                fontSize: "0.8rem",
-                fontWeight: 600,
-                fontFamily: "Shabnam",
-              }}
-            >
-              تعداد QR Code درخواستی
-            </h2>
-            <div style={{display:"flex",flexDirection:"column",     marginRight: "32px",}}>
-            <TextField
-             
-              id="outlined-basic"
-              variant="outlined"
-              style={{
-                backgroundColor: "rgb( 244, 244, 244)",
-                width: "200px",
-                borderRadius: "8px",
-                border: "none",
-              }}
-              {...register("name")}
-              error={errors.name ? true : false}
-            />
-              <Typography
-                  variant="inherit"
-                  className={classes.errorTitle}
-                >
-                  {errors.name?.message}
-              </Typography>
-          </div></div>
-        )}
+        
 
         <DialogContent style={{ overflow: "hidden", padding: "0" }}>
           <div style={{ marginTop: "32px" }}>شرح درخواست</div>
@@ -192,14 +179,14 @@ function AddTicket(props) {
                 height:"130px",
                 marginTop:"16px"
               }}
-              {...register("request")}
-              error={errors.request ? true : false}
+              {...register("text")}
+              error={errors.text ? true : false}
             />
               <Typography
                   variant="inherit"
                   className={classes.errorTitle}
                 >
-                  {errors.request?.message}
+                  {errors.text?.message}
               </Typography>
           {/* <textarea
             id="w3review"

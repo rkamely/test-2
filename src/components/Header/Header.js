@@ -201,14 +201,14 @@ export default function Header(props) {
             </Typography>
           
           </div>
-          <MenuItem
+          {/* <MenuItem
             className={classNames(
               classes.profileMenuItem,
               classes.headerMenuItem,
             )}
           >
             <AccountIcon className={classes.profileMenuIcon} /> Profile
-          </MenuItem>
+          </MenuItem> */}
 
           <div className={classes.profileMenuUser}>
             <Typography
@@ -216,7 +216,7 @@ export default function Header(props) {
               color="secondary"
               onClick={() => signOut(userDispatch, props.history)}
             >
-              Sign Out
+خروج از حساب
             </Typography>
           </div>
         </Menu>

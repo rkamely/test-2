@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthProvider";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import axios from "axios";
+import AddQRcode from "./addQRcode";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -21,11 +22,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 function Support() {
   const [open, setOpen] = useState(false);
   const [AddTickets, setAddTickets] = useState(true);
-  const [newUser , setNewUser] = useState(true)
+  const [newTicket , setNewTicket] = useState([])
   // global
   // var layoutState = useLayoutState();
-  const {  auth  } = useContext(AuthContext)
+  const {  auth  , setAuth } = useContext(AuthContext)
+
+  
   /////////////////////////////////////////////////////////////////////////////////////////
+  
   const axiosInstance = useAxiosPrivate()
   const bardia = localStorage.getItem("id_token")
   console.log("bardia",bardia);
@@ -38,9 +42,10 @@ function Support() {
             'token': `${bardia}` 
           },
         },);
-        setNewUser(response.newUser);
-        console.log(response);
-        console.log("newUser",response.newUser);
+        console.log( "show response" , response.data);
+        console.log( "auth ro see kon to support" , auth);
+        setNewTicket(response.data )
+        
       } catch (error) {
         console.error(error.message);
       }
@@ -48,8 +53,12 @@ function Support() {
     }
     fetchData();
   }, []);
+  console.log("auth ro see kon to support",auth);
+
 
   /////////////////////////////////////////////////////////////////////////////////////////
+
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -60,6 +69,7 @@ function Support() {
 
 
   const classes = useStyles();
+
   const [data, setData] = useState([
     {
       id:1,
@@ -110,6 +120,7 @@ function Support() {
       Duration: "8 ماه پیش ",
     },
   ]);
+
   const waveHello = () => {
     setAddTickets(false);
   };
@@ -117,7 +128,7 @@ function Support() {
   const wavebye = () => {
     setAddTickets(true);
   };
-
+  // console.log("11111111",newTicket)
   return (
     <Grid container style={{ padding: "0 40px" }}>
       <Grid item sm={12} className={classes.Button}>
@@ -142,6 +153,34 @@ function Support() {
           درخواست به QR Code
         </Button>
       </Grid>
+
+
+      {newTicket?.map((element) => {
+        return (
+          <Link
+          key={element._id}
+          to={`./Support/${element._id}`  }
+          item
+          sm={12}
+          className="pointer"
+          style={{ marginTop: "32px",color: "#000",textDecoration:"none",cursor: "pointer"}}
+        >
+                      <Grid className={classes.rightContent}>
+              <Grid item className={classes.Titles}>
+                <Typography className={classes.Title}>
+                  {element.title}
+                </Typography>
+                <Typography className={classes.Date}>{element.createdAt}</Typography>
+                <Typography className={classes.Time}>{element.Time}</Typography>
+              </Grid>
+              <Grid className={classes.State}>باز</Grid>
+            </Grid>
+            <Grid className={classes.Duration}>{element.Duration}</Grid>
+        </Link>
+        );
+      })}
+
+
       {data.map((element) => {
         return (
           <Link
@@ -165,6 +204,10 @@ function Support() {
           </Link>
         );
       })}
+
+
+
+
       <Dialog
         style={{ backgroundColor: "rgba(0 ,0 ,0, 0.5)" }}
         maxWidth="xl"
@@ -176,7 +219,7 @@ function Support() {
       >
         {console.log(AddTickets)}
         {AddTickets ? (
-          <AddTicket
+          <AddQRcode
             input={false}
             handleClose={handleClose}
             title=" درخواست QR Code  "

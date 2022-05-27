@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import classnames from "classnames";
 
@@ -21,7 +21,7 @@ import ApiaryList from "../../pages/candoProject/ApiaryList/ApiaryList";
 import HiveStatus from "../../pages/candoProject/HiveStatus/HiveStatus";
 import Audio from "../../pages/candoProject/HiveStatus/Audio";
 import Support from "../../pages/candoProject/Support/Support";
-import SupportPage from "../../pages/candoProject/Support/SupportPage/SupportPage";
+import SupportPage from "../../pages/candoProject/Support/ChatPage/ChatPage";
 import SupportMessage from "../../pages/candoProject/Support/SupportMessage/SupportMessage";
 import Login from "../../pages/login/Login";
 import LoginWithPhone from "../../pages/candoProject/Login/Login";
@@ -32,11 +32,14 @@ import AboutUsMain from "../../pages/candoProject/AboutUsMain/AboutUsMain";
 import CalenderProject from "../../pages/candoProject/CalenderProject/CalenderProject";
 import JobCalender from "../../pages/candoProject/CalenderProject/JobCalender/JobCalender";
 import main from "../../pages/candoProject/CalenderProject/main";
+import AuthContext from "../../pages/context/AuthProvider";
+import discoverPage from "../../pages/candoProject/discoverPage/discoverPage";
 function Layout(props) {
   var classes = useStyles();
-
   // global
   var layoutState = useLayoutState();
+  const {  auth  } = useContext(AuthContext)
+  console.log("auth ro see kon to layout",auth);
 
   return (
     <div className={classes.root}>
@@ -85,6 +88,7 @@ function Layout(props) {
             />
             <Route path="/app/Support" component={Support} />
             <Route path="/app/setting" component={Edituser} />
+            <Route path="/app/new" component={discoverPage} />
           </Switch>
         </div>
       </>

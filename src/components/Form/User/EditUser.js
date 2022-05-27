@@ -73,8 +73,7 @@ const fileRef=useRef(null)
   };
 
   const fileSelectHandler = (e) => {
-    console.log("salam",e.target.files[0]);
-    setSelectedFile(e.target.files[0]);
+     setSelectedFile(e.target.files[0]);
   };
   const fileUploadHandler = () => {};
 

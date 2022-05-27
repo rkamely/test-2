@@ -57,6 +57,7 @@ function SmsVerification(props) {
   });
   const [_, setAuthToken, removeAuthtoken] = useAuthToken();
 
+  
 
 
 
@@ -81,24 +82,23 @@ function SmsVerification(props) {
           },
         )
         .then((respons) => respons.data);
-
-      const token = response?.token;
-      const newPerson = response.data.newUser
+        console.log("response smsVerify",response);
+        const token = response?.token;
+        const newPerson = response.data.newUser
       // setAuth({mobile:mobile,code:data.code,token})
 
       if (token) {
         if(newPerson){
-          localStorage.setItem("id_token", token);
           setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson});
-           userDispatch({ type: 'LOGIN_SUCCESS' })
+          localStorage.setItem("id_token", token);
           history.push("/login/CompleteInformation")
         } else {
+          setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson});
+          userDispatch({ type: 'LOGIN_SUCCESS' })
           localStorage.setItem("id_token", token);
-          history.push("/login/CompleteInformation")
         }
 
       }
-      console.log("auth", auth);
       //  userDispatch({ type: 'LOGIN_SUCCESS' })
       console.log("token", token);
       console.log("response", response.data.newUser);

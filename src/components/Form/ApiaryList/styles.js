@@ -75,7 +75,7 @@ export default makeStyles((theme) => ({
     boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
     fontWeight: "bold",
     fontSize: "16px",
-    width: "20%",
+    width: "16%",
     "&:hover": {
       backgroundColor: "rgb( 26 ,115, 233)",
       borderWidth: 2,
@@ -93,7 +93,7 @@ export default makeStyles((theme) => ({
     boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
     fontWeight: "bold",
     fontSize: "16px",
-    width: "20%",
+    width: "16%",
     "&:hover": {
       backgroundColor: "rgb( 255 255 255)",
       borderWidth: 2,
