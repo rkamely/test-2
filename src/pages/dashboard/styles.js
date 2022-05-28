@@ -14,6 +14,7 @@ export default makeStyles((theme) => ({
     minHeight: "100%",
     display: "flex",
     flexDirection: "column",
+  
   },
 
   success: {
@@ -63,4 +64,7 @@ export default makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
   },
+  CardItem:{
+    
+  }
 }));

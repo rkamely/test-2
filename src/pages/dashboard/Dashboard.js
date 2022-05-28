@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Grid } from "@material-ui/core";
-import { useTheme } from "@material-ui/styles";
+import { Box, Grid, Paper } from "@material-ui/core";
+import { styled, useTheme } from "@material-ui/styles";
 
 // styles
 import useStyles from "./styles";
@@ -22,31 +22,18 @@ import { useQuery, gql } from "@apollo/client";
 import MapBox from "../../components/MapBox/MapBox";
 import Calender from "../candoProject/Calender/Calender";
 
-// const GET_USER = gql`
-//   query {
-//     post(id: 14) {
-//       id
-//       title
-//       body
-//     }
-//   }
-// `;
+
 
 export default function Dashboard(props) {
   const classes = useStyles();
-  // const { loading, error, data, networkStatus, refetch } = useQuery(GET_USER, {
-  //   notifyOnNetworkStatusChange: true,
-  // });
 
-  // if (loading) return "Loading...";
-  // if (error) return `Error ${error.message}`;
-  // const {
-  //   post: { body, id, title },
-  // } = data;
-
-  // console.log("id", id);
-  // console.log("title", title);
-  // console.log("body", body);
+  // const Item = styled(Paper)(({ theme }) => ({
+  //     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  //     ...theme.typography.body2,
+  //     padding: theme.spacing(1),
+  //     textAlign: 'center',
+  //     color: theme.palette.text.secondary,
+  //   }));
 
   return (
     <>
@@ -61,8 +48,8 @@ export default function Dashboard(props) {
       {/* second part */}
 
       <Grid container spacing={3} className={classes.secondPart}>
-        <Grid item xs={12}  style={{display: "flex"}}>
-          <Grid item lg={3} md={4} sm={6} xs={12} >
+        <Grid item xs={12}  style={{display: "flex"}} >
+          <Grid item lg={3} md={4} sm={6} xs={12} className={classes.CardItem}>
             <Widget
               color="secondary"
               Img="/assets/hive-svgrepo-com (-1.svg"
@@ -121,7 +108,7 @@ export default function Dashboard(props) {
               </Grid>
             </Widget>
           </Grid>
-          <Grid item lg={3} md={4} sm={6} xs={12}>
+          <Grid item lg={3} md={4} sm={6} xs={12} className={classes.CardItem}>
             <Widget
               color="secondary"
               Img="/assets/hive-svgrepo-com (3).svg"
@@ -179,7 +166,7 @@ export default function Dashboard(props) {
               </Grid>
             </Widget>
           </Grid>
-          <Grid item lg={3} md={4} sm={6} xs={12}>
+          <Grid item lg={3} md={4} sm={6} xs={12} className={classes.CardItem}>
             <Widget
               color="secondary"
               Img="/assets/Group 11039.svg"
@@ -237,7 +224,7 @@ export default function Dashboard(props) {
               </Grid>
             </Widget>
           </Grid>
-          <Grid item lg={3} md={4} sm={6} xs={12}>
+          <Grid item lg={3} md={4} sm={6} xs={12} className={classes.CardItem}>
             <Widget
               color="secondary"
               Img="/assets/power-svgrepo-com-1.svg"
@@ -295,7 +282,7 @@ export default function Dashboard(props) {
               </Grid>
             </Widget>
           </Grid>
-          <Grid item lg={3} md={4} sm={6} xs={12}>
+          <Grid item lg={3} md={4} sm={6} xs={12} className={classes.CardItem}>
             <Widget
               color="secondary"
               Img="/assets/12425575071619191957.svg"
@@ -354,6 +341,34 @@ export default function Dashboard(props) {
             </Widget>
           </Grid>
         </Grid>
+
+
+
+
+
+
+
+
+{/* 
+        <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2} columns={8}>
+        <Grid item xs={3}>
+          <Item>xs=8</Item>
+        </Grid>
+        <Grid item xs={3}>
+          <Item>xs=8</Item>
+        </Grid>
+        <Grid item xs={3}>
+          <Item>xs=8</Item>
+        </Grid>
+        <Grid item xs={3}>
+          <Item>xs=8</Item>
+        </Grid>
+        <Grid item xs={3}>
+          <Item>xs=8</Item>
+        </Grid>
+      </Grid>
+    </Box> */}
 
         {/* <Grid item lg={2} md={4} sm={6} xs={12}>
           <Widget

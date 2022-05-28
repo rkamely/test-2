@@ -55,7 +55,7 @@ export default class CalenderProject extends React.Component {
   render() {
     return (
       <div className="demo-app">
-        <AddJob onEventAdded={event=>this.onEventAdded(event)} />
+        {/* <AddJob onEventAdded={event=>this.onEventAdded(event)} /> */}
          <div className="demo-app-main">
           <FullCalendar
             ref={this.calenderRef}
