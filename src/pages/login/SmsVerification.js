@@ -90,12 +90,15 @@ function SmsVerification(props) {
       if (token) {
         if(newPerson){
           setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson});
+          userDispatch({ type: 'LOGIN_SUCCESS' })
+          localStorage.setItem("id_token", token);
+          setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson});
           localStorage.setItem("id_token", token);
           history.push("/login/CompleteInformation")
         } else {
           setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson});
-          userDispatch({ type: 'LOGIN_SUCCESS' })
           localStorage.setItem("id_token", token);
+          history.push("/login/CompleteInformation")
         }
 
       }

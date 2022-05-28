@@ -42,7 +42,7 @@ console.log("setAuth",setAuth);
     username: yup.string().required("لطفا نام کاربری خود را وارد کنید"),
     firstname: yup.string().required("لطفا نام خود را وارد کنید"),
     lastname: yup.string().required("لطفا نام خانوادگی خود را وارد کنید"),
-    email: yup.string().email("لطفا ایمیل معتبر وارد کنید"),
+    email: yup.string().required("لطفا ایمیل خود را وارد کنید").email("لطفا ایمیل معتبر وارد کنید"),
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -64,17 +64,17 @@ console.log("setAuth",setAuth);
     alert(JSON.stringify(data, null, 2));
     try {
       setIsLoading(true);
-      // const response = await axios
-      //   .post( 
-      //     "http://188.121.121.225/api/auth/profile/628c8a12c01a7af0c2731da4",
-      //     data,{
-      //     headers: {
-      //       'token': `${bardia}` ,
-      //       withCredentials: true,
+      const response = await axios
+        .post( 
+          "http://188.121.121.225/api/auth/profile/628c8a12c01a7af0c2731da4",
+          data,{
+          headers: {
+            'token': `${bardia}` ,
+            // withCredentials: true,
 
-      //     },}
-      //   )
-      //   .then((respons) => respons.data);
+          },}
+        )
+        .then((respons) => respons.data);
        
       userDispatch({ type: "LOGIN_SUCCESS" });
 
