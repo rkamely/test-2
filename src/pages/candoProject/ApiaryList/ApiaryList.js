@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  createTheme,
   Dialog,
   Fade,
   IconButton,
@@ -76,6 +77,7 @@ function ApiaryList() {
   };
   const Information=()=>{
   }
+
   const style = {
     position: "absolute",
     top: "50%",
@@ -90,6 +92,7 @@ function ApiaryList() {
     px: 4,
     pb: 3,
   };
+
   const [Apiary, setApiary] = useState([
     {
       id: "0",
@@ -297,6 +300,7 @@ function ApiaryList() {
       field: "thumbnail",
       cellStyle: {
         textAlign: "right",
+        
       },
       headerStyle: {
         textAlign: "right",
@@ -532,7 +536,7 @@ function ApiaryList() {
           },
           toolbar: {
             nRowsSelected: "{0} مورد انتخاب شد",
-            searchPlaceholder: "جستجو کن",
+            searchPlaceholder: "جستجو ",
           },
           header: {
             actions: "عملیات",
@@ -795,6 +799,7 @@ function ApiaryList() {
 
             isFreeAction: true,
           },
+
           {
             icon: () => (
               <div
@@ -829,7 +834,10 @@ function ApiaryList() {
       <div>
         <Dialog
           PaperProps={{
-            style: { borderRadius: 12, width: "70%" },
+            style: { borderRadius: 12,
+               width: "80%",
+
+              },
           }}
           open={open}
           onClose={handleClose}

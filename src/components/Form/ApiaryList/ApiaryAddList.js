@@ -92,9 +92,9 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
           <Divider className={classes.Divider}/>
           <Grid container spacing={1} className={classes.container}>
 
-            <div>
-              <Grid item xs={12} sm={12} className={classes.inputText}>
-                <div className={classes.input}>
+            <div className={classes.main} >
+              <Grid item xs={12} sm={12} className={classes.inputText} >
+                <div className={classes.input} >
                   <label className={classes.label}>نام زنبورستان</label>
                   <TextField
                     className={classes.TextField}
@@ -117,7 +117,7 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
                 </Typography>
               </Grid>
 
-              <Grid item xs={12} sm={12} className={classes.Select}>
+              <Grid item xs={12} sm={12} className={classes.Select} >
                 <div className={classes.input}>
                   <label className={classes.label}>پوشش گیاهی منطقه</label>
                   <Select
@@ -150,7 +150,7 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
                 </Typography>
               </Grid>
 
-              <Grid item xs={12} sm={12}>
+              <Grid item xs={12} sm={12}  >
                 <div className={classes.input}>
                   <label className={classes.label}>نوع منطقه</label>
                   <Select
@@ -285,7 +285,8 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
 
             <Grid
               item
-              xs={6}
+              xs={12}
+              lg={6}
               className={classes.Map}
 
             >
@@ -294,7 +295,7 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
             </Grid>
           </Grid>
 
-          <Box mt={8} style={{ width: "100%" }}>
+          <Box mt={12} style={{ width: "100%" }}>
             <div className={classes.button}>
               <Button variant="contained" className={classes.Button2}>
                 انصراف

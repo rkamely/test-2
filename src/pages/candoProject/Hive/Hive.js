@@ -485,7 +485,7 @@ function  Hive() {
           },
           toolbar: {
             nRowsSelected: "{0} مورد انتخاب شد",
-            searchPlaceholder: "جستجو کن",
+            searchPlaceholder: "جستجو ",
           },
           header: {
             actions: "عملیات",

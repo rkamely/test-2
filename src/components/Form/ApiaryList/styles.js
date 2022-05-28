@@ -10,6 +10,13 @@ export default makeStyles((theme) => ({
     flexDirection:"row",
     justifyContent:"space-between",
   },
+  main:{
+
+    [theme.breakpoints.down('md')]: {
+      width:"100%"
+    },
+
+  },
   Title:{
     fontWeight: "bold" 
   },
@@ -53,7 +60,8 @@ export default makeStyles((theme) => ({
   // },
   Map:{
     borderRadius: "8px",
-                height: "250px",
+    height: "250px",
+    // width:"100%"
   },
   mapTitle:{
     marginTop: "32px" , fontWeight: "bold"
@@ -75,7 +83,7 @@ export default makeStyles((theme) => ({
     boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
     fontWeight: "bold",
     fontSize: "16px",
-    width: "16%",
+    width: "12%",
     "&:hover": {
       backgroundColor: "rgb( 26 ,115, 233)",
       borderWidth: 2,
@@ -93,7 +101,7 @@ export default makeStyles((theme) => ({
     boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
     fontWeight: "bold",
     fontSize: "16px",
-    width: "16%",
+    width: "12%",
     "&:hover": {
       backgroundColor: "rgb( 255 255 255)",
       borderWidth: 2,
@@ -129,6 +137,9 @@ export default makeStyles((theme) => ({
 
       },
     },
+    [theme.breakpoints.down('md')]: {
+      width:"100%"
+        },
   },
   input: {
     display: "flex",
@@ -159,6 +170,10 @@ export default makeStyles((theme) => ({
 
       },
     },
+    [theme.breakpoints.down('md')]: {
+width:"100%",display:"flex",flexDirection:"column"
+    },
+
   },
   inputSelect: {
     width: "250px",
@@ -170,32 +185,19 @@ export default makeStyles((theme) => ({
     border: "none",
     // height: "40px",
     fontFamily: "Shabnam",
+
     "&	.MuiSelect-outlined":{
     
       borderRadius: "10px",
     },
 
- 
+    [theme.breakpoints.down('md')]: {
+      width:"100%",
+      marginTop:"8px"
+        },
   },
 
-  select: {
-    backgroundColor: "rgb( 244, 244 ,244)",
-    borderRadius: "10px",
-    "&:before": {
-      border: "none",    backgroundColor: "#fff",outline: "2px solid red",
-      borderRadius: "10px",
-    },
-    "&:hover": {
-      border: "none",    backgroundColor: "#fff",outline: "2px solid red",
-      borderRadius: "10px",
-    },
-    "&:after": {
-      border: "none", backgroundColor: "#fff",outline: "2px solid red",      borderRadius: "10px",
-    },
-    "&:not(.Mui-disabled):hover::before": {
-      border: "none", backgroundColor: "#fff",outline: "2px solid red",      borderRadius: "10px",
-    },
-  },
+
 
   icon: {
     fill: "green"
