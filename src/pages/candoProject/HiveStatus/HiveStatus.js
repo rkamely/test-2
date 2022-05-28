@@ -87,7 +87,7 @@ function HiveStatus() {
       </Breadcrumbs>
       <Grid container spacing={3} style={{marginTop:"32px"}}>
 
-    <Grid item sm={6} >
+    <Grid item xs={12}  lg={6}>
 
       <Grid item  className={classes.TabHeader} >
         <Grid ><NavLink exact to={`${url}`} className={classes.item} activeClassName={classes.activeItem}>وضعیت</NavLink></Grid>
@@ -130,7 +130,7 @@ function HiveStatus() {
 
 
 
-      <Grid item sm={6} >        
+      <Grid item  xs={12} lg={6} >        
         <LeftCard />   
           <div>
           
