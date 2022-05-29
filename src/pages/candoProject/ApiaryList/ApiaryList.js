@@ -34,6 +34,7 @@ import { gql, useQuery } from "@apollo/client";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
+import { getNamedType } from "graphql";
 
 
 
@@ -96,7 +97,7 @@ function ApiaryList() {
   const [Apiary, setApiary] = useState([
     {
       id: "0",
-      name: "زنبورستان1",
+      name: "زنبورستان 1",
       State: "تهران",
       city: "تهران",
       Application: "افزایش جمعیت",
@@ -201,11 +202,13 @@ function ApiaryList() {
 
       render: (rowData) => {
         console.log("rowData", rowData);
+        const str = rowData.name.split(' ').join('') 
+        console.log();
         return (
           <Link
             to={{
-              pathname: `/app/ApiaryList/Beehive/${rowData.id}`,
-              state: { rowData },
+              pathname: `/app/ApiaryList/Beehive/${str}`,
+              state: { state:rowData.name },
             }}
             className="title"
             style={{ display: "flex" }}
@@ -580,89 +583,7 @@ function ApiaryList() {
           },
           // filtering: true,
         }}
-        // components={
-
-        //   {
-        //     // Toolbar: (props) => (
-        //     //   <>
-        //     //     <div
-        //     //       style={{
-        //     //         direction: "rtl",
-        //     //         display: "flex",
-        //     //         justifyContent: "space-between",
-        //     //         alignItems: "center",
-        //     //         padding: "16px  32px  0px",
-        //     //       }}
-        //     //     >
-        //     //       <div
-        //     //         style={{
-        //     //           display: "flex",
-        //     //           alignItems: "center",
-        //     //           justifyContent: "center",
-        //     //         }}
-        //     //       >
-        //     //         <SearchBar
-        //     //           style={{
-        //     //             direction: "ltr",
-        //     //             border: "1px solid red",
-        //     //             width: "100%",
-        //     //             borderRadius: "8px",
-        //     //           }}
-        //     //           value={searched}
-        //     //           onChange={(searchVal) => requestSearch(searchVal)}
-        //     //           onCancelSearch={() => cancelSearch()}
-        //     //         />
-        //     //         {/* <MTableToolbar {...props} /> */}
-        //     //         <div
-        //     //           onClick={handleOpen}
-        //     //           style={{
-        //     //             backgroundColor: "rgb( 227, 156, 0)",
-        //     //             marginRight: "32px",
-        //     //             color: "#000",
-        //     //             padding: "8px",
-        //     //             display: "flex",
-        //     //             alignItems: "center",
-        //     //             justifyContent: "center",
-        //     //             borderRadius: "8px",
-        //     //           }}
-        //     //         >
-        //     //           <img src="/assets/Group 182.svg" />
-        //     //         </div>
-        //     //       </div>
-        //     //       <div
-        //     //         onClick={downloadFile}
-        //     //         style={{
-        //     //           backgroundColor: "black",
-        //     //           cursor: "pointer",
-        //     //           color: "white",
-        //     //           display: "flex",
-        //     //           alignItems: "center",
-        //     //           justifyContent: "center",
-        //     //           borderRadius: "8px",
-        //     //           padding: "8px",
-        //     //           // marginLeft: "32px",
-        //     //         }}
-        //     //       >
-        //     //         <span>دانلود</span>
-        //     //         <img
-        //     //           src="/assets/download-arrow-svgrepo-com.svg"
-        //     //           style={{ marginRight: "8px" }}
-        //     //         />
-        //     //       </div>
-        //     //     </div>
-        //     //     <hr
-        //     //       style={{
-        //     //         borderTop: "1px solid rgb( 240, 240, 240)",
-        //     //         height: "2px",
-        //     //       }}
-        //     //     />
-        //     //     {toolbar ? (
-        //     //       <MTableToolbar {...props}>{console.log(props)}</MTableToolbar>
-        //     //     ) : null}
-        //     //   </>
-        //     // ),
-        //   }
-        // }
+      
 
         actions={[
           {

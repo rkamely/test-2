@@ -20,7 +20,7 @@ import useStyles from "./styles";
 import "./Hive.css";
 import XLSX from "xlsx";
 import { Delete, Edit, Edit as EditIcon, MoreVertOutlined, NavigateBefore, NavigateNext, Share } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link ,useParams } from "react-router-dom";
 import MaterialTable, { MTableToolbar } from "material-table";
 import CompanyAddList from "../../../components/Form/ApiaryList/ApiaryAddList";
 import SearchBar from "material-ui-search-bar";
@@ -433,7 +433,10 @@ function  Hive() {
   const add = () => {
     return console.log("click");
   };
-  
+
+
+  let { id } = useParams();
+  console.log("id ro bebin " , id);
   const breadcrumbs = [
 
     <Link
@@ -441,10 +444,10 @@ function  Hive() {
       key="1"
       style={{textDecoration:"none",cursor:"pointer"}}
     >
-          <Title key="2" title="زنبورستان "/>
+          <Title key="2" title={id}/>
 
     </Link>,
-    <Title key="2" title="زنبورستان ۱"/>
+    <Title key="2" title="کندوان"/>
 
 
   ];
@@ -476,10 +479,8 @@ function  Hive() {
             labelDisplayedRows: "{from}-{to} از {count}",
             labelRowsSelect: 'تعداد ردیف',
             labelRowsPerPage: '۱',
-            firstAriaLabel: 'اولین صقحه',
-     
-            previousAriaLabel: 'صفحه قبل',
-     
+            firstAriaLabel: 'اولین صقحه',     
+            previousAriaLabel: 'صفحه قبل',    
             nextAriaLabel: 'صفحه بعد',
             lastAriaLabel: 'اخرین صفحه',
           },
@@ -532,97 +533,11 @@ function  Hive() {
           // filtering: true,
         }}
 
-
-      
-
-
-
-        components={{
-          // Toolbar: (props) => (
-          //   <>
-          //     <div
-          //       style={{
-          //         direction: "rtl",
-          //         display: "flex",
-          //         justifyContent: "space-between",
-          //         alignItems: "center",
-          //         padding: "16px  32px  0px",
-          //       }}
-          //     >
-          //       <div
-          //         style={{
-          //           display: "flex",
-          //           alignItems: "center",
-          //           justifyContent: "center",
-          //         }}
-          //       >
-          //         <SearchBar
-          //           style={{
-          //             direction: "ltr",
-          //             border: "1px solid red",
-          //             width: "100%",
-          //             borderRadius: "8px",
-          //           }}
-          //           value={searched}
-          //           onChange={(searchVal) => requestSearch(searchVal)}
-          //           onCancelSearch={() => cancelSearch()}
-          //         />
-          //         {/* <MTableToolbar {...props} /> */}
-          //         <div
-          //           onClick={handleOpen}
-          //           style={{
-          //             backgroundColor: "rgb( 227, 156, 0)",
-          //             marginRight: "32px",
-          //             color: "#000",
-          //             padding: "8px",
-          //             display: "flex",
-          //             alignItems: "center",
-          //             justifyContent: "center",
-          //             borderRadius: "8px",
-          //           }}
-          //         >
-          //           <img src="/assets/Group 182.svg" />
-          //         </div>
-          //       </div>
-          //       <div
-          //         onClick={downloadFile}
-          //         style={{
-          //           backgroundColor: "black",
-          //           cursor: "pointer",
-          //           color: "white",
-          //           display: "flex",
-          //           alignItems: "center",
-          //           justifyContent: "center",
-          //           borderRadius: "8px",
-          //           padding: "8px",
-          //           // marginLeft: "32px",
-          //         }}
-          //       >
-          //         <span>دانلود</span>
-          //         <img
-          //           src="/assets/download-arrow-svgrepo-com.svg"
-          //           style={{ marginRight: "8px" }}
-          //         />
-          //       </div>
-          //     </div>
-          //     <hr
-          //       style={{
-          //         borderTop: "1px solid rgb( 240, 240, 240)",
-          //         height: "2px",
-          //       }}
-          //     />
-          //     {toolbar ? (
-          //       <MTableToolbar {...props}>{console.log(props)}</MTableToolbar>
-          //     ) : null}
-          //   </>
-          // ),
-        }}
         actions={[
           {
             icon: () => <Select
                labelId="demo-simple-select-label"
                variant="outlined"
-
                Id='demo-simple-select'
                style={{width:100}}
                value={Hive}
