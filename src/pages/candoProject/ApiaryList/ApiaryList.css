@@ -16,6 +16,7 @@
 }
 .downloadFile {
   display: flex;align-items: center;
+  
   justify-content:center;
   background-color: rgb(244, 244, 244);
   border-radius:15px;
@@ -27,8 +28,13 @@
  display: flex;
  align-items: center;
  justify-content: center;
-cursor: pointer;  border-radius:15px
+ cursor: pointer;  border-radius:15px;
+ width: 200px;
+ height: 200px;
 
+}
+.downloadExcel img ,.downloadPdf img{
+  width: 150px;
 }
 .downloadPdf {
 margin-right: 32px;
@@ -38,3 +44,13 @@ margin-right: 32px;
   text-decoration: none;
   color: #000;
 }
+@media screen and (max-width: 480px) {
+  .downloadExcel  ,.downloadPdf  {
+      width: 100px;
+      height: 100px;
+    }
+
+    .downloadExcel img ,.downloadPdf img{
+      width: 60px;
+    }
+    }

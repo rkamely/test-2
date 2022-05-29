@@ -1418,7 +1418,14 @@ function TableofUser() {
           aria-describedby="parent-modal-description"
         >
           <Box
-            sx={{ ...style, width: 1000 }}
+              sx={{
+                ...style,
+               width: {
+                  xs: "350px",
+                  sm: "500px",
+                },
+        
+              }} 
             className="downloadFile"
             style={{
               display: "flex",

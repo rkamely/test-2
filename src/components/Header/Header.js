@@ -105,7 +105,7 @@ export default function Header(props) {
   var [isNotificationsUnread, setIsNotificationsUnread] = useState(true);
   var [profileMenu, setProfileMenu] = useState(null);
   var [isSearchOpen, setSearchOpen] = useState(false);
-
+  const firstName = localStorage.getItem("profileName");
   return (
     <AppBar position="fixed" className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
@@ -182,7 +182,7 @@ export default function Header(props) {
          <KeyboardArrowDown    onClick={e => setProfileMenu(e.currentTarget)}/>
       </div>
          <Typography variant="p" weight="medium" className={classes.logotype}>
-             سلام شاهین!
+          {`سلام ${firstName}!`}
         </Typography>
        </div> 
 

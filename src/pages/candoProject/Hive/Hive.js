@@ -821,7 +821,14 @@ function  Hive() {
           aria-labelledby="parent-modal-title"
           aria-describedby="parent-modal-description"
         >
-          <Box sx={{ ...style, width: 1000 }} className="downloadFile" style={{ display: "flex" ,alignItems: "center",justifyContent: "center"}}>
+          <Box sx={{
+              ...style,
+              width: {
+                xs: "350px",
+                sm: "500px",
+              },
+
+            }} className="downloadFile" style={{ display: "flex" ,alignItems: "center",justifyContent: "center"}}>
             <div onClick={downloadExcel} className="downloadExcel" ><img src="/assets/excel-svgrepo-com.svg"/></div>
             <div onClick={downloadPdf} className="downloadPdf" ><img src="/assets/pdf-svgrepo-com (1).svg"/></div>
           </Box>

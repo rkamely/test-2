@@ -136,6 +136,10 @@ export default makeStyles((theme) => ({
 
       },
     },
+    [theme.breakpoints.down('md')]: {
+      display: "flex",
+      flexDirection:"column",
+        },
   },
   inputSelect: {
     width: "250px",

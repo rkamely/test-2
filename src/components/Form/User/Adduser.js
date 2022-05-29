@@ -87,7 +87,7 @@ const fileRef=useRef(null)
         </Typography>
         <Divider className={classes.Divider1} />
 
-        <Grid item xs={6} sm={6} className={classes.TabHeader}>
+        <Grid item xs={12} sm={12} md={6} className={classes.TabHeader}>
           <Grid>
             <NavLink
              exact to={`${url}`}
@@ -109,7 +109,9 @@ const fileRef=useRef(null)
         </Grid>
 
         <Grid container spacing={1} className={classes.container}>
-          <div>
+
+          <Grid xs={12} md={6}>
+
             <Grid item xs={12} sm={12} className={classes.inputText}>
               <div className={classes.input}>
                 <label className={classes.label}>نام </label>
@@ -230,11 +232,14 @@ const fileRef=useRef(null)
                 {errors.email?.message}
               </Typography>
             </Grid>
-          </div>
+
+          </Grid>
+
           <Grid
             item
-            xs={6}
-            sm={6}
+            xs={12}
+            sm={12}
+            md={6}
             className={classes.uploaderImageBox}
  
           >

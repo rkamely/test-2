@@ -58,8 +58,10 @@ console.log("setAuth",setAuth);
     resolver: yupResolver(validationSchema),
   });
   const onSubmit = async (data) => {
-    const bardia = localStorage.getItem("id_token")
-    console.log("bardia",bardia);
+    const token = localStorage.getItem("id_token")
+    const profileName = localStorage.setItem("profileName",data.firstname)
+    console.log("firstname",data.firstname);
+    console.log("token",token);
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
     try {
@@ -69,7 +71,7 @@ console.log("setAuth",setAuth);
           "http://188.121.121.225/api/auth/profile/628c8a12c01a7af0c2731da4",
           data,{
           headers: {
-            'token': `${bardia}` ,
+            'token': `${token}` ,
             // withCredentials: true,
 
           },}
