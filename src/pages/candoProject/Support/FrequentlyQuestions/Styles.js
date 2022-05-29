@@ -1,6 +1,14 @@
 import { makeStyles } from "@material-ui/styles";
 
 export default makeStyles((theme) => ({
+  container:{
+padding:"80px",
+[theme.breakpoints.down('sm')]: {
+
+  padding:0,
+
+},
+  },
   yellowBorder: {
     borderRadius: " 9px",
     border: "3px solid rgb(255 176 4)",

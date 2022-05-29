@@ -11,7 +11,7 @@ import useStyles from "./Style";
 // export default SupportMessage
 
 function SupportMessage() {
-  //   const classes = useStyles();
+    const classes = useStyles();
   const [data, setData] = useState([
     {
       id: 1,
@@ -33,16 +33,8 @@ function SupportMessage() {
   return (
     <Grid
       container
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "16px 32px",
-        justifyContent: "space-between",
-        borderRadius: "12px",
-        width: "100%",
-        marginTop: "24px",
-      }}
+      className={classes.container}
+
     >
       {/* message */}
       {data.map((element) => {
@@ -51,18 +43,8 @@ function SupportMessage() {
             <Grid
               item
               xs={12}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-end",
-                padding: "16px 32px",
-                justifyContent: "space-between",
-                borderRadius: "12px",
-                width: "100%",
-                marginTop: "24px",
-                alignSelf: "flex-start",
-                boxShadow: "0px, 3px,6px, 0px ,rgba(0,0,0,0.16)",
-              }}
+              className={classes.SupportMessage}
+
             >
               <Grid
                 item
@@ -112,18 +94,8 @@ function SupportMessage() {
           <Grid
             item
             xs={12}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-end",
-              padding: "16px 32px",
-              justifyContent: "space-between",
-              borderRadius: "12px",
-              width: "100%",
-              marginTop: "24px",
-              alignSelf: "flex-start",
-              boxShadow: "0px, 3px,6px, 0px ,rgba(0,0,0,0.16)",
-            }}
+            className={classes.SupportNewMessage}
+
           >
             <Grid
               item

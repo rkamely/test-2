@@ -130,8 +130,8 @@ function Support() {
   };
   // console.log("11111111",newTicket)
   return (
-    <Grid container style={{ padding: "0 40px" }}>
-      <Grid item sm={12} className={classes.Button}>
+    <Grid container className={classes.container}>
+      <Grid item xs={12} className={classes.Button}>
         <Button
           className={classes.button1}
           onClick={() => {
@@ -165,7 +165,7 @@ function Support() {
           className="pointer"
           style={{ marginTop: "32px",color: "#000",textDecoration:"none",cursor: "pointer"}}
         >
-                      <Grid className={classes.rightContent}>
+            <Grid className={classes.rightContent}>
               <Grid item className={classes.Titles}>
                 <Typography className={classes.Title}>
                   {element.title}
@@ -186,7 +186,8 @@ function Support() {
           <Link
             to={`./Support/${element.id}`}
             item
-            sm={12}
+            xs={12}
+            
             className="pointer"
             style={{ marginTop: "32px",color: "#000",textDecoration:"none",cursor: "pointer"}}
           >

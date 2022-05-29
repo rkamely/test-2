@@ -71,26 +71,17 @@ function AddQRcode(props) {
       }}
     >
       <div
-        style={{
-          textAlign: "center",
-          color: "rgb( 227 ,156, 0)",
-          fontSize: "1.2rem",
-          fontWeight: 600,
-          fontFamily: "Shabnam",
-        }}
+      className={classes.titleBox}
+
       >
-        {props.title}{" "}
+        {props.title} 
       </div>
       <Divider
         style={{ backgroundColor: "rgb( 244 ,244 ,244)", marginTop: "32px" }}
       />
       <div
-        style={{
-          width: "50vw",
-          padding: "0 48px",
-          overflowX: "hidden",
-          overflowY: "auto",
-        }}
+      className={classes.box}
+
       >
        
           <div
@@ -105,9 +96,8 @@ function AddQRcode(props) {
             >
               {props.title}
             </h2> */}
-            <div
-      style={{ display: "flex", alignItems: "center", marginTop: "16px" }}
-    >
+    <div
+    className={classes.topMain}    >
       <h2
         style={{
           fontSize: "0.8rem",
@@ -117,17 +107,13 @@ function AddQRcode(props) {
       >
         تعداد QR Code درخواستی
       </h2>
-      <div style={{display:"flex",flexDirection:"column",     marginRight: "32px",}}>
+      <div className={classes.input} >
       <TextField
        
         id="outlined-basic"
         variant="outlined"
-        style={{
-          backgroundColor: "rgb( 244, 244, 244)",
-          width: "200px",
-          borderRadius: "8px",
-          border: "none",
-        }}
+        className={classes.inputQrCode}
+
         {...register("title")}
         error={errors.title ? true : false}
       />
@@ -139,8 +125,8 @@ function AddQRcode(props) {
         </Typography>
     </div>
     
-    </div>
-          </div>
+      </div>
+   </div>
         
 
         <DialogContent style={{ overflow: "hidden", padding: "0" }}>
@@ -148,6 +134,7 @@ function AddQRcode(props) {
           <TextareaAutosize
               id="outlined-basic"
               variant="outlined"
+              className={classes.TextareaAutosize}
               style={{
                 backgroundColor: "rgb( 244, 244, 244)",
                 width: "100%",

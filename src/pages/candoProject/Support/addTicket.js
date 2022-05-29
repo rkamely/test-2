@@ -103,13 +103,8 @@ function AddTicket(props) {
       }}
     >
       <div
-        style={{
-          textAlign: "center",
-          color: "rgb( 227 ,156, 0)",
-          fontSize: "1.2rem",
-          fontWeight: 600,
-          fontFamily: "Shabnam",
-        }}
+      className={classes.titleBox}
+
       >
         {props.title}{" "}
       </div>
@@ -117,17 +112,13 @@ function AddTicket(props) {
         style={{ backgroundColor: "rgb( 244 ,244 ,244)", marginTop: "32px" }}
       />
       <div
-        style={{
-          width: "50vw",
-          padding: "0 48px",
-          overflowX: "hidden",
-          overflowY: "auto",
-        }}
+      className={classes.box}
+
       >
        
           <div
-            style={{ display: "flex", alignItems: "center", marginTop: "32px" }}
-          >
+             className={classes.topMain}    >
+    
             <h2
               style={{
                 fontSize: "0.8rem",
@@ -137,7 +128,7 @@ function AddTicket(props) {
             >
               {props.title}
             </h2>
-            <Grid item xs={12} sm={12} className={classes.Select}>
+            <Grid item xs={12} sm={12} className={classes.Select} >
                 <div className={classes.input}>
                   <Select
                     className={classes.inputSelect}

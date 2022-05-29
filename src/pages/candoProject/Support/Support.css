@@ -11,7 +11,7 @@
     box-shadow: rgb( 255 176 4) 8px 0px 0px,  0px 0px 0px -3px, rgb( 255 176 4) 0px 0px 0px inset;
   }
   
-  .pointer:after {
+  /* .pointer:after {
     content: "";
     position: absolute;
     left: 0px;
@@ -22,4 +22,4 @@
     border-left: 37px solid  rgb( 240 240 240);
     border-top: 37px solid transparent;
     border-bottom: 37px solid transparent;
-  }
+  } */

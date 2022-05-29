@@ -1,67 +1,4 @@
-// import { Divider, Grid } from "@material-ui/core";
-// import { ArrowForwardIosRounded } from "@material-ui/icons";
-// import React, { useState } from "react";
-// // import useStyles from "./Style";
-// function FrequentlyQuestions() {
-//   const [open, setOpen] = useState(false);
-//   const openItem = () => {
-//     setOpen(!open);
-//   };
-//   return (
-//     <>
-//       {open ? (
-//         <Grid
-//           item
-//           xs={12}
-//           onClick={openItem}
-//           style={{
-//             display: "flex",
-//             backgroundColor: "#fff",
-//             alignItems: "center",
-//             padding: "16px 32px",
-//             justifyContent: "space-between",
-//             borderRadius: "12px",
-//             width: "100%",
-//           }}
-//         >
-//           <div style={{ fontSize: "16px", fontWeight: 300 }}>متن سوال</div>
-//           <div>
-//             <ArrowForwardIosRounded style={{ transform: "rotate(90deg)" }} />
-//           </div>
-//         </Grid>
-//       ) : (
-//         <Grid
-//           item
-//           xs={12}
-//           onClick={openItem}
-//           style={{
-//             display: "flex",
-//             backgroundColor: "#fff",
-//             alignItems: "center",
-//             padding: "16px 32px",
-//             justifyContent: "space-between",
-//             borderRadius: "12px",
-//             width: "100%",
-//           }}
-//         >
-//           <div style={{ fontSize: "16px", fontWeight: "bold" }}>
-//             <div>متن سوال</div>
 
-//             <Divider style={{ width: "100%", marginTop: "16px" }} />
-//             <div
-//               style={{ width: "100%", marginTop: "0.8rem", fontWeight: 200 }}
-//             >
-//               جواب
-//             </div>
-//           </div>
-//           <div>
-//             <ArrowForwardIosRounded style={{ transform: "rotate(-90deg)" }} />
-//           </div>
-//         </Grid>
-//       )}
-//     </>
-//   );
-// }
 
 import {
   Accordion,
@@ -154,7 +91,7 @@ export default function SimpleAccordion() {
     setValue(event.target.value);
   };
   return (
-    <Grid container style={{ padding: "80px" }}>
+    <Grid container className={classes.container}>
       <Grid
         item
         xs={12}
