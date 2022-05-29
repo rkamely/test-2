@@ -107,8 +107,8 @@ console.log("setAuth",setAuth);
         />
         <Typography
           variant="inherit"
-          color="textSecondary"
-          style={{ color: "red" }}
+          color="secondary"
+      
         >
           {errors.username?.message}
         </Typography>
@@ -129,7 +129,8 @@ console.log("setAuth",setAuth);
         <Typography
           variant="inherit"
           color="textSecondary"
-          style={{ color: "red" }}
+          color="secondary"
+
         >
           {errors.firstname?.message}
         </Typography>
@@ -150,7 +151,8 @@ console.log("setAuth",setAuth);
         <Typography
           variant="inherit"
           color="textSecondary"
-          style={{ color: "red" }}
+          color="secondary"
+
         >
           {errors.lastname?.message}
         </Typography>
@@ -171,7 +173,8 @@ console.log("setAuth",setAuth);
         <Typography
           variant="inherit"
           color="textSecondary"
-          style={{ color: "red" }}
+          color="secondary"
+
         >
           {errors.email?.message}
         </Typography>
