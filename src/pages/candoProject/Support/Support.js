@@ -14,6 +14,7 @@ import AuthContext from "../../context/AuthProvider";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import axios from "axios";
 import AddQRcode from "./addQRcode";
+import moment from 'jalali-moment'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -57,6 +58,10 @@ function Support() {
 
 
   /////////////////////////////////////////////////////////////////////////////////////////
+  const m = moment();
+  m.locale('fa');
+  console.log(m.format('YY-MM-DD'));
+    
 
 
   const handleClickOpen = () => {
@@ -170,13 +175,18 @@ function Support() {
                 <Typography className={classes.Title}>
                   {element.title}
                 </Typography>
-                <Typography className={classes.Date}>{element.createdAt}</Typography>
+                <Typography className={classes.Date}> {moment.from(element.createdAt).locale('fa').format('YYYY/M/D HH:mm')}</Typography>
                 <Typography className={classes.Time}>{element.Time}</Typography>
+
+
+
               </Grid>
               <Grid className={classes.State}>باز</Grid>
             </Grid>
-            <Grid className={classes.Duration}>{element.Duration}</Grid>
+            <Grid className={classes.Duration}>{ 'Difference is ', moment().diff(moment(element.createdAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'), 'days') }</Grid>
+
         </Link>
+
         );
       })}
 

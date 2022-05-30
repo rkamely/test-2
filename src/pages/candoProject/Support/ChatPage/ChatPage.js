@@ -7,7 +7,6 @@ import useStyles from "./Style";
 function SupportPage() {
   const classes = useStyles();
   const [newTicket , setNewTicket] = useState([])
-
     /////////////////////////////////////////////////////////////////////////////////////////
   
     const bardia = localStorage.getItem("id_token")
@@ -16,7 +15,7 @@ function SupportPage() {
       const fetchData = async () =>{
         // setLoading(true);
         try {
-          const {data: response} = await axios.get("http://188.121.121.225/api/ticket/getUserTickets",{
+          const {data: response} = await axios.get("http://188.121.121.225/api/ticket/getUserTickets/اینجا باید ایدی اون پیام باشه",{
             headers: {
               'token': `${bardia}` 
             },
@@ -35,13 +34,13 @@ function SupportPage() {
   
     /////////////////////////////////////////////////////////////////////////////////////////
 
-  const [data, setData] = useState([
+console.log("newTicket", newTicket);
+  const [Question, setQuestion] = useState([
     {
       id: 1,
       titleQuestion:
         "سلام وقتتون بخیر برای برداشت عسل کندو های زنبورستانم نیاز به نیروی پشتیبانی دارم .باتشکر",
-      titleAnswer:
-        "سلام . وقتتون بخیر نام زنبورستان و تعداد کندوهایی که برای برداشت عسل آماده اند را ذکر کنید. نیروی پشتیبان ما با شما  .تماس میگیرد",
+      
       name: "جعفر",
       Date: "1400/01/01",
       Time: "12:14",
@@ -50,8 +49,6 @@ function SupportPage() {
       id: 1,
       titleQuestion:
         "سلام وقتتون بخیر برای برداشت عسل کندو های زنبورستانم نیاز به نیروی پشتیبانی دارم .باتشکر",
-      titleAnswer:
-        "سلام . وقتتون بخیر نام زنبورستان و تعداد کندوهایی که برای برداشت عسل آماده اند را ذکر کنید. نیروی پشتیبان ما با شما  .تماس میگیرد",
       name: "رضا",
       Date: "1400/01/01",
       Time: "12:14",
@@ -60,8 +57,6 @@ function SupportPage() {
       id: 1,
       titleQuestion:
         "سلام وقتتون بخیر برای برداشت عسل کندو های زنبورستانم نیاز به نیروی پشتیبانی دارم .باتشکر",
-      titleAnswer:
-        "سلام . وقتتون بخیر نام زنبورستان و تعداد کندوهایی که برای برداشت عسل آماده اند را ذکر کنید. نیروی پشتیبان ما با شما  .تماس میگیرد",
       name: "جعفر",
       Date: "1400/01/01",
       Time: "12:14",
@@ -70,6 +65,38 @@ function SupportPage() {
       id: 1,
       titleQuestion:
         "سلام وقتتون بخیر برای برداشت عسل کندو های زنبورستانم نیاز به نیروی پشتیبانی دارم .باتشکر",
+      name: "رضا",
+      Date: "1400/01/01",
+      Time: "12:14",
+    },
+  ]);
+  const [Answer , setAnswer] = useState([
+    {
+      id: 1,
+      titleAnswer:
+        "سلام . وقتتون بخیر نام زنبورستان و تعداد کندوهایی که برای برداشت عسل آماده اند را ذکر کنید. نیروی پشتیبان ما با شما  .تماس میگیرد",
+      name: "جعفر",
+      Date: "1400/01/01",
+      Time: "12:14",
+    },
+    {
+      id: 2,
+      titleAnswer:
+        "سلام . وقتتون بخیر نام زنبورستان و تعداد کندوهایی که برای برداشت عسل آماده اند را ذکر کنید. نیروی پشتیبان ما با شما  .تماس میگیرد",
+      name: "رضا",
+      Date: "1400/01/01",
+      Time: "12:14",
+    },
+    {
+      id: 3,
+      titleAnswer:
+        "سلام . وقتتون بخیر نام زنبورستان و تعداد کندوهایی که برای برداشت عسل آماده اند را ذکر کنید. نیروی پشتیبان ما با شما  .تماس میگیرد",
+      name: "جعفر",
+      Date: "1400/01/01",
+      Time: "12:14",
+    },
+    {
+      id: 4,
       titleAnswer:
         "سلام . وقتتون بخیر نام زنبورستان و تعداد کندوهایی که برای برداشت عسل آماده اند را ذکر کنید. نیروی پشتیبان ما با شما  .تماس میگیرد",
       name: "رضا",
@@ -78,6 +105,7 @@ function SupportPage() {
     },
   ]);
 
+  
   return (
     <div
       style={{
@@ -118,38 +146,21 @@ function SupportPage() {
           <div>باز</div>
         </Grid>
 
+   
         {/* message */}
-        {data.map((element) => {
+        {Question.map((element) => {
           return (
             <>
               <Grid
+                className={classes.QuestionCountainer}
                 item
-                xs={6}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                  padding: "16px 32px",
-                  justifyContent: "space-between",
-                  borderRadius: "12px",
-                  width: "50%",
-                  marginTop: "24px",
-                  alignSelf: "flex-start",
-                  boxShadow: "0px, 3px,6px, 0px ,rgba(0,0,0,0.16)",
-                }}
+                xs={12}
               >
                 <Grid
                   item
                   xs={12}
-                  style={{
-                    fontSize: "16px",
-                    fontWeight: "bold",
-                    width: "100%",
-                    borderRadius: "12px",
-                    backgroundColor: "rgb( 255 242 212)",
-                    padding: "16px 32px",
-                    boxShadow: "0px 3px  6px  0px rgba(0,0,0,0.16)",
-                  }}
+                  md={6}
+                  className={classes.titleQuestion}
                 >
                   {element.titleQuestion}
                 </Grid>
@@ -159,37 +170,28 @@ function SupportPage() {
               </Grid>
 
               <Grid
+                 xs={12}
+
                 item
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-end",
-                  padding: "16px 32px",
-                  marginTop: "124px",
-                  justifyContent: "space-between",
-                  borderRadius: "12px",
-                  width: "50%",
-                  alignSelf: "flex-end",
-                }}
+                className={classes.AnswerCountainer}
+
               >
-                <Grid
+                  
+                        
+               <Grid
                   item
                   xs={12}
-                  style={{
-                    fontSize: "16px",
-                    fontWeight: "bold",
-                    width: "100%",
-                    borderRadius: "12px",
-                    backgroundColor: "rgb( 244 244 244)",
-                    padding: "16px 32px",
-                    boxShadow: "0px 3px  6px  0px rgba(0,0,0,0.16)",
-                  }}
+                  md={6}
+                  className={classes.titleAnswer}
+
                 >
                   {element.titleAnswer}
                 </Grid>
                 <Grid style={{ color: "rgb(173 ,173 ,173)", marginTop: "8px" }}>
                   {element.name}| {element.Date} {element.Time}
                 </Grid>
+                
+
               </Grid>
             </>
           );
@@ -198,6 +200,18 @@ function SupportPage() {
 
         
       </Grid>
+
+
+
+
+
+
+
+
+
+
+
+
 
       {/* bottom Page */}
       <Grid
