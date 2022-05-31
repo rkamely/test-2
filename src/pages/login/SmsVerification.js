@@ -84,20 +84,17 @@ function SmsVerification(props) {
         .then((respons) => respons.data);
         console.log("response smsVerify",response);
         const token = response?.token;
-        const newPerson = response.data.newUser
+        const newPerson = response.data.username
       // setAuth({mobile:mobile,code:data.code,token})
 
       if (token) {
-        if(newPerson){
+        if(newPerson && newPerson != ""){
           setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson});
+          localStorage.setItem("id_token", token);
           userDispatch({ type: 'LOGIN_SUCCESS' })
-          localStorage.setItem("id_token", token);
-          setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson});
-          localStorage.setItem("id_token", token);
-          history.push("/login/CompleteInformation")
         } else {
-          setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson});
           localStorage.setItem("id_token", token);
+          setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson});
           history.push("/login/CompleteInformation")
         }
 

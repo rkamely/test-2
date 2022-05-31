@@ -68,7 +68,7 @@ console.log("setAuth",setAuth);
       setIsLoading(true);
       const response = await axios
         .post( 
-          "http://188.121.121.225/api/auth/profile/628c8a12c01a7af0c2731da4",
+          "http://188.121.121.225/api/auth/profile/628b6a53ae8efaaa006ed995",
           data,{
           headers: {
             'token': `${token}` ,
