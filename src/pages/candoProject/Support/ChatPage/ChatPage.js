@@ -3,10 +3,19 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Widget from "../../../../components/Widget/Widget";
 import useStyles from "./Style";
+import {
+  Link,
+  useParams
+} from "react-router-dom";
+import moment from "jalali-moment";
+import Loading from "../../../../components/Loading/Loading"
 
 function SupportPage() {
   const classes = useStyles();
   const [newTicket , setNewTicket] = useState([])
+  const { id } = useParams()
+  const[loading,setLoading]=useState(true)
+  console.log("idTicket",id);
     /////////////////////////////////////////////////////////////////////////////////////////
   
     const bardia = localStorage.getItem("id_token")
@@ -15,18 +24,20 @@ function SupportPage() {
       const fetchData = async () =>{
         // setLoading(true);
         try {
-          const {data: response} = await axios.get("http://188.121.121.225/api/ticket/getUserTickets/اینجا باید ایدی اون پیام باشه",{
+          const {data: response} = await axios.get("http://188.121.121.225/api/ticket/get-by-id/" + id,{
             headers: {
               'token': `${bardia}` 
             },
           },);
           console.log( "show response" , response.data);
-          setNewTicket(response.data )
-          
+          setNewTicket(response.data.messages )
+          setLoading(false);
         } catch (error) {
           console.error(error.message);
+          setLoading(true);
+
         }
-        // setLoading(false);
+        
       }
       fetchData();
     }, []);
@@ -37,8 +48,9 @@ function SupportPage() {
 console.log("newTicket", newTicket);
   const [Question, setQuestion] = useState([
     {
+      sender:"user",
       id: 1,
-      titleQuestion:
+      text:
         "سلام وقتتون بخیر برای برداشت عسل کندو های زنبورستانم نیاز به نیروی پشتیبانی دارم .باتشکر",
       
       name: "جعفر",
@@ -46,24 +58,27 @@ console.log("newTicket", newTicket);
       Time: "12:14",
     },
     {
+      sender:"admin",
       id: 1,
-      titleQuestion:
+      text:
         "سلام وقتتون بخیر برای برداشت عسل کندو های زنبورستانم نیاز به نیروی پشتیبانی دارم .باتشکر",
       name: "رضا",
       Date: "1400/01/01",
       Time: "12:14",
     },
     {
+      sender:"admin",
       id: 1,
-      titleQuestion:
+      text:
         "سلام وقتتون بخیر برای برداشت عسل کندو های زنبورستانم نیاز به نیروی پشتیبانی دارم .باتشکر",
       name: "جعفر",
       Date: "1400/01/01",
       Time: "12:14",
     },
     {
+      sender:"user",
       id: 1,
-      titleQuestion:
+      text:
         "سلام وقتتون بخیر برای برداشت عسل کندو های زنبورستانم نیاز به نیروی پشتیبانی دارم .باتشکر",
       name: "رضا",
       Date: "1400/01/01",
@@ -107,7 +122,10 @@ console.log("newTicket", newTicket);
 
   
   return (
-    <div
+    <>
+    {loading?
+          <div className={classes.Loading}> <Loading color="orange" /></div>:   
+           <div
       style={{
         display: "flex",
         flexDirection: "column",
@@ -148,7 +166,59 @@ console.log("newTicket", newTicket);
 
    
         {/* message */}
-        {Question.map((element) => {
+        {newTicket.map((element) => {
+          switch (element.sender) {
+            case 'user':
+              return (             <Grid
+                className={classes.QuestionCountainer}
+                item
+                xs={12}
+              >
+                <Grid
+                  item
+                  xs={12}
+                  md={6}
+                  className={classes.titleQuestion}
+                >
+                  {element.text}
+                </Grid>
+                <Grid style={{ color: "rgb(173 ,173 ,173)", marginTop: "8px" }}>
+                {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')} | {element.Date} {element.Time}
+                  
+                </Grid>
+              </Grid>)
+            case 'admin':
+              return (              <Grid
+                xs={12}
+
+               item
+               className={classes.AnswerCountainer}
+
+             >
+                 
+                       
+              <Grid
+                 item
+                 xs={12}
+                 md={6}
+                 className={classes.titleAnswer}
+
+               >
+                 {element.text}
+               </Grid>
+               <Grid style={{ color: "rgb(173 ,173 ,173)", marginTop: "8px" }}>
+               {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')} | {element.Date} {element.Time}
+               </Grid>
+               
+
+             </Grid>)
+
+          }
+
+        })}
+
+
+        {/* {Question.map((element) => {
           return (
             <>
               <Grid
@@ -195,7 +265,7 @@ console.log("newTicket", newTicket);
               </Grid>
             </>
           );
-        })}
+        })} */}
 
 
         
@@ -246,11 +316,14 @@ console.log("newTicket", newTicket);
             justifyContent: "space-between",
           }}
         >
-          <div>بستن تیکت</div>
+          <div >بستن تیکت</div>
           <Button className={classes.ButtonSubmitPage}>ثبت</Button>
         </Grid>
       </Grid>
-    </div>
+            </div> 
+    }
+
+    </>
   );
 }
 

@@ -15,6 +15,8 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import axios from "axios";
 import AddQRcode from "./addQRcode";
 import moment from 'jalali-moment'
+import Loading from "../../../components/Loading/Loading"
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -27,8 +29,8 @@ function Support() {
   // global
   // var layoutState = useLayoutState();
   const {  auth  , setAuth } = useContext(AuthContext)
-
-  
+  const[loading,setLoading]=useState(true)
+  const [show,setShow]=useState(false)
   /////////////////////////////////////////////////////////////////////////////////////////
   
   const axiosInstance = useAxiosPrivate()
@@ -46,9 +48,15 @@ function Support() {
         console.log( "show response" , response.data);
         console.log( "auth ro see kon to support" , auth);
         setNewTicket(response.data )
-        
+        setLoading(false)
+        if(response.data ){
+          setShow(true)
+        }
+    
       } catch (error) {
         console.error(error.message);
+        setLoading(true)
+
       }
       // setLoading(false);
     }
@@ -77,6 +85,7 @@ function Support() {
 
   const [data, setData] = useState([
     {
+      status:false,
       id:1,
       Title: "موضوع تیکت",
       Date: "1400/01/01",
@@ -134,8 +143,13 @@ function Support() {
     setAddTickets(true);
   };
   // console.log("11111111",newTicket)
+ 
   return (
-    <Grid container className={classes.container}>
+    <>
+    {loading?
+      <div className={classes.Loading}> <Loading color="orange" /></div>: 
+
+      <Grid container className={classes.container}>
       <Grid item xs={12} className={classes.Button}>
         <Button
           className={classes.button1}
@@ -159,7 +173,7 @@ function Support() {
         </Button>
       </Grid>
 
-
+      {show?null:<div style={{width:"100%",height:"70vh",display:"flex",alignItems:"center",justifyContent:"center",background:"#fff",borderRadius:"12px",marginTop:"32px"}}>تیکتی جهت نمایش وجود ندارد!</div>}
       {newTicket?.map((element) => {
         return (
           <Link
@@ -191,30 +205,32 @@ function Support() {
       })}
 
 
-      {data.map((element) => {
-        return (
-          <Link
-            to={`./Support/${element.id}`}
-            item
-            xs={12}
-            
-            className="pointer"
-            style={{ marginTop: "32px",color: "#000",textDecoration:"none",cursor: "pointer"}}
-          >
-            <Grid className={classes.rightContent}>
-              <Grid item className={classes.Titles}>
-                <Typography className={classes.Title}>
+      {/* {data.map((element) => {
+        
+
+              return (             
+              <Grid
+                className={classes.QuestionCountainer}
+                item
+                xs={12}
+              >
+                <Grid
+                  item
+                  xs={12}
+                  md={6}
+                  className={classes.titleQuestion}
+                >
                   {element.Title}
-                </Typography>
-                <Typography className={classes.Date}>{element.Date}</Typography>
-                <Typography className={classes.Time}>{element.Time}</Typography>
-              </Grid>
-              <Grid className={classes.State}>باز</Grid>
-            </Grid>
-            <Grid className={classes.Duration}>{element.Duration}</Grid>
-          </Link>
-        );
-      })}
+                </Grid>
+                <Grid style={{ color: "rgb(173 ,173 ,173)", marginTop: "8px" }}>
+                {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')} | {element.Date} {element.Time}
+                  
+                </Grid>
+              </Grid>)
+
+              
+
+      })} */}
 
 
 
@@ -245,7 +261,9 @@ function Support() {
           />
         )}
       </Dialog>
-    </Grid>
+    </Grid> }
+
+    </>
   );
 }
 

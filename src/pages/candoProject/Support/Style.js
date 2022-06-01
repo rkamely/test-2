@@ -192,6 +192,11 @@ width:"100%"  },
        marginLeft: "0px"
         },
   },
-
+  Loading:{
+    height:"90%",
+    display:"flex",
+    alignItems:"center"  ,
+    justifyContent:"center"
+}
 
 }));
