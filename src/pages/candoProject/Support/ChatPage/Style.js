@@ -51,5 +51,11 @@ export default makeStyles((theme) => ({
         backgroundColor: "rgb( 244 244 244)",
         padding: "16px 32px",
         boxShadow: "0px 3px  6px  0px rgba(0,0,0,0.16)",
+    },
+    Loading:{
+        height:"90%",
+        display:"flex",
+        alignItems:"center"  ,
+        justifyContent:"center"
     }
 }));

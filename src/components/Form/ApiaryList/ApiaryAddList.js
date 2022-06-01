@@ -91,10 +91,14 @@ const ApiaryAddList = ({Apiary,setApiary , onClose}) => {
     overflow: "hidden",
     marginTop: "16px",
   };
+  const isStaff = localStorage.getItem("isStaff")
+  console.log(isStaff);
   return (
     <Fragment>
       <Paper>
-        <Box px={3} py={2} className={classes.root}>
+    {  
+     isStaff?     
+       <Box px={3} py={2} className={classes.root}>
           <Typography
             variant="h6"
             align="center"
@@ -400,7 +404,8 @@ const ApiaryAddList = ({Apiary,setApiary , onClose}) => {
               </Button>
             </div>
           </Box>
-        </Box>
+       </Box>:<Box px={2} py={2} className={classes.notAccess}>اجازه دسترسی به این صفحه را ندارید!</Box>
+    }
       </Paper>
     </Fragment>
   );

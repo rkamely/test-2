@@ -30,7 +30,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
   const [errorMessage,setErrMessage] = useState()
   const [error,setIserror] = useState()
   const validationSchema = yup.object().shape({
-    name: yup
+    firstname: yup
       .string()
       .required("لطفا نام زنبورستان وارد کنید")
       .min(2, "برای وارد کردن نام حداقل ۲ کاراکتر لازم است")
@@ -46,7 +46,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
   });
 
   const preLoadValues = {
-    name:"زنبورستان ۱",
+    firstname:"زنبورستان ۱۲",
     select:"تغذیه زنبور"
   }
 
@@ -59,7 +59,33 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
     resolver: yupResolver(validationSchema),
     defaultValues:preLoadValues
   });
+   /////////////////////////////////////////////////////////////////////////////////////////
+  
+   const bardia = localStorage.getItem("id_token")
+   console.log("bardia",bardia);
+   useEffect(() => {
+     const fetchData = async () =>{
+       // setLoading(true);
+       try {
+         const {data: response} = await axios.get("http://188.121.121.225/api/apiary/get-for-user",{
+           headers: {
+             'token': `${bardia}` 
+           },
+         },);
+         console.log( "show response" , response.data);
+        //  setApiariesList(response.data)
+        //  setLoading(false)
+       } catch (error) {
+         console.error(error.message);
+       }
+       // setLoading(false);
+     }
+     fetchData();
+   }, []);
 
+
+ 
+   /////////////////////////////////////////////////////////////////////////////////////////
 
   const onSubmit = async (data) => {
     console.log(JSON.stringify(data, null, 2));
@@ -85,21 +111,21 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
 
 
   const option = [  
-    { label: "باغ", value: "garden" },
-    { label: "مزرعه", value: "farm" },
-    { label: "مرتع کوهستانی", value: "mountain" },
-    { label: "دشت", value: "plain" },
-    { label: "سایر", value: "other" },
+    { label: "باغ", value: "Garden" },
+    { label: "مزرعه", value: "Farm" },
+    { label: "مرتع کوهستانی", value: "Mountain" },
+    { label: "دشت", value: "Plain" },
+    { label: "سایر", value: "Other" },
   ]
   const option2 = [  
-    { label: "شهری", value: "urban" },
-    { label: "روستایی" , value: "village" },
+    { label: "شهری", value: "Urban" },
+    { label: "روستایی" , value: "Village" },
   ]
   const option3 = [  
-    { label: "پرورش ملکه", value: "queen" },
-    { label: "ژل رویال" , value: "royal" },
-    { label: "تولید عسل", value: "honey" },
-    { label: "سایر", value: "other" },
+    { label: "پرورش ملکه", value: "Queen" },
+    { label: "ژل رویال" , value: "Royal" },
+    { label: "تولید عسل", value: "Honey" },
+    { label: "سایر", value: "Other" },
   ]
 
 
@@ -109,11 +135,11 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
     overflow: "hidden",
     marginTop: "16px",
   };
-
+  const isStaff = localStorage.getItem("isStaff")
   return (
     <Fragment>
       <Paper>
-        <Box px={3} py={2} className={classes.root}>
+{   isStaff? <Box px={3} py={2} className={classes.root}>
           <Typography
             variant="h6"
             align="center"
@@ -122,7 +148,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
             className={classes.Title}
 
           >
-            افزودن زنبورستان
+            ویرایش زنبورستان
           </Typography>
           <Divider className={classes.Divider}/>
 
@@ -134,13 +160,13 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                   <TextField
                     className={classes.TextField}
                     required
-                    id="name"
+                    id="firstname"
                     name="firstname"
                     variant="outlined"
                     fullWidth
                     margin="dense"
-                    {...register("name")}
-                    error={errors.name ? true : false}
+                    {...register("firstname")}
+                    error={errors.firstname ? true : false}
                   />
                 </div>
                 <Typography
@@ -149,7 +175,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                   className={classes.errorTitle}
 
                 >
-                  {errors.name?.message}
+                  {errors.firstname?.message}
                 </Typography>
               </Grid>
 
@@ -414,7 +440,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
               </Button>
             </div>
           </Box>
-        </Box>
+        </Box>:<Box px={2} py={2} className={classes.notAccess}>اجازه دسترسی به این صفحه را ندارید!</Box>}
       </Paper>
     </Fragment>
   );

@@ -85,7 +85,8 @@ function SmsVerification(props) {
         const token = response?.token;
         const newPerson = response.data.username
         const isStaff = response.data.isStaff
-        console.log("isStaff",isStaff);
+        localStorage.setItem("isStaff",isStaff);
+          console.log("isStaff",isStaff);
       // setAuth({mobile:mobile,code:data.code,token})
 
       if (token) {
