@@ -35,6 +35,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import { getNamedType } from "graphql";
+import Loading from "../../../components/Loading/Loading";
+import useStyles from "./styles";
 
 
 
@@ -48,6 +50,11 @@ function ApiaryList() {
   const [scroll, setScroll] = useState("paper");
   const [errorMessage,setErrMessage] = useState()
   const [error,setIserror] = useState()
+  const [ loading , setLoading]=useState(true)
+  
+
+  const classes = useStyles();
+
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
 
@@ -93,73 +100,90 @@ function ApiaryList() {
     px: 4,
     pb: 3,
   };
-
+const [ ApiariesList,setApiariesList]=useState([])
   const [Apiary, setApiary] = useState([
     {
-      id: "0",
+      _id: "0",
       name: "زنبورستان 1",
-      State: "تهران",
-      city: "تهران",
-      Application: "افزایش جمعیت",
+      // State: "تهران",
+      // city: "تهران",
       Hives: "1",
-      InadequatCondition: "1",
-      goodCondition: "5",
-      NeedToVisit: "5",
+      hivesWithBadCondition: "1",
+      hivesWithGoodCondition: "5",
+      hivesWithVisitRequired: "5",
+      regionVegetation:"mountain",
+      apiaryUsage:"other",
+      regionType: "village",
     },
     {
-      id: "1",
+      _id: "1",
       name: "زنبورستان2",
-      State: "تهران",
-      city: "تهران",
-      Application: "عسل",
+      // State: "تهران",
+      // city: "تهران",
+      apiaryUsage: "عسل",
       Hives: "2",
-      InadequatCondition: "5",
-      goodCondition: "5",
-      NeedToVisit: "5",
+      hivesWithBadCondition: "5",
+      hivesWithGoodCondition: "5",
+      hivesWithVisitRequired: "5",
+      regionVegetation:"farm",
+      apiaryUsage:"Honey",
+      regionType: "Village",
     },
     {
-      id: "2",
+      _id: "2",
       name: "زنبورستان3",
-      State: "اصفهان",
-      city: "گلپایگان",
-      Application: "افزایش جمعیت",
+      // State: "اصفهان",
+      // city: "گلپایگان",
+      apiaryUsage: "افزایش جمعیت",
       Hives: "12",
-      InadequatCondition: "1",
-      goodCondition: "5",
-      NeedToVisit: "5",
+      hivesWithBadCondition: "1",
+      hivesWithGoodCondition: "5",
+      hivesWithVisitRequired: "5",
+      regionVegetation:"garden",
+      apiaryUsage:"Honey",
+      regionType: "Village",
     },
     {
-      id: "3",
+      _id: "3",
       name: "زنبورستان4",
-      State: "گلستان",
-      city: "گرگان",
-      Application: "عسل",
+      // State: "گلستان",
+      // city: "گرگان",
+      apiaryUsage: "عسل",
       Hives: "22",
-      InadequatCondition: "5",
-      goodCondition: "5",
-      NeedToVisit: "5",
+      hivesWithBadCondition: "5",
+      hivesWithGoodCondition: "5",
+      hivesWithVisitRequired: "5",
+      regionVegetation:"garden",
+      apiaryUsage:"Honey",
+      regionType: "Village",
     },
     {
-      id: "4",
+      _id: "4",
       name: "زنبورستان5",
-      State: "گیلان",
-      city: "رشت",
-      Application: "افزایش جمعیت",
+      // State: "گیلان",
+      // city: "رشت",
+      apiaryUsage: "افزایش جمعیت",
       Hives: "32",
-      InadequatCondition: "1",
-      goodCondition: "5",
-      NeedToVisit: "5",
+      hivesWithBadCondition: "1",
+      hivesWithGoodCondition: "5",
+      hivesWithVisitRequired: "5",
+      regionVegetation:"garden",
+      apiaryUsage:"Honey",
+      regionType: "Village",
     },
     {
-      id: "5",
+      _id: "5",
       name: "زنبورستان6",
-      State: "مازندران",
-      city: "انزلی",
-      Application: "عسل",
+      // State: "مازندران",
+      // city: "انزلی",
+      apiaryUsage: "عسل",
       Hives: "12",
-      InadequatCondition: "5",
-      goodCondition: "5",
-      NeedToVisit: "5",
+      hivesWithBadCondition: "5",
+      hivesWithGoodCondition: "5",
+      hivesWithVisitRequired: "5",
+      regionVegetation:"garden",
+      apiaryUsage:"Honey",
+      regionType: "Village",
     },
   ]);
 
@@ -175,19 +199,45 @@ function ApiaryList() {
   //     })
   // }, [])
 
+   /////////////////////////////////////////////////////////////////////////////////////////
+  
+   const bardia = localStorage.getItem("id_token")
+   console.log("bardia",bardia);
+   useEffect(() => {
+     const fetchData = async () =>{
+       // setLoading(true);
+       try {
+         const {data: response} = await axios.get("http://188.121.121.225/api/apiary/get-for-user",{
+           headers: {
+             'token': `${bardia}` 
+           },
+         },);
+         console.log( "show response" , response.data);
+         setApiariesList(response.data )
+         setLoading(false)
+       } catch (error) {
+         console.error(error.message);
+       }
+       // setLoading(false);
+     }
+     fetchData();
+   }, []);
 
 
-  const useStyles = makeStyles({
-    Button: {
-      margin: "8px 0px",
-      fontFamily: "Shabnam",
-      cursor: "pointer",
-      width: "5%",
-    },
-  });
-  const classes = useStyles();
+ 
+   /////////////////////////////////////////////////////////////////////////////////////////
 
-  console.log(Apiary);
+  // const useStyles = makeStyles({
+  //   Button: {
+  //     margin: "8px 0px",
+  //     fontFamily: "Shabnam",
+  //     cursor: "pointer",
+  //     width: "5%",
+  //   },
+  // });
+
+
+  console.log(ApiariesList);
   const columns = [
     {
       title: "زنبورستان",
@@ -219,9 +269,48 @@ function ApiaryList() {
       },
     },
 
+    // {
+    //   title: " استان",
+    //   field: "State",
+    //   cellStyle: {
+    //     textAlign: "right",
+    //   },
+    //   headerStyle: {
+    //     textAlign: "right",
+    //   },
+    //   render: (rowData) => {
+    //     return <p className="description">{rowData.State}</p>;
+    //   },
+    // },
+    // {
+    //   title: " شهر",
+    //   field: "city",
+    //   cellStyle: {
+    //     textAlign: "right",
+    //   },
+    //   headerStyle: {
+    //     textAlign: "right",
+    //   },
+    //   render: (rowData) => {
+    //     return <p className="description">{rowData.city}</p>;
+    //   },
+    // },
+    // {
+    //   title: "تعداد کندو",
+    //   field: "Hives",
+    //   cellStyle: {
+    //     textAlign: "right",
+    //   },
+    //   headerStyle: {
+    //     textAlign: "right",
+    //   },
+    //   render: (rowData) => {
+    //     return <p className="description">{rowData.Hives}</p>;
+    //   },
+    // },
     {
-      title: " استان",
-      field: "State",
+      title: "پوشش گیاهی منطقه",
+      field: "regionVegetation",
       cellStyle: {
         textAlign: "right",
       },
@@ -229,12 +318,26 @@ function ApiaryList() {
         textAlign: "right",
       },
       render: (rowData) => {
-        return <p className="description">{rowData.State}</p>;
+        switch (rowData.regionVegetation) {
+          case 'Garden':
+            return <p className="description">باغ</p>
+          case 'Farm':
+            return <p className="description">مزرعه</p>
+          case 'Mountain':
+            return <p className="description">مرتع کوهستانی</p>
+          case 'Plain':
+            return <p className="description">دشت</p>
+            case 'Other':
+              return <p className="description">سایر</p>
+          default:
+            return null
+        }
+        // return <p className="description">{rowData.regionVegetation}</p>;
       },
     },
     {
-      title: " شهر",
-      field: "city",
+      title: "نوع منطقه",
+      field: "apiaryUsage",
       cellStyle: {
         textAlign: "right",
       },
@@ -242,12 +345,20 @@ function ApiaryList() {
         textAlign: "right",
       },
       render: (rowData) => {
-        return <p className="description">{rowData.city}</p>;
+        switch (rowData.regionType) {
+          case 'Urban':
+            return <p className="description">شهری</p>
+          case 'Village':
+            return <p className="description">روستایی</p>
+          default:
+            return null
+        }
+        // return <p className="description">{rowData.apiaryUsage}</p>;
       },
     },
     {
-      title: "تعداد کندو",
-      field: "Hives",
+      title: "کاربرد",
+      field: "regionType",
       cellStyle: {
         textAlign: "right",
       },
@@ -255,12 +366,23 @@ function ApiaryList() {
         textAlign: "right",
       },
       render: (rowData) => {
-        return <p className="description">{rowData.Hives}</p>;
+        switch (rowData.apiaryUsage) {
+          case 'Queen':
+            return <p className="description">پرورش ملکه</p>
+          case 'Royal':
+            return <p className="description">ژل رویال</p>
+          case 'Honey':
+            return <p className="description">تولید عسل</p>
+          case 'Other':
+              return <p className="description">سایر</p>
+          default:
+            return null
+        }
       },
     },
     {
       title: "وضعیت نامناسب",
-      field: "InadequatCondition",
+      field: "hivesWithBadCondition",
       cellStyle: {
         textAlign: "right",
       },
@@ -268,12 +390,12 @@ function ApiaryList() {
         textAlign: "right",
       },
       render: (rowData) => {
-        return <div className="circleRed">{rowData.InadequatCondition}</div>;
+        return <div className="circleRed">{rowData.hivesWithBadCondition}</div>;
       },
     },
     {
       title: "نیازمند بازدید",
-      field: "NeedToVisit",
+      field: "hivesWithVisitRequired",
       cellStyle: {
         textAlign: "right",
       },
@@ -281,12 +403,12 @@ function ApiaryList() {
         textAlign: "right",
       },
       render: (rowData) => {
-        return <p className="circleYellow">{rowData.NeedToVisit}</p>;
+        return <p className="circleYellow">{rowData.hivesWithVisitRequired}</p>;
       },
     },
     {
       title: "وضعیت مناسب",
-      field: "goodCondition",
+      field: "hivesWithGoodCondition",
       cellStyle: {
         textAlign: "right",
       },
@@ -294,7 +416,7 @@ function ApiaryList() {
         textAlign: "right",
       },
       render: (rowData) => {
-        return <p className="circleGreen">{rowData.goodCondition}</p>;
+        return <p className="circleGreen">{rowData.hivesWithGoodCondition}</p>;
       },
     },
 
@@ -337,7 +459,7 @@ function ApiaryList() {
                     >
                       <div style={{ borderRadius: " 16px", padding: " 16px",textDecoration:"none"}}>
                         <Link
-                          to={`/app/ApiaryList/${rowData.id}`}
+                          to={`/app/ApiaryList/${rowData._id}`}
                           onClick={handleClickEdit("body")}
                           style={{
                             display: "flex",
@@ -499,15 +621,18 @@ function ApiaryList() {
     doc.save("table.pdf");
   };
 
-  const add = () => {
-    return console.log("click");
-  };
-
+  // const Status = localStorage.getItem("Status")
+  // if(Status){
+  //   return <ApiaryList/>
+  // }
   // const { loading, error, data } = useQuery(GET_APIARIES)
   // if (loading) return 'صفحه در حال لود شدن است'
   // if (error) return `Error! ${error.message}`
 
   return (
+    <>
+    {loading?
+          <div className={classes.Loading}> <Loading color="orange" /></div>: 
     <div>
       <h2 style={{ color: "rgb(227, 156, 0)" }}>زنبورستان</h2>
 
@@ -519,37 +644,40 @@ function ApiaryList() {
         }}
         title=""
         style={{ borderRadius: "25px" }}
-        data={Apiary}
+        data={ApiariesList}
         columns={columns}
         onSelectionChange={(rows) => setSelectedRows(rows)}
         localization={{
           body: {
             editRow: { deleteText: "آیا میخواهید این سطر را حذف کنید؟" },
           },
+
           pagination: {
             labelDisplayedRows: "{from}-{to} از {count}",
             labelRowsSelect: "تعداد ردیف",
             labelRowsPerPage: "۱",
             firstAriaLabel: "اولین صقحه",
-
             previousAriaLabel: "صفحه قبل",
-
             nextAriaLabel: "صفحه بعد",
             lastAriaLabel: "اخرین صفحه",
           },
+
           toolbar: {
             nRowsSelected: "{0} مورد انتخاب شد",
             searchPlaceholder: "جستجو ",
           },
+
           header: {
             actions: "عملیات",
           },
+
           body: {
             emptyDataSourceMessage: "موردی جهت نمایش وجود ندارد.",
             filterRow: {
               filterTooltip: "فیلتر",
             },
           },
+          
         }}
         options={{
           columnsButton: true,
@@ -767,7 +895,7 @@ function ApiaryList() {
           aria-describedby="scroll-dialog-description"
           maxWidth="xl"
         >
-          <ApiaryAddList Apiary={Apiary} setApiary={setApiary}/>
+          <ApiaryAddList  Apiary={Apiary} setApiary={setApiary} onClose={handleClose}/>
         </Dialog>
       </div>
 
@@ -840,7 +968,9 @@ function ApiaryList() {
           </Box>
         </Modal>
       </div>
-    </div>
+    </div>}
+   
+    </>
   );
 }
 

@@ -2,10 +2,8 @@ import { makeStyles } from "@material-ui/styles";
 
 export default makeStyles(theme => ({
     Loading:{
-        height:"90%",
-        display:"flex",
-        alignItems:"center"  ,
-        justifyContent:"center"
+        border:"1px solid red",
+        
     }
 
 }));

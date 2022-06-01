@@ -37,7 +37,6 @@ function SmsVerification(props) {
 
   const [errMsg, setErrMsg] = useState("");
   const errRef = useRef();
-
   // global
   const userDispatch = useUserDispatch();
   // const mobileRegExp = /09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}/
@@ -85,6 +84,8 @@ function SmsVerification(props) {
         console.log("response smsVerify",response);
         const token = response?.token;
         const newPerson = response.data.username
+        const isStaff = response.data.isStaff
+        console.log("isStaff",isStaff);
       // setAuth({mobile:mobile,code:data.code,token})
 
       if (token) {
@@ -153,6 +154,7 @@ function SmsVerification(props) {
           label="کد تایید"
           onChange={(e) => setLoginValue(e.target.value)}
           id="code"
+          type="number"
           name="code"
           variant="outlined"
           fullWidth

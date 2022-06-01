@@ -35,11 +35,14 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
       .required("لطفا نام زنبورستان وارد کنید")
       .min(2, "برای وارد کردن نام حداقل ۲ کاراکتر لازم است")
       .max(20, "Username must not exceed 20 characters"),
-    select: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
-    select2: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
-    select3: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
-    select4: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
-    select5: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
+    hivesWithGoodCondition:yup.string().required(" پر کردن این فیلد الزامی است "),
+    hivesWithBadCondition:yup.string().required(" پر کردن این فیلد الزامی است "),
+    hivesWithVisitRequired:yup.string().required(" پر کردن این فیلد الزامی است "),
+    regionVegetation: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
+    regionType: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
+    // select3: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
+    // select4: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
+    apiaryUsage: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
   });
 
   const preLoadValues = {
@@ -82,21 +85,21 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
 
 
   const option = [  
-    { label: "باغ", value: "باغ" },
-    { label: "مزرعه", value: "مزرعه" },
-    { label: "مرتع کوهستانی", value: "مرتع کوهستانی" },
-    { label: "دشت", value: "دشت" },
-    { label: "سایر", value: "سایر" },
+    { label: "باغ", value: "garden" },
+    { label: "مزرعه", value: "farm" },
+    { label: "مرتع کوهستانی", value: "mountain" },
+    { label: "دشت", value: "plain" },
+    { label: "سایر", value: "other" },
   ]
   const option2 = [  
-    { label: "شهری", value: "شهری" },
-    { label: "روستایی" , value: "روستایی" },
+    { label: "شهری", value: "urban" },
+    { label: "روستایی" , value: "village" },
   ]
   const option3 = [  
-    { label: "پرورش ملکه", value: "پرورش ملکه" },
-    { label: "ژل رویال" , value: "ژل رویال" },
-    { label: "تولید عسل", value: "تولید عسل" },
-    { label: "سایر", value: "سایر" },
+    { label: "پرورش ملکه", value: "queen" },
+    { label: "ژل رویال" , value: "royal" },
+    { label: "تولید عسل", value: "honey" },
+    { label: "سایر", value: "other" },
   ]
 
 
@@ -150,6 +153,82 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                 </Typography>
               </Grid>
 
+              <Grid item xs={12} sm={12} className={classes.inputText} >
+                <div className={classes.input} >
+                  <label className={classes.label}>وضعیت مناسب</label>
+                  <TextField
+                    className={classes.TextField}
+                    required
+                    id="hivesWithGoodCondition"
+                    name="hivesWithGoodCondition"
+                    variant="outlined"
+                    type="number"
+
+                    fullWidth
+                    margin="dense"
+                    {...register("hivesWithGoodCondition")}
+                    error={errors.hivesWithGoodCondition ? true : false}
+                  />
+                </div>
+                <Typography
+                  variant="inherit"
+                  color="textSecondary"
+                  className={classes.errorTitle}
+                >
+                  {errors.hivesWithGoodCondition?.message}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={12} className={classes.inputText} >
+                <div className={classes.input} >
+                  <label className={classes.label}> وضعیت نامناسب </label>
+                  <TextField
+                    className={classes.TextField}
+                    required
+                    id="hivesWithBadCondition"
+                    name="hivesWithBadCondition"
+                    variant="outlined"
+                    fullWidth
+                    type="number"
+                    margin="dense"
+                    {...register("hivesWithBadCondition")}
+                    error={errors.hivesWithBadCondition ? true : false}
+                  />
+                </div>
+                <Typography
+                  variant="inherit"
+                  color="textSecondary"
+                  className={classes.errorTitle}
+                >
+                  {errors.hivesWithBadCondition?.message}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={12} className={classes.inputText} >
+                <div className={classes.input} >
+                  <label className={classes.label}> نیازمند بازدید</label>
+                  <TextField
+                    className={classes.TextField}
+                    required
+                    id="hivesWithVisitRequired"
+                    name="hivesWithVisitRequired"
+                    type="number"
+
+                    variant="outlined"
+                    fullWidth
+                    margin="dense"
+                    {...register("hivesWithVisitRequired")}
+                    error={errors.hivesWithVisitRequired ? true : false}
+                  />
+                </div>
+                <Typography
+                  variant="inherit"
+                  color="textSecondary"
+                  className={classes.errorTitle}
+                >
+                  {errors.hivesWithVisitRequired?.message}
+                </Typography>
+              </Grid>
+
+
               <Grid item xs={12} sm={12} className={classes.Select}>
                 <div className={classes.input}>
                   <label className={classes.label}>پوشش گیاهی منطقه</label>
@@ -157,10 +236,10 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
-                    name = "select"
+                    name = "regionVegetation"
                     defaultValue={option[1].value}
-                    {...register("select")}
-                    error={errors.select ? true : false}
+                    {...register("regionVegetation")}
+                    error={errors.regionVegetation ? true : false}
                     // value={}
                   >
                     {option?.map((option) => {
@@ -177,7 +256,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                   color="textSecondary"
                   className={classes.errorTitle}
                 >
-                  {errors.select?.message}
+                  {errors.regionVegetation?.message}
                 </Typography>
               </Grid>
 
@@ -189,8 +268,8 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                     required
                     variant="outlined"
                     defaultValue={option2[1].value}
-                    {...register("select2")}
-                    error={errors.select2 ? true : false}
+                    {...register("regionType")}
+                    error={errors.regionType ? true : false}
                     // value={}
                   >
                     {option2?.map((option) => {
@@ -208,7 +287,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                   color="textSecondary"
                   className={classes.errorTitle}
                 >
-                  {errors.select2?.message}
+                  {errors.regionType?.message}
                 </Typography>
               </Grid>
 
@@ -284,8 +363,8 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                     variant="outlined"
                     defaultValue={option3[1].value}
 
-                    {...register("select5")}
-                    error={errors.select5 ? true : false}
+                    {...register("apiaryUsage")}
+                    error={errors.apiaryUsage ? true : false}
                     // value={}
                   >
                     {option3?.map((option) => {
@@ -303,7 +382,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                   color="textSecondary"
                   className={classes.errorTitle}
                 >
-                  {errors.select5?.message}
+                  {errors.apiaryUsage?.message}
                 </Typography>
               </Grid>
             </div>

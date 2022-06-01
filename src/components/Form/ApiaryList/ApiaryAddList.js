@@ -14,14 +14,15 @@ import {
 import useStyles from "./styles";
 import MapBox from "../../../components/MapBox/MapBox";
 
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Divider from "@material-ui/core/Divider";
 import axios from "axios";
+import ApiaryList from "../../../pages/candoProject/ApiaryList/ApiaryList";
 
-const ApiaryAddList = ({Apiary,setApiary}) => {
+const ApiaryAddList = ({Apiary,setApiary , onClose}) => {
   const classes = useStyles();
   const validationSchema = yup.object().shape({
     name: yup
@@ -29,12 +30,16 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
       .required("لطفا نام زنبورستان وارد کنید")
       .min(2, "برای وارد کردن نام حداقل ۲ کاراکتر لازم است")
       .max(20, "Username must not exceed 20 characters"),
-    select: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
-    select2: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
-    select3: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
-    select4: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
-    select5: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
+    hivesWithGoodCondition:yup.string().required(" پر کردن این فیلد الزامی است "),
+    hivesWithBadCondition:yup.string().required(" پر کردن این فیلد الزامی است "),
+    hivesWithVisitRequired:yup.string().required(" پر کردن این فیلد الزامی است "),
+    regionVegetation: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
+    regionType: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
+    // select3: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
+    // select4: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
+    apiaryUsage: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
   });
+  const [status,setStatus]=useState()
   const {
     register,
     control,
@@ -43,31 +48,41 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
-  
+  const bardia = localStorage.getItem("id_token")
   const onSubmit = async(data) => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
-    const response = await axios.post("https://reqres.in/api/users", data);
+    const response = await axios.post("http://188.121.121.225/api/apiary/create-by-user", {...data ,"locationLangitude": 8,
+    "locationLatitude": 10} ,{
+      headers: {
+        'token': `${bardia}` 
+      },
+    },).then((response)=>{console.log("response1",response)})
     setApiary({ Apiary: [...Apiary, data] });
+    setStatus(true)
+    window.location.reload()
+ 
+    // onClose()
   };
 
+  
 
   const options = [  
-    { label: "باغ", value: "باغ" },
-    { label: "مزرعه", value: "مزرعه" },
-    { label: "مرتع کوهستانی", value: "مرتع کوهستانی" },
-    { label: "دشت", value: "دشت" },
-    { label: "سایر", value: "سایر" },
+    { label: "باغ", value: "Garden" },
+    { label: "مزرعه", value: "Farm" },
+    { label: "مرتع کوهستانی", value: "Mountain" },
+    { label: "دشت", value: "Plain" },
+    { label: "سایر", value: "Other" },
   ]
   const option2 = [  
-    { label: "شهری", value: "شهری" },
-    { label: "روستایی" , value: "روستایی" },
+    { label: "شهری", value: "Urban" },
+    { label: "روستایی" , value: "Village" },
   ]
   const option3 = [  
-    { label: "پرورش ملکه", value: "پرورش ملکه" },
-    { label: "ژل رویال" , value: "ژل رویال" },
-    { label: "تولید عسل", value: "تولید عسل" },
-    { label: "سایر", value: "سایر" },
+    { label: "پرورش ملکه", value: "Queen" },
+    { label: "ژل رویال" , value: "Royal" },
+    { label: "تولید عسل", value: "Honey" },
+    { label: "سایر", value: "Other" },
   ]
 
 
@@ -117,6 +132,81 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
                 </Typography>
               </Grid>
 
+              <Grid item xs={12} sm={12} className={classes.inputText} >
+                <div className={classes.input} >
+                  <label className={classes.label}>وضعیت مناسب</label>
+                  <TextField
+                    className={classes.TextField}
+                    required
+                    id="hivesWithGoodCondition"
+                    name="hivesWithGoodCondition"
+                    variant="outlined"
+                    type="number"
+
+                    fullWidth
+                    margin="dense"
+                    {...register("hivesWithGoodCondition")}
+                    error={errors.hivesWithGoodCondition ? true : false}
+                  />
+                </div>
+                <Typography
+                  variant="inherit"
+                  color="textSecondary"
+                  className={classes.errorTitle}
+                >
+                  {errors.hivesWithGoodCondition?.message}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={12} className={classes.inputText} >
+                <div className={classes.input} >
+                  <label className={classes.label}>وضعیت نامناسب </label>
+                  <TextField
+                    className={classes.TextField}
+                    required
+                    id="hivesWithBadCondition"
+                    name="hivesWithBadCondition"
+                    variant="outlined"
+                    fullWidth
+                    type="number"
+                    margin="dense"
+                    {...register("hivesWithBadCondition")}
+                    error={errors.hivesWithBadCondition ? true : false}
+                  />
+                </div>
+                <Typography
+                  variant="inherit"
+                  color="textSecondary"
+                  className={classes.errorTitle}
+                >
+                  {errors.hivesWithBadCondition?.message}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={12} className={classes.inputText} >
+                <div className={classes.input} >
+                  <label className={classes.label}> نیازمند بازدید</label>
+                  <TextField
+                    className={classes.TextField}
+                    required
+                    id="hivesWithVisitRequired"
+                    name="hivesWithVisitRequired"
+                    type="number"
+
+                    variant="outlined"
+                    fullWidth
+                    margin="dense"
+                    {...register("hivesWithVisitRequired")}
+                    error={errors.hivesWithVisitRequired ? true : false}
+                  />
+                </div>
+                <Typography
+                  variant="inherit"
+                  color="textSecondary"
+                  className={classes.errorTitle}
+                >
+                  {errors.hivesWithVisitRequired?.message}
+                </Typography>
+              </Grid>
+
               <Grid item xs={12} sm={12} className={classes.Select} >
                 <div className={classes.input}>
                   <label className={classes.label}>پوشش گیاهی منطقه</label>
@@ -124,11 +214,11 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
-                    {...register("select")}
-                    error={errors.select ? true : false}
+                    {...register("regionVegetation")}
+                    error={errors.regionVegetation ? true : false}
 
                     // onChange={(e) =>
-                    //   setValue("select", e.target.value, { shouldValidate: true })
+                    //   setValue("regionVegetation", e.target.value, { shouldValidate: true })
                     // } // Using setValue
                   >
                     {options?.map((option) => {
@@ -140,13 +230,13 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
                     })}
                   </Select>
                 </div>
-                {/* {errors.select && <p>{errors.select.message}</p>} */}
+                {/* {errors.regionVegetation && <p>{errors.regionVegetation.message}</p>} */}
                 <Typography
                   variant="inherit"
                   color="textSecondary"
                   className={classes.errorTitle}
                 >
-                  {errors.select?.message}
+                  {errors.regionVegetation?.message}
                 </Typography>
               </Grid>
 
@@ -157,8 +247,8 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
-                    {...register("select2")}
-                    error={errors.select2 ? true : false}
+                    {...register("regionType")}
+                    error={errors.regionType ? true : false}
 
                     // onChange={(e) =>
                     //   setValue("select", e.target.value, { shouldValidate: true })
@@ -179,7 +269,7 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
                   color="textSecondary"
                   className={classes.errorTitle}
                 >
-                  {errors.select2?.message}
+                  {errors.regionType?.message}
                 </Typography>
               </Grid>
 
@@ -256,8 +346,8 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
-                    {...register("select5")}
-                    error={errors.select5 ? true : false}
+                    {...register("apiaryUsage")}
+                    error={errors.apiaryUsage ? true : false}
 
                     // onChange={(e) =>
                     //   setValue("select", e.target.value, { shouldValidate: true })
@@ -278,7 +368,7 @@ const ApiaryAddList = ({Apiary,setApiary}) => {
                   color="textSecondary"
                   className={classes.errorTitle}
                 >
-                  {errors.select5?.message}
+                  {errors.apiaryUsage?.message}
                 </Typography>
               </Grid>
             </div>
