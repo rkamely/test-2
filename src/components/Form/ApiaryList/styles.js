@@ -5,6 +5,12 @@ export default makeStyles((theme) => ({
     width: "100%",
     fontFamily: "Shabnam",
   },
+  notAccess:{
+     textAlign:"center",
+     width: "100%",
+     background:"orange",
+     fontWeight:"600"
+  },
   container:{
     display:"flex",
     flexDirection:"row",
