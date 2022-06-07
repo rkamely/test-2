@@ -5,16 +5,16 @@ import { Link } from "react-router-dom";
 
 class ErrorBoundary extends Component {
     
-    state = {hasError:false}
+    // state = {hasError:false}
 
-    componentDidCatch(error,errorInfo){
-        if(error){
-            this.setState({hasError:true})
-        }
-        return this.props.children
-    }
+    // componentDidCatch(error,errorInfo){
+    //     if(error){
+    //         this.setState({hasError:true})
+    //     }
+    //     return this.props.children
+    // }
     render(){
-        if(this.state.hasError){
+
             return (
                 <>
             <h1>پوزش خطایی رخ داده است  برای ادامه روی دکمه زیر کلیک کنید</h1>
@@ -24,12 +24,16 @@ class ErrorBoundary extends Component {
             component={Link}
             to="/"
             size="large"
+            style={{
+                background:"orange",
+                color:"#000"
+            }}
           >
             برگشت به خانه
           </Button>
           </>
+     
             )
-        }
     }
  
 }

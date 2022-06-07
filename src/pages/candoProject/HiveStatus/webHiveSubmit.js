@@ -1,4 +1,4 @@
-import { Button, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, MobileStepper, Typography } from '@material-ui/core'
+import { Button, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, MobileStepper, TextField, Typography } from '@material-ui/core'
 import { Close, KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons';
 import { useTheme } from '@material-ui/styles';
 import React, { useState } from 'react'
@@ -21,24 +21,69 @@ function WebHiveSubmit(props) {
   };
   const steps = [
     {
-      id:"0",
-      label: 'مشاهده تخم روز',
-      // description نیاز نیست
+      id: "1",
+      title: "مشاهده تخم روز",
+      firstOption: "بله",
+      secondOption: "خیر",
+    
     },
     {
-      id:"1",
-      label: 'مشاهده ملکه',
-
+      id: "2",
+      title: "مشاهده ملکه",
+      firstOption: "بله",
+      secondOption: "خیر",
     },
     {
-      id:"2",
-      label: 'مشاهده اب و هوا',
-
+      id: "3",
+      title: "طرز تخم گذاری",
+      firstOption: "منظم",
+      secondOption: "نامنظم",
     },
     {
-      id:"3",
-      label: 'اتمام بازدید',
-    }
+      id: "4",
+      title: "مشاهده شاخون",
+      firstOption: "بله",
+      secondOption: "خیر",
+    },
+    {
+      id: "5",
+      title: "تعداد قاب زنبور",
+    },
+    {
+      id: "6",
+      title: "تعداد قاب و تخم شیره",
+    },
+    {
+      id: "7",
+      title: "تعداد قاب عسل",
+    },
+    {
+      id: "8",
+      options: [
+        "آرام بدون دود",
+        "آرام با دود",
+        "خشن بدون دود",
+        "خشن با دود",
+      ],
+      title: "رفتار زنبور",
+    },
+    {
+      id: "9",
+      title: "مشکوک به بیماری",
+      firstOption: "بله",
+      secondOption: "خیر",
+    },
+    {
+      id: "10",
+      options: [
+        "خیلی ضعیف",
+        "ضعیف",
+        "متوسط",
+        "قوی",
+        "خیلی قوی",
+      ],
+      title: "قدرت کندو",
+    },
 
   ]
   const maxSteps = steps.length;
@@ -54,20 +99,34 @@ function WebHiveSubmit(props) {
     const classes = useStyles();
   return (
       <div className={classes.DialogBox}>
-    <DialogTitle style={{textAlign:"center",fontWeight:600}}>{"بازدید فصلی بهار"}</DialogTitle>
+    <DialogTitle style={{textAlign:"center",fontWeight:600}}>{"بازدید عمومی"}</DialogTitle>
     <DialogContent>
       <Grid  container style={{display:"flex",alignItems:"flex-start" ,justifyContent:"space-between",boxShadow:"0px 3px 6px 0px rgba( 0, 0 ,0, 0.16)",padding:"16px 8px 32px"}} >
                 <Grid item   style={{display:"flex",flexDirection:"column" }}>
                     <Typography variant='p'>نکات: دقت به احتمال بچه دهی</Typography>
-                    <Typography variant='p'>عملیات: بازکردن کندو قاب به قاب</Typography>
+                    <Typography variant='p'>عملیات: باز کردن کندو , بازدید قاب به قاب</Typography>
                 </Grid>
                 <Grid item onClick={props.onClose} ><Close color='secondary'/></Grid>
       </Grid>
     </DialogContent >
-   <Grid item  xs={12} style={{display:"flex", alignItems:"center",justifyContent:"center",fontWeight:600,marginTop:"24px"}}> <Typography variant='p'> {steps[activeStep].label}</Typography></Grid>
+   <Grid item  xs={12} style={{display:"flex", alignItems:"center",justifyContent:"center",fontWeight:600,marginTop:"24px"}}> <Typography variant='p'> {steps[activeStep].title}</Typography></Grid>
+
     <DialogActions className={classes.DialogActions}>
-      <Button onClick={steps[activeStep].id == steps.length - 1 ? props.onClose : handleNext}  className={steps[activeStep].id == steps.length - 1 ? classes.ButtonHiveSubmitFinish : classes.ButtonHiveSubmitYes} >{steps[activeStep].id == steps.length - 1 ? 'ثبت تمام پاسخ ها' : 'بله'}</Button>
-      <Button onClick={handleNext} className={steps[activeStep].id == steps.length - 1 ? classes.ButtonHiveSubmitNoFinish : classes.ButtonHiveSubmitNo}>خیر</Button>
+      <TextField 
+        // onClick={handleNext} 
+        className={steps[activeStep].id == 5  ? classes.ButtonHiveSubmitNo : classes.hideElement}>
+        اضافه 
+      </TextField>  
+      <Button onClick={steps[activeStep].id == steps.length ? props.onClose : handleNext}
+        className={steps[activeStep].id == steps.length ? classes.ButtonHiveSubmitFinish : classes.ButtonHiveSubmitYes}
+         >
+        {steps[activeStep].id == steps.length  ? 'ثبت تمام پاسخ ها' : 'بله'}
+      </Button>
+      <Button 
+        onClick={handleNext} 
+        className={steps[activeStep].id == steps.length  ? classes.ButtonHiveSubmitNoFinish : classes.ButtonHiveSubmitNo}>
+        خیر 
+      </Button>
     </DialogActions>
 
     <MobileStepper

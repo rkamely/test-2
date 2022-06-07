@@ -19,11 +19,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import MapBox from "../../../components/MapBox/MapBox";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-
+import { useParams,useHistory } from "react-router-dom";
 
 const ApiaryUpdateList = ({Apiary,setApiary}) => {
   const params = useParams();
+  const history = useHistory()
   console.log("params", params.id)
   console.log("props.Apiary",Apiary);
   const classes = useStyles();
@@ -77,6 +77,8 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
         //  setLoading(false)
        } catch (error) {
          console.error(error.message);
+         history.push("/app/Error")
+         window.location.reload()
        }
        // setLoading(false);
      }
@@ -95,6 +97,8 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
     const index = updatedApiary.indexOf(data);
     updatedApiary[index]={...data};
     setApiary({Apiary:updatedApiary})
+    // window.location.reload()
+
     // setApiary(updatedApiary)
   };
 

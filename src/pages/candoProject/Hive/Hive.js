@@ -11,6 +11,7 @@ import {
   Popover,
   Popper,
   Select,
+  Slide,
   Typography,
 } from "@material-ui/core";
 import React, { Children, useEffect, useState } from "react";
@@ -32,14 +33,27 @@ import ApiaryAddList from "../../../components/Form/ApiaryList/ApiaryAddList";
 import { makeStyles } from "@material-ui/styles";
 import Title from "../../../components/Typography/Title/Title";
 import { useLocation } from 'react-router-dom'
+import NutritionStepper from "./Questionnaire/NutritionStepper";
+import CureHiveStepper from "./Questionnaire/CureHiveStepper";
+import CatchHoneyStepper from "./Questionnaire/CatchHoneyStepper";
+
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+}); 
+
 
 function  Hive() {
+  
   const location = useLocation()
   // window.localStorage.getItem(location.state.rowDatas)
   // const rowDatas= window.localStorage.setItem()
   // console.log("location",location)
   // console.log("rowDatanew",rowDatas)
   const [open, setOpen] = useState(false);
+  const[openNutrition,setOpenNutrition]=useState(false);
+  const[openCatchHoney,setopenCatchHoney]=useState(false);
+  const[openCureHive,setOpenCureHive]=useState(false);
   const [downloadOpen, setdownloadOpen] = useState(false);
 
   const [selectedRows, setSelectedRows] = useState();
@@ -52,6 +66,15 @@ function  Hive() {
 
     setScroll(scrollType);
   };
+  const handleNutrition=()=>{
+    setOpenNutrition(true)
+  }
+  const handleCatchHoney=()=>{
+    setopenCatchHoney(true)
+  }
+  const handleCureHive=()=>{
+    setOpenCureHive(true)
+  }
   const handleOpen = () => {
     setOpen(true);
   };
@@ -59,6 +82,9 @@ function  Hive() {
   const handleClose = () => {
     setOpen(false);
     setdownloadOpen(false);
+    setOpenNutrition(false)
+    setopenCatchHoney(false)
+    setOpenCureHive(false)
   };
   
   useEffect(()=>{
@@ -288,9 +314,107 @@ function  Hive() {
                       horizontal: "center",
                     }}
                   >
-                    <div style={{ borderRadius: " 16px", padding: " 16px" }}>
+                    <div style={{ borderRadius: " 16px", padding: " 16px" }} >
+                 
+                          <div
+                            onClick={handleCureHive}
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "flex-start",
+                              cursor:"pointer"
+
+                        
+                            }}
+                          >
+                            <img src="/assets/medicine-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                            درمان
+                          </div>
+                          <hr
+                            style={{
+                              borderTop: "1px solid rgb( 240, 240, 240)",
+                              height: "2px",
+                            }}
+                          />
+                          <div
+                          onClick={handleNutrition}
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "flex-start",
+                              cursor:"pointer"
+                              
+                        
+                            }}
+                          >
+                            <img src="/assets/flower-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                            تغذیه
+                          </div>
+                          <hr
+                            style={{
+                              borderTop: "1px solid rgb( 240, 240, 240)",
+                              height: "2px",
+                            }}
+                          />
+                          <div
+                             onClick={handleCatchHoney}
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "flex-start",
+                              cursor:"pointer"
+
+                        
+                            }}
+                          >
+                            <img src="/assets/honey-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                            برداشت عسل
+                          </div>
+                          <hr
+                            style={{
+                              borderTop: "1px solid rgb( 240, 240, 240)",
+                              height: "2px",
+                            }}
+                          />
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "flex-start",
+                              cursor:"pointer"
+
+                        
+                            }}
+                          >
+                            <img src="/assets/move-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                            طبق عسل
+                          </div>
+                          <hr
+                            style={{
+                              borderTop: "1px solid rgb( 240, 240, 240)",
+                              height: "2px",
+                            }}
+                          />
+                           <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "flex-start",
+                              cursor:"pointer"
+
+                        
+                            }}
+                          >
+                            <img src="/assets/noun-migration-2781863.svg" style={{ margin: "0 0px 0 24px"}} />
+                             کوچ
+                          </div>
+                          <hr
+                            style={{
+                              borderTop: "1px solid rgb( 240, 240, 240)",
+                              height: "2px",
+                            }}
+                          />
                       <div
-                      
                         style={{
                           display: "flex",
                           alignItems: "center",
@@ -313,7 +437,7 @@ function  Hive() {
                           justifyContent: "flex-start",
                         }}
                       >
-                        <Edit style={{ marginLeft: "16px" }} />
+                            <img src="/assets/share-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
                         اشتراک گذاری
                       </div>
                       <hr
@@ -355,6 +479,7 @@ function  Hive() {
                             <img src="/assets/trash-svgrepo-com-2.svg" style={{ margin: "0 0px 0 24px" }} />
                             حذف
                           </div>
+
                     </div>
                   </Popover>
                 </div>
@@ -581,24 +706,105 @@ function  Hive() {
                         <div
                           style={{ borderRadius: " 16px", padding: " 16px" }}
                         >
+                           <div
+                           onClick={handleCureHive}
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "flex-start",
+                              cursor:"pointer"
+
+                        
+                            }}
+                          >
+                            <img src="/assets/medicine-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                            درمان
+                          </div>
+                          <hr
+                            style={{
+                              borderTop: "1px solid rgb( 240, 240, 240)",
+                              height: "2px",
+                            }}
+                          />
+                          <div
+                          onClick={handleNutrition}
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "flex-start",
+                              cursor:"pointer"
+
+                        
+                            }}
+                          >
+                            <img src="/assets/flower-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                            تغذیه
+                          </div>
+                          <hr
+                            style={{
+                              borderTop: "1px solid rgb( 240, 240, 240)",
+                              height: "2px",
+                            }}
+                          />
+                          <div
+                          onClick={handleCatchHoney}  
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "flex-start",
+                              cursor:"pointer"
+
+                        
+                            }}
+                          >
+                            <img src="/assets/honey-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                            برداشت عسل
+                          </div>
+                          <hr
+                            style={{
+                              borderTop: "1px solid rgb( 240, 240, 240)",
+                              height: "2px",
+                            }}
+                          />
                           <div
                             style={{
                               display: "flex",
                               alignItems: "center",
                               justifyContent: "flex-start",
                               cursor:"pointer"
+
+                        
                             }}
                           >
-                            <Edit style={{ marginLeft: "16px" }} />
-                            ویرایش
+                            <img src="/assets/move-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                            طبق عسل
                           </div>
                           <hr
                             style={{
                               borderTop: "1px solid rgb( 240, 240, 240)",
                               height: "2px",
-                              
                             }}
                           />
+                           <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "flex-start",
+                              cursor:"pointer"
+
+                        
+                            }}
+                          >
+                            <img src="/assets/noun-migration-2781863.svg" style={{ margin: "0 0px 0 24px"}} />
+                             کوچ
+                          </div>
+                          <hr
+                            style={{
+                              borderTop: "1px solid rgb( 240, 240, 240)",
+                              height: "2px",
+                            }}
+                          />
+
                           <div
                             style={{
                               display: "flex",
@@ -728,6 +934,59 @@ function  Hive() {
             <ApiaryAddList />
         </Dialog>
       </div>
+
+
+
+
+      <div>       
+      <Dialog 
+          
+        open={openNutrition}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+        aria-describedby="alert-dialog-slide-description"
+      >
+        {/* <WebHiveSubmit  onClose={handleClose} /> */}
+        <NutritionStepper onClose={handleClose}/>
+        </Dialog > 
+       </div>
+
+
+
+       <div>
+          <Dialog 
+              
+            open={openCatchHoney}
+            TransitionComponent={Transition}
+            keepMounted
+            onClose={handleClose}
+            aria-describedby="alert-dialog-slide-description"
+          >
+            {/* <WebHiveSubmit  onClose={handleClose} /> */}
+            <CatchHoneyStepper onClose={handleClose}/>
+            </Dialog > 
+        </div>
+
+
+        <div>
+          <Dialog 
+              
+            open={openCureHive}
+            TransitionComponent={Transition}
+            keepMounted
+            onClose={handleClose}
+            aria-describedby="alert-dialog-slide-description"
+          >
+            {/* <WebHiveSubmit  onClose={handleClose} /> */}
+            <CureHiveStepper onClose={handleClose}/>
+            </Dialog > 
+        </div>
+
+
+
+
+
 
       <div>
         <Modal

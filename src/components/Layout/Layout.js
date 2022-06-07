@@ -34,6 +34,7 @@ import JobCalender from "../../pages/candoProject/CalenderProject/JobCalender/Jo
 import main from "../../pages/candoProject/CalenderProject/main";
 import AuthContext from "../../pages/context/AuthProvider";
 import discoverPage from "../../pages/candoProject/discoverPage/discoverPage";
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 function Layout(props) {
   var classes = useStyles();
   // global
@@ -89,6 +90,7 @@ function Layout(props) {
             <Route path="/app/Support" component={Support} />
             <Route path="/app/setting" component={Edituser} />
             <Route path="/app/new" component={discoverPage} />
+            <Route path="/app/Error" component={ErrorBoundary} />
           </Switch>
         </div>
       </>

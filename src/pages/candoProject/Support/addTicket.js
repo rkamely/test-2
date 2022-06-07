@@ -30,7 +30,7 @@ function AddTicket(props) {
     //   .string()
     //   .required("لطفا تعداد QRCODE درخواستی را وارد نمایید."),
 
-    title: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
+    category: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
     text: yup
       .string()
       .required("لطفا درخواست خود را وارد نمایید."),
@@ -59,21 +59,21 @@ function AddTicket(props) {
   });
 
   const options = [
-    { label: "درمان"       ,           value: "درمان"          },
-    { label: "تغذیه"       ,           value: "تغذیه"          },
-    { label: "بازدید"       ,          value: "بازدید"         },
-    { label: "برداشت عسل"       ,      value: "برداشت عسل"     },
-    { label: "زنبورستان"       ,       value: "زنبورستان"      },
-    { label: "کندو"         ,          value: "کندو"           },
-    { label: "محصولات"         ,        value: "محصولات"         },
-    { label: "ملکه"       ,            value: "ملکه"           },
-    { label: "رفتار زنبورعسل"       ,  value: "رفتار زنبورعسل" },
-    { label: "ارتباط با برد"       ,   value: "ارتباط با برد"  },
-    { label: "دسترسی ها"       ,       value: "دسترسی ها"      },
-    { label: "حساب کاربری"       ,     value: "حساب کاربری"    },
-    { label: "انتقال"       ,          value: "انتقال"         },
-    { label: "QRCODE"       ,          value: "QRCODE"         },
-    { label: "سایر"       ,            value: "سایر"           },
+    { label: "درمان"       ,           value: "cure"          },
+    { label: "تغذیه"       ,           value: "nurture"          },
+    { label: "بازدید"       ,          value: "visit"         },
+    { label: "برداشت عسل"       ,      value: "pickHoney"     },
+    { label: "زنبورستان"       ,       value: "apiary"      },
+    { label: "کندو"         ,          value: "hive"           },
+    { label: "محصولات"         ,        value: "products"         },
+    { label: "ملکه"       ,            value: "queen"           },
+    { label: "رفتار زنبورعسل"       ,  value: "honeyBehaviour" },
+    { label: "ارتباط با برد"       ,   value: "boardConnection"  },
+    { label: "دسترسی ها"       ,       value: "accesses"      },
+    { label: "حساب کاربری"       ,     value: "profile"    },
+    { label: "انتقال"       ,          value: "moveHive"         },
+    { label: "QRCODE"       ,          value: "qrCode"         },
+    { label: "سایر"       ,            value: "other"           },
 
 
 
@@ -83,7 +83,7 @@ function AddTicket(props) {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
 
-    const response = await axios.post("http://188.121.121.225/api/ticket", data , {
+    const response = await axios.post("http://188.121.121.225/api/ticket", {...data,title:"nothing"} , {
       headers: {
         'token': `${bardia}` 
       }
@@ -106,7 +106,6 @@ function AddTicket(props) {
       className={classes.titleBox}
 
       >
-        {props.title}{" "}
       </div>
       <Divider
         style={{ backgroundColor: "rgb( 244 ,244 ,244)", marginTop: "32px" }}
@@ -134,8 +133,8 @@ function AddTicket(props) {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
-                    {...register("title")}
-                    error={errors.title ? true : false}
+                    {...register("category")}
+                    error={errors.category ? true : false}
                   >
                     {options?.map((option) => {
                       return (
@@ -146,12 +145,12 @@ function AddTicket(props) {
                     })}
                   </Select>
                 </div>
-                {/* {errors.title && <p>{errors.title.message}</p>} */}
+                {/* {errors.category && <p>{errors.category.message}</p>} */}
                 <Typography
                   variant="inherit"
                   className={classes.errorTitle}
                 >
-                  {errors.title?.message}
+                  {errors.category?.message}
                 </Typography>
               </Grid>
           </div>

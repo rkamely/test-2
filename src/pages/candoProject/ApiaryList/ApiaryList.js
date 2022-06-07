@@ -22,7 +22,7 @@ import {
   Share,
   TramRounded,
 } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import MaterialTable, { MTableToolbar } from "material-table";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 import jsPDF from "jspdf";
@@ -49,9 +49,9 @@ function ApiaryList() {
   const [toolbar, setToolbar] = useState(false);
   const [scroll, setScroll] = useState("paper");
   const [errorMessage,setErrMessage] = useState()
-  const [error,setIserror] = useState()
+  const [error,setIserror] = useState(false)
   const [ loading , setLoading]=useState(true)
-  
+  const history= useHistory()
 
   const classes = useStyles();
 
@@ -216,7 +216,12 @@ const [ ApiariesList,setApiariesList]=useState([])
          setApiariesList(response.data )
          setLoading(false)
        } catch (error) {
-         console.error(error.message);
+         console.error("سرور دچار مشکل شده است"+"ApiaryList");
+         setErrMessage("  با عرض پوزش سرور دچار مشکل شده است")
+         setIserror(true)
+         history.push("/app/Error")
+         window.location.reload()
+
        }
        // setLoading(false);
      }
@@ -631,6 +636,7 @@ const [ ApiariesList,setApiariesList]=useState([])
 
   return (
     <>
+    
     {loading?
           <div className={classes.Loading}> <Loading color="orange" /></div>: 
     <div>

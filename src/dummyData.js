@@ -291,3 +291,180 @@ export const productRows = [
     price: "$120.00",
   },
 ];
+
+
+
+
+export const dummyVisits  = [
+
+
+  HiveVisit(
+    id: "1",
+    operation: ["باز کردن کندو", "بازدید قاب به قاب"],
+    points: ["دقت به احتمال بچه دهی"],
+    visitQuestions: dummyHiveVisitQuestions,
+    title: "بازدید عمومی",
+    visitType: HiveVisitType.visit,
+  ),
+
+
+  HiveVisit(
+    id: "2",
+    operation: ["باز کردن کندو، و دادن دارو برای مبارزه با آکنه"],
+    points: [
+      "دقت شود که دارو به اندازه استفاده شود.",
+      "برای آشنایی بیشتر لینک ویدیو",
+    ],
+    visitQuestions: cureHiveVisitQuestions,
+    title: "درمان",
+    visitType: HiveVisitType.cure,
+  ),
+
+
+
+  HiveVisit(
+    id: "3",
+    operation: [
+      "باز کردن کندو، دو قاب بدون تخم روز و لاروسر باز را به طبق جدید منتقل کنید",
+      "قرار دادن شبکه مانع بین طبق اصل و طبق اصلی"
+    ],
+    points: [
+      "دقت شود که ملکه در طبق اصلی پایین باقی بماند و همراه قاب ها به طبق بالا نیاید",
+      "برای آشنایی بیشتر لینک ویدیو",
+    ],
+    visitQuestions: [],
+    title: "طبق عسل",
+    visitType: HiveVisitType.tabaghHoney,
+  ),
+
+
+  HiveVisit(
+    id: "4",
+    operation: [
+      "باز کردن کندو، بازدید از روی قاب و بررسی چند قاب",
+      "برداشتن طبق عسل و تکاندن زنبورها از روی قاب های عسل"
+    ],
+    points: [],
+    visitQuestions: catchHoneyVisitQuestions,
+    title: "برداشت عسل",
+    visitType: HiveVisitType.pickHoney,
+  ),
+
+
+  HiveVisit(
+    id: "5",
+    operation: ["باز کردن کندو، و ریختن تعذیه در جای خودش"],
+    points: [],
+    visitQuestions: nutritionVisitQuestions,
+    title: "تغذیه",
+    visitType: HiveVisitType.nurture,
+  ),
+];
+
+
+ const List<dynamic> dummyHiveVisitQuestions = [
+  TwoOptionQuestion(
+    id: "1",
+    title: "مشاهده تخم روز",
+    firstOption: "بله",
+    secondOption: "خیر",
+  ),
+  TwoOptionQuestion(
+    id: "2",
+    title: "مشاهده ملکه",
+    firstOption: "بله",
+    secondOption: "خیر",
+  ),
+  TwoOptionQuestion(
+    id: "3",
+    title: "طرز تخم گذاری",
+    firstOption: "منظم",
+    secondOption: "نامنظم",
+  ),
+  TwoOptionQuestion(
+    id: "4",
+    title: "مشاهده شاخون",
+    firstOption: "بله",
+    secondOption: "خیر",
+  ),
+  ValueSelectionQuestion(
+    id: "5",
+    title: "تعداد قاب زنبور",
+  ),
+  ValueSelectionQuestion(
+    id: "6",
+    title: "تعداد قاب و تخم شیره",
+  ),
+  ValueSelectionQuestion(
+    id: "7",
+    title: "تعداد قاب عسل",
+  ),
+  MultipleOptionsQuestion(
+    id: "8",
+    options: [
+      "آرام بدون دود",
+      "آرام با دود",
+      "خشن بدون دود",
+      "خشن با دود",
+    ],
+    title: "رفتار زنبور",
+  ),
+  TwoOptionQuestion(
+    id: "9",
+    title: "مشکوک به بیماری",
+    firstOption: "بله",
+    secondOption: "خیر",
+  ),
+  RangeSelectionQuestion(
+    id: "10",
+    options: [
+      "خیلی ضعیف",
+      "ضعیف",
+      "متوسط",
+      "قوی",
+      "خیلی قوی",
+    ],
+    title: "قدرت کندو",
+  ),
+];
+
+const List<dynamic> nutritionVisitQuestions = [
+  ValueSelectionQuestion(
+    id: "1",
+    title: "میزان کیک گرده",
+  ),
+  ValueSelectionQuestion(
+    id: "2",
+    title: "آب شکر",
+  ),
+  ValueSelectionQuestion(
+    id: "3",
+    title: "خمیر شیرین",
+  ),
+];
+
+const List<dynamic> catchHoneyVisitQuestions = [
+  ValueSelectionQuestion(
+    id: "1",
+    title: "تعداد برداشت قاب عسل",
+  ),
+  ValueSelectionQuestion(
+    id: "2",
+    title: "وزن برداشت عسل",
+  ),
+];
+
+const List<dynamic> cureHiveVisitQuestions = [
+  MultipleOptionsQuestion(
+    id: "1",
+    options: [
+      "تیمول",
+      "اسید اگزالیک",
+    ],
+    title: "دارو مورد استفاده",
+  ),
+  ValueSelectionQuestion(
+    id: "2",
+    title: "تعداد قاب زنبور",
+  ),
+];

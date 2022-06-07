@@ -33,6 +33,7 @@ import Diagram from "./Diagram";
 import WebHiveSubmit from "./webHiveSubmit";
 import { NavigateBefore } from "@material-ui/icons";
 import Title from "../../../components/Typography/Title/Title";
+import LinaerStepper from "./LinaerStepper";
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -49,6 +50,7 @@ function HiveStatus() {
   };
 
   const handleClose = () => {
+
     setOpen(false);
   };
   let { path, url } = useRouteMatch();
@@ -134,15 +136,18 @@ function HiveStatus() {
         <LeftCard />   
           <div>
           
+         
           <Button onClick={handleClickOpen}> رو من کلیک کن</Button>
-          <Dialog 
+      <Dialog 
+          
         open={open}
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <WebHiveSubmit  onClose={handleClose} />
+        {/* <WebHiveSubmit  onClose={handleClose} /> */}
+        <LinaerStepper onClose={handleClose}/>
         </Dialog > 
           </div>
       </Grid>

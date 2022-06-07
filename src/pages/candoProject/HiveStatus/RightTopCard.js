@@ -371,6 +371,7 @@ function RightTopCard() {
           </Grid>
         </Grid>
       </Widget>
+      
     </Grid>
   );
 }
