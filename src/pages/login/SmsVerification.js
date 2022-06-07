@@ -83,6 +83,8 @@ function SmsVerification(props) {
         .then((respons) => respons.data);
         console.log("response smsVerify",response);
         const token = response?.token;
+        const idUser =response.data._id
+        console.log("idUser",idUser);
         const newPerson = response.data.username
         const isStaff = response.data.isStaff
         localStorage.setItem("isStaff",isStaff);
@@ -90,13 +92,13 @@ function SmsVerification(props) {
       // setAuth({mobile:mobile,code:data.code,token})
 
       if (token) {
-        if(newPerson && newPerson != ""){
-          setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson});
+        if(newPerson && newPerson == ""){
+          setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson, idUser:idUser});
           localStorage.setItem("id_token", token);
           userDispatch({ type: 'LOGIN_SUCCESS' })
         } else {
           localStorage.setItem("id_token", token);
-          setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson});
+          setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson, idUser:idUser});
           history.push("/login/CompleteInformation")
         }
 

@@ -31,6 +31,7 @@ function CompleteInformation(props) {
   var classes = useStyles();
   const history = useHistory();
   const { auth , setAuth } = useContext(AuthContext);
+
 console.log("Auth",auth);
 console.log("setAuth",setAuth);
   // global
@@ -68,7 +69,7 @@ console.log("setAuth",setAuth);
       setIsLoading(true);
       const response = await axios
         .post( 
-          "http://188.121.121.225/api/auth/profile/628b6a53ae8efaaa006ed995",
+          `http://188.121.121.225/api/auth/profile/${auth.idUser}`,
           data,{
           headers: {
             'token': `${token}` ,
