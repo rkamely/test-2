@@ -28,7 +28,7 @@ jobs:
                   key: ${{ hashFiles('package-lock.json') }}
             - uses: actions/cache@v2
               with:
-                  path: dist/
+                  path: build/
                   key: ${{ github.sha }}
 
             - run: cp .github/.versionrc.js .
@@ -36,7 +36,7 @@ jobs:
 
             - run: npm ci --cache .npm --prefer-offline --force
             - run: CI=false && npm run build
-            - run: cp .env VERSION CHANNEL CHANGELOG dist
+            - run: cp .env VERSION CHANNEL CHANGELOG build
 
     test:
         needs: build
@@ -54,19 +54,19 @@ jobs:
             - uses: actions/checkout@v3
             - uses: actions/cache@v2
               with:
-                  path: dist/
+                  path: build/
                   key: ${{ github.sha }}
 
-            - run: echo "VERSION=$(cat dist/VERSION)" >> $GITHUB_ENV
-            - run: echo "CHANNEL=$(cat dist/CHANNEL)" >> $GITHUB_ENV
+            - run: echo "VERSION=$(cat build/VERSION)" >> $GITHUB_ENV
+            - run: echo "CHANNEL=$(cat build/CHANNEL)" >> $GITHUB_ENV
             - run: git tag ${{ env.VERSION }}
             - run: git push --tag
             - uses: softprops/action-gh-release@v1
               with:
                   tag_name: ${{ env.VERSION }}
                   prerelease: ${{ env.CHANNEL != 'latest' }}
-                  body_path: dist/CHANGELOG
-                  files: dist/**
+                  body_path: build/CHANGELOG
+                  files: build/**
 
     release_docker:
         needs: test
@@ -76,10 +76,10 @@ jobs:
             - uses: actions/checkout@v3
             - uses: actions/cache@v2
               with:
-                  path: dist/
+                  path: build/
                   key: ${{ github.sha }}
 
-            - run: echo "VERSION=$(cat dist/VERSION)" >> $GITHUB_ENV
+            - run: echo "VERSION=$(cat build/VERSION)" >> $GITHUB_ENV
             - uses: docker/login-action@v2
               with:
                   registry: ghcr.io
