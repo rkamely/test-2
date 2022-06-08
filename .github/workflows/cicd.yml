@@ -35,8 +35,7 @@ jobs:
             - run: npx standard-version@9.3.2
 
             - run: npm ci --cache .npm --prefer-offline
-            - run: export CI=false
-            - run: npm run build
+            - run: CI=false && npm run build
             - run: cp .env VERSION CHANNEL CHANGELOG dist
 
     test:
