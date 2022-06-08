@@ -15,7 +15,7 @@ const channel = branchKey
     ? branchChannels[branchKey]
     : branch.replace("/", "-");
 
-// require("fs").copyFileSync(".env.example", ".env");
+require("fs").copyFileSync(".env.example", ".env");
 require("fs").writeFileSync("VERSION", "");
 require("fs").writeFileSync("CHANNEL", channel || "latest");
 
