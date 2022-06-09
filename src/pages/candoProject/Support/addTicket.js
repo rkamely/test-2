@@ -34,7 +34,11 @@ function AddTicket(props) {
     text: yup
       .string()
       .required("لطفا درخواست خود را وارد نمایید."),
+    title:yup
+    .string()
+    .required("لطفا عنوان را وارد نمایید."),
       });
+
 
   const [newTicket , setNewTicket] = useState()
 
@@ -42,7 +46,7 @@ function AddTicket(props) {
   const bardia = localStorage.getItem("id_token")
   console.log("bardia",bardia);
 
-
+  
 
 
 
@@ -83,17 +87,18 @@ function AddTicket(props) {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
 
-    const response = await axios.post("http://188.121.121.225/api/ticket", {...data,title:"nothing"} , {
+    const response = await axios.post("http://188.121.121.225/api/ticket", data , {
       headers: {
         'token': `${bardia}` 
       }
-    });
+    })
     console.log("response ro see kon to addticket",response);
     // setData({ data: [...data, data] });
+    localStorage.setItem("AddTicket",response.data.data)
     props.handleClose()
   };
 
-
+  
   const [data, setData] = useState();
   const classes = useStyles();
   return (
@@ -106,6 +111,7 @@ function AddTicket(props) {
       className={classes.titleBox}
 
       >
+        {props.title}
       </div>
       <Divider
         style={{ backgroundColor: "rgb( 244 ,244 ,244)", marginTop: "32px" }}
@@ -118,7 +124,7 @@ function AddTicket(props) {
           <div
              className={classes.topMain}    >
     
-            <h2
+            {/* <h2
               style={{
                 fontSize: "0.8rem",
                 fontWeight: 600,
@@ -126,9 +132,13 @@ function AddTicket(props) {
               }}
             >
               {props.title}
-            </h2>
-            <Grid item xs={12} sm={12} className={classes.Select} >
-                <div className={classes.input}>
+            </h2> */}
+            <div>
+                 <Grid item xs={12} sm={12} className={classes.Select} >
+
+                <div className={classes.inputTitle}>
+                <label className={classes.label}>موضوع تیکت</label>
+
                   <Select
                     className={classes.inputSelect}
                     required
@@ -152,7 +162,31 @@ function AddTicket(props) {
                 >
                   {errors.category?.message}
                 </Typography>
-              </Grid>
+                 </Grid>
+                 <Grid item xs={12} sm={12} className={classes.inputText} >
+            <div className={classes.inputTitle} >
+              <label className={classes.label}>عنوان</label>
+              <TextField
+                className={classes.TextField}
+                required
+                id="title"
+                name="title"
+                variant="outlined"
+                fullWidth
+                margin="dense"
+                {...register("title")}
+                error={errors.title ? true : false}
+              />
+            </div>
+            <Typography
+              variant="inherit"
+              color="textSecondary"
+              className={classes.errorTitle}
+            >
+              {errors.title?.message}
+            </Typography>
+                 </Grid>
+            </div>
           </div>
         
 

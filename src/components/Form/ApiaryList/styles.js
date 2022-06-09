@@ -217,5 +217,11 @@ width:"100%",display:"flex",flexDirection:"column"
     },
     "&:after": {
     borderColor: "red"
-    }}
+    }},
+    Loading:{
+      height:"90%",
+      display:"flex",
+      alignItems:"center"  ,
+      justifyContent:"center"
+  }
 }));

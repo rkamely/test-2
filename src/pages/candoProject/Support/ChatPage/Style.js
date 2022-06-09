@@ -7,7 +7,11 @@ export default makeStyles((theme) => ({
         borderRadius:"12px",
         color:"#fff",
         marginTop:"8px",
-        fontFamily:"Shabnam"
+        fontFamily:"Shabnam",
+        "&:hover": {
+            backgroundColor:"rgb(255,176,4)",
+
+},
     },
     QuestionCountainer:{
         display: "flex",
@@ -57,5 +61,8 @@ export default makeStyles((theme) => ({
         display:"flex",
         alignItems:"center"  ,
         justifyContent:"center"
+    },   
+    errorTitle:{
+        color:"red"
     }
 }));

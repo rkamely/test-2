@@ -48,14 +48,14 @@ const ApiaryAddList = ({Apiary,setApiary , onClose}) => {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
-  const bardia = localStorage.getItem("id_token")
+  const token = localStorage.getItem("id_token")
   const onSubmit = async(data) => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
     const response = await axios.post("http://188.121.121.225/api/apiary/create-by-user", {...data ,"locationLangitude": 8,
     "locationLatitude": 10} ,{
       headers: {
-        'token': `${bardia}` 
+        'token': `${token}` 
       },
     },).then((response)=>{console.log("response1",response)})
     setApiary({ Apiary: [...Apiary, data] });
@@ -91,14 +91,18 @@ const ApiaryAddList = ({Apiary,setApiary , onClose}) => {
     overflow: "hidden",
     marginTop: "16px",
   };
-  let isStaff = localStorage.getItem("isStaff")
-  console.log(isStaff,"isStaff");
-  if(isStaff){
-    isStaff="true"
-  }else{
+  
+  let undefin = !localStorage.getItem("isStaff")
+  let isStaff=localStorage.getItem("isStaff")
+  console.log("is staff 1",isStaff);
+
+  console.log("isStaff 1",undefin);
+
+  if(undefin){
     isStaff="false"
   }
 
+  console.log("isStaff 2",isStaff);
   switch (isStaff) {
     case "true":
      return  <Box px={3} py={2} className={classes.root}>
@@ -411,7 +415,7 @@ const ApiaryAddList = ({Apiary,setApiary , onClose}) => {
     case "false":
       return  <Box px={2} py={2} className={classes.notAccess}>این قسمت فقط برای مدیران کندو فعال است!</Box>
     default:
-      return <Box px={2} py={2} className={classes.notAccess}>این قسمت فقط برای مدیران کندو فعال است!</Box>
+      return <Box px={2} py={2} className={classes.notAccess}>این قسمت فقط برای مدیران  فعال است!</Box>
   }
   
 };

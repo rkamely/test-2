@@ -163,7 +163,12 @@ width:"100%"  },
       // marginLeft: "0px"
        },
   },
-
+  inputTitle:{
+    display:"flex",
+    flexDirection:"culomn",
+    alignItems:"center",
+    justifyContent:"center"
+  },
 
   errorTitle:{ 
     color: "red"

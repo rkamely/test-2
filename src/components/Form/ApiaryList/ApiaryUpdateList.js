@@ -20,6 +20,7 @@ import * as yup from "yup";
 import MapBox from "../../../components/MapBox/MapBox";
 import axios from "axios";
 import { useParams,useHistory } from "react-router-dom";
+import Loading from "../../Loading/Loading";
 
 const ApiaryUpdateList = ({Apiary,setApiary}) => {
   const params = useParams();
@@ -29,6 +30,10 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
   const classes = useStyles();
   const [errorMessage,setErrMessage] = useState()
   const [error,setIserror] = useState()
+  const [ loading , setLoading]=useState(true)
+
+  const edit_id = localStorage.getItem("edit_id")
+  console.log("edit_id",edit_id);
   const validationSchema = yup.object().shape({
     firstname: yup
       .string()
@@ -53,7 +58,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
   const {
     register,
     control,
-    handleSubmit,
+    handleSubmit,reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
@@ -67,14 +72,25 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
      const fetchData = async () =>{
        // setLoading(true);
        try {
-         const {data: response} = await axios.get("http://188.121.121.225/api/apiary/get-for-user",{
+         const {data: response} = await axios.get(`http://188.121.121.225/api/apiary/${edit_id}`,{
            headers: {
              'token': `${bardia}` 
            },
          },);
          console.log( "show response" , response.data);
+         const responseData = response.data;
+         reset({ 
+          name: responseData.name ,
+          hivesWithGoodCondition: responseData.hivesWithGoodCondition,
+          hivesWithBadCondition: responseData. hivesWithBadCondition,
+          hivesWithVisitRequired: responseData.hivesWithVisitRequired,
+          regionVegetation: responseData.regionVegetation,
+          regionType: responseData.regionType,
+          apiaryUsage: responseData.apiaryUsage,
+          users:responseData.users.map((el)=>{return {_id:el}})
+        });
         //  setApiariesList(response.data)
-        //  setLoading(false)
+         setLoading(false)
        } catch (error) {
          console.error(error.message);
          history.push("/app/Error")
@@ -83,7 +99,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
        // setLoading(false);
      }
      fetchData();
-   }, []);
+   }, [reset]);
 
 
  
@@ -92,14 +108,19 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
   const onSubmit = async (data) => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
-    const response = await axios.put(`https://sdfsdfsdf/${params.id}`, data)
+    const response = await axios.put(`http://188.121.121.225/api/apiary/${edit_id}`,{...data ,"locationLangitude": 8,
+    "locationLatitude": 10},{
+      headers: {
+        'token': `${bardia}` 
+      },
+    })
     const updatedApiary=[Apiary]
     const index = updatedApiary.indexOf(data);
     updatedApiary[index]={...data};
     setApiary({Apiary:updatedApiary})
-    // window.location.reload()
+    window.location.reload()
 
-    // setApiary(updatedApiary)
+
   };
 
   // useEffect(() => {
@@ -142,6 +163,8 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
   const isStaff = localStorage.getItem("isStaff")
   return (
     <Fragment>
+     {loading?
+          <div className={classes.Loading}> <Loading color="orange" /></div>: 
       <Paper>
 {   isStaff? <Box px={3} py={2} className={classes.root}>
           <Typography
@@ -445,7 +468,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
             </div>
           </Box>
         </Box>:<Box px={2} py={2} className={classes.notAccess}>اجازه دسترسی به این صفحه را ندارید!</Box>}
-      </Paper>
+      </Paper>}
     </Fragment>
   );
 };

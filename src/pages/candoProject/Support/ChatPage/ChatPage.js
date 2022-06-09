@@ -31,15 +31,15 @@ function SupportPage() {
       });
     /////////////////////////////////////////////////////////////////////////////////////////
   
-    const bardia = localStorage.getItem("id_token")
-    console.log("bardia",bardia);
+    const token = localStorage.getItem("id_token")
+    console.log("token",token);
     useEffect(() => {
       const fetchData = async () =>{
         // setLoading(true);
         try {
           const {data: response} = await axios.get("http://188.121.121.225/api/ticket/get-by-id/" + id,{
             headers: {
-              'token': `${bardia}` 
+              'token': `${token}` 
             },
           },);
           console.log( "show response" , response.data);
@@ -68,18 +68,19 @@ function SupportPage() {
 
     const onSubmit = async(data) => {
       console.log(JSON.stringify(data, null, 2));
-      alert(JSON.stringify(data, null, 2));
-  
+      alert(JSON.stringify(data, null, 2)); 
       const response = await axios.post(`http://188.121.121.225/api/ticket/user-add-message/${id}`, data , {
         headers: {
-          'token': `${bardia}` 
+          'token': `${token}` 
         }
-      });
-      console.log("response ro see kon to addticket",response);
-      window.location.reload()
+      }).then( (respon) => setNewTicket(respon.data.data.messages))
+      // console.log("response adduserticket",response.data.data.messages)
+      
+      // window.location.reload()
         
     };
 console.log("newTicket", newTicket);
+
   const [Question, setQuestion] = useState([
     {
       sender:"user",
@@ -153,11 +154,12 @@ console.log("newTicket", newTicket);
       Time: "12:14",
     },
   ]);
+
 const closeTicket= async ()=>{
   window.confirm("با بستن این تیکت دیگر امکان ارسال پیام در این چت باکس را ندارید")
   const response = await axios.post(`http://188.121.121.225/api/ticket/close-by-user/${id}` , {
     headers: {
-      'token': `${bardia}` 
+      'token': `${token}` 
     }
   });
   console.log("response ro see kon to addticket",response);
@@ -209,11 +211,12 @@ const closeTicket= async ()=>{
 
    
         {/* message */}
-        {newTicket.map((element) => {
+        {newTicket?.map((element) => {
           switch (element.sender) {
           
             case 'user':
-              return (             <Grid
+              return (             
+              <Grid
                 className={classes.QuestionCountainer}
                 item
                 xs={12}
@@ -232,15 +235,13 @@ const closeTicket= async ()=>{
                 </Grid>
               </Grid>)
             case 'admin':
-              return (              <Grid
+              return (              
+              <Grid
                 xs={12}
+                item
+                className={classes.AnswerCountainer}
 
-               item
-               className={classes.AnswerCountainer}
-
-             >
-                 
-                       
+             >              
               <Grid
                  item
                  xs={12}
@@ -253,12 +254,9 @@ const closeTicket= async ()=>{
                <Grid style={{ color: "rgb(173 ,173 ,173)", marginTop: "8px" }}>
                {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')} | {element.Date} {element.Time}
                </Grid>
-               
-
-             </Grid>)
-
+             </Grid>
+             )
           }
-
         })}
 
 
@@ -333,10 +331,10 @@ const closeTicket= async ()=>{
           backgroundColor: "#fff",
           padding: "48px ",
           borderRadius: "12px",
-          position: "fixed",
-          bottom:0,
-          left:20,
-          width:"80%",
+          // position: "fixed",
+          // bottom:0,
+          // left:20,
+          // width:"80%",
         }}
       >
         <TextareaAutosize

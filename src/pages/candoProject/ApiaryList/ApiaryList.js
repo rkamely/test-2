@@ -60,9 +60,11 @@ function ApiaryList() {
 
     setScroll(scrollType);
   };
-  const handleClickEdit = (scrollType) => () => {
+  const handleClickEdit = (scrollType,id) => () => {
     setOpenEdit(true);
     setScroll(scrollType);
+    localStorage.setItem("edit_id",id)
+
   };  
   const handleDeleteOpen = (scrollType) => () => {
     setOpenDelete(true);
@@ -201,26 +203,30 @@ const [ ApiariesList,setApiariesList]=useState([])
 
    /////////////////////////////////////////////////////////////////////////////////////////
   
-   const bardia = localStorage.getItem("id_token")
-   console.log("bardia",bardia);
+   const token = localStorage.getItem("id_token")
+   console.log("bardia",token);
    useEffect(() => {
      const fetchData = async () =>{
        // setLoading(true);
        try {
          const {data: response} = await axios.get("http://188.121.121.225/api/apiary/get-for-user",{
            headers: {
-             'token': `${bardia}` 
+             'token': `${token}` 
            },
          },);
          console.log( "show response" , response.data);
          setApiariesList(response.data )
          setLoading(false)
        } catch (error) {
+        if (error.response?.status === 401) {
+          localStorage.clear("id_token")
+        }
          console.error("سرور دچار مشکل شده است"+"ApiaryList");
          setErrMessage("  با عرض پوزش سرور دچار مشکل شده است")
          setIserror(true)
-         history.push("/app/Error")
-         window.location.reload()
+
+        //  history.push("/app/Error")
+        //  window.location.reload()
 
        }
        // setLoading(false);
@@ -342,7 +348,7 @@ const [ ApiariesList,setApiariesList]=useState([])
     },
     {
       title: "نوع منطقه",
-      field: "apiaryUsage",
+      field: "regionType",
       cellStyle: {
         textAlign: "right",
       },
@@ -363,7 +369,7 @@ const [ ApiariesList,setApiariesList]=useState([])
     },
     {
       title: "کاربرد",
-      field: "regionType",
+      field: "apiaryUsage",
       cellStyle: {
         textAlign: "right",
       },
@@ -465,7 +471,7 @@ const [ ApiariesList,setApiariesList]=useState([])
                       <div style={{ borderRadius: " 16px", padding: " 16px",textDecoration:"none"}}>
                         <Link
                           to={`/app/ApiaryList/${rowData._id}`}
-                          onClick={handleClickEdit("body")}
+                          onClick={handleClickEdit("body",rowData._id)}
                           style={{
                             display: "flex",
                             alignItems: "center",
@@ -592,20 +598,36 @@ const [ ApiariesList,setApiariesList]=useState([])
 
   const handleBulkDelete = () => {
     if(window.confirm("آیا از حدف این مورد اطمینان دارید؟")){
-      // const response = await axios.delete(`https://sdfsdf/${selectedRows[0].id}`)
-    console.log("selectedRows",selectedRows);
-    const updatedData = Apiary.filter((row) => !selectedRows.includes(row));
-    setApiary(updatedData);
+      selectedRows.map(async(selectedRow)=>{
+        console.log("selectedRow",selectedRow._id);
+      const response = await axios.delete(`http://188.121.121.225/api/apiary/${selectedRow._id}`,{
+        headers: {
+          'token': `${token}` 
+        },
+      },)
+      window.location.reload()
+      })
+      // const response = await axios.delete(`http://188.121.121.225/api/user/${selectedRows[0].id}`)
+    // console.log("selectedRows",selectedRows._id);
+    // const updatedData = Apiary.filter((row) => !selectedRows.includes(row));
+    // setApiary(updatedData);
   }};
 
-  const onRowDelete = (rowData,popupState) => {
+  const onRowDelete = async(rowData,popupState) => {
     if(window.confirm("آیا از حدف این مورد اطمینان دارید؟")){
-      // const response = await axios.delete(`https://sdfsdf/${rowData.id}`)
-    console.log("rowData23123", rowData);
-    const updatedData = Apiary.filter((row) => ![rowData].includes(row));
-    setApiary(updatedData);
+      console.log(rowData._id);
+      const response = await axios.delete(`http://188.121.121.225/api/apiary/${rowData._id}`,{
+        headers: {
+          'token': `${token}` 
+        },
+      },)
+ 
+
+      // console.log("rowData23123", rowData);
+    // const updatedData = Apiary.filter((row) => ![rowData].includes(row));
+    // setApiary(updatedData);
     popupState.close();
-   
+    window.location.reload()
   }};
   
   const downloadPdf = () => {
@@ -670,7 +692,7 @@ const [ ApiariesList,setApiariesList]=useState([])
 
           toolbar: {
             nRowsSelected: "{0} مورد انتخاب شد",
-            searchPlaceholder: "جستجو ",
+            searchPlaceholder: "جستجو زنبورستان",
           },
 
           header: {
@@ -748,25 +770,7 @@ const [ ApiariesList,setApiariesList]=useState([])
                           style={{ borderRadius: " 16px", padding: " 16px" }}
                         >
                    
-                          <Link
-                            to={`/app/ApiaryList/${selectedRows}`}
-                            onClick={handleClickEdit("body")}
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "flex-start",
-                              cursor: "pointer",
-                            }}
-                          >
-                            <Edit style={{ marginLeft: "16px" }} />
-                            ویرایش
-                          </Link>
-                          <hr
-                            style={{
-                              borderTop: "1px solid rgb( 240, 240, 240)",
-                              height: "2px",
-                            }}
-                          />
+
                           <div
                             style={{
                               display: "flex",

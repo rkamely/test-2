@@ -92,7 +92,7 @@ function SmsVerification(props) {
       // setAuth({mobile:mobile,code:data.code,token})
 
       if (token) {
-        if(newPerson && newPerson == ""){
+        if(newPerson && newPerson !== ""){
           setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson, idUser:idUser});
           localStorage.setItem("id_token", token);
           userDispatch({ type: 'LOGIN_SUCCESS' })

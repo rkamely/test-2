@@ -34,17 +34,17 @@ function Support() {
   /////////////////////////////////////////////////////////////////////////////////////////
   
   const axiosInstance = useAxiosPrivate()
-  const bardia = localStorage.getItem("id_token")
-  console.log("bardia",bardia);
+  const token = localStorage.getItem("id_token")
+  console.log("token",token);
   useEffect(() => {
     const fetchData = async () =>{
       // setLoading(true);
       try {
         const {data: response} = await axios.get("http://188.121.121.225/api/ticket/getUserTickets",{
           headers: {
-            'token': `${bardia}` 
+            'token': `${token}` 
           },
-        },);
+        },)
         console.log( "show response" , response.data);
         console.log( "auth ro see kon to support" , auth);
         setNewTicket(response.data )
@@ -143,7 +143,11 @@ function Support() {
     setAddTickets(true);
   };
   // console.log("11111111",newTicket)
- 
+
+  console.log("newTicket",newTicket);
+  console.log("123456");
+  // const AddTicket=localStorage.getItem("AddTicket")
+  // console.log("AddTicket",AddTicket);
   return (
     <>
     {loading?
@@ -258,6 +262,7 @@ function Support() {
             handleClose={handleClose}
             title=" تیکت جدید"
             style={{ width: "100%" }}
+            
           />
         )}
       </Dialog>
