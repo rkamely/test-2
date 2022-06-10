@@ -66,7 +66,6 @@ jobs:
                   tag_name: ${{ env.VERSION }}
                   prerelease: ${{ env.CHANNEL != 'latest' }}
                   body_path: build/CHANGELOG
-                  files: build/**
 
     release_docker:
         needs: test
