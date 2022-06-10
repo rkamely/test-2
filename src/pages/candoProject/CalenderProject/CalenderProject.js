@@ -29,6 +29,7 @@ import "./CalenderProject.css";
 import FilterCalender from "./FilterCalender";
 import moment from "moment";
 import AddJob from "../../../components/Form/JobUser/AddJob";
+import { Dialog } from "@material-ui/core";
 export default class CalenderProject extends React.Component {
   constructor() {
     super();
@@ -37,8 +38,14 @@ export default class CalenderProject extends React.Component {
   state = {
     weekendsVisible: true,
     currentEvents: [],
-  };
+    open:true
 
+  };
+  handleClose = () => {
+    this.setState({
+      open:false
+    });
+  };
   onEventAdded = (event) => {
     let calenderApi = this.calenderRef.current.getApi();
     calenderApi.addEvent(event);
@@ -55,7 +62,7 @@ export default class CalenderProject extends React.Component {
   render() {
     return (
       <div className="demo-app">
-        {/* <AddJob onEventAdded={event=>this.onEventAdded(event)} /> */}
+        {/* <AddJob  onEventAdded={event=>this.onEventAdded(event)} /> */}
          <div className="demo-app-main">
           <FullCalendar
             ref={this.calenderRef}
@@ -103,16 +110,16 @@ export default class CalenderProject extends React.Component {
           <FilterCalender />
         </div>
 
-        {/* <Dialog
-        open={open}
-        onClose={handleClose}
-        scroll={scroll}
+        <Dialog
+        open={this.props.open}
+        onClose={this.props.handleClose}
+        scroll={this.props.scroll}
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
         maxWidth="md"
       >
-             <AddJob onClick={handleClose}/>
-      </Dialog> */}
+             <AddJob handleClose={this.props.handleClose}  onEventAdded={event=>this.onEventAdded(event)}/>
+      </Dialog>
       </div>
     );
   }
@@ -190,6 +197,7 @@ export default class CalenderProject extends React.Component {
     });
   };
 }
+
 
 function renderEventContent(eventInfo) {
   return (

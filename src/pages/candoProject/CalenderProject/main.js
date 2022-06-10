@@ -95,7 +95,7 @@ function Main() {
         <Grid item xs={12} sm={12}>
           <Switch>
             <Route exact path={`${path}`}>
-              <CalenderProject />
+              <CalenderProject open={open}  handleClose={handleClose} scroll={scroll}/>
             </Route>
             <Route path={`${path}/Jobs`}>
               <JobCalender />
@@ -104,7 +104,7 @@ function Main() {
         </Grid>
       </Grid>
 
-      <Dialog
+      {/* <Dialog
         open={open}
         onClose={handleClose}
         scroll={scroll}
@@ -112,8 +112,8 @@ function Main() {
         aria-describedby="scroll-dialog-description"
         maxWidth="md"
       >
-        <AddJob onClick={handleClose} />
-      </Dialog>
+        <AddJob handleClose={handleClose} />
+      </Dialog> */}
     </>
   );
 }

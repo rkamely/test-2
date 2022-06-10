@@ -32,8 +32,8 @@ import {
 } from "@material-ui/pickers";
 import { date } from "yup/lib/locale";
 
-const AddJob = (props) => {
-  console.log("props", props);
+const AddJob = ({handleClose,onEventAdded}) => {
+
   const classes = useStyles();
   const [selectedDate, handleDateChange] = useState(moment());
   jMoment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
@@ -66,7 +66,7 @@ const AddJob = (props) => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
     // event.preventDefault();
-    props.onEventAdded({
+    onEventAdded({
       title: data.jobTitle,
       start: new Date(data.dateInput),
       time: data.startTime,
@@ -532,7 +532,7 @@ const AddJob = (props) => {
             <Button
               variant="contained"
               className={classes.Button2}
-              onClick={props.handleClose}
+              onClick={handleClose}
             >
               انصراف
             </Button>
