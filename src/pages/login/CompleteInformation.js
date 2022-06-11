@@ -67,9 +67,10 @@ console.log("setAuth",setAuth);
     alert(JSON.stringify(data, null, 2));
     try {
       setIsLoading(true);
+      console.log("auth.idUser",auth.idUser);
       const response = await axios
         .post( 
-          `http://188.121.121.225/api/auth/profile/${auth.idUser}`,
+          `http://185.202.113.165:3000/api/auth/profile`,
           data,{
           headers: {
             'token': `${token}` ,

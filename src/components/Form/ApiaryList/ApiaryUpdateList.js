@@ -35,7 +35,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
   const edit_id = localStorage.getItem("edit_id")
   console.log("edit_id",edit_id);
   const validationSchema = yup.object().shape({
-    firstname: yup
+    name: yup
       .string()
       .required("لطفا نام زنبورستان وارد کنید")
       .min(2, "برای وارد کردن نام حداقل ۲ کاراکتر لازم است")
@@ -72,7 +72,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
      const fetchData = async () =>{
        // setLoading(true);
        try {
-         const {data: response} = await axios.get(`http://188.121.121.225/api/apiary/${edit_id}`,{
+         const {data: response} = await axios.get(`http://185.202.113.165:3000/api/apiary/get-for-user/${edit_id}`,{
            headers: {
              'token': `${bardia}` 
            },
@@ -108,7 +108,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
   const onSubmit = async (data) => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
-    const response = await axios.put(`http://188.121.121.225/api/apiary/${edit_id}`,{...data ,"locationLangitude": 8,
+    const response = await axios.put(`http://185.202.113.165:3000/api/apiary/update-for-user/${edit_id}`,{...data ,"locationLangitude": 8,
     "locationLatitude": 10},{
       headers: {
         'token': `${bardia}` 
@@ -187,13 +187,13 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                   <TextField
                     className={classes.TextField}
                     required
-                    id="firstname"
-                    name="firstname"
+                    id="name"
+                    name="name"
                     variant="outlined"
                     fullWidth
                     margin="dense"
-                    {...register("firstname")}
-                    error={errors.firstname ? true : false}
+                    {...register("name")}
+                    error={errors.name ? true : false}
                   />
                 </div>
                 <Typography
@@ -290,7 +290,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                     required
                     variant="outlined"
                     name = "regionVegetation"
-                    defaultValue={option[1].value}
+                    // defaultValue={option[1].value}
                     {...register("regionVegetation")}
                     error={errors.regionVegetation ? true : false}
                     // value={}
@@ -320,7 +320,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
-                    defaultValue={option2[1].value}
+                    // defaultValue={option2[1].value}
                     {...register("regionType")}
                     error={errors.regionType ? true : false}
                     // value={}
@@ -414,7 +414,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
-                    defaultValue={option3[1].value}
+                    // defaultValue={option3[1].value}
 
                     {...register("apiaryUsage")}
                     error={errors.apiaryUsage ? true : false}

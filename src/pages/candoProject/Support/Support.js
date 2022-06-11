@@ -29,8 +29,8 @@ function Support() {
   // global
   // var layoutState = useLayoutState();
   const {  auth  , setAuth } = useContext(AuthContext)
-  const[loading,setLoading]=useState(true)
-  const [show,setShow]=useState(false)
+  const[ loading , setLoading] = useState(true)
+  const [  show , setShow ] = useState(false)
   /////////////////////////////////////////////////////////////////////////////////////////
   
   const axiosInstance = useAxiosPrivate()
@@ -40,17 +40,21 @@ function Support() {
     const fetchData = async () =>{
       // setLoading(true);
       try {
-        const {data: response} = await axios.get("http://188.121.121.225/api/ticket/getUserTickets",{
+        const {data: response} = await axios.get("http://185.202.113.165:3000/api/ticket/getUserTickets",{
           headers: {
             'token': `${token}` 
           },
         },)
         console.log( "show response" , response.data);
+        console.log( "show response lenght" , response.data.length);
+        const length=response.data.length
         console.log( "auth ro see kon to support" , auth);
         setNewTicket(response.data )
         setLoading(false)
-        if(response.data ){
+        if( length!=0 ){
           setShow(true)
+        }else{
+          setShow(false)
         }
     
       } catch (error) {
@@ -145,9 +149,9 @@ function Support() {
   // console.log("11111111",newTicket)
 
   console.log("newTicket",newTicket);
-  console.log("123456");
   // const AddTicket=localStorage.getItem("AddTicket")
   // console.log("AddTicket",AddTicket);
+  console.log("show",show);
   return (
     <>
     {loading?

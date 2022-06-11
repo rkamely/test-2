@@ -52,7 +52,7 @@ const ApiaryAddList = ({Apiary,setApiary , onClose}) => {
   const onSubmit = async(data) => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
-    const response = await axios.post("http://188.121.121.225/api/apiary/create-by-user", {...data ,"locationLangitude": 8,
+    const response = await axios.post("http://185.202.113.165:3000/api/apiary/create-by-user", {...data ,"locationLangitude": 8,
     "locationLatitude": 10} ,{
       headers: {
         'token': `${token}` 

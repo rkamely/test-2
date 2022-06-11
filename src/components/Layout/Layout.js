@@ -35,6 +35,7 @@ import main from "../../pages/candoProject/CalenderProject/main";
 import AuthContext from "../../pages/context/AuthProvider";
 import discoverPage from "../../pages/candoProject/discoverPage/discoverPage";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
+import tutorialPage from "../../pages/candoProject/tutorialPage/tutorialPage";
 function Layout(props) {
   var classes = useStyles();
   // global
@@ -90,6 +91,8 @@ function Layout(props) {
             <Route path="/app/Support" component={Support} />
             <Route path="/app/setting" component={Edituser} />
             <Route path="/app/new" component={discoverPage} />
+            <Route path="/app/Education" component={tutorialPage} />
+            
             <Route path="/app/Error" component={ErrorBoundary} />
           </Switch>
         </div>

@@ -59,7 +59,7 @@ const MapBox = ({style}) => {
             onDragEnd={onMarkerDragEnd}
           >
           </Marker>
-          <PinBar size={50} />
+          {/* <PinBar size={50} /> */}
 
           <NavigationControl />
     </ReactMapGL>
@@ -88,7 +88,7 @@ const MapBox = ({style}) => {
        
 
         </ReactMapGL> */}
-             <ControlPanel events={events} />
+             {/* <ControlPanel events={events} /> */}
       </>
 
   );

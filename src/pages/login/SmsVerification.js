@@ -73,7 +73,7 @@ function SmsVerification(props) {
     try {
       const response = await axios
         .post(
-          "http://188.121.121.225/api/auth/verify",
+          "http://185.202.113.165:3000/api/auth/verify",
           { code: data.code, mobile: mobile },
           {
             headers: { "Content-Type": "application/json" },

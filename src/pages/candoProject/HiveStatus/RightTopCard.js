@@ -1,13 +1,28 @@
 import { Grid, Typography } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import Widget from "../../../components/Widget/Widget";
 import useStyles from "./Style";
 
 function RightTopCard() {
   const classes = useStyles();
+  const [cards,setCards]=useState([
+    {
+    title:"تاریخ بازدید",
+    icon:""
+  },
+  
 
+ ]
+  )
+
+
+
+
+  
   return (
-    <Grid
+<>
+
+  <Grid
       item
       xs={12}
       style={{ fontWeight: 600,height:"480px"}}
@@ -50,7 +65,7 @@ function RightTopCard() {
 
 
 
-
+<>
         <Grid
           item
           xs={12}
@@ -121,7 +136,7 @@ function RightTopCard() {
           >
             <Grid item alignItems="center" justifyContent="space-between">
               <Typography variant="p" weight="Bold" noWrap>
-                تاریخ بازدید
+                فعالیت کندو
               </Typography>
             </Grid>
             <Grid
@@ -130,7 +145,7 @@ function RightTopCard() {
               justifyContent="space-between"
               //   className={classes}
             >
-              <img src="/assets/refresh-svgrepo-com-1.svg" />
+              <img src="/assets/web-app.svg" />
             </Grid>
           </Grid>
 
@@ -149,7 +164,7 @@ function RightTopCard() {
           >
             <Grid item alignItems="center" justifyContent="space-between">
               <Typography variant="p" weight="Bold" noWrap>
-                تاریخ بازدید
+                قدرت کندو
               </Typography>
             </Grid>
             <Grid
@@ -158,26 +173,11 @@ function RightTopCard() {
               justifyContent="space-between"
               //   className={classes}
             >
-              <img src="/assets/refresh-svgrepo-com-1.svg" />
+              <img src="/assets/power-svgrepo-com.svg" />
             </Grid>
           </Grid>
 
         </Grid>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <Grid
           item
@@ -204,7 +204,7 @@ function RightTopCard() {
           >
             <Grid item alignItems="center" justifyContent="space-between">
               <Typography variant="p" weight="Bold" noWrap>
-                تاریخ بازدید
+                تعداد قاب
               </Typography>
             </Grid>
 
@@ -214,7 +214,7 @@ function RightTopCard() {
               justifyContent="space-between"
               //   className={classes}
             >
-              <img src="/assets/refresh-svgrepo-com-1.svg" />
+              <img src="/assets/production.svg" />
             </Grid>
           </Grid>
 
@@ -233,7 +233,7 @@ function RightTopCard() {
           >
             <Grid item alignItems="center" justifyContent="space-between">
               <Typography variant="p" weight="Bold" noWrap>
-                تاریخ بازدید
+                سن کندو
               </Typography>
             </Grid>
             <Grid
@@ -242,7 +242,7 @@ function RightTopCard() {
               justifyContent="space-between"
               //   className={classes}
             >
-              <img src="/assets/refresh-svgrepo-com-1.svg" />
+              <img src="/assets/arrow-growth-svgrepo-com.svg" />
             </Grid>
           </Grid>
 
@@ -261,7 +261,7 @@ function RightTopCard() {
           >
             <Grid item alignItems="center" justifyContent="space-between">
               <Typography variant="p" weight="Bold" noWrap>
-                تاریخ بازدید
+                نوع کندو
               </Typography>
             </Grid>
             <Grid
@@ -270,7 +270,7 @@ function RightTopCard() {
               justifyContent="space-between"
               //   className={classes}
             >
-              <img src="/assets/refresh-svgrepo-com-1.svg" />
+              <img src="/assets/hive-svgrepo-com (2).svg" />
             </Grid>
           </Grid>
         </Grid>
@@ -300,7 +300,7 @@ function RightTopCard() {
           >
             <Grid item alignItems="center" justifyContent="space-between">
               <Typography variant="p" weight="Bold" noWrap>
-                تاریخ بازدید
+                تغذیه
               </Typography>
             </Grid>
 
@@ -310,7 +310,7 @@ function RightTopCard() {
               justifyContent="space-between"
               //   className={classes}
             >
-              <img src="/assets/refresh-svgrepo-com-1.svg" />
+              <img src="/assets/opening-aperture-svgrepo-com.svg" />
             </Grid>
           </Grid>
 
@@ -329,7 +329,7 @@ function RightTopCard() {
           >
             <Grid item alignItems="center" justifyContent="space-between">
               <Typography variant="p" weight="Bold" noWrap>
-                تاریخ بازدید
+                بیماری
               </Typography>
             </Grid>
             <Grid
@@ -338,7 +338,7 @@ function RightTopCard() {
               justifyContent="space-between"
               //   className={classes}
             >
-              <img src="/assets/refresh-svgrepo-com-1.svg" />
+              <img src="/assets/sickness-svgrepo-com.svg" />
             </Grid>
           </Grid>
 
@@ -357,7 +357,7 @@ function RightTopCard() {
           >
             <Grid item alignItems="center" justifyContent="space-between">
               <Typography variant="p" weight="Bold" noWrap>
-                تاریخ بازدید
+                درمان فعلی
               </Typography>
             </Grid>
             <Grid
@@ -366,13 +366,120 @@ function RightTopCard() {
               justifyContent="space-between"
               //   className={classes}
             >
-              <img src="/assets/refresh-svgrepo-com-1.svg" />
+              <img src="/assets/medicine-svgrepo-com.svg" />
             </Grid>
           </Grid>
         </Grid>
+
+        <Grid
+          item
+          xs={12}
+          style={{
+            display: "flex",
+            marginTop: "32px",
+            justifyContent: "space-between",
+            alignItems: "center",
+            
+          }}
+        >
+          <Grid
+            item
+            sm={3}
+            xs={12}
+            color="secondary"
+            className={classes.cards}
+            style={{
+              fontWeight: 600,
+              display: "flex",
+              justifyContent: "space-around",
+              alignItems: "flex-start",
+            }}
+          >
+            <Grid item alignItems="center" justifyContent="space-between">
+              <Typography variant="p" weight="Bold" noWrap>
+                نوع ملکه
+              </Typography>
+            </Grid>
+
+            <Grid
+              item
+              alignItems="center"
+              justifyContent="space-between"
+              //   className={classes}
+            >
+              <img src="/assets/Component 24 – 53.svg" />
+            </Grid>
+          </Grid>
+
+          <Grid
+            item
+            sm={3}
+            xs={12}
+            color="secondary"
+            className={classes.cards}
+            style={{
+              fontWeight: 600,
+              display: "flex",
+              justifyContent: "space-around",
+              alignItems: "flex-start",
+          
+
+            }}
+          >
+            <Grid item alignItems="center" justifyContent="space-between">
+              <Typography variant="p" weight="Bold" noWrap>
+                تاریخ بازدید
+              </Typography>
+            </Grid>
+
+            <Grid
+              item
+              alignItems="center"
+              justifyContent="space-between"
+              //   className={classes}
+            >
+              <img src="/assets/refresh-svgrepo-com-1.svg" />
+            </Grid>
+          </Grid>
+
+          <Grid
+            item
+            sm={3}
+            xs={12}
+            color="secondary"
+            className={classes.cards}
+            style={{
+              fontWeight: 600,
+              display: "flex",
+              justifyContent: "space-around",
+              alignItems: "flex-start",
+            }}
+          >
+            <Grid item alignItems="center" justifyContent="space-between">
+              <Typography variant="p" weight="Bold" noWrap>
+                سلامت کندو
+              </Typography>
+            </Grid>
+            <Grid
+              item
+              alignItems="center"
+              justifyContent="space-between"
+              //   className={classes}
+            >
+              <img src="/assets/Group 11026.svg" />
+            </Grid>
+          </Grid>
+        </Grid>
+
+        
+</>
+
+
       </Widget>
       
     </Grid>
+
+</>
   );
 }
 

@@ -209,7 +209,7 @@ const [ ApiariesList,setApiariesList]=useState([])
      const fetchData = async () =>{
        // setLoading(true);
        try {
-         const {data: response} = await axios.get("http://188.121.121.225/api/apiary/get-for-user",{
+         const {data: response} = await axios.get("http://185.202.113.165:3000/api/apiary/get-for-user",{
            headers: {
              'token': `${token}` 
            },
@@ -477,7 +477,9 @@ const [ ApiariesList,setApiariesList]=useState([])
                             alignItems: "center",
                             justifyContent: "flex-start",
                             cursor: "pointer",
-                            color:"#000" 
+                            color:"#000" ,
+                            textDecoration:"none",
+                            color:"#000"
                           }}
                         >
                           <Edit style={{ marginLeft: "16px" }} />
@@ -495,6 +497,7 @@ const [ ApiariesList,setApiariesList]=useState([])
                             alignItems: "center",
                             justifyContent: "flex-start",
                             cursor: "pointer",
+                            color:"#000"
                           }}
                         >
                           <Share style={{ marginLeft: "16px" }} />
@@ -512,6 +515,7 @@ const [ ApiariesList,setApiariesList]=useState([])
                             alignItems: "center",
                             justifyContent: "flex-start",
                             cursor: "pointer",
+                            color:"#000"
                           }}
                         >
                           <img
@@ -542,7 +546,7 @@ const [ ApiariesList,setApiariesList]=useState([])
                             src="/assets/trash-svgrepo-com-2.svg"
                             style={{ margin: "0 0px 0 24px" }}
                           />
-                         S حذف
+                          حذف
                         </div>
                       </div>
                     </Popover>
@@ -600,7 +604,7 @@ const [ ApiariesList,setApiariesList]=useState([])
     if(window.confirm("آیا از حدف این مورد اطمینان دارید؟")){
       selectedRows.map(async(selectedRow)=>{
         console.log("selectedRow",selectedRow._id);
-      const response = await axios.delete(`http://188.121.121.225/api/apiary/${selectedRow._id}`,{
+      const response = await axios.delete(`http://185.202.113.165:3000/api/apiary/delete-for-user/${selectedRow._id}`,{
         headers: {
           'token': `${token}` 
         },
@@ -616,7 +620,7 @@ const [ ApiariesList,setApiariesList]=useState([])
   const onRowDelete = async(rowData,popupState) => {
     if(window.confirm("آیا از حدف این مورد اطمینان دارید؟")){
       console.log(rowData._id);
-      const response = await axios.delete(`http://188.121.121.225/api/apiary/${rowData._id}`,{
+      const response = await axios.delete(`http://185.202.113.165:3000/api/apiary/delete-for-user/${rowData._id}`,{
         headers: {
           'token': `${token}` 
         },

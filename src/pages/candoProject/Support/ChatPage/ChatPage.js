@@ -37,7 +37,7 @@ function SupportPage() {
       const fetchData = async () =>{
         // setLoading(true);
         try {
-          const {data: response} = await axios.get("http://188.121.121.225/api/ticket/get-by-id/" + id,{
+          const {data: response} = await axios.get("http://185.202.113.165:3000/api/ticket/get-by-id/" + id,{
             headers: {
               'token': `${token}` 
             },
@@ -69,7 +69,7 @@ function SupportPage() {
     const onSubmit = async(data) => {
       console.log(JSON.stringify(data, null, 2));
       alert(JSON.stringify(data, null, 2)); 
-      const response = await axios.post(`http://188.121.121.225/api/ticket/user-add-message/${id}`, data , {
+      const response = await axios.post(`http://185.202.113.165:3000/api/ticket/user-add-message/${id}`, data , {
         headers: {
           'token': `${token}` 
         }
@@ -157,7 +157,7 @@ console.log("newTicket", newTicket);
 
 const closeTicket= async ()=>{
   window.confirm("با بستن این تیکت دیگر امکان ارسال پیام در این چت باکس را ندارید")
-  const response = await axios.post(`http://188.121.121.225/api/ticket/close-by-user/${id}` , {
+  const response = await axios.post(`http://185.202.113.165:3000/api/ticket/close-by-user/${id}` , {
     headers: {
       'token': `${token}` 
     }

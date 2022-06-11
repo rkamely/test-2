@@ -7,7 +7,8 @@ import {
   DialogTitle,
   Grid,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -38,9 +39,40 @@ function Main() {
     setOpen(false);
   };
 
- 
+      /////////////////////////////////////////////////////////////////////////////////////////
+  
+      const token = localStorage.getItem("id_token")
+   console.log(token);
+      useEffect(() => {
+        const fetchData = async () =>{
+          // setLoading(true);
+          try {
+            const {data: response} = await axios.post("http://185.202.113.165:3000/api/event/GetForMonth",{ "date":"1401/03/01"},{
+              headers: {
+                'token': `${token}` 
+              },
+            },);
+            console.log( "show response" , response.data);
+            // setApiariesList(response.data )
+            // setLoading(false)
+          } catch (error) {
+          //  if (error.response?.status === 401) {
+          //    localStorage.clear("id_token")
+          //  }
+           console.error("سرور دچار مشکل شده است"+"ApiaryList");
+          //  setErrMessage("  با عرض پوزش سرور دچار مشکل شده است")
+          //  setIserror(true)
+          //  history.push("/app/Error")
+          //  window.location.reload()
+          }
+          // setLoading(false);
+        }
+        fetchData();
+      }, []);
+   
 
-
+      /////////////////////////////////////////////////////////////////////////////////////////
+      
   const descriptionElementRef = React.useRef(null);
 
   return (

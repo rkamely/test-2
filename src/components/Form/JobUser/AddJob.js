@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import jMoment from "moment-jalaali";
 import JalaliUtils from "@date-io/jalaali";
@@ -27,26 +27,31 @@ import {
 } from "react-router-dom";
 import {
   DatePicker,
+  KeyboardDatePicker,
+  KeyboardTimePicker,
   MuiPickersUtilsProvider,
   TimePicker,
 } from "@material-ui/pickers";
 import { date } from "yup/lib/locale";
+import axios from "axios";
 
 const AddJob = ({handleClose,onEventAdded}) => {
 
   const classes = useStyles();
-  const [selectedDate, handleDateChange] = useState(moment());
+  // const [selectedDate, handleDateChange] = useState(moment());
   jMoment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
 
   const validationSchema = yup.object().shape({
-    Username: yup.string().required("لطفا نام کاربر را وارد کنید"),
-    Beehive: yup.string().required("لطفا نام زنبورستان را وارد کنید"),
-    Hive: yup.string().required("لطفا نام کندو را وارد کنید"),
-    // Priority: yup.string().required("لطفا الویت را مشخص کنید"),
+    user: yup.string().required("لطفا نام کاربر را وارد کنید"),
+    apiary: yup.string().required("لطفا نام زنبورستان را وارد کنید"),
+    // Hive: yup.string().required("لطفا نام کندو را وارد کنید"),
+    priority: yup.string().required("لطفا الویت را مشخص کنید"),
     // Reminder:yup.string().required("لطفا الویت را مشخص کنید"),
-    jobTitle: yup.string().required("لطفا عنوان کار خود را وارد کنید"),
-    email: yup.string().email("لطفا ایمیل معتبر وارد کنید"),
-    startTime: yup.date().nullable(),
+    title: yup.string().required("لطفا عنوان کار خود را وارد کنید"),
+    fromDate: yup.date().nullable(),
+    toDate: yup.date().nullable(),
+    fromTime: yup.date().nullable(),
+    toTime: yup.date().nullable(),
     // Checkbox:yup.boolean()
     // .oneOf([true], "این ")
   });
@@ -57,26 +62,114 @@ const AddJob = ({handleClose,onEventAdded}) => {
     watch,
     handleSubmit,
     formState: { errors },
+     getValues, setValue
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
   const [start, setStart] = useState(new Date(2022, 4, 19));
-  const [end, setEnd] = useState(new Date());
-  const onSubmit = (data) => {
+  const [selectedDate, handleDateChange] = useState(new Date());
+
+
+
+  const [fromDate, setFromDate] = useState(null);
+  const [ toDate,setToDate] =useState(null);
+  const [ fromTime,setFromTime] =useState(null);
+  const [ toTime,setTotime] =useState(null);
+  const value = getValues('fromDate') ;
+  const valueToDate = getValues('toDate') ;
+  const valueFromTime=getValues('fromTime') ;
+  const valueTotime=getValues('toTime') ;
+
+  useEffect(() => {
+    register('fromDate');
+    register('toDate');
+  }, [register]);
+
+  useEffect(() => {
+    register('fromTime');
+    register('toTime');
+  }, [register]);
+
+  useEffect(() => {
+    setFromDate(value || null);
+    setToDate(valueToDate || null);
+    setFromTime(valueFromTime || null);
+    setTotime(valueTotime || null); 
+  }, [setFromDate, value,setToDate,valueToDate,setFromTime, valueFromTime,setTotime,valueTotime])
+  
+  // useEffect(() => {
+  
+  //   setTotime(valueTotime || null); 
+  // }, [setFromTime, valueFromTime,setTotime,valueTotime])
+
+      /////////////////////////////////////////////////////////////////////////////////////////
+  
+      const token = localStorage.getItem("id_token")
+   console.log(token);
+      useEffect(() => {
+        const fetchData = async () =>{
+          // setLoading(true);
+          try {
+            const {data: response} = await axios.post("http://188.121.121.225/api/event/GetForMonth",{ "date":"1401/03/01"},{
+              headers: {
+                'token': `${token}` 
+              },
+            },);
+            console.log( "show response" , response.data);
+            // setApiariesList(response.data )
+            // setLoading(false)
+          } catch (error) {
+          //  if (error.response?.status === 401) {
+          //    localStorage.clear("id_token")
+          //  }
+           console.error("سرور دچار مشکل شده است"+"ApiaryList");
+          //  setErrMessage("  با عرض پوزش سرور دچار مشکل شده است")
+          //  setIserror(true)
+          //  history.push("/app/Error")
+          //  window.location.reload()
+          }
+          // setLoading(false);
+        }
+        fetchData();
+      }, []);
+   
+  
+      /////////////////////////////////////////////////////////////////////////////////////////
+
+  const onSubmit =async (data) => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
+    // const response = await axios.post("http://185.202.113.165:3000/api/event", data ,{
+    //   headers: {
+    //     'token': `${token}` 
+    //   },
+    // },).then((response)=>{console.log("response1",response)})
     // event.preventDefault();
+    const reza=data.fromTime
+     const fromTime= moment(data.fromTime).format('LT');
+     const toTime = moment(data.toTime).format('LT');
     onEventAdded({
-      title: data.jobTitle,
-      start: new Date(data.dateInput),
-      time: data.startTime,
-      end: new Date(data.endDate),
+      title: data.title,
+      apiary:{
+        _id: "62a3559f5cd336001211ee0e"
+      },
+      fromDate: new Date(data.fromDate),
+      // endTime: toTime,
+      toDate: new Date(data.toDate),
+      fromTime: fromTime,
+      toTime: toTime,
+      category: "General",
+      priority:"High",
+      user:{
+        _id: "62a33f81b621cf0012b6979f"
+      }
     });
 
-    console.log("data.startTime");
+    console.log("data.fromTime");
     // props.onClose()
     // history.push("/login/step2")
   };
+
   let { path, url } = useRouteMatch();
 
   const options = [
@@ -86,7 +179,7 @@ const AddJob = ({handleClose,onEventAdded}) => {
     { label: "بیماری زنبور", value: "بیماری زنبور" },
   ];
 
-  console.log("whatch", watch("dateInput"));
+  console.log("whatch", watch("fromDate"));
 
   return (
     <Paper>
@@ -112,8 +205,8 @@ const AddJob = ({handleClose,onEventAdded}) => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
-                    {...register("Username")}
-                    error={errors.Username ? true : false}
+                    {...register("user")}
+                    error={errors.user ? true : false}
 
                     // onChange={(e) =>
                     //   setValue("select", e.target.value, { shouldValidate: true })
@@ -134,7 +227,7 @@ const AddJob = ({handleClose,onEventAdded}) => {
                   color="textSecondary"
                   className={classes.errorMessage}
                 >
-                  {errors.Username?.message}
+                  {errors.user?.message}
                 </Typography>
               </Grid>
 
@@ -144,13 +237,13 @@ const AddJob = ({handleClose,onEventAdded}) => {
                   <TextField
                     className={classes.TextField}
                     required
-                    id="jobTitle"
-                    name="jobTitle"
+                    id="title"
+                    name="title"
                     variant="outlined"
                     fullWidth
                     margin="dense"
-                    {...register("jobTitle")}
-                    error={errors.jobTitle ? true : false}
+                    {...register("title")}
+                    error={errors.title ? true : false}
                   />
                 </div>
                 <Typography
@@ -158,7 +251,7 @@ const AddJob = ({handleClose,onEventAdded}) => {
                   color="textSecondary"
                   className={classes.errorMessage}
                 >
-                  {errors.jobTitle?.message}
+                  {errors.title?.message}
                 </Typography>
               </Grid>
             </div>
@@ -215,8 +308,8 @@ const AddJob = ({handleClose,onEventAdded}) => {
                       className={classes.inputSelect}
                       required
                       variant="outlined"
-                      {...register("Beehive")}
-                      error={errors.Beehive ? true : false}
+                      {...register("apiary")}
+                      error={errors.apiary ? true : false}
 
                       // onChange={(e) =>
                       //   setValue("select", e.target.value, { shouldValidate: true })
@@ -237,7 +330,7 @@ const AddJob = ({handleClose,onEventAdded}) => {
                     color="textSecondary"
                     className={classes.errorMessage}
                   >
-                    {errors.Beehive?.message}
+                    {errors.apiary?.message}
                   </Typography>
                 </Grid>
 
@@ -307,12 +400,15 @@ const AddJob = ({handleClose,onEventAdded}) => {
                       <MuiPickersUtilsProvider utils={JalaliUtils} locale="fa">
                         <Controller
                           control={control}
-                          name="dateInput"
+                          name="fromDate"
+                       
                           render={({ field }) => (
-                            <DatePicker
-                              placeholderText="Select date"
-                              onChange={(date) => field.onChange(date)}
-                              selected={field.value}
+                            <KeyboardDatePicker
+                            className={classes.inputTimePicker}
+                            inputVariant="outlined"
+                            placeholderText="تاریخ را وارد نمایید"
+                            value={fromDate}
+                            onChange={(fromDate) => setValue('fromDate', fromDate, { shouldValidate: true, shouldDirty: true })}
                             />
                           )}
                         />
@@ -324,7 +420,7 @@ const AddJob = ({handleClose,onEventAdded}) => {
                       color="textSecondary"
                       className={classes.errorMessage}
                     >
-                      {errors.Beehive?.message}
+                      {errors.fromDate?.message}
                     </Typography>
                   </Grid>
                   <Grid item xs={12} sm={12} className={classes.Select}>
@@ -337,12 +433,14 @@ const AddJob = ({handleClose,onEventAdded}) => {
                         <label className={classes.label}>از ساعت</label>
                         <Controller
                           control={control}
-                          name="startTime"
+                          name="fromTime"
                           render={({ field }) => (
-                            <TimePicker
-                              placeholderText="Select date"
-                              onChange={(date) => field.onChange(date)}
-                              selected={field.value}
+                            <KeyboardTimePicker
+                            className={classes.inputTimePicker}
+                            inputVariant="outlined"
+                            placeholderText="ساعت را وارد نمایید"
+                            value={fromTime}
+                            onChange={(fromTime) => setValue('fromTime', fromTime, { shouldValidate: true, shouldDirty: true })}
                             />
                           )}
                         />
@@ -354,10 +452,11 @@ const AddJob = ({handleClose,onEventAdded}) => {
                       color="textSecondary"
                       className={classes.errorMessage}
                     >
-                      {errors.startTime?.message}
+                      {errors.fromTime?.message}
                     </Typography>
                   </Grid>
                 </div>
+
 
                 <div style={{ width: "100%" }}>
                   <Grid item xs={12} sm={12} className={classes.Select}>
@@ -366,12 +465,14 @@ const AddJob = ({handleClose,onEventAdded}) => {
                       <MuiPickersUtilsProvider utils={JalaliUtils} locale="fa">
                         <Controller
                           control={control}
-                          name="endDate"
+                          name="toDate"
                           render={({ field }) => (
-                            <DatePicker
-                              placeholderText="Select date"
-                              onChange={(date) => field.onChange(date)}
-                              selected={field.value}
+                            <KeyboardDatePicker
+                            className={classes.inputTimePicker}
+                            inputVariant="outlined"
+                            placeholderText="تاریخ را وارد نمایید"
+                            value={toDate}
+                            onChange={(toDate) => setValue('toDate', toDate, { shouldValidate: true, shouldDirty: true })}
                             />
                           )}
                         />
@@ -383,31 +484,31 @@ const AddJob = ({handleClose,onEventAdded}) => {
                       color="textSecondary"
                       className={classes.errorMessage}
                     >
-                      {errors.Hive?.message}
+                      {errors.toDate?.message}
                     </Typography>
                   </Grid>
                   <Grid item xs={12} sm={12} className={classes.Select}>
                     <div className={classes.input}>
-                      <label className={classes.label}>تا ساعت</label>
-                      <Select
-                        className={classes.inputSelect}
-                        required
-                        variant="outlined"
-                        {...register("endTime")}
-                        error={errors.Hive ? true : false}
-
-                        // onChange={(e) =>
-                        //   setValue("select", e.target.value, { shouldValidate: true })
-                        // } // Using setValue
+                      <MuiPickersUtilsProvider
+                        utils={JalaliUtils}
+                        locale="fa"
+                        className={classes.input}
                       >
-                        {options?.map((option) => {
-                          return (
-                            <MenuItem key={option.value} value={option.value}>
-                              {option.label ?? option.value}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
+                        <label className={classes.label}>تا ساعت</label>
+                        <Controller
+                          control={control}
+                          name="toTime"
+                          render={({ field }) => (
+                            <KeyboardTimePicker
+                            className={classes.inputTimePicker}
+                            inputVariant="outlined"
+                            placeholderText="ساعت را وارد نمایید"
+                            value={toTime}
+                            onChange={(toTime) => setValue('toTime', toTime, { shouldValidate: true, shouldDirty: true })}
+                            />
+                          )}
+                        />
+                      </MuiPickersUtilsProvider>
                     </div>
                     {/* {errors.select && <p>{errors.select.message}</p>} */}
                     <Typography
@@ -415,9 +516,10 @@ const AddJob = ({handleClose,onEventAdded}) => {
                       color="textSecondary"
                       className={classes.errorMessage}
                     >
-                      {errors.Hive?.message}
+                      {errors.toTime?.message}
                     </Typography>
                   </Grid>
+  
                 </div>
               </div>
             </div>
@@ -446,8 +548,8 @@ const AddJob = ({handleClose,onEventAdded}) => {
                         className={classes.inputSelect}
                         required
                         variant="outlined"
-                        {...register("Beehive")}
-                        error={errors.Beehive ? true : false}
+                        {...register("apiary")}
+                        error={errors.apiary ? true : false}
 
                         // onChange={(e) =>
                         //   setValue("select", e.target.value, { shouldValidate: true })
@@ -469,7 +571,7 @@ const AddJob = ({handleClose,onEventAdded}) => {
                     color="textSecondary"
                     className={classes.errorMessage}
                   >
-                    {errors.Beehive?.message}
+                    {errors.apiary?.message}
                   </Typography>
 
                   <Grid item className={classes.checkBox}>
@@ -496,8 +598,8 @@ const AddJob = ({handleClose,onEventAdded}) => {
                       className={classes.inputSelect}
                       required
                       variant="outlined"
-                      {...register("Hive")}
-                      error={errors.Hive ? true : false}
+                      {...register("priority")}
+                      error={errors.priority ? true : false}
 
                       // onChange={(e) =>
                       //   setValue("select", e.target.value, { shouldValidate: true })
@@ -518,7 +620,7 @@ const AddJob = ({handleClose,onEventAdded}) => {
                     color="textSecondary"
                     className={classes.errorMessage}
                   >
-                    {errors.Hive?.message}
+                    {errors.priority?.message}
                   </Typography>
                 </Grid>
               </div>

@@ -297,4 +297,21 @@ export default makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
   },
+  inputTimePicker:{
+    width: "50%",
+    display: "flex",
+    height: "45px",
+    backgroundColor: "rgb( 244, 244 ,244)",
+    boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
+    borderRadius: "10px",
+    border: "none",
+    // height: "40px",
+    fontFamily: "Shabnam",
+    "&	.MuiSelect-outlined": {
+      borderRadius: "10px",
+    },
+    "&	.MuiSelect-outlined": {
+      borderRadius: "10px",
+    },
+  }
 }));

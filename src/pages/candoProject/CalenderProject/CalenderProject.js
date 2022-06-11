@@ -27,9 +27,11 @@ import allLocales from "@fullcalendar/core/locales-all";
 import "./CalenderProject.css";
 
 import FilterCalender from "./FilterCalender";
-import moment from "moment";
 import AddJob from "../../../components/Form/JobUser/AddJob";
 import { Dialog } from "@material-ui/core";
+import axios from "axios";
+// import moment from "moment";
+import moment from "jalali-moment";
 export default class CalenderProject extends React.Component {
   constructor() {
     super();
@@ -38,27 +40,138 @@ export default class CalenderProject extends React.Component {
   state = {
     weekendsVisible: true,
     currentEvents: [],
-    open:true
+    open:true,
+    events:[
+      { title: 'event 1', start: '2022-06-11' , end:"2022-06-18" },
+      { title: 'event 2', date: '2022-06-13' }
+    ],
+    days:[]
 
   };
+
+  
   handleClose = () => {
     this.setState({
       open:false
     });
   };
-  onEventAdded = (event) => {
+  
+  onEventAdded = async(event) => {
+
+
+    const token = localStorage.getItem("id_token")
+    console.log("data.event bar",event);
+    const title= event.title
+    // const fromDate =event.fromDate
+    const fromDate = moment(event.fromDate).locale('fa').format('YYYY/MM/DD')
+    console.log(fromDate);
+    const toDate = moment(event.toDate).locale('fa').format('YYYY/MM/DD')
+    const fromTime = event.fromTime
+    const toTime = event.toTime
+    const category = event.category
+    const priority = event.priority
+    const user = event.user._id
+    console.log("user",user);
+    await axios.post("http://185.202.113.165:3000/api/event",{
+      "title": `${title}` ,
+      "fromDate": `${fromDate}`,
+      "toDate": `${toDate}`,
+      "fromTime": `${fromTime}`,
+      "toTime": `${toTime}`,
+      "category": `${category}`,
+      "priority":`${priority}`,
+      "user":{"_id":`${user}`}
+    },{
+      headers: {
+        'token': `${token}` 
+      },
+    },).then((response)=>{console.log("response1",response)})
+
+
+
+
+
+    console.log("onEventAdded",event);
     let calenderApi = this.calenderRef.current.getApi();
-    calenderApi.addEvent(event);
+    console.log("calenderApi",calenderApi);
+
+    calenderApi.addEvent({
+      start:moment(event.fromDate).toDate(),
+      end:moment(event.toDate).toDate(),
+      fromTime:event.fromTime,
+      toTime:event.toTime,
+      title:event.title,
+
+
+    });
     console.log("event", event);
   };
 
   async handleEventAdd(data) {
-    //axios.post("url",data.event)
+    console.log("handleEventAdd",data);
+  // const token = localStorage.getItem("id_token")
+  //   console.log("data.event bar",data.event);
+  //  await axios.post("http://185.202.113.165:3000/api/event",data.event,{
+  //     headers: {
+  //       'token': `${token}` 
+  //     },
+  //   },).then((response)=>{console.log("response1",response)})
+
   }
-  async handleDateSet(data) {
-    // const response = await axios.get("url",moment(date.start).toString()+"&end="+moment(date.end).toString())
-    // this.setState(response.data)
+   async handleDateSet(data) {
+    const token = localStorage.getItem("id_token")
+    console.log("handleDateSet",data);
+    const response = await axios.post("http://185.202.113.165:3000/api/event/GetForMonth?start="+moment(data.start).toISOString()+"&end"+moment(data.end).toISOString(),{
+      "date":"1401/03/01"
+  },{
+      headers: {
+        'token': `${token}` 
+      },
+    },).then((respon)=>{   
+      console.log("respon.data.data",respon.data.data); 
+      this.setState({
+       events:respon.data.data
+    });})
+    console.log("response.data",response);
+
+
   }
+   
+
+  //     /////////////////////////////////////////////////////////////////////////////////////////
+  
+  //     const token = localStorage.getItem("id_token")
+  //  console.log(token);
+  //     useEffect(() => {
+  //       const fetchData = async () =>{
+  //         // setLoading(true);
+  //         try {
+  //           const {data: response} = await axios.post("http://185.202.113.165:3000/api/event/GetForMonth",{ "date":"1401/03/01"},{
+  //             headers: {
+  //               'token': `${token}` 
+  //             },
+  //           },);
+  //           console.log( "show response" , response.data);
+  //           // setApiariesList(response.data )
+  //           // setLoading(false)
+  //         } catch (error) {
+  //         //  if (error.response?.status === 401) {
+  //         //    localStorage.clear("id_token")
+  //         //  }
+  //          console.error("سرور دچار مشکل شده است"+"ApiaryList");
+  //         //  setErrMessage("  با عرض پوزش سرور دچار مشکل شده است")
+  //         //  setIserror(true)
+  //         //  history.push("/app/Error")
+  //         //  window.location.reload()
+  //         }
+  //         // setLoading(false);
+  //       }
+  //       fetchData();
+  //     }, []);
+   
+
+  //     /////////////////////////////////////////////////////////////////////////////////////////
+
   render() {
     return (
       <div className="demo-app">
@@ -83,12 +196,37 @@ export default class CalenderProject extends React.Component {
             weekends={this.state.weekendsVisible}
             initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
             select={this.handleDateSelect}
-            events={this.events}
+            timeZone="iran/Tehran"
+            events={function(info, successCallback, failureCallback) {
+              const token = localStorage.getItem("id_token")
+              moment.locale('en'); // default locale is en
+              const m = moment('1989/1/24', 'YYYY/M/D');
+              m.locale('fa'); // change locale for this moment instance
+              m.format('YYYY/M/D');
+              console.log("m",m);
+                            return axios.post('http://185.202.113.165:3000/api/event/GetForMonth',{ "date":"1401/03/01"},{
+                            headers: {
+                              'token': `${token}` 
+                            },
+              },).then((respone)=>
+                 respone.data.data.map((el)=>{
+                  console.log("el,el",el);
+                   console.log("Sdfsdfs",new Date("1400-12-04"));
+                   const day="2022-06-14"
+                  return {
+                    start:day,
+                    end:"2022-06-20",
+                    title:el.title
+                  }
+              })
+              )
+
+            }}
             eventAdd={(event) => this.handleEventAdd(event)}
-            datesSet={(date) => this.handleDateSet(date)}
+            datesSet={(event) => this.handleDateSet(event)}
             eventContent={renderEventContent} // custom render function
             eventClick={this.handleEventClick}
-            eventsSet={this.handleEvents} 
+            // eventsSet={this.handleEvents} 
             
             
             // called after events are initialized/added/changed/removed
@@ -155,11 +293,11 @@ export default class CalenderProject extends React.Component {
   //     )
   //   }
 
-  // handleWeekendsToggle = () => {
-  //   this.setState({
-  //     weekendsVisible: !this.state.weekendsVisible,
-  //   });
-  // };
+  handleWeekendsToggle = () => {
+    this.setState({
+      weekendsVisible: !this.state.weekendsVisible,
+    });
+  };
 
   handleDateSelect = (selectInfo) => {
     //add line in table
@@ -192,6 +330,7 @@ export default class CalenderProject extends React.Component {
   };
 
   handleEvents = (events) => {
+    console.log("handleEvents",events);
     this.setState({
       currentEvents: events,
     });
@@ -200,6 +339,8 @@ export default class CalenderProject extends React.Component {
 
 
 function renderEventContent(eventInfo) {
+  console.log("eventInfo",eventInfo);
+  
   return (
     <>
       <b>{eventInfo.timeText}</b>

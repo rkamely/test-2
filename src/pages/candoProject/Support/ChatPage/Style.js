@@ -24,7 +24,7 @@ export default makeStyles((theme) => ({
         marginTop: "24px",
         alignSelf: "flex-start",
         boxShadow: "0px, 3px,6px, 0px ,rgba(0,0,0,0.16)",
-        border:"5px solid red"
+    
     },
     titleQuestion:{
         fontSize: "16px",
@@ -45,7 +45,7 @@ export default makeStyles((theme) => ({
         borderRadius: "12px",
         width: "50%",
         alignSelf: "flex-end",
-        border:"5px solid blue"
+      
     },
     titleAnswer:{
         fontSize: "16px",
