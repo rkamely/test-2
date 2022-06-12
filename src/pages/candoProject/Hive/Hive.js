@@ -157,7 +157,7 @@ function  Hive() {
         console.log("rowData", rowData);
         return (
           <Link
-            to={`/app/ApiaryList/Beehive/Hive/${rowData.id}`}
+            to={`/app/ApiaryList/Beehive/Hive/${rowData.name.split(' ').join('-')}`}
             style={{ display: "flex",textDecoration:"none" ,color:"black",cursor:"pointer"}}
           >
             {rowData.name}

@@ -263,7 +263,7 @@ const [ ApiariesList,setApiariesList]=useState([])
 
       render: (rowData) => {
         console.log("rowData", rowData);
-        const str = rowData.name.split(' ').join('') 
+        const str = rowData.name.split(' ').join('-') 
         console.log();
         return (
           <Link

@@ -56,6 +56,9 @@ function HiveStatus() {
   let { path, url } = useRouteMatch();
   console.log(path,"path")
   console.log(url,"url")
+  let { id } = useParams();
+  
+  console.log("id ro bebin " , id);
   const breadcrumbs = [
 
     <Link
@@ -63,7 +66,7 @@ function HiveStatus() {
       key="1"
       style={{textDecoration:"none",cursor:"pointer"}}
     >
-          <Title key="1" title="زنبورستان "/>
+          <Title key="1" title=" زنبورستان "/>
 
     </Link>,
         <Link
@@ -71,11 +74,11 @@ function HiveStatus() {
         key="1"
         style={{textDecoration:"none",cursor:"pointer"}}
       >
-            <Title key="2" title=" زنبورستان ۱"/>
+            <Title key="2" title="کندووان"/>
   
       </Link>,
 
-            <Title key="3" title="کندو ۱"/>
+            <Title key="3" title={id}/>
 
 
   ];
