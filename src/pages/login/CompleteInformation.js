@@ -60,11 +60,11 @@ console.log("setAuth",setAuth);
   });
   const onSubmit = async (data) => {
     const token = localStorage.getItem("id_token")
-    const profileName = localStorage.setItem("profileName",data.firstname)
-    console.log("firstname",data.firstname);
-    console.log("token",token);
-    console.log(JSON.stringify(data, null, 2));
-    alert(JSON.stringify(data, null, 2));
+    localStorage.setItem("profileName",data.firstname)
+    // console.log("firstname",data.firstname);
+    // console.log("token",token);
+    // console.log(JSON.stringify(data, null, 2));
+    // alert(JSON.stringify(data, null, 2));
     try {
       setIsLoading(true);
       console.log("auth.idUser",auth.idUser);

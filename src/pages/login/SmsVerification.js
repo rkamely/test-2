@@ -63,8 +63,8 @@ function SmsVerification(props) {
 
   const onSubmit = async (data) => {
     const mobile = localStorage.getItem("data");
-    console.log(JSON.stringify(data, null, 2));
-    alert(JSON.stringify({ code: data.code, mobile: mobile }, null, 2));
+    // console.log(JSON.stringify(data, null, 2));
+    // alert(JSON.stringify({ code: data.code, mobile: mobile }, null, 2));
     // history.push("/login/step2")
     console.log("mobileNumber", mobile);
     // removeAuthtoken()

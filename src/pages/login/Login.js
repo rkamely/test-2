@@ -75,8 +75,8 @@ const handleChangenumber=(event)=>{
 
 
   const onSubmit = (data) => {
-    console.log(JSON.stringify(data, null, 2));
-    alert(JSON.stringify(data, null, 2));
+    // console.log(JSON.stringify(data, null, 2));
+    // alert(JSON.stringify(data, null, 2));
     // data.preventDefault();
     try{
            const response = axios.post("http://185.202.113.165:3000/api/auth/login",data,{

@@ -204,7 +204,7 @@ const [ ApiariesList,setApiariesList]=useState([])
    /////////////////////////////////////////////////////////////////////////////////////////
   
    const token = localStorage.getItem("id_token")
-   console.log("bardia",token);
+   console.log("token",token);
    useEffect(() => {
      const fetchData = async () =>{
        // setLoading(true);

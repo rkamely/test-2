@@ -66,15 +66,15 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
   });
    /////////////////////////////////////////////////////////////////////////////////////////
   
-   const bardia = localStorage.getItem("id_token")
-   console.log("bardia",bardia);
+   const token = localStorage.getItem("id_token")
+   console.log("token",token);
    useEffect(() => {
      const fetchData = async () =>{
        // setLoading(true);
        try {
          const {data: response} = await axios.get(`http://185.202.113.165:3000/api/apiary/get-for-user/${edit_id}`,{
            headers: {
-             'token': `${bardia}` 
+             'token': `${token}` 
            },
          },);
          console.log( "show response" , response.data);
@@ -106,12 +106,11 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
    /////////////////////////////////////////////////////////////////////////////////////////
 
   const onSubmit = async (data) => {
-    console.log(JSON.stringify(data, null, 2));
-    alert(JSON.stringify(data, null, 2));
+
     const response = await axios.put(`http://185.202.113.165:3000/api/apiary/update-for-user/${edit_id}`,{...data ,"locationLangitude": 8,
     "locationLatitude": 10},{
       headers: {
-        'token': `${bardia}` 
+        'token': `${token}` 
       },
     })
     const updatedApiary=[Apiary]

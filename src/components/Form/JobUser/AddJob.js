@@ -137,8 +137,8 @@ const AddJob = ({handleClose,onEventAdded}) => {
       /////////////////////////////////////////////////////////////////////////////////////////
 
   const onSubmit =async (data) => {
-    console.log(JSON.stringify(data, null, 2));
-    alert(JSON.stringify(data, null, 2));
+    // console.log(JSON.stringify(data, null, 2));
+    // alert(JSON.stringify(data, null, 2));
     // const response = await axios.post("http://185.202.113.165:3000/api/event", data ,{
     //   headers: {
     //     'token': `${token}` 
