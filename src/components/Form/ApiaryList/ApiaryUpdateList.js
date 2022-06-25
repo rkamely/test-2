@@ -22,11 +22,12 @@ import axios from "axios";
 import { useParams,useHistory } from "react-router-dom";
 import Loading from "../../Loading/Loading";
 
-const ApiaryUpdateList = ({Apiary,setApiary}) => {
+const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose}) => {
+  console.log("editApiariesList",ApiariesList);
   const params = useParams();
   const history = useHistory()
   console.log("params", params.id)
-  console.log("props.Apiary",Apiary);
+  console.log("props.Apiary",ApiariesList);
   const classes = useStyles();
   const [errorMessage,setErrMessage] = useState()
   const [error,setIserror] = useState()
@@ -80,6 +81,7 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
          console.log( "show response" , response.data);
          const responseData = response.data;
          reset({ 
+     
           name: responseData.name ,
           hivesWithGoodCondition: responseData.hivesWithGoodCondition,
           hivesWithBadCondition: responseData. hivesWithBadCondition,
@@ -93,8 +95,8 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
          setLoading(false)
        } catch (error) {
          console.error(error.message);
-         history.push("/app/Error")
-         window.location.reload()
+        //  history.push("/app/Error")
+        //  window.location.reload()
        }
        // setLoading(false);
      }
@@ -113,12 +115,37 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
         'token': `${token}` 
       },
     })
-    const updatedApiary=[Apiary]
-    const index = updatedApiary.indexOf(data);
-    updatedApiary[index]={...data};
-    setApiary({Apiary:updatedApiary})
-    window.location.reload()
+    // setApiariesList([...ApiariesList , data])
+    onClose();
+    const updatedApiary=ApiariesList
+    console.log("updatedApiary",updatedApiary);
+  
 
+    const Index=updatedApiary.findIndex((edit)=>{
+           return edit._id===edit_id
+                          
+             
+    })
+    console.log("copy",Index);
+    // const index=updatedApiary.indexOf([copy]);
+    // console.log("indexxxxxx",index);
+    console.log("data ro bede to dast man",response.data.data._id);
+    const index = updatedApiary.indexOf(data._id);
+    console.log("datashow",data);
+    console.log("dataIndex",index);
+    updatedApiary[Index]={...data};
+    console.log("updatedApiary2",updatedApiary);
+
+    console.log("data ro bede to dast man 2", updatedApiary[1]);
+    setApiariesList(updatedApiary)
+    console.log("ApiariesListedit",ApiariesList);
+    history.push("/app/apiaryList")
+    // setApiariesList([...ApiariesList , {ApiariesList:updatedApiary}])
+    // window.location.reload()
+    // const updatedApiary=[Apiary]
+    // const index = updatedApiary.indexOf(data);
+    // updatedApiary[index]={...data};
+    // setApiary({Apiary:updatedApiary})
 
   };
 
@@ -414,7 +441,6 @@ const ApiaryUpdateList = ({Apiary,setApiary}) => {
                     required
                     variant="outlined"
                     // defaultValue={option3[1].value}
-
                     {...register("apiaryUsage")}
                     error={errors.apiaryUsage ? true : false}
                     // value={}

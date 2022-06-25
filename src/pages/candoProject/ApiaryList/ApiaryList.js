@@ -85,7 +85,16 @@ function ApiaryList() {
     setOpenEdit(false);
     setOpenDelete(false);
   };
-  const Information=()=>{
+
+  console.log("salam  refs");
+  const refresh=(refs)=>{
+    if(refs){
+      console.log("true refs");
+  
+    }else {
+      console.log("false refs");
+    }
+    
   }
 
   const style = {
@@ -213,9 +222,10 @@ const [ ApiariesList,setApiariesList]=useState([])
            headers: {
              'token': `${token}` 
            },
-         },);
+         })
          console.log( "show response" , response.data);
-         setApiariesList(response.data )
+         setApiariesList(response.data)
+
          setLoading(false)
        } catch (error) {
         if (error.response?.status === 401) {
@@ -234,6 +244,7 @@ const [ ApiariesList,setApiariesList]=useState([])
      fetchData();
    }, []);
 
+   console.log("ApiariesList247",ApiariesList);
 
  
    /////////////////////////////////////////////////////////////////////////////////////////
@@ -609,12 +620,15 @@ const [ ApiariesList,setApiariesList]=useState([])
           'token': `${token}` 
         },
       },)
-      window.location.reload()
+      const newApiary=ApiariesList.filter((item)=>{
+            return item.id !== selectedRow._id
+      })
+      setApiariesList(newApiary)
       })
       // const response = await axios.delete(`http://188.121.121.225/api/user/${selectedRows[0].id}`)
     // console.log("selectedRows",selectedRows._id);
-    // const updatedData = Apiary.filter((row) => !selectedRows.includes(row));
-    // setApiary(updatedData);
+    const updatedData = ApiariesList.filter((row) => ![selectedRows].includes(row));
+    setApiariesList(updatedData);
   }};
 
   const onRowDelete = async(rowData,popupState) => {
@@ -624,14 +638,13 @@ const [ ApiariesList,setApiariesList]=useState([])
         headers: {
           'token': `${token}` 
         },
+        
       },)
- 
-
       // console.log("rowData23123", rowData);
-    // const updatedData = Apiary.filter((row) => ![rowData].includes(row));
-    // setApiary(updatedData);
+    const updatedData = ApiariesList.filter((row) => ![rowData].includes(row));
+    setApiariesList(updatedData);
     popupState.close();
-    window.location.reload()
+    // window.location.reload()
   }};
   
   const downloadPdf = () => {
@@ -909,7 +922,7 @@ const [ ApiariesList,setApiariesList]=useState([])
           aria-describedby="scroll-dialog-description"
           maxWidth="xl"
         >
-          <ApiaryAddList  Apiary={Apiary} setApiary={setApiary} onClose={handleClose}/>
+          <ApiaryAddList  ApiariesList={ApiariesList} setApiariesList={setApiariesList} onClose={handleClose} refresh={(e)=>refresh(e)}/>
         </Dialog>
       </div>
 
@@ -925,7 +938,7 @@ const [ ApiariesList,setApiariesList]=useState([])
           aria-describedby="scroll-dialog-description"
           maxWidth="xl"
         >
-          <ApiaryUpdateList Apiary={Apiary} setApiary={setApiary}/>
+          <ApiaryUpdateList ApiariesList={ApiariesList} setApiariesList={setApiariesList} onClose={handleClose}/>
         </Dialog>
       </div>
 

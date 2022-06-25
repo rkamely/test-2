@@ -37,7 +37,6 @@ const validationSchema = yup.object().shape({
   eggs: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
   Queen: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
   Spawning: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
-
 });
 
 
