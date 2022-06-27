@@ -36,7 +36,7 @@ export default function Dashboard(props) {
   //   }));
 
   return (
-    <>
+    <Grid style={{padding:"0px 32px"}}>
       <Title title="نقشه" variant="h6" />
 
       {/* map */}
@@ -48,14 +48,17 @@ export default function Dashboard(props) {
       {/* second part */}
 
       <Grid container spacing={3} className={classes.secondPart}>
-        <Grid item xs={12}  style={{display: "flex"}} >
+
+
+
+        <Grid item xs={12}  style={{display: "flex",border:"2px solid green"}} >
           <Grid item lg={3} md={4} sm={6} xs={12} className={classes.CardItem}>
             <Widget
               color="secondary"
               Img="/assets/hive-svgrepo-com (-1.svg"
               title="تعداد زنبورستان"
               upperTitle
-              style={{ fontWeight: 600,marginLeft: 30}}
+              style={{ fontWeight: 600,marginLeft: 30,border:"2px solid red"}}
               bodyClass={classes.fullHeightBody}
               className={classes.card}
             >
@@ -435,6 +438,9 @@ export default function Dashboard(props) {
           <Calender />
         </Grid>
 
+
+
+
         {/* last part */}
         <Grid
           className={classes.Programs}
@@ -454,7 +460,7 @@ export default function Dashboard(props) {
                   sm={12}
                   xs={12}
                   key={stat.product}
-                  style={{ marginTop: "16px" }}
+                  style={{ marginTop: "12px" }}
                 >
                   <BigStat2 {...stat} />
                 </Grid>
@@ -472,7 +478,7 @@ export default function Dashboard(props) {
                   sm={12}
                   xs={12}
                   key={index}
-                  style={{ marginTop: "16px" }}
+                  style={{ marginTop: "12px" }}
                 >
                   <BigStat {...stat} />
                 </Grid>
@@ -481,7 +487,7 @@ export default function Dashboard(props) {
           </Grid>
         </Grid>
       </Grid>
-    </>
+    </Grid>
   );
 }
 

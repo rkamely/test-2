@@ -37,13 +37,13 @@ console.log("setAuth",setAuth);
   // global
   var userDispatch = useUserDispatch();
   // const phoneRegExp = /09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}/
-  const phoneRegExp = /9([0-3][0-9])-?[0-9]{3}-?[0-9]{4}/;
+  // const phoneRegExp = /9([0-3][0-9])-?[0-9]{3}-?[0-9]{4}/;
 
   const validationSchema = yup.object().shape({
     username: yup.string().required("لطفا نام کاربری خود را وارد کنید"),
     firstname: yup.string().required("لطفا نام خود را وارد کنید"),
     lastname: yup.string().required("لطفا نام خانوادگی خود را وارد کنید"),
-    email: yup.string().required("لطفا ایمیل خود را وارد کنید").email("لطفا ایمیل معتبر وارد کنید"),
+    // email: yup.string().required("لطفا ایمیل خود را وارد کنید").email("لطفا ایمیل معتبر وارد کنید"),
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -93,11 +93,11 @@ console.log("setAuth",setAuth);
     <div className="containerLogin">
       <div className="contact-form">
         {/* <img alt="" className="avatar" src="/assets/Untitled-1.svg"/> */}
-        <h2>اطلاعات</h2>
+        <h2 style={{fontFamily:"Shabnam" , fontSize:"1.7rem"}}>تکمیل اطلاعات</h2>
         <p>اطلاعات شخصی خود را وارد کنید</p>
 
         <TextField
-          style={{ direction: "ltr" }}
+          // style={{ direction: "ltr" }}
           className={classes.TextField}
           label="نام کاربری"
           id="username"
@@ -118,7 +118,7 @@ console.log("setAuth",setAuth);
         </Typography>
 
         <TextField
-          style={{ direction: "ltr" }}
+          // style={{ direction: "ltr" }}
           className={classes.TextField}
           label="نام"
           id="firstname"
@@ -140,7 +140,7 @@ console.log("setAuth",setAuth);
         </Typography>
 
         <TextField
-          style={{ direction: "ltr" }}
+          // style={{ direction: "ltr" }}
           className={classes.TextField}
           label="نام خانوادگی"
           id="lastname"
@@ -162,9 +162,9 @@ console.log("setAuth",setAuth);
         </Typography>
 
         <TextField
-          style={{ direction: "ltr" }}
+          // style={{ direction: "ltr" }}
           className={classes.TextField}
-          label="ایمیل"
+          label="ایمیل (اختیاری)"
           id="email"
           name="email"
           variant="outlined"

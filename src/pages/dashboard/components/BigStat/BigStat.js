@@ -21,13 +21,12 @@ export default function BigStat(props) {
   // local
   const [value, setValue] = useState("daily");
   return (
-    <Widget
-      header={
+
   
-          <Grid container   alignItems="center" justifyContent="space-between">
+          <Grid container   alignItems="center" justifyContent="space-between" className={classes.container}>
    <div>  
           <Typography variant="h6">{product}</Typography>
-          <div style={{marginTop:"16px" ,color:"rgb( 102, 103, 104)"}} >
+          <div style={{marginTop:"12px" ,color:"rgb( 102, 103, 104)"}} >
            <Typography variant="p"   colorBrightness="secondary" >
            {registrations[value].value}
           </Typography></div>
@@ -43,9 +42,7 @@ export default function BigStat(props) {
     </div>
           </Grid>
 
-      }
   
-    />
 
 
 

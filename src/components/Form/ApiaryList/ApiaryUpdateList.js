@@ -116,29 +116,31 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose}) => {
       },
     })
     // setApiariesList([...ApiariesList , data])
-    onClose();
-    const updatedApiary=ApiariesList
-    console.log("updatedApiary",updatedApiary);
+    const {id}=response.data
+    console.log("log response",response);
+    setApiariesList(ApiariesList.map((apiary) => apiary.id === edit_id ? apiary : data))
+    // const updatedApiary=ApiariesList
+    // console.log("updatedApiary",updatedApiary);
   
 
-    const Index=updatedApiary.findIndex((edit)=>{
-           return edit._id===edit_id
-                          
-             
-    })
-    console.log("copy",Index);
-    // const index=updatedApiary.indexOf([copy]);
-    // console.log("indexxxxxx",index);
-    console.log("data ro bede to dast man",response.data.data._id);
-    const index = updatedApiary.indexOf(data._id);
-    console.log("datashow",data);
-    console.log("dataIndex",index);
-    updatedApiary[Index]={...data};
-    console.log("updatedApiary2",updatedApiary);
+    // const Index=updatedApiary.findIndex((edit)=>{
+    //        return edit._id===edit_id
+                       
+    // })
+    // console.log("copy",Index);
+    // // const index=updatedApiary.indexOf([copy]);
+    // // console.log("indexxxxxx",index);
+    // // console.log("data ro bede to dast man",response.data.data._id);
+    // const index = updatedApiary.indexOf(data._id);
+    // // console.log("datashow",data);
+    // // console.log("dataIndex",index);
+    // updatedApiary[Index]={...data};
+    // // console.log("updatedApiary2",updatedApiary);
 
-    console.log("data ro bede to dast man 2", updatedApiary[1]);
-    setApiariesList(updatedApiary)
-    console.log("ApiariesListedit",ApiariesList);
+    // // console.log("data ro bede to dast man 2", updatedApiary[1]);
+    // setApiariesList(updatedApiary)
+    onClose();
+    // console.log("ApiariesListedit",ApiariesList);
     history.push("/app/apiaryList")
     // setApiariesList([...ApiariesList , {ApiariesList:updatedApiary}])
     // window.location.reload()

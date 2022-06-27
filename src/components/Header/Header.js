@@ -163,8 +163,9 @@ export default function Header(props) {
           />
         </div>
 
-        <div className={classes.HeaderBarcode}>
-        <img src="/assets/qr-code.svg" width="20%"/>  اسکن بارکد</div>
+        {/* <div className={classes.HeaderBarcode}>
+        <img src="/assets/qr-code.svg" width="20%"/>  اسکن بارکد</div> */}
+        
      <div className={classes.HeaderLeft}>
       <div className={classes.HeaderLogo} >
         <Avatar

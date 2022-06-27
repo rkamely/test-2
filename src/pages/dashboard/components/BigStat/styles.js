@@ -1,6 +1,12 @@
 import { makeStyles } from "@material-ui/styles";
 
 export default makeStyles(theme => ({
+  container:{
+    padding:"8px 24px",
+    borderRadius:"12px",
+    background:"#fff",
+    boxShadow:"0px 2px 5px 0px rgba(0 ,0, 0, 0.16)"
+  },
   title: {
     display: "flex",
     flexDirection: "row",
@@ -39,6 +45,10 @@ export default makeStyles(theme => ({
   borderRadius:"8px",
   textAlign:"center",
     fill: theme.palette.success.main,
+    // [theme.breakpoints.down(1200)]: {
+    //   fontSize:"0.6rem",
+    //   width:"80px",
+    // },
   },
   profitArrowGreen:{
     backgroundColor:"rgb( 163 229 190)",

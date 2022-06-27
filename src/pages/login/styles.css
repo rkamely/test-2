@@ -1,7 +1,7 @@
 .containerLogin {
 	margin: 0;
 	padding: 0;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Shabnam', sans-serif;
 }
 .containerLogin:before {
 	content: '';
@@ -32,13 +32,12 @@
 .contact-form h2 {
 	margin: 0;
 	padding: 0 0 20px;
-   color:rgb( 227 156 0  ) ;
-   font-weight: 600;
-   font-size: 2rem;
+    color:rgb( 227 156 0  ) ;
+    font-weight: 600;
+    font-size: 2rem;
 	text-align: center;
 	text-transform: uppercase;
     font-family: "Shabnam";
-
 }
 .contact-form p {
 	margin: 0;
@@ -46,8 +45,8 @@
 	font-weight: bold;
 	color: #fff;
     font-family: "Shabnam";
-   margin-bottom: 32px;
-   text-align: center;
+    margin-bottom: 32px;
+    text-align: center;
 }
 .contact-form input {
 	width: 100%;

@@ -259,6 +259,9 @@ function Support() {
             handleClose={handleClose}
             title=" درخواست QR Code  "
             style={{ width: "100%" }}
+            newTicket={newTicket}
+            setNewTicket={setNewTicket}
+
           />
         ) : (
           <AddTicket
@@ -266,7 +269,9 @@ function Support() {
             handleClose={handleClose}
             title=" تیکت جدید"
             style={{ width: "100%" }}
-            
+            newTicket={newTicket}
+            setNewTicket={setNewTicket}
+
           />
         )}
       </Dialog>

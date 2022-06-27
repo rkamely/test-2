@@ -43,7 +43,7 @@ function SmsVerification(props) {
   const mobileRegExp = /09([0-3][0-9])-?[0-9]{3}-?[0-9]{4}/;
 
   const validationSchema = yup.object().shape({
-    code: yup.string().required("لطفا کد تایید را وارد کنید"),
+    code: yup.string().required("لطفا کد تائید را وارد کنید"),
   });
 
   const {
@@ -74,7 +74,7 @@ function SmsVerification(props) {
       const response = await axios
         .post(
           "http://185.202.113.165:3000/api/auth/verify",
-          { code: data.code, mobile: mobile },
+          { code: data.code, mobile: "0"+mobile },
           {
             headers: { "Content-Type": "application/json" },
             withCredentials: true,
@@ -93,13 +93,14 @@ function SmsVerification(props) {
 
       if (token) {
         if(newPerson && newPerson !== ""){
-          setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson, idUser:idUser});
-          localStorage.setItem("id_token", token);
-          userDispatch({ type: 'LOGIN_SUCCESS' })
-        } else {
           localStorage.setItem("id_token", token);
           setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson, idUser:idUser});
           history.push("/login/CompleteInformation")
+
+        } else {
+          setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson, idUser:idUser});
+          localStorage.setItem("id_token", token);
+          userDispatch({ type: 'LOGIN_SUCCESS' })
         }
 
       }
@@ -115,12 +116,12 @@ function SmsVerification(props) {
           " پاسخی از سرور دریافت نشد لطفا از وصل بودن اینترنت خود اطمینان حاصل نمایید و مجدد تلاش کنید",
         );
       } else if (err.response?.status === 400) {
-        setErrMsg("لطفا کد تایید را درست وارد نمایید");
+        setErrMsg("لطفا کد تائید را درست وارد نمایید");
         setTimeout(() => {
           setErrMsg("");
         }, 3000);
       } else {
-        setErrMsg("لطفا کد تایید را درست وارد نمایید");
+        setErrMsg("لطفا کد تائید را درست وارد نمایید");
       }
       errRef.current.focus();
     }
@@ -144,17 +145,17 @@ function SmsVerification(props) {
         ) : null}
 
         {/* <img alt="" className="avatar" src="/assets/Untitled-1.svg"/> */}
-        <h2>کد تایید</h2>
+        <h2 >کد تائید</h2>
         <p>
-          کد تایید ارسال گردید
+          کد تائید ارسال گردید.
           <br />
-          برای ادامه کد تایید ارسال شده را وارد کنید.
+          برای ادامه کد تائید ارسال شده را وارد کنید.
         </p>
 
         <TextField
-          style={{ direction: "ltr" }}
+          // style={{ direction: "ltr" }}
           className={classes.TextField}
-          label="کد تایید"
+          label="کد تائید"
           onChange={(e) => setLoginValue(e.target.value)}
           id="code"
           type="number"
@@ -183,12 +184,13 @@ function SmsVerification(props) {
           <span
             style={{
               color: "rgb( 227 156 0  )",
-              fontWeight: "600",
+              fontWeight: "bold",
               cursor: "pointer",
+              marginRight:"4px"
             }}
             onClick={() => history.push("/login")}
           >
-            ویرایش
+             ویرایش 
           </span>
         </Typography>
 
@@ -204,7 +206,7 @@ function SmsVerification(props) {
             className={classes.buttonLogin}
             onClick={handleSubmit(onSubmit)}
           >
-            ثبت کد تایید
+            ثبت کد تائید
           </Button>
         )}
 

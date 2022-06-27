@@ -8,6 +8,11 @@ import {
   Tab,
   TextField,
   Fade,
+  InputAdornment,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  IconButton,
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import { useParams ,useHistory} from "react-router";
@@ -27,8 +32,6 @@ import "./styles.css";
 function Login(props) {
 
   const { setAuth } = useContext(AuthContext)
-
-
   var classes = useStyles();
   const history = useHistory();
   const errRef = useRef();
@@ -37,15 +40,14 @@ function Login(props) {
   // global
   var userDispatch = useUserDispatch();
   // const phoneRegExp = /09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}/
-  const phoneRegExp = /09([0-3][0-9])-?[0-9]{3}-?[0-9]{4}/;
-
+  // const phoneRegExp = /9([0-3][0-9])-?[0-9]{3}-?[0-9]{4}/;
+  const phoneRegExp = '^(\\9)?9\\d{9}$';
   const validationSchema = yup.object().shape({
     mobile: yup
       .string()
       .matches(
-        phoneRegExp,
-        "شماره موبایل را با حروف انگلیسی وارد کنید",
-      ),
+        phoneRegExp,"شماره موبایل را با حروف انگلیسی و بدون صفر وارد کنید"
+      )
   });
   
 
@@ -78,8 +80,9 @@ const handleChangenumber=(event)=>{
     // console.log(JSON.stringify(data, null, 2));
     // alert(JSON.stringify(data, null, 2));
     // data.preventDefault();
+    const mobile="0"+data.mobile
     try{
-           const response = axios.post("http://185.202.113.165:3000/api/auth/login",data,{
+           const response = axios.post("http://185.202.113.165:3000/api/auth/login",{mobile:mobile},{
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true
            })
@@ -116,15 +119,29 @@ const handleChangenumber=(event)=>{
         <h2>ورود</h2>
         <p>
           برای ورود به کندووان پلاس شماره تلفن همراه خود را وارد کنید تا کد
-          تایید برای شما پیامک شود
+          تائید برای شما پیامک شود
         </p>
 
         <TextField
-          style={{ direction: "ltr" }}
+                  // InputProps={{
+                  //   color:"red",
+                  //   startAdornment: <InputAdornment style={{color:"#000"}} position="start">kg</InputAdornment>,
+                  // }}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment
+                        position="end"
+                        
+                      >
+                        <div style={{color:"#000",fontFamily:"Shabnam"}}>| 98+</div>
+                      </InputAdornment>
+                    )
+                  }}
+          // style={{ direction: "ltr" }}
           onChange={handleChangenumber}
+          
           className={classes.TextField}
           label="شماره موبایل"
-          placeholder="+98 | "
           id="mobile"
           name="mobile"
           variant="outlined"
@@ -141,12 +158,38 @@ const handleChangenumber=(event)=>{
         >
           {errors.mobile?.message}
         </Typography>
+
+
+
+
+
+        {/* <FormControl sx={{ m: 1, width: '100%' }} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">شماره موبایل</InputLabel>
+          <OutlinedInput
+            style={{ direction: "ltr" }}
+            className={classes.TextField}
+            id="outlined-adornment-password"
+            startAdornment={
+              <InputAdornment position="start">
+                <IconButton
+                  aria-label="toggle password visibility"
+
+                  edge="end"
+                >
+                        <div style={{color:"#000",fontFamily:"Shabnam"}}>| 98+</div>
+             </IconButton>
+              </InputAdornment>
+            }
+            label="Password"
+          />
+        </FormControl> */}
+
         <Button
           variant="contained"
           className={classes.buttonLogin}
           onClick={handleSubmit(onSubmit)}
         >
-          دریافت کد تایید
+          دریافت کد تائید
         </Button>
 
         {/* <input placeholder="Enter Email" type="email"/>

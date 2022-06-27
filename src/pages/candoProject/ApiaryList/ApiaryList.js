@@ -20,6 +20,7 @@ import {
   Info,
   MoreVertOutlined,
   Share,
+  TrainRounded,
   TramRounded,
 } from "@material-ui/icons";
 import { Link,useHistory } from "react-router-dom";
@@ -612,7 +613,9 @@ const [ ApiariesList,setApiariesList]=useState([])
   };
 
   const handleBulkDelete = () => {
+    
     if(window.confirm("آیا از حدف این مورد اطمینان دارید؟")){
+      setLoading(true)
       selectedRows.map(async(selectedRow)=>{
         console.log("selectedRow",selectedRow._id);
       const response = await axios.delete(`http://185.202.113.165:3000/api/apiary/delete-for-user/${selectedRow._id}`,{
@@ -620,19 +623,26 @@ const [ ApiariesList,setApiariesList]=useState([])
           'token': `${token}` 
         },
       },)
-      const newApiary=ApiariesList.filter((item)=>{
-            return item.id !== selectedRow._id
-      })
-      setApiariesList(newApiary)
+
+      console.log("response delete",response);
+      const updatedData = ApiariesList.filter((row) => !selectedRows.includes(row));
+      setApiariesList(updatedData);
+      setLoading(false)
+
+      // const newApiary=ApiariesList.filter((item)=>{
+      //       return item.id !== selectedRow._id
+      // })
+      // setApiariesList(newApiary)
       })
       // const response = await axios.delete(`http://188.121.121.225/api/user/${selectedRows[0].id}`)
     // console.log("selectedRows",selectedRows._id);
-    const updatedData = ApiariesList.filter((row) => ![selectedRows].includes(row));
-    setApiariesList(updatedData);
+
   }};
 
   const onRowDelete = async(rowData,popupState) => {
+
     if(window.confirm("آیا از حدف این مورد اطمینان دارید؟")){
+      setLoading(true)
       console.log(rowData._id);
       const response = await axios.delete(`http://185.202.113.165:3000/api/apiary/delete-for-user/${rowData._id}`,{
         headers: {
@@ -640,12 +650,19 @@ const [ ApiariesList,setApiariesList]=useState([])
         },
         
       },)
+      console.log("response delete2",response);
+      const updatedData = ApiariesList.filter((row) => ![rowData].includes(row));
+      setApiariesList(updatedData);
+      setLoading(false)
       // console.log("rowData23123", rowData);
-    const updatedData = ApiariesList.filter((row) => ![rowData].includes(row));
-    setApiariesList(updatedData);
+
     popupState.close();
     // window.location.reload()
-  }};
+  }
+
+
+
+};
   
   const downloadPdf = () => {
     const doc = new jsPDF();

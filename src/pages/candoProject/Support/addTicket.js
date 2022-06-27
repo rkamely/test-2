@@ -21,9 +21,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import AuthContext from "../../context/AuthProvider";
 
-function AddTicket(props) {
+function AddTicket({input,handleClose,newTicket,setNewTicket,title,style}) {
   {
-    console.log(props.input);
+    console.log(input);
   }
   const validationSchema = yup.object().shape({
     // name: yup
@@ -40,7 +40,6 @@ function AddTicket(props) {
       });
 
 
-  const [newTicket , setNewTicket] = useState()
 
 
   const bardia = localStorage.getItem("id_token")
@@ -91,11 +90,14 @@ function AddTicket(props) {
       headers: {
         'token': `${bardia}` 
       }
+    }).then((res)=>{
+      console.log("response1", res.data.data);
+      setNewTicket([...newTicket , res.data.data ])
     })
     console.log("response ro see kon to addticket",response);
     // setData({ data: [...data, data] });
-    localStorage.setItem("AddTicket",response.data.data)
-    props.handleClose()
+    // localStorage.setItem("AddTicket",response.data.data)
+    handleClose()
   };
 
   
@@ -111,7 +113,7 @@ function AddTicket(props) {
       className={classes.titleBox}
 
       >
-        {props.title}
+        {title}
       </div>
       <Divider
         style={{ backgroundColor: "rgb( 244 ,244 ,244)", marginTop: "32px" }}
@@ -122,7 +124,7 @@ function AddTicket(props) {
       >
        
           <div
-             className={classes.topMain}    >
+             className={classes.topMain}>
     
             {/* <h2
               style={{
@@ -131,13 +133,14 @@ function AddTicket(props) {
                 fontFamily: "Shabnam",
               }}
             >
-              {props.title}
+              {title}
             </h2> */}
+
             <div>
                  <Grid item xs={12} sm={12} className={classes.Select} >
 
                 <div className={classes.inputTitle}>
-                <label className={classes.label}>موضوع تیکت</label>
+                <label className={classes.label}>  موضوع تیکت  </label>
 
                   <Select
                     className={classes.inputSelect}
@@ -235,10 +238,10 @@ function AddTicket(props) {
         style={{ marginTop: "40px", backgroundColor: "rgb( 244 ,244 ,244)" }}
       />
       <DialogActions className={classes.actionButton}>
-        <Button onClick={props.handleClose} className={classes.cancelButton}>
+        <Button onClick={handleClose} className={classes.cancelButton}>
           انصراف
         </Button>
-        <Button    onClick={handleSubmit(onSubmit)} className={classes.addButton}>
+        <Button  onClick={handleSubmit(onSubmit)} className={classes.addButton}>
           افزودن
         </Button>
       </DialogActions>

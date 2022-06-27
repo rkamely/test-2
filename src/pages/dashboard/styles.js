@@ -30,7 +30,7 @@ export default makeStyles((theme) => ({
     color: "#fff",
   },
   Programs: {
-    [theme.breakpoints.down(720)]: {
+    [theme.breakpoints.down(1200)]: {
       flexDirection: "column",
     },
   },
@@ -59,12 +59,13 @@ export default makeStyles((theme) => ({
   },
   secondPart: {
     marginTop: "8px",
+ 
   },
   fiveBox: {
     display: "flex",
     justifyContent: "space-between",
   },
   CardItem:{
-    
+    border:"2px solid blue"
   }
 }));

@@ -58,7 +58,7 @@ const ApiaryAddList = ({ ApiariesList, setApiariesList, onClose, refresh }) => {
     const response = await axios
       .post(
         "http://185.202.113.165:3000/api/apiary/create-by-user",
-        { ...data, locationLangitude: 8, locationLatitude: 10 },
+        { ...data, locationLangitude: 8, locationLatitude: 10  },
         {
           headers: {
             token: `${token}`,
@@ -67,8 +67,9 @@ const ApiaryAddList = ({ ApiariesList, setApiariesList, onClose, refresh }) => {
       )
       .then((response) => {
         console.log("response1", response);
+        setApiariesList([...ApiariesList , response.data.data])
       });
-    setApiariesList([...ApiariesList , data])
+    // setApiariesList([...ApiariesList , data])
     console.log(ApiariesList, "ApiariesList");
     console.log();
     setStatus(true);
