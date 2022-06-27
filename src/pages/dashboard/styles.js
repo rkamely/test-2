@@ -66,6 +66,8 @@ export default makeStyles((theme) => ({
     justifyContent: "space-between",
   },
   CardItem:{
-    border:"2px solid blue"
+    border:"2px solid blue",
+    flex:" 1 1 0",
+   
   }
 }));

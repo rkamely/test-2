@@ -51,14 +51,14 @@ export default function Dashboard(props) {
 
 
 
-        <Grid item xs={12}  style={{display: "flex",border:"2px solid green"}} >
+        <Grid item xs={12}  style={{display: "flex",gap:"16px"}} >
           <Grid item lg={3} md={4} sm={6} xs={12} className={classes.CardItem}>
             <Widget
               color="secondary"
               Img="/assets/hive-svgrepo-com (-1.svg"
               title="تعداد زنبورستان"
               upperTitle
-              style={{ fontWeight: 600,marginLeft: 30,border:"2px solid red"}}
+              style={{ fontWeight: 600}}
               bodyClass={classes.fullHeightBody}
               className={classes.card}
             >
@@ -117,7 +117,7 @@ export default function Dashboard(props) {
               Img="/assets/hive-svgrepo-com (3).svg"
               title="تعداد کندو"
               upperTitle
-              style={{ fontWeight: 600,marginLeft: 30}}
+              style={{ fontWeight: 600}}
               bodyClass={classes.fullHeightBody}
               className={classes.card}
             >
@@ -175,7 +175,7 @@ export default function Dashboard(props) {
               Img="/assets/Group 11039.svg"
               title="تعداد بازدید"
               upperTitle
-              style={{ fontWeight: 600,marginLeft: 15}}
+              style={{ fontWeight: 600}}
               bodyClass={classes.fullHeightBody}
               className={classes.card}
             >
@@ -233,7 +233,7 @@ export default function Dashboard(props) {
               Img="/assets/power-svgrepo-com-1.svg"
               title="میانگین قدرت"
               upperTitle
-              style={{ fontWeight: 600,marginLeft: 15,marginRight:15}}
+              style={{ fontWeight: 600}}
               bodyClass={classes.fullHeightBody}
               className={classes.card}
             >
@@ -291,7 +291,7 @@ export default function Dashboard(props) {
               Img="/assets/12425575071619191957.svg"
               title="تعداد کارها"
               upperTitle
-              style={{ fontWeight: 600,marginRight: 15}}
+              style={{ fontWeight: 600}}
               bodyClass={classes.fullHeightBody}
               className={classes.card}
             >
