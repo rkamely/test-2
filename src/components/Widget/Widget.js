@@ -28,7 +28,7 @@ export default function Widget({
   const classes = useStyles();
 
   return (
-    <div className={classes.widgetWrapper} style={style && { ...style }}>
+    <div className={classes.widgetWrapper} >
       <Paper
         className={classes.paper}
         classes={{
@@ -50,7 +50,7 @@ export default function Widget({
               <Grid item style={{ width: "100%"}}>
                 <Grid item xs={12} container alignItems={"center"}>
                  <div style={{padding:"8px",border:"2px solid orange",borderRadius:" 500px",}}> <img src={Img}  className={classes.Img}/></div>
-                  <Title title={title} variant="p" style={{marginLeft:"16px"}}/>
+                  <Title title={title} variant="p" />
                 </Grid>
               </Grid>
             </React.Fragment>

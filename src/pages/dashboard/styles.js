@@ -15,6 +15,7 @@ export default makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
   
+  
   },
 
   success: {
@@ -55,7 +56,8 @@ export default makeStyles((theme) => ({
     marginTop: "16px",
   },
   firstTitleBox: {
-    marginTop: "30px",
+    marginTop: "4px",
+
   },
   secondPart: {
     marginTop: "8px",
@@ -66,7 +68,7 @@ export default makeStyles((theme) => ({
     justifyContent: "space-between",
   },
   CardItem:{
-    border:"2px solid blue",
+
     flex:" 1 1 0",
    
   }

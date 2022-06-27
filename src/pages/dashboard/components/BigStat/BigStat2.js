@@ -31,7 +31,7 @@ export default function BigStat2(props) {
           <Typography variant="h6">{product}</Typography>
           <div style={{marginTop:"12px" ,color:"rgb( 102, 103, 104)"}} >
       </div> 
-          <Typography variant="p"   colorBrightness="secondary" >
+          <Typography variant="p"   colorBrightness="secondary" style={{color:"slateGrey"}}>
            {registrations[value].value}
           </Typography></div>
     </div>     

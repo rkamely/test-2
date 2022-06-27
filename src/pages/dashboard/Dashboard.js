@@ -58,10 +58,11 @@ export default function Dashboard(props) {
               Img="/assets/hive-svgrepo-com (-1.svg"
               title="تعداد زنبورستان"
               upperTitle
-              style={{ fontWeight: 600}}
+              style={{ fontWeight: 600,border:"2px solid red",    borderRadius:"32px"}}
               bodyClass={classes.fullHeightBody}
               className={classes.card}
             >
+              <div style={{margin:"4px 0"}}>
               <Grid
                 container
                 item
@@ -74,7 +75,7 @@ export default function Dashboard(props) {
                     variant="p"
                     weight="Bold"
                     noWrap
-                    style={{ fontWeight: 600 }}
+                    style={{ fontWeight: 600}}
                   >
                     اکانت خودم
                   </Typography>
@@ -109,6 +110,7 @@ export default function Dashboard(props) {
                   </Typography>
                 </Grid>
               </Grid>
+              </div>
             </Widget>
           </Grid>
           <Grid item lg={3} md={4} sm={6} xs={12} className={classes.CardItem}>

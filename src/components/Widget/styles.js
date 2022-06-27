@@ -4,14 +4,16 @@ export default makeStyles(theme => ({
   widgetWrapper: {
     display: "flex",
     minHeight: "100%",
-   
+    borderRadius:"32px"
   },
   widgetHeader: {
-    padding: theme.spacing(2),
+    padding:"12px 16px ",
     paddingBottom: theme.spacing(1),
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+
+
   },
   widgetRoot: {
     boxShadow: theme.customShadows.widget,
