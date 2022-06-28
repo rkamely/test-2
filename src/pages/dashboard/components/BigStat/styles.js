@@ -6,6 +6,7 @@ export default makeStyles(theme => ({
     borderRadius:"12px",
     background:"#fff",
     boxShadow:"0px 2px 5px 0px rgba(0 ,0, 0, 0.16)"
+    
   },
   title: {
     display: "flex",
@@ -40,7 +41,7 @@ export default makeStyles(theme => ({
   profitArrow: {
    backgroundColor:"rgb( 33 192 99)",
    fontSize:"0.8rem",
-   padding:"12px 16px",
+   padding:"8px 12px",
   width:"120px",
   borderRadius:"8px",
   textAlign:"center",
@@ -53,7 +54,7 @@ export default makeStyles(theme => ({
   profitArrowGreen:{
     backgroundColor:"rgb( 163 229 190)",
     fontSize:"0.8rem",
-    padding:"12px 16px",
+    padding:"8px 12px",
    width:"120px",
    borderRadius:"8px",
    textAlign:"center",
@@ -62,7 +63,7 @@ export default makeStyles(theme => ({
   profitArrowDanger: {
     backgroundColor:"rgb( 227 23 10)",
     fontSize:"0.8rem",
-    padding:"12px 16px",
+    padding:"8px 12px",
     width:"120px",
     textAlign:"center",
     borderRadius:"8px",
@@ -71,7 +72,7 @@ export default makeStyles(theme => ({
   profitArrowDangerRed:{
     backgroundColor:"rgb( 244 162 157)",
     fontSize:"0.8rem",
-    padding:"12px 16px",
+    padding:"8px 12px",
     width:"120px",
     textAlign:"center",
     borderRadius:"8px",

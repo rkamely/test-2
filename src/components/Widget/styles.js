@@ -4,7 +4,6 @@ export default makeStyles(theme => ({
   widgetWrapper: {
     display: "flex",
     minHeight: "100%",
-    borderRadius:"32px"
   },
   widgetHeader: {
     padding:"12px 16px ",

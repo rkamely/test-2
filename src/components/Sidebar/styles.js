@@ -46,6 +46,7 @@ export default makeStyles(theme => ({
   ///////////sidebar top
   candoLogo:{
     marginRight: theme.spacing(2),
+    marginBottom:theme.spacing(3),
   },
   candoTopSidebar:{
      display:"flex",

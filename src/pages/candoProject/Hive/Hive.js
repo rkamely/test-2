@@ -147,10 +147,17 @@ function  Hive() {
       title: "نام کندو",
       field: "name",
       cellStyle: {
-        textAlign: "right",
+        // textAlign: "center !important",
+        whiteSpace: "nowrap",
+        fontSize:"0.8rem",
       },
       headerStyle: {
-        textAlign: "right",
+        textAlign: "center !importamt",
+        whiteSpace: "nowrap",
+
+        fontSize:"0.8rem",
+        colot:"slateGrey",
+        paddingRight:"40px"
       },
 
       render: (rowData) => {
@@ -158,7 +165,7 @@ function  Hive() {
         return (
           <Link
             to={`/app/ApiaryList/Beehive/Hive/${rowData.name.split(' ').join('-')}`}
-            style={{ display: "flex",textDecoration:"none" ,color:"black",cursor:"pointer"}}
+            style={{ textDecoration:"none" ,color:"black",cursor:"pointer"}}
           >
             {rowData.name}
           </Link>
@@ -170,10 +177,18 @@ function  Hive() {
       title: " نوع کندو",
       field: "HiveType",
       cellStyle: {
-        textAlign: "right",
+        textAlign:" center !important",
+
+        fontSize:"0.8rem",
+        justifyContent:"center",
       },
+
       headerStyle: {
         textAlign: "right",
+        whiteSpace: "nowrap",
+           fontSize:"0.8rem",
+           colot:"slateGrey",
+           paddingRight:"40px"
       },
       render: (rowData) => {
         return <p className="description">{rowData.HiveType}</p>;
@@ -183,10 +198,18 @@ function  Hive() {
       title: " نژاد ملکه",
       field: "RaceQueen",
       cellStyle: {
-        textAlign: "right",
+        textAlign:" center !important",
+
+        fontSize:"0.8rem",
+        justifyContent:"center",
       },
+
       headerStyle: {
         textAlign: "right",
+        whiteSpace: "nowrap",
+           fontSize:"0.8rem",
+           colot:"slateGrey",
+           paddingRight:"40px"
       },
       render: (rowData) => {
         return <p className="description">{rowData.RaceQueen}</p>;
@@ -196,10 +219,18 @@ function  Hive() {
       title: "تاریخ ایجاد",
       field: "date",
       cellStyle: {
-        textAlign: "right",
+        textAlign:" center !important",
+
+        fontSize:"0.8rem",
+        justifyContent:"center",
       },
+
       headerStyle: {
         textAlign: "right",
+        whiteSpace: "nowrap",
+           fontSize:"0.8rem",
+           colot:"slateGrey",
+           paddingRight:"40px"
       },
       render: (rowData) => {
         return <p className="description">{rowData.date}</p>;
@@ -209,10 +240,18 @@ function  Hive() {
       title: "وضعیت برد",
       field: "status",
       cellStyle: {
-        textAlign: "right",
+        textAlign:" center !important",
+        paddingRight:"30px",
+        fontSize:"0.8rem",
+        justifyContent:"center",
       },
+
       headerStyle: {
         textAlign: "right",
+        whiteSpace: "nowrap",
+           fontSize:"0.8rem",
+           colot:"slateGrey",
+           paddingRight:"40px"
       },
       render: (rowData) => {
         return (
@@ -226,10 +265,18 @@ function  Hive() {
       title: "کار",
       field: "Job",
       cellStyle: {
-        textAlign: "right",
+        textAlign:" center !important",
+
+        fontSize:"0.8rem",
+        justifyContent:"center",
       },
+
       headerStyle: {
         textAlign: "right",
+        whiteSpace: "nowrap",
+           fontSize:"0.8rem",
+           colot:"slateGrey",
+           paddingRight:"40px"
       },
       render: (rowData) => {
         return (
@@ -247,10 +294,18 @@ function  Hive() {
       title: "بیماری",
       field: "Sick",
       cellStyle: {
-        textAlign: "right",
+        textAlign:" center !important",
+
+        fontSize:"0.8rem",
+        justifyContent:"center",
       },
+
       headerStyle: {
         textAlign: "right",
+        whiteSpace: "nowrap",
+           fontSize:"0.8rem",
+           colot:"slateGrey",
+           paddingRight:"40px"
       },
       render: (rowData) => {
         return (
@@ -268,10 +323,18 @@ function  Hive() {
       title: "ملکه",
       field: "Queen",
       cellStyle: {
-        textAlign: "right",
+        textAlign:" center !important",
+
+        fontSize:"0.8rem",
+        justifyContent:"center",
       },
+
       headerStyle: {
         textAlign: "right",
+        whiteSpace: "nowrap",
+           fontSize:"0.8rem",
+           colot:"slateGrey",
+           paddingRight:"40px"
       },
       render: (rowData) => {
         return (
@@ -289,10 +352,18 @@ function  Hive() {
       title: "عملیات",
       field: "action",
       cellStyle: {
-        textAlign: "right",
+        textAlign:" center !important",
+
+        fontSize:"0.8rem",
+        justifyContent:"center",
       },
+
       headerStyle: {
         textAlign: "right",
+        whiteSpace: "nowrap",
+           fontSize:"0.8rem",
+           colot:"slateGrey",
+           paddingRight:"40px"
       },
       render: (rowData) => {
         return (

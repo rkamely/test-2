@@ -124,11 +124,11 @@ const defaultTheme = {
         },
       },
       gutters: {
-        margin: " 0 10px",
-        width: "90%",
-        borderRadius: "8px",
-        marginTop: "8px",
-        padding: "8px 0px !important",
+        margin: " 0 20px",
+        width: "85%",
+        borderRadius: "10px",
+        marginTop: "12px",
+        padding: "4px 0px !important",
       },
       button: {
         "&:hover, &:focus": {
@@ -212,6 +212,13 @@ const defaultTheme = {
         padding:"0"
       }
         
+    },
+    MuiTableCell:{
+      alignLeft:{
+        textAlign:"center !important",
+        fontFamily:"Shabnam"
+      },
+      
     }
   },
 };

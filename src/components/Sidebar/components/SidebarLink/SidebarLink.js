@@ -100,12 +100,15 @@ export default function SidebarLink({
         disableRipple
       >
         <ListItemIcon
+
           className={classnames(classes.linkIcon, {
             [classes.linkIconActive]: isLinkActive,
           })}
+
         >
-          {nested ? <Dot color={isLinkActive && "#000"} /> : icon}
-       
+          {/* {nested ? <Dot color={isLinkActive && "#000"} /> : icon} */}
+          {icon}
+
 
         </ListItemIcon>
         <ListItemText

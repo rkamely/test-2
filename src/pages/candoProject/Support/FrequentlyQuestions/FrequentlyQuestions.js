@@ -251,7 +251,7 @@ export default function SimpleAccordion() {
   return (
     <Grid container className={classes.container}>
 
-      {/* <Grid
+      <Grid
         item
         xs={12}
         style={{
@@ -269,7 +269,7 @@ export default function SimpleAccordion() {
           className={classes.inputSelect}
         >
           <Select
-        
+           style={{height:"40px"}}
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={value}
@@ -286,10 +286,14 @@ export default function SimpleAccordion() {
             })}
           </Select>
         </FormControl>
-      </Grid> */}
+      </Grid>
 
-      {/* item */}
-      <Typography variant="h3" color="secondary" style={{fontWeight:"600"}}>کندووان پلاس</Typography>
+
+
+
+
+      {/* items */}
+      <Typography variant="h3" color="secondary" style={{fontWeight:"600",marginTop:"24px"}}>کندووان پلاس</Typography>
       <Grid style={{ width: "100%" }}>
             <Accordion
               // onClick={() => changeColor(el.id)}

@@ -42,9 +42,12 @@ export default makeStyles((theme) => ({
   workDone: {
     display: "flex",
     flexDirection: "column",
-    marginLeft: "32px",
-    [theme.breakpoints.down(720)]: {
-      marginLeft: "0px",
+    // marginLeft: "32px",
+    gap: "0px 50px",
+
+    [theme.breakpoints.down(1200)]: {
+      // marginLeft: "0px",
+      marginTop:"16px"
     },
   },
   mapBox: {
@@ -61,7 +64,16 @@ export default makeStyles((theme) => ({
   },
   secondPart: {
     marginTop: "8px",
+
  
+  },
+  boxes:{
+
+    display: "flex",
+    gap:"16px",
+    [theme.breakpoints.down(1200)]: {
+      flexDirection: "column",
+    },
   },
   fiveBox: {
     display: "flex",

@@ -27,13 +27,15 @@ export default makeStyles(theme => ({
     },
   },
   linkIcon: {
-    marginLeft: theme.spacing(1),
+    // display:"none",
+    // marginLeft: theme.spacing(1),
     color: theme.palette.text.secondary + "99",
     transition: theme.transitions.create("color"),
     width: 24,
     display: "flex",
     justifyContent: "center",
   },
+ 
   linkIconActive: {
     color: theme.palette.primary.main,
   },

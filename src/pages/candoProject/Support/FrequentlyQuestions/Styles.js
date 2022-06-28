@@ -19,7 +19,8 @@ padding:"80px",
     color: "rgb(255 130 4)",
   },
   inputSelect: {
-    width: "20%",
+    width: "22%",
+    height:"40px",
     backgroundColor: "white",
     boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
     borderRadius: "10px",
@@ -51,6 +52,8 @@ padding:"80px",
       },
     },
   },
+
+  
   Accordion: {
 
  

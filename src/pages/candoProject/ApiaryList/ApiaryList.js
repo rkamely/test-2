@@ -267,10 +267,17 @@ const [ ApiariesList,setApiariesList]=useState([])
       field: "name",
 
       cellStyle: {
-        textAlign: "right",
+        // textAlign: "center !important",
+        whiteSpace: "nowrap",
+        fontSize:"0.8rem",
       },
       headerStyle: {
-        textAlign: "right",
+        textAlign: "center !importamt",
+        whiteSpace: "nowrap",
+
+        fontSize:"0.8rem",
+        colot:"slateGrey",
+        paddingRight:"40px"
       },
 
       render: (rowData) => {
@@ -284,7 +291,7 @@ const [ ApiariesList,setApiariesList]=useState([])
               state: { state:rowData.name },
             }}
             className="title"
-            style={{ display: "flex" }}
+            // style={{ display: "flex" }}
           >
             <p className="title">{rowData.name}</p>
           </Link>
@@ -332,14 +339,23 @@ const [ ApiariesList,setApiariesList]=useState([])
     //   },
     // },
     {
-      title: "پوشش گیاهی منطقه",
+      title: "پوشش گیاهی",
       field: "regionVegetation",
       cellStyle: {
-        textAlign: "right",
+        textAlign:" center !important",
+
+        fontSize:"0.8rem",
+        justifyContent:"center",
       },
+
       headerStyle: {
         textAlign: "right",
+        whiteSpace: "nowrap",
+           fontSize:"0.8rem",
+           colot:"slateGrey",
+           paddingRight:"40px"
       },
+
       render: (rowData) => {
         switch (rowData.regionVegetation) {
           case 'Garden':
@@ -362,10 +378,18 @@ const [ ApiariesList,setApiariesList]=useState([])
       title: "نوع منطقه",
       field: "regionType",
       cellStyle: {
-        textAlign: "right",
+        textAlign: "center",
+        fontSize:"0.8rem",
+        justifyContent:"center",
+        // padding:"0 28px"
       },
       headerStyle: {
-        textAlign: "right",
+
+
+        whiteSpace: "nowrap",
+        fontSize:"0.8rem",
+        colot:"slateGrey",
+        paddingRight:"40px"
       },
       render: (rowData) => {
         switch (rowData.regionType) {
@@ -384,9 +408,16 @@ const [ ApiariesList,setApiariesList]=useState([])
       field: "apiaryUsage",
       cellStyle: {
         textAlign: "right",
+        whiteSpace: "nowrap",
+        fontSize:"0.8rem",
+
       },
       headerStyle: {
         textAlign: "right",
+         whiteSpace: "nowrap",
+         fontSize:"0.8rem",
+         colot:"slateGrey",
+         paddingRight:"40px"
       },
       render: (rowData) => {
         switch (rowData.apiaryUsage) {
@@ -408,9 +439,14 @@ const [ ApiariesList,setApiariesList]=useState([])
       field: "hivesWithBadCondition",
       cellStyle: {
         textAlign: "right",
+        fontSize:"0.8rem",
+        padding:"0 46px"
       },
       headerStyle: {
         textAlign: "right",
+        whiteSpace: "nowrap",
+        colot:"slateGrey",
+        fontSize:"0.8rem",
       },
       render: (rowData) => {
         return <div className="circleRed">{rowData.hivesWithBadCondition}</div>;
@@ -421,9 +457,14 @@ const [ ApiariesList,setApiariesList]=useState([])
       field: "hivesWithVisitRequired",
       cellStyle: {
         textAlign: "right",
+        fontSize:"0.8rem",
+        padding:"0 40px"
       },
       headerStyle: {
         textAlign: "right",
+        whiteSpace: "nowrap",
+        fontSize:"0.8rem",
+        colot:"slateGrey"
       },
       render: (rowData) => {
         return <p className="circleYellow">{rowData.hivesWithVisitRequired}</p>;
@@ -434,9 +475,14 @@ const [ ApiariesList,setApiariesList]=useState([])
       field: "hivesWithGoodCondition",
       cellStyle: {
         textAlign: "right",
+        fontSize:"0.8rem",
+        padding:"0 46px"
       },
       headerStyle: {
         textAlign: "right",
+        whiteSpace: "nowrap",
+        colot:"slateGrey",
+        fontSize:"0.8rem",
       },
       render: (rowData) => {
         return <p className="circleGreen">{rowData.hivesWithGoodCondition}</p>;
@@ -448,10 +494,14 @@ const [ ApiariesList,setApiariesList]=useState([])
       field: "thumbnail",
       cellStyle: {
         textAlign: "right",
-        
+        fontSize:"0.8rem",
       },
       headerStyle: {
         textAlign: "right",
+        whiteSpace: "nowrap",
+        colot:"slateGrey",
+        fontSize:"0.8rem",
+        paddingRight:"40px"
       },
       render: (rowData) => {
         return (

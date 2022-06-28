@@ -51,14 +51,14 @@ export default function Dashboard(props) {
 
 
 
-        <Grid item xs={12}  style={{display: "flex",gap:"16px"}} >
-          <Grid item lg={3} md={4} sm={6} xs={12} className={classes.CardItem}>
+        <Grid item xs={12} className={classes.boxes}  >
+          <Grid item lg={3}  xs={12} className={classes.CardItem}>
             <Widget
               color="secondary"
               Img="/assets/hive-svgrepo-com (-1.svg"
               title="تعداد زنبورستان"
               upperTitle
-              style={{ fontWeight: 600,border:"2px solid red",    borderRadius:"32px"}}
+              style={{ fontWeight: 600,   borderRadius:"32px"}}
               bodyClass={classes.fullHeightBody}
               className={classes.card}
             >
@@ -113,7 +113,7 @@ export default function Dashboard(props) {
               </div>
             </Widget>
           </Grid>
-          <Grid item lg={3} md={4} sm={6} xs={12} className={classes.CardItem}>
+          <Grid item lg={3} xs={12} className={classes.CardItem}>
             <Widget
               color="secondary"
               Img="/assets/hive-svgrepo-com (3).svg"
@@ -171,7 +171,7 @@ export default function Dashboard(props) {
               </Grid>
             </Widget>
           </Grid>
-          <Grid item lg={3} md={4} sm={6} xs={12} className={classes.CardItem}>
+          <Grid item lg={3}  xs={12} className={classes.CardItem}>
             <Widget
               color="secondary"
               Img="/assets/Group 11039.svg"
@@ -229,7 +229,7 @@ export default function Dashboard(props) {
               </Grid>
             </Widget>
           </Grid>
-          <Grid item lg={3} md={4} sm={6} xs={12} className={classes.CardItem}>
+          <Grid item lg={3} xs={12} className={classes.CardItem}>
             <Widget
               color="secondary"
               Img="/assets/power-svgrepo-com-1.svg"
@@ -287,7 +287,7 @@ export default function Dashboard(props) {
               </Grid>
             </Widget>
           </Grid>
-          <Grid item lg={3} md={4} sm={6} xs={12} className={classes.CardItem}>
+          <Grid item lg={3}  xs={12} className={classes.CardItem}>
             <Widget
               color="secondary"
               Img="/assets/12425575071619191957.svg"
@@ -449,7 +449,7 @@ export default function Dashboard(props) {
           item
           lg={12}
           xs={12}
-          style={{ display: "flex" }}
+          style={{ display: "flex" ,gap:"32px"}}
         >
           <Grid className={classes.reminderJob} item lg={12} xs={12}>
             <Title title="يادآوری کارها" variant="h6" />
@@ -471,6 +471,7 @@ export default function Dashboard(props) {
           </Grid>
           <Grid className={classes.workDone} item lg={12} xs={12}>
             <Title title="کارهای انجام شده" variant="h6" />
+        
             {mock.DoneJob.map((stat, index) => (
               <Grid item lg={12} xs={12} style={{ display: "flex" }}>
                 <Grid
@@ -480,12 +481,13 @@ export default function Dashboard(props) {
                   sm={12}
                   xs={12}
                   key={index}
-                  style={{ marginTop: "12px" }}
+                  style={{ marginTop: "12px",gap:"32px"  }}
                 >
                   <BigStat {...stat} />
                 </Grid>
               </Grid>
             ))}
+         
           </Grid>
         </Grid>
       </Grid>
