@@ -9,7 +9,7 @@ function Audio() {
   return (
     <Grid
       item
- 
+      className={classes.Audio_container}
       xs={12}
       style={{
         fontWeight: 600,
@@ -18,7 +18,7 @@ function Audio() {
       }}
     >
 
-      <Widget color="secondary" style={{ fontWeight: 600, width: "100%" }}>
+   
         {/* toplevel */}
        <Grid item xs={12} > <ApexLineChart/> </Grid>
         {/* midlevel */}
@@ -206,7 +206,7 @@ function Audio() {
             </Grid>
           </Grid>
         </Grid>
-      </Widget>
+
     </Grid>
   );
 }

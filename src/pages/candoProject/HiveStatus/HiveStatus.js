@@ -24,7 +24,7 @@ import {
   Switch,
   Route,
   Link,NavLink,
-  useParams,useRouteMatch
+  useParams,useRouteMatch,useHistory
 } from "react-router-dom" 
 import RightTopCard from "./RightTopCard";
 import LeftCard from "./LeftCard";
@@ -44,6 +44,7 @@ function HiveStatus() {
 
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const history = useHistory();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -59,29 +60,33 @@ function HiveStatus() {
   let { id } = useParams();
   
   console.log("id ro bebin " , id);
+const apiaryIdClick=localStorage.getItem("apiaryIdClick")
   const breadcrumbs = [
 
     <Link
       to="/app/ApiaryList"
       key="1"
-      style={{textDecoration:"none",cursor:"pointer"}}
+      style={{textDecoration:"none",cursor:"pointer",fontSize:"1.2rem"}}
     >
-          <Title key="1" title=" زنبورستان "/>
+
+          <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold",fontSize:"1.2rem"}}>زنبورستان</p>
 
     </Link>,
         <Link
-        to="/app/ApiaryList"
-        key="1"
+        to="/app/ApiaryList/Beehive/زنبورستان-۶"
+        key="2"
         style={{textDecoration:"none",cursor:"pointer"}}
       >
-            <Title key="2" title="کندووان"/>
+            {/* <Title key="2" title="کندووان"/> */}
+            <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold",fontSize:"1.2rem"}} onClick={history.goBack}>{apiaryIdClick}</p>
+
   
       </Link>,
 
-            <Title key="3" title={id}/>
-
-
+            <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold",fontSize:"1.2rem"}}>{id}</p>
+            
   ];
+
   return (
     <>
       <Breadcrumbs 
@@ -90,7 +95,7 @@ function HiveStatus() {
       >
         {breadcrumbs}
       </Breadcrumbs>
-      <Grid container spacing={3} style={{marginTop:"32px"}}>
+      <Grid container spacing={3} style={{marginTop:"8px"}}>
 
     <Grid item xs={12}  lg={6}>
 

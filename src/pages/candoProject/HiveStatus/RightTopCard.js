@@ -25,17 +25,11 @@ function RightTopCard() {
   <Grid
       item
       xs={12}
-      style={{ fontWeight: 600,height:"480px"}}
+      className={classes.rightTopCard_Container}
     >
   
 
-      <Widget
-        color="secondary"
-        style={{
-          fontWeight: 600, 
-          width: "100%",        
-        }}
-      >
+
         <Grid
           item
           alignItems="center"
@@ -475,9 +469,9 @@ function RightTopCard() {
 </>
 
 
-      </Widget>
+
       
-    </Grid>
+  </Grid>
 
 </>
   );

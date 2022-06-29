@@ -746,7 +746,7 @@ const [ ApiariesList,setApiariesList]=useState([])
     {loading?
           <div className={classes.Loading}> <Loading color="orange" /></div>: 
     <div>
-      <h2 style={{ color: "rgb(227, 156, 0)" }}>زنبورستان</h2>
+      <h2 style={{ color: "rgb(227, 156, 0)",fontSize:"1.2rem"}}>زنبورستان</h2>
 
       <MaterialTable
         localization={{
@@ -755,7 +755,7 @@ const [ ApiariesList,setApiariesList]=useState([])
           },
         }}
         title=""
-        style={{ borderRadius: "25px" }}
+        style={{ borderRadius: "25px",marginTop:"32px" }}
         data={ApiariesList}
         columns={columns}
         onSelectionChange={(rows) => setSelectedRows(rows)}

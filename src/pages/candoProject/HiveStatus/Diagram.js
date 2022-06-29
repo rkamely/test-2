@@ -206,10 +206,8 @@ function Diagram() {
   };
   const openDatepicker = () => {};
   return (
-    <Grid item xs={12}>
-      <Widget
-        bodyClass={classes.mainChartBody}
-        header={
+    <Grid item xs={12} className={classes.diagram_container}>
+
           <Grid item xs={12} className={classes.mainChartHeader}>
             {/* <div className={classes.mainChartHeaderLabels}>
               <div className={classes.mainChartHeaderLabel}>
@@ -283,8 +281,7 @@ function Diagram() {
               </Grid>
             </Grid>
           </Grid>
-        }
-      >
+
         {/* Diagram */}
         <ResponsiveContainer width="100%" minWidth={450} height={350}>
           <ComposedChart
@@ -420,7 +417,7 @@ function Diagram() {
         <Grid item xs={12} style={{ borderRadius: "8px", marginTop: "16px" }}>
           <TableDiagram />
         </Grid>
-      </Widget>
+
     </Grid>
   );
 }

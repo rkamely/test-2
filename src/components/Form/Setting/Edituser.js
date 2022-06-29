@@ -1,4 +1,4 @@
-import { Avatar, Box, Divider, Grid, Modal, TextField, Typography } from '@material-ui/core';
+import { Avatar, Box, Divider, FormControlLabel, FormGroup, Grid, Modal, Switch, TextField, Typography } from '@material-ui/core';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -15,6 +15,8 @@ import EditPhoneNumber from './EditPhoneNumber';
 import AddSubmitCode from './AddSubmitCode';
 import AddJob from '../JobUser/AddJob';
 import Title from '../../Typography/Title/Title';
+import { withStyles } from '@material-ui/styles';
+import IOSSwitch from './IOSSwitch';
 
 function Edituser() {
     const [open, setOpen] = useState(false);
@@ -90,6 +92,20 @@ function Edituser() {
 
 
 
+
+      const [state, setState] = React.useState({
+        checkedA: false,
+        checkedB: true,
+      });
+    
+      const handleChange = (event) => {
+        setState({ ...state, [event.target.name]: event.target.checked });
+      };
+
+
+
+
+
   return (
     <Grid
     container
@@ -102,7 +118,8 @@ function Edituser() {
       marginTop: "24px",
     }}
   >
-<Title title="تنظیمات" variant="h5"/>
+    
+    <Title title="تنظیمات" variant="h3"/>
     <Grid
       item
       xs={12}
@@ -236,6 +253,55 @@ function Edituser() {
     </Grid>
     </Grid>
 
+<Grid   xs={12} style={{display:"flex",gap:"36px"}}>
+    <Grid
+      item
+      xs={6}
+      style={{
+        display: "flex",
+        backgroundColor: "#fff",
+        alignItems: "center",
+        padding: "12px 24px",
+        justifyContent: "space-between",
+        borderRadius: "12px",
+        width: "100%",
+        marginTop:"24px"
+      }}
+    >
+      <div style={{ fontSize: "16px", fontWeight: "bold" ,display:"flex",alignItems:"center",justifyContent:"center"}}>
+              اعلان‌ها        
+      </div>
+      
+      <FormControlLabel
+        control={<IOSSwitch  checked={state.checkedB} onChange={handleChange} name="checkedB" />}
+      />
+    </Grid>
+
+    <Grid
+      item
+      xs={6}
+      style={{
+        display: "flex",
+        backgroundColor: "#fff",
+        alignItems: "center",
+        padding: "12px 24px",
+        justifyContent: "space-between",
+        borderRadius: "12px",
+        width: "100%",
+        marginTop:"24px"
+      }}
+    >
+      <div style={{ fontSize: "16px", fontWeight: "bold" ,display:"flex",alignItems:"center",justifyContent:"center"}}>
+         بازدید دستی
+      </div>
+      <FormControlLabel
+        control={<IOSSwitch checked={state.checkedA} onChange={handleChange} name="checkedA" />}
+      />
+    </Grid>
+</Grid>
+
+
+
     <div>
         <Modal
           open={open}
@@ -250,7 +316,7 @@ function Edituser() {
           </Box>
           
         </Modal>
-      </div>
+    </div>
 
 
     </Grid>

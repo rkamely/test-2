@@ -19,7 +19,18 @@ export default makeStyles((theme) => ({
     textDecoration: "none",
     color: "rgb( 227, 156, 0)",
   },
-
+  rightTopCard_Container:{
+    fontWeight: 600,height:"auto",background:"#fff",ppadding:"20px 30px 100px",borderRadius:"15px",
+    boxShadow:"0px 3px 6px 0px rgba(0 ,0 ,0, 0.16)"
+  },
+  diagram_container:{
+    fontWeight: 600,height:"auto",background:"#fff",padding:"20px 30px",borderRadius:"15px",
+    boxShadow:"0px 3px 6px 0px rgba(0 ,0 ,0, 0.16)"
+  },
+  Audio_container:{
+    fontWeight: 600,height:"auto",background:"#fff",padding:"20px 30px",borderRadius:"15px",
+    boxShadow:"0px 3px 6px 0px rgba(0 ,0 ,0, 0.16)"
+  },
   activeItem: {
     background: "#fff",
     padding: "4px 16px",

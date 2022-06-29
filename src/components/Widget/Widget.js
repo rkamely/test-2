@@ -49,7 +49,7 @@ export default function Widget({
             <React.Fragment>
               <Grid item style={{ width: "100%"}}>
                 <Grid item xs={12} container alignItems={"center"}>
-                 <div style={{padding:"8px",border:"2px solid orange",borderRadius:" 500px",}}> <img src={Img}  className={classes.Img}/></div>
+                 <div > <img src={Img}  className={classes.Img}/></div>
                   <Title title={title} variant="p" />
                 </Grid>
               </Grid>

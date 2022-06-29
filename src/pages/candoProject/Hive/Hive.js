@@ -632,6 +632,7 @@ function  Hive() {
 
 
   let { id } = useParams();
+  localStorage.setItem("apiaryIdClick",id)
   console.log("id ro bebin " , id);
   const breadcrumbs = [
 
@@ -640,11 +641,14 @@ function  Hive() {
       key="1"
       style={{textDecoration:"none",cursor:"pointer"}}
     >
-          <Title key="2" title={id}/>
+          {/* <Title key="2" title="زنبورستان"/> */}
+          <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold",fontSize:"1.2rem"}}>زنبورستان</p>
+
 
     </Link>,
-    <Title key="2" title="کندوان"/>
 
+
+       <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold",fontSize:"1.2rem"}}>{id}</p>
 
   ];
   return (
@@ -663,7 +667,7 @@ function  Hive() {
           },
         }}
         title=""
-        style={{ borderRadius: "25px",marginTop:"32px" }}
+        style={{ borderRadius: "25px",marginTop:"16px" }}
         data={Company}
         columns={columns}
         onSelectionChange={(rows) => setSelectedRows(rows)}
