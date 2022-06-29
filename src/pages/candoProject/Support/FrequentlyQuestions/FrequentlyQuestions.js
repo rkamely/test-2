@@ -162,16 +162,22 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Breadcrumbs,
   FormControl,
   Grid,
   MenuItem,
   Select,
   Typography,
 } from "@material-ui/core";
-import { ArrowLeft, CallMissedSharp, ExpandMore } from "@material-ui/icons";
+import { ArrowLeft, CallMissedSharp, ExpandMore, NavigateBefore } from "@material-ui/icons";
 import { styled } from "@material-ui/styles";
 import * as React from "react";
 import useStyles from "./Styles";
+import {
+  Link,
+  useParams,useHistory
+} from "react-router-dom";
+import Title from "../../../../components/Typography/Title/Title";
 
 export default function SimpleAccordion() {
   const classes = useStyles();
@@ -248,7 +254,45 @@ export default function SimpleAccordion() {
   const handleChange = (event) => {
     setValue(event.target.value);
   };
+
+  const breadcrumbs = [
+
+    <Link
+    to="/app/Support"
+      key="1"
+      style={{textDecoration:"none",cursor:"pointer",fontWeight:"bold"}}
+      
+    >
+          <Title key="1" title=" پشتیبانی "/>
+          {/* <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold"}}>پشتیبانی</p> */}
+
+  
+    </Link>,
+        <div
+         to="/app/Support"
+        key="2"
+        style={{textDecoration:"none",cursor:"pointer",fontWeight:"bold"}}
+      >
+         {/* <Title key="2" title="پیام‌های من"/> */}
+         <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold"}}>سوالات متداول</p>
+      </div>,
+      
+  
+  
+  
+  ];
   return (
+    <>
+      <Breadcrumbs
+         separator=""
+        separator={<NavigateBefore fontSize="large" style={{color:"rgb(227, 156, 0)"}} />}
+        // separator={<ArrowBackIosRounded fontSize="large" />}
+
+        aria-label="breadcrumb"
+        
+      >
+        {breadcrumbs}
+      </Breadcrumbs>
     <Grid container className={classes.container}>
 
       <Grid
@@ -454,5 +498,6 @@ export default function SimpleAccordion() {
       
 
     </Grid>
+    </>
   );
 }

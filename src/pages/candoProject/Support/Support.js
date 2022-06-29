@@ -1,4 +1,5 @@
 import {
+  Breadcrumbs,
   Button,
   Dialog,
   Grid,
@@ -16,7 +17,10 @@ import axios from "axios";
 import AddQRcode from "./addQRcode";
 import moment from 'jalali-moment'
 import Loading from "../../../components/Loading/Loading"
-
+import { NavigateBefore } from "@material-ui/icons";
+import Title from "../../../components/Typography/Title/Title";
+import classNames from 'classnames';
+import "./Support.css"
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -99,6 +103,7 @@ function Support() {
         open: 1,
         wait: 2,
       },
+      status1:"Wait",
       Duration: "8 ماه پیش ",
     },
     {
@@ -111,6 +116,7 @@ function Support() {
         open: 1,
         wait: 2,
       },
+      status1:"Open",
       Duration: "8 ماه پیش ",
     },
     {
@@ -123,6 +129,7 @@ function Support() {
         open: 1,
         wait: 2,
       },
+      status1:"Close",
       Duration: "8 ماه پیش ",
     },
     {
@@ -152,8 +159,53 @@ function Support() {
   // const AddTicket=localStorage.getItem("AddTicket")
   // console.log("AddTicket",AddTicket);
   console.log("show",show);
+
+
+
+
+
+
+
+
+  const breadcrumbs = [
+
+    <Link
+ 
+      key="1"
+      style={{textDecoration:"none",cursor:"pointer"}}
+    >
+          <Title key="1" title=" پشتیبانی "/>
+
+    </Link>,
+        <Link
+
+        key="2"
+        style={{textDecoration:"none",cursor:"pointer"}}
+      >
+         {/* <Title key="2" title="پیام‌های من"/> */}
+         <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold"}}>پیام‌های من</p>
+  
+      </Link>,
+
+            // <Title key="3" title={id}/>
+
+
+  ];
+
+
+
+
+
+
+
   return (
     <>
+      <Breadcrumbs
+        separator={<NavigateBefore fontSize="large" style={{color:"rgb(227, 156, 0)"}} />}
+        aria-label="breadcrumb"
+      >
+        {breadcrumbs}
+      </Breadcrumbs>
     {loading?
       <div className={classes.Loading}> <Loading color="orange" /></div>: 
 
@@ -182,8 +234,48 @@ function Support() {
       </Grid>
 
       {show?null:<div style={{width:"100%",height:"70vh",display:"flex",alignItems:"center",justifyContent:"center",background:"#fff",borderRadius:"12px",marginTop:"32px"}}>تیکتی جهت نمایش وجود ندارد!</div>}
-      {newTicket?.map((element) => {
+
+
+
+
+      {/* new ticket main*/}
+
+
+      {newTicket?.slice(0).reverse().map((element) => {
+        const ticketDate = moment.from(element.createdAt).locale('fa')
+        let durationDate =  moment().diff(ticketDate,"days") 
+
+        //css calss
+          let btnClass = classNames({
+             
+            [classes.openTicket]: element.status==="Open",
+            [classes.closeTicket]: element.status==="CloseByUser",
+            [classes.waitTicket]: element.status==="Wait",
+
+       });
+     //logic calss
+       const changeText=(e)=>{
+        switch (e) {
+          case "Open":
+             return <div>باز</div>
+          case "CloseByUser":
+            return <div>بسته</div>
+          default:
+            return <div>در انتظار</div>
+        }
+      }
+
+      // switch (element.status) {
+      //   case "Open":
+      //     return <div>باز</div>
+      //   case "CloseByUser":
+      
+      //   default:
+      //     break;
+      // }
+
         return (
+  
           <Link
           key={element._id}
           to={`./Support/${element._id}`  }
@@ -198,14 +290,16 @@ function Support() {
                   {element.title}
                 </Typography>
                 <Typography className={classes.Date}> {moment.from(element.createdAt).locale('fa').format('YYYY/M/D HH:mm')}</Typography>
-                <Typography className={classes.Time}>{element.Time}</Typography>
+                {/* <Typography className={classes.Time}>{element.createBy.username}</Typography> */}
+
 
 
 
               </Grid>
-              <Grid className={classes.State}>باز</Grid>
+              <Grid className={btnClass}>{changeText(element.status)}</Grid>
             </Grid>
-            <Grid className={classes.Duration}>{ 'Difference is ', moment().diff(moment(element.createdAt, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'), 'days') }</Grid>
+
+            <Grid className={classes.Duration}>{durationDate=="0"?<div>امروز</div>:<div>{durationDate} روز قبل</div>}</Grid>
 
         </Link>
 
@@ -214,9 +308,21 @@ function Support() {
 
 
       {/* {data.map((element) => {
+                  let btnClass = classNames({
+             
+                    [classes.openTicket]: element.status1==="Open",
+                    [classes.closeTicket]: element.status1==="Close",
+                    [classes.waitTicket]: element.status1==="Wait",
         
+                    // [classes.drawerClose]: !element.status,
+                  // btn: true,
+                 'open': element.status,
+                 'close': !element.status && element.status,
+                 "wait":element.status
+               });
 
-              return (             
+              return (   
+
               <Grid
                 className={classes.QuestionCountainer}
                 item
@@ -234,6 +340,7 @@ function Support() {
                 {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')} | {element.Date} {element.Time}
                   
                 </Grid>
+                <Grid className={btnClass}>{changeText}</Grid>
               </Grid>)
 
               

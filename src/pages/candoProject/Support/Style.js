@@ -60,7 +60,6 @@ padding:"0 40px",
   Duration: {
     color: " rgb( 173 173 173)",
     fontSize: "0.8rem",
-    marginRight: "24px",
     [theme.breakpoints.down('xs')]: {
 
       marginRight: 0,
@@ -68,10 +67,37 @@ padding:"0 40px",
   },
   },
 
-  State: {
+  openTicket: {
     marginTop: "16px",
-  },
+    backgroundColor:"rgb( 190, 215 ,249)",
+    borderRadius:"8px",
+    width:"80px",
+    padding:"4px 0px",
+    textAlign:"center",
+    color:"rgb( 26 115 233)",
+    fontWeight:"bold"
 
+  },
+  closeTicket:{
+    marginTop: "16px",
+    backgroundColor:"rgb( 219 219 219)",
+    borderRadius:"8px",
+    width:"80px",
+    padding:"4px 0px",
+    textAlign:"center",
+    color:"rgb( 102 103 104)",
+    fontWeight:"bold"
+  },
+  waitTicket:{
+    marginTop: "16px",
+    backgroundColor:"rgb( 255 242 212)",
+    borderRadius:"8px",
+    width:"80px",
+    padding:"4px 0px",
+    textAlign:"center",
+    color:"rgb( 227 156 0)",
+    fontWeight:"bold"
+  },
   Button: {
     display: "flex",
     justifyContent: "space-between",

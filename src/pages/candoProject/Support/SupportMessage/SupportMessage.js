@@ -1,8 +1,14 @@
-import { Divider, Grid, Typography } from "@material-ui/core";
+import { Breadcrumbs, Divider, Grid, Typography } from "@material-ui/core";
+import { NavigateBefore } from "@material-ui/icons";
 import axios from "axios";
 import moment from "jalali-moment";
 import React, { useEffect, useState } from "react";
 import useStyles from "./Style";
+import {
+  Link,
+  useParams,useHistory
+} from "react-router-dom";
+import Title from "../../../../components/Typography/Title/Title";
 // function SupportMessage() {
 
 //   return (
@@ -69,9 +75,39 @@ function SupportMessage() {
 
 
   /////////////////////////////////////////////////////////////////////////////////////////
+  const breadcrumbs = [
 
+    <Link
+    to="/app/Support"
+      key="1"
+      style={{textDecoration:"none",cursor:"pointer"}}
+    >
+          <Title key="1" title=" پشتیبانی "/>
+  
+    </Link>,
+        <Link
+         to="/app/Support"
+        key="2"
+        style={{textDecoration:"none",cursor:"pointer"}}
+      >
+         {/* <Title key="2" title="پیام‌های من"/> */}
+         <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold"}}>پیام‌های پشتیبان</p>
+  
+      </Link>,
+      
+  
+  
+  
+  ];
 
   return (
+    <>
+      <Breadcrumbs
+        separator={<NavigateBefore fontSize="large" style={{color:"rgb(227, 156, 0)"}} />}
+        aria-label="breadcrumb"
+      >
+        {breadcrumbs}
+      </Breadcrumbs>
     <Grid
       container
       className={classes.container}
@@ -174,6 +210,7 @@ function SupportMessage() {
         );
       })}
     </Grid>
+    </>
   );
 }
 

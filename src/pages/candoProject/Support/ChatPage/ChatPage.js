@@ -1,5 +1,5 @@
 
-import { Button, Grid, TextareaAutosize, Typography } from "@material-ui/core";
+import { Breadcrumbs, Button, Grid, TextareaAutosize, Typography } from "@material-ui/core";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Widget from "../../../../components/Widget/Widget";
@@ -13,11 +13,15 @@ import Loading from "../../../../components/Loading/Loading"
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { NavigateBefore } from "@material-ui/icons";
+import Title from "../../../../components/Typography/Title/Title";
 
 function SupportPage() {
   const history = useHistory()
   const classes = useStyles();
   const [newTicket , setNewTicket] = useState([])
+  const [newTicketStatus , setNewTicketStatus] = useState([])
+
   const { id } = useParams()
   const[loading,setLoading]=useState(true)
   console.log("idTicket",id);
@@ -44,6 +48,7 @@ function SupportPage() {
           },);
           console.log( "show response" , response.data);
           setNewTicket(response.data.messages )
+          setNewTicketStatus(response.data)
           setLoading(false);
         } catch (error) {
           console.error(error.message);
@@ -55,109 +60,119 @@ function SupportPage() {
       fetchData();
     }, []);
   
-  
     /////////////////////////////////////////////////////////////////////////////////////////
+
     const {
       register,
       control,
       handleSubmit,
+      reset,
       formState: { errors },
     } = useForm({
       resolver: yupResolver(validationSchema),
     });
 
-    const onSubmit = async(data) => {
-      console.log(JSON.stringify(data, null, 2));
-      alert(JSON.stringify(data, null, 2)); 
+    const onSubmit = async(data,e) => {
       const response = await axios.post(`http://185.202.113.165:3000/api/ticket/user-add-message/${id}`, data , {
         headers: {
           'token': `${token}` 
         }
       }).then( (respon) => setNewTicket(respon.data.data.messages))
       // console.log("response adduserticket",response.data.data.messages)
-      
+      reset({
+        text: "",
+      })
       // window.location.reload()
         
     };
-console.log("newTicket", newTicket);
 
-  const [Question, setQuestion] = useState([
-    {
-      sender:"user",
-      id: 1,
-      text:
-        "سلام وقتتون بخیر برای برداشت عسل کندو های زنبورستانم نیاز به نیروی پشتیبانی دارم .باتشکر",
+
+
+
+
+
+
+
+
+
+  // const [Question, setQuestion] = useState([
+  //   {
+  //     sender:"user",
+  //     id: 1,
+  //     text:
+  //       "سلام وقتتون بخیر برای برداشت عسل کندو های زنبورستانم نیاز به نیروی پشتیبانی دارم .باتشکر",
       
-      name: "جعفر",
-      Date: "1400/01/01",
-      Time: "12:14",
-    },
-    {
-      sender:"admin",
-      id: 1,
-      text:
-        "سلام وقتتون بخیر برای برداشت عسل کندو های زنبورستانم نیاز به نیروی پشتیبانی دارم .باتشکر",
-      name: "رضا",
-      Date: "1400/01/01",
-      Time: "12:14",
-    },
-    {
-      sender:"admin",
-      id: 1,
-      text:
-        "سلام وقتتون بخیر برای برداشت عسل کندو های زنبورستانم نیاز به نیروی پشتیبانی دارم .باتشکر",
-      name: "جعفر",
-      Date: "1400/01/01",
-      Time: "12:14",
-    },
-    {
-      sender:"user",
-      id: 1,
-      text:
-        "سلام وقتتون بخیر برای برداشت عسل کندو های زنبورستانم نیاز به نیروی پشتیبانی دارم .باتشکر",
-      name: "رضا",
-      Date: "1400/01/01",
-      Time: "12:14",
-    },
-  ]);
-  const [Answer , setAnswer] = useState([
-    {
-      id: 1,
-      titleAnswer:
-        "سلام . وقتتون بخیر نام زنبورستان و تعداد کندوهایی که برای برداشت عسل آماده اند را ذکر کنید. نیروی پشتیبان ما با شما  .تماس میگیرد",
-      name: "جعفر",
-      Date: "1400/01/01",
-      Time: "12:14",
-    },
-    {
-      id: 2,
-      titleAnswer:
-        "سلام . وقتتون بخیر نام زنبورستان و تعداد کندوهایی که برای برداشت عسل آماده اند را ذکر کنید. نیروی پشتیبان ما با شما  .تماس میگیرد",
-      name: "رضا",
-      Date: "1400/01/01",
-      Time: "12:14",
-    },
-    {
-      id: 3,
-      titleAnswer:
-        "سلام . وقتتون بخیر نام زنبورستان و تعداد کندوهایی که برای برداشت عسل آماده اند را ذکر کنید. نیروی پشتیبان ما با شما  .تماس میگیرد",
-      name: "جعفر",
-      Date: "1400/01/01",
-      Time: "12:14",
-    },
-    {
-      id: 4,
-      titleAnswer:
-        "سلام . وقتتون بخیر نام زنبورستان و تعداد کندوهایی که برای برداشت عسل آماده اند را ذکر کنید. نیروی پشتیبان ما با شما  .تماس میگیرد",
-      name: "رضا",
-      Date: "1400/01/01",
-      Time: "12:14",
-    },
-  ]);
+  //     name: "جعفر",
+  //     Date: "1400/01/01",
+  //     Time: "12:14",
+  //   },
+  //   {
+  //     sender:"admin",
+  //     id: 1,
+  //     text:
+  //       "سلام وقتتون بخیر برای برداشت عسل کندو های زنبورستانم نیاز به نیروی پشتیبانی دارم .باتشکر",
+  //     name: "رضا",
+  //     Date: "1400/01/01",
+  //     Time: "12:14",
+  //   },
+  //   {
+  //     sender:"admin",
+  //     id: 1,
+  //     text:
+  //       "سلام وقتتون بخیر برای برداشت عسل کندو های زنبورستانم نیاز به نیروی پشتیبانی دارم .باتشکر",
+  //     name: "جعفر",
+  //     Date: "1400/01/01",
+  //     Time: "12:14",
+  //   },
+  //   {
+  //     sender:"user",
+  //     id: 1,
+  //     text:
+  //       "سلام وقتتون بخیر برای برداشت عسل کندو های زنبورستانم نیاز به نیروی پشتیبانی دارم .باتشکر",
+  //     name: "رضا",
+  //     Date: "1400/01/01",
+  //     Time: "12:14",
+  //   },
+  // ]);
+  // const [Answer , setAnswer] = useState([
+  //   {
+  //     id: 1,
+  //     titleAnswer:
+  //       "سلام . وقتتون بخیر نام زنبورستان و تعداد کندوهایی که برای برداشت عسل آماده اند را ذکر کنید. نیروی پشتیبان ما با شما  .تماس میگیرد",
+  //     name: "جعفر",
+  //     Date: "1400/01/01",
+  //     Time: "12:14",
+  //   },
+  //   {
+  //     id: 2,
+  //     titleAnswer:
+  //       "سلام . وقتتون بخیر نام زنبورستان و تعداد کندوهایی که برای برداشت عسل آماده اند را ذکر کنید. نیروی پشتیبان ما با شما  .تماس میگیرد",
+  //     name: "رضا",
+  //     Date: "1400/01/01",
+  //     Time: "12:14",
+  //   },
+  //   {
+  //     id: 3,
+  //     titleAnswer:
+  //       "سلام . وقتتون بخیر نام زنبورستان و تعداد کندوهایی که برای برداشت عسل آماده اند را ذکر کنید. نیروی پشتیبان ما با شما  .تماس میگیرد",
+  //     name: "جعفر",
+  //     Date: "1400/01/01",
+  //     Time: "12:14",
+  //   },
+  //   {
+  //     id: 4,
+  //     titleAnswer:
+  //       "سلام . وقتتون بخیر نام زنبورستان و تعداد کندوهایی که برای برداشت عسل آماده اند را ذکر کنید. نیروی پشتیبان ما با شما  .تماس میگیرد",
+  //     name: "رضا",
+  //     Date: "1400/01/01",
+  //     Time: "12:14",
+  //   },
+  // ]);
 
 const closeTicket= async ()=>{
+
   window.confirm("با بستن این تیکت دیگر امکان ارسال پیام در این چت باکس را ندارید")
-  const response = await axios.post(`http://185.202.113.165:3000/api/ticket/close-by-user/${id}` , {
+  const response = await axios.post("http://185.202.113.165:3000/api/ticket/close-by-user/" + id, {
     headers: {
       'token': `${token}` 
     }
@@ -165,9 +180,109 @@ const closeTicket= async ()=>{
   console.log("response ro see kon to addticket",response);
   history.push("/app/Support")
 }
-  
+const breadcrumbs = [
+
+  <Link
+  to="/app/Support"
+    key="1"
+    style={{textDecoration:"none",cursor:"pointer"}}
+  >
+        <Title key="1" title=" پشتیبانی "/>
+
+  </Link>,
+
+  <Link
+      to="/app/Support"
+      key="2"
+      style={{textDecoration:"none",cursor:"pointer"}}
+  >
+       {/* <Title key="2" title="پیام‌های من"/> */}
+       <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold"}}>پیام‌های من</p>
+
+  </Link>,
+       <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold"}}>تیکت به پشتیبانی</p>
+
+
+
+];
+const statusTicket= newTicketStatus.status
+const statusTickets=(e)=>{
+  switch (statusTicket) {
+    case "Open":
+      return    <Grid
+      style={{
+        backgroundColor: "#fff",
+        padding: "48px ",
+        borderRadius: "12px",
+        // position: "fixed",
+        // bottom:0,
+        // left:20,
+        // width:"80%",
+      }}
+    >
+      <TextareaAutosize
+        maxRows={4}
+        aria-label="maximum height"
+        defaultValue=""
+        style={{
+          width: "100%",
+          backgroundColor: "rgb( 244 244 244)",
+          border: "none",
+          padding: "16px",
+        }}
+        {...register("text")}
+        error={errors.text ? true : false}
+      />
+        <Typography
+            variant="inherit"
+            className={classes.errorTitle}
+          >
+            {errors.text?.message}
+        </Typography>
+
+      <Grid
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <div onClick={closeTicket} style={{cursor:"pointer"}}>بستن تیکت</div>
+        <Button className={classes.ButtonSubmitPage} onClick={handleSubmit(onSubmit)}>ثبت</Button>
+      </Grid>
+ </Grid>
+   case "CloseByUser":
+     return  <Grid
+     style={{
+       backgroundColor: "#fff",
+       padding: "48px ",
+       borderRadius: "12px",
+       textAlign:"center"
+       // position: "fixed",
+       // bottom:0,
+       // left:20,
+       // width:"80%",
+     }}
+   >
+    
+     
+  <Typography>تیکت بسته شده است و امکان ارسال پیام جدید در این تیکت وجود ندارد.</Typography>
+</Grid>
+   default:
+     return <div>در انتظار</div>
+
+  }
+}
+console.log("newTicketStatus",newTicketStatus);
+
   return (
     <>
+     <Breadcrumbs
+        separator={<NavigateBefore fontSize="large" style={{color:"rgb(227, 156, 0)"}} />}
+        aria-label="breadcrumb"
+      >
+        {breadcrumbs}
+      </Breadcrumbs>
     {loading?
           <div className={classes.Loading}> <Loading color="orange" /></div>:   
            <div
@@ -180,7 +295,8 @@ const closeTicket= async ()=>{
 
       }}
     >
-      <Grid
+     {/* top Page */}
+       <Grid
         container
         style={{
           display: "flex",
@@ -205,7 +321,7 @@ const closeTicket= async ()=>{
             width: "100%",
           }}
         >
-          <div style={{ fontSize: "16px", fontWeight: "bold" }}>موضوع تیکت</div>
+          <div style={{ fontSize: "16px", fontWeight: "bold" }}>{newTicketStatus.title}</div>
           <div>باز</div>
         </Grid>
 
@@ -230,7 +346,7 @@ const closeTicket= async ()=>{
                   {element.text}
                 </Grid>
                 <Grid style={{ color: "rgb(173 ,173 ,173)", marginTop: "8px" }}>
-                {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')} | {element.Date} {element.Time}
+                {newTicketStatus.createBy.username} | {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')} 
                   
                 </Grid>
               </Grid>)
@@ -252,7 +368,7 @@ const closeTicket= async ()=>{
                  {element.text}
                </Grid>
                <Grid style={{ color: "rgb(173 ,173 ,173)", marginTop: "8px" }}>
-               {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')} | {element.Date} {element.Time}
+               پشتیبان | {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')}
                </Grid>
              </Grid>
              )
@@ -311,7 +427,7 @@ const closeTicket= async ()=>{
 
 
         
-      </Grid>
+       </Grid>
 
 
 
@@ -326,48 +442,8 @@ const closeTicket= async ()=>{
 
 
       {/* bottom Page */}
-      <Grid
-        style={{
-          backgroundColor: "#fff",
-          padding: "48px ",
-          borderRadius: "12px",
-          // position: "fixed",
-          // bottom:0,
-          // left:20,
-          // width:"80%",
-        }}
-      >
-        <TextareaAutosize
-          maxRows={4}
-          aria-label="maximum height"
-          defaultValue=""
-          style={{
-            width: "100%",
-            backgroundColor: "rgb( 244 244 244)",
-            border: "none",
-            padding: "16px",
-          }}
-          {...register("text")}
-          error={errors.text ? true : false}
-        />
-          <Typography
-              variant="inherit"
-              className={classes.errorTitle}
-            >
-              {errors.text?.message}
-          </Typography>
+    {statusTickets()}
 
-        <Grid
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <div onClick={closeTicket} style={{cursor:"pointer"}}>بستن تیکت</div>
-          <Button className={classes.ButtonSubmitPage} onClick={handleSubmit(onSubmit)}>ثبت</Button>
-        </Grid>
-      </Grid>
             </div> 
     }
 

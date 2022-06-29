@@ -40,6 +40,7 @@ function AddQRcode(props) {
             register,
             control,
             handleSubmit,
+            reset,
             formState: { errors },
           } = useForm({
             resolver: yupResolver(validationSchema),
@@ -47,14 +48,18 @@ function AddQRcode(props) {
         
           
           const onSubmit = async(data) => {
-            console.log(JSON.stringify(data, null, 2));
-            alert(JSON.stringify(data, null, 2));
+            // console.log(JSON.stringify(data, null, 2));
+            // alert(JSON.stringify(data, null, 2));
         
             const response = await axios.post("http://185.202.113.165:3000/api/ticket", data , {
               headers: {
                 'token': `${bardia}` 
               }
             });
+            reset({
+              text: "",
+              title:"",
+            })
             console.log("response ro see kon to addticket",response);
             // setData({ data: [...data, data] });
             props.handleClose()

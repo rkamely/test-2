@@ -56,6 +56,7 @@ function AddTicket({input,handleClose,newTicket,setNewTicket,title,style}) {
     register,
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
@@ -83,8 +84,8 @@ function AddTicket({input,handleClose,newTicket,setNewTicket,title,style}) {
   ];
   
   const onSubmit = async(data) => {
-    console.log(JSON.stringify(data, null, 2));
-    alert(JSON.stringify(data, null, 2));
+    // console.log(JSON.stringify(data, null, 2));
+    // alert(JSON.stringify(data, null, 2));
 
     const response = await axios.post("http://185.202.113.165:3000/api/ticket", data , {
       headers: {
@@ -95,9 +96,15 @@ function AddTicket({input,handleClose,newTicket,setNewTicket,title,style}) {
       setNewTicket([...newTicket , res.data.data ])
     })
     console.log("response ro see kon to addticket",response);
+    reset({
+      text: "",
+      title:"",
+      category:""
+    })
     // setData({ data: [...data, data] });
     // localStorage.setItem("AddTicket",response.data.data)
     handleClose()
+
   };
 
   
@@ -146,6 +153,7 @@ function AddTicket({input,handleClose,newTicket,setNewTicket,title,style}) {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
+                    name="category"
                     {...register("category")}
                     error={errors.category ? true : false}
                   >
