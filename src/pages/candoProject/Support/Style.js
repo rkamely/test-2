@@ -88,6 +88,16 @@ padding:"0 40px",
     color:"rgb( 102 103 104)",
     fontWeight:"bold"
   },
+  closeTicketAdmin:{
+    marginTop: "16px",
+    backgroundColor:"rgb( 219 219 219)",
+    borderRadius:"8px",
+    width:"80px",
+    padding:"4px 0px",
+    textAlign:"center",
+    color:"rgb( 102 103 104)",
+    fontWeight:"bold"
+  },
   waitTicket:{
     marginTop: "16px",
     backgroundColor:"rgb( 255 242 212)",

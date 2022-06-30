@@ -34,9 +34,9 @@ function AddTicket({input,handleClose,newTicket,setNewTicket,title,style}) {
     text: yup
       .string()
       .required("لطفا درخواست خود را وارد نمایید."),
-    title:yup
-    .string()
-    .required("لطفا عنوان را وارد نمایید."),
+    // title:yup
+    // .string()
+    // .required("لطفا عنوان را وارد نمایید."),
       });
 
 
@@ -86,8 +86,8 @@ function AddTicket({input,handleClose,newTicket,setNewTicket,title,style}) {
   const onSubmit = async(data) => {
     // console.log(JSON.stringify(data, null, 2));
     // alert(JSON.stringify(data, null, 2));
-
-    const response = await axios.post("http://185.202.113.165:3000/api/ticket", data , {
+     
+    const response = await axios.post("http://185.202.113.165:3000/api/ticket", {category:data.category,text:data.text,title:data.category} , {
       headers: {
         'token': `${bardia}` 
       }
@@ -174,7 +174,7 @@ function AddTicket({input,handleClose,newTicket,setNewTicket,title,style}) {
                   {errors.category?.message}
                 </Typography>
                  </Grid>
-                 <Grid item xs={12} sm={12} className={classes.inputText} >
+                 {/* <Grid item xs={12} sm={12} className={classes.inputText} >
             <div className={classes.inputTitle} >
               <label className={classes.label}>عنوان</label>
               <TextField
@@ -196,7 +196,7 @@ function AddTicket({input,handleClose,newTicket,setNewTicket,title,style}) {
             >
               {errors.title?.message}
             </Typography>
-                 </Grid>
+                 </Grid> */}
             </div>
           </div>
         

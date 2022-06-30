@@ -172,7 +172,7 @@ function SupportPage() {
 const closeTicket= async ()=>{
 
   window.confirm("با بستن این تیکت دیگر امکان ارسال پیام در این چت باکس را ندارید")
-  const response = await axios.post("http://185.202.113.165:3000/api/ticket/close-by-user/" + id, {
+  const response = await axios.post(`http://185.202.113.165:3000/api/ticket/close-by-user/${id}` ,{"text":"close"} ,{
     headers: {
       'token': `${token}` 
     }
@@ -180,6 +180,45 @@ const closeTicket= async ()=>{
   console.log("response ro see kon to addticket",response);
   history.push("/app/Support")
 }
+
+const title=(e)=>{
+  switch (e) {
+
+    case "cure":
+    return <div>درمان</div>
+    case "nurture":
+     return <div>تغذیه</div>
+    case "visit":
+       return <div>بازدید</div>     
+    case "pickHoney":
+       return <div>برداشت عسل</div>      
+    case "apiary":
+     return <div>زنبورستان</div>          
+    case "hive":
+     return <div>کندو</div>    
+     case "products":
+       return <div>محصولات</div>  
+    case "queen":
+       return <div>ملکه</div>  
+    case "honeyBehaviour":
+       return <div>رفتار زنبورعسل</div>
+    case "boardConnection":
+       return <div>ارتباط با برد</div>  
+   case "accesses":
+         return <div>دسترسی ها</div> 
+   case "profile":
+           return <div>حساب کاربری</div> 
+   case "moveHive":
+           return <div>انتقال</div>             
+   case "qrCode":
+           return <div>QRCODE</div>    
+
+   case "other":
+           return <div>سایر</div>  
+    default:
+     return <div>بدون عنوان </div>
+  }
+ }
 const breadcrumbs = [
 
   <Link
@@ -268,6 +307,23 @@ const statusTickets=(e)=>{
      
   <Typography>تیکت بسته شده است و امکان ارسال پیام جدید در این تیکت وجود ندارد.</Typography>
 </Grid>
+ case "CloseByAdmin":
+  return  <Grid
+  style={{
+    backgroundColor: "#fff",
+    padding: "48px ",
+    borderRadius: "12px",
+    textAlign:"center"
+    // position: "fixed",
+    // bottom:0,
+    // left:20,
+    // width:"80%",
+  }}
+>
+ 
+  
+<Typography>تیکت بسته شده است و امکان ارسال پیام جدید در این تیکت وجود ندارد.</Typography>
+</Grid>
    default:
      return <div>در انتظار</div>
 
@@ -321,7 +377,7 @@ console.log("newTicketStatus",newTicketStatus);
             width: "100%",
           }}
         >
-          <div style={{ fontSize: "16px", fontWeight: "bold" }}>{newTicketStatus.title}</div>
+          <div style={{ fontSize: "16px", fontWeight: "bold" }}>{title(newTicketStatus.title)}</div>
           <div>باز</div>
         </Grid>
 

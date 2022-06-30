@@ -247,9 +247,9 @@ function Support() {
 
         //css calss
           let btnClass = classNames({
-             
             [classes.openTicket]: element.status==="Open",
-            [classes.closeTicket]: element.status==="CloseByUser",
+            [classes.closeTicket]: element.status==="CloseByAdmin",
+            [classes.closeTicketAdmin]: element.status==="CloseByUser",
             [classes.waitTicket]: element.status==="Wait",
 
        });
@@ -258,13 +258,52 @@ function Support() {
         switch (e) {
           case "Open":
              return <div>باز</div>
+          case "CloseByAdmin":
+             return <div>بسته</div>
           case "CloseByUser":
             return <div>بسته</div>
           default:
             return <div>در انتظار</div>
         }
       }
+      const title=(e)=>{
+       switch (e) {
 
+         case "cure":
+         return <div>درمان</div>
+         case "nurture":
+          return <div>تغذیه</div>
+         case "visit":
+            return <div>بازدید</div>     
+         case "pickHoney":
+            return <div>برداشت عسل</div>      
+         case "apiary":
+          return <div>زنبورستان</div>          
+         case "hive":
+          return <div>کندو</div>    
+          case "products":
+            return <div>محصولات</div>  
+         case "queen":
+            return <div>ملکه</div>  
+         case "honeyBehaviour":
+            return <div>رفتار زنبورعسل</div>
+         case "boardConnection":
+            return <div>ارتباط با برد</div>  
+        case "accesses":
+              return <div>دسترسی ها</div> 
+        case "profile":
+                return <div>حساب کاربری</div> 
+        case "moveHive":
+                return <div>انتقال</div>             
+        case "qrCode":
+                return <div>QRCODE</div>    
+ 
+        case "other":
+                return <div>سایر</div>  
+         default:
+          return <div>بدون عنوان </div>
+       }
+      }
       // switch (element.status) {
       //   case "Open":
       //     return <div>باز</div>
@@ -278,7 +317,7 @@ function Support() {
   
           <Link
           key={element._id}
-          to={`./Support/${element._id}`  }
+          to={`./Support/${element._id}`}
           item
           sm={12}
           className="pointer"
@@ -287,7 +326,7 @@ function Support() {
             <Grid className={classes.rightContent}>
               <Grid item className={classes.Titles}>
                 <Typography className={classes.Title}>
-                  {element.title}
+                  {title(element.title)}
                 </Typography>
                 <Typography className={classes.Date}> {moment.from(element.createdAt).locale('fa').format('YYYY/M/D HH:mm')}</Typography>
                 {/* <Typography className={classes.Time}>{element.createBy.username}</Typography> */}

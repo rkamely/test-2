@@ -93,14 +93,15 @@ function SmsVerification(props) {
 
       if (token) {
         if(newPerson && newPerson !== ""){
-          localStorage.setItem("id_token", token);
-          setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson, idUser:idUser});
-          history.push("/login/CompleteInformation")
-
-        } else {
           setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson, idUser:idUser});
           localStorage.setItem("id_token", token);
           userDispatch({ type: 'LOGIN_SUCCESS' })
+
+
+        } else {
+          localStorage.setItem("id_token", token);
+          setAuth({ mobile: mobile, code: data.code, token  , newUser:newPerson, idUser:idUser});
+          history.push("/login/CompleteInformation")
         }
 
       }
