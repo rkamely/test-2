@@ -64,5 +64,42 @@ export default makeStyles((theme) => ({
     },   
     errorTitle:{
         color:"red"
-    }
+    },
+    openTicket: {
+        backgroundColor:"rgb( 190, 215 ,249)",
+        borderRadius:"8px",
+        width:"80px",
+        padding:"4px 0px",
+        textAlign:"center",
+        color:"rgb( 26 115 233)",
+        fontWeight:"bold"
+    
+      },
+      closeTicket:{
+        backgroundColor:"rgb( 219 219 219)",
+        borderRadius:"8px",
+        width:"80px",
+        padding:"4px 0px",
+        textAlign:"center",
+        color:"rgb( 102 103 104)",
+        fontWeight:"bold"
+      },
+      closeTicketAdmin:{
+        backgroundColor:"rgb( 219 219 219)",
+        borderRadius:"8px",
+        width:"80px",
+        padding:"4px 0px",
+        textAlign:"center",
+        color:"rgb( 102 103 104)",
+        fontWeight:"bold"
+      },
+      waitTicket:{
+        backgroundColor:"rgb( 255 242 212)",
+        borderRadius:"8px",
+        width:"80px",
+        padding:"4px 0px",
+        textAlign:"center",
+        color:"rgb( 227 156 0)",
+        fontWeight:"bold"
+      },
 }));

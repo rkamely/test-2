@@ -15,6 +15,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { NavigateBefore } from "@material-ui/icons";
 import Title from "../../../../components/Typography/Title/Title";
+import classNames from "classnames";
 
 function SupportPage() {
   const history = useHistory()
@@ -330,7 +331,26 @@ const statusTickets=(e)=>{
   }
 }
 console.log("newTicketStatus",newTicketStatus);
+let btnClass = classNames({
+             
+  [classes.openTicket]: newTicketStatus.status==="Open",
+  [classes.closeTicket]: newTicketStatus.status==="CloseByAdmin",
+  [classes.closeTicketAdmin]: newTicketStatus.status==="CloseByUser",
+  [classes.waitTicket]: newTicketStatus.status==="Wait",
 
+    });
+  const changeText=(e)=>{
+      switch (e) {
+        case "Open":
+           return <div>باز</div>
+        case "CloseByAdmin":
+           return <div>بسته</div>
+          case "CloseByUser":
+           return <div>بسته</div>
+        default:
+           return <div>در انتظار</div>
+      }
+    }
   return (
     <>
      <Breadcrumbs
@@ -377,8 +397,8 @@ console.log("newTicketStatus",newTicketStatus);
             width: "100%",
           }}
         >
-          <div style={{ fontSize: "16px", fontWeight: "bold" }}>{title(newTicketStatus.title)}</div>
-          <div>باز</div>
+          <div style={{ fontSize: "16px", fontWeight: "bold" }}>{title(newTicketStatus.category)}</div>
+          <div className={btnClass}>{changeText(newTicketStatus.status)}</div>
         </Grid>
 
    
@@ -402,7 +422,7 @@ console.log("newTicketStatus",newTicketStatus);
                   {element.text}
                 </Grid>
                 <Grid style={{ color: "rgb(173 ,173 ,173)", marginTop: "8px" }}>
-                {newTicketStatus.createBy.username} | {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')} 
+                {newTicketStatus.createBy.mobile} | {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')} 
                   
                 </Grid>
               </Grid>)

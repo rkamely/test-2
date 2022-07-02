@@ -189,11 +189,14 @@ width:"100%"  },
     width: "200px",
   },
   Select:{
-    width:"100%"
+    width:"100%",
+    
   },
 
   inputSelect: {
-    width: "200px",
+    width: "180px",
+    height:"40px",
+    marginLeft:"40px",
     [theme.breakpoints.down('sm')]: {
       width: "100%",
       // marginLeft: "0px"

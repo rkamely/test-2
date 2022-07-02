@@ -326,7 +326,7 @@ function Support() {
             <Grid className={classes.rightContent}>
               <Grid item className={classes.Titles}>
                 <Typography className={classes.Title}>
-                  {title(element.title)}
+                  {title(element.category)}
                 </Typography>
                 <Typography className={classes.Date}> {moment.from(element.createdAt).locale('fa').format('YYYY/M/D HH:mm')}</Typography>
                 {/* <Typography className={classes.Time}>{element.createBy.username}</Typography> */}
