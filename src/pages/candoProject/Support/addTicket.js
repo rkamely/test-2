@@ -21,7 +21,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import AuthContext from "../../context/AuthProvider";
 
-function AddTicket({input,handleClose,newTicket,setNewTicket,title,style}) {
+function AddTicket({input,handleClose,newTicket,setNewTicket,title,style, setShow}) {
   {
     console.log(input);
   }
@@ -34,9 +34,7 @@ function AddTicket({input,handleClose,newTicket,setNewTicket,title,style}) {
     text: yup
       .string()
       .required("لطفا درخواست خود را وارد نمایید."),
-    // title:yup
-    // .string()
-    // .required("لطفا عنوان را وارد نمایید."),
+
       });
 
 
@@ -87,20 +85,20 @@ function AddTicket({input,handleClose,newTicket,setNewTicket,title,style}) {
     // console.log(JSON.stringify(data, null, 2));
     // alert(JSON.stringify(data, null, 2));
      
-    const response = await axios.post("http://185.202.113.165:3000/api/ticket", {category:data.category,text:data.text,title:data.category} , {
+    const response = await axios.post("http://185.202.113.165:3000/api/ticket", data , {
       headers: {
         'token': `${bardia}` 
       }
     }).then((res)=>{
       console.log("response1", res.data.data);
-      setNewTicket([...newTicket , res.data.data ])
+      setNewTicket([res.data.data  , ...newTicket])
     })
     console.log("response ro see kon to addticket",response);
     reset({
       text: "",
-      title:"",
       category:""
     })
+    setShow(true)
     // setData({ data: [...data, data] });
     // localStorage.setItem("AddTicket",response.data.data)
     handleClose()
@@ -114,6 +112,7 @@ function AddTicket({input,handleClose,newTicket,setNewTicket,title,style}) {
     <div
       style={{
         padding: "24px 0px",
+
       }}
     >
       <div

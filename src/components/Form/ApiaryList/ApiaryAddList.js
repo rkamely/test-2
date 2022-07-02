@@ -121,6 +121,7 @@ const ApiaryAddList = ({ ApiariesList, setApiariesList, onClose, refresh }) => {
             align="center"
             margin="dense"
             className={classes.Title}
+            color="secondary"
           >
             افزودن زنبورستان
           </Typography>

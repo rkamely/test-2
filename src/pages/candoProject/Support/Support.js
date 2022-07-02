@@ -233,7 +233,7 @@ function Support() {
         </Button>
       </Grid>
 
-      {show?null:<div style={{width:"100%",height:"70vh",display:"flex",alignItems:"center",justifyContent:"center",background:"#fff",borderRadius:"12px",marginTop:"32px"}}>تیکتی جهت نمایش وجود ندارد!</div>}
+      {show?null:<div style={{width:"100%",height:"60vh",boxShadow:"0px 3px 6px 3px rgba( 0, 0, 0, 0.16)",display:"flex",alignItems:"center",justifyContent:"center",borderRadius:"12px",marginTop:"32px"}}>تیکتی جهت نمایش وجود ندارد!</div>}
 
 
 
@@ -241,7 +241,7 @@ function Support() {
       {/* new ticket main*/}
 
 
-      {newTicket?.slice(0).reverse().map((element) => {
+      {newTicket?.map((element) => {
         const ticketDate = moment.from(element.createdAt).locale('fa')
         let durationDate =  moment().diff(ticketDate,"days") 
 
@@ -417,6 +417,7 @@ function Support() {
             style={{ width: "100%" }}
             newTicket={newTicket}
             setNewTicket={setNewTicket}
+            setShow={setShow}
 
           />
         )}

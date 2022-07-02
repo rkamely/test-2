@@ -6,8 +6,8 @@ import useStyles from "./Style";
 function LeftCard() {
   const classes = useStyles();
   return (
-    <Grid item  xs={12}  style={{ height: "250px" }}>
-      <Widget img="/assets/Group 252.svg" style={{ fontWeight: 600 }}>
+    <Grid item  xs={12} className={classes.LeftCard_Container}  style={{ height: "250px" }}>
+
         {/* top */}
         <Grid
           item
@@ -155,7 +155,6 @@ function LeftCard() {
             </Typography>
           </Grid>
         </Grid>
-      </Widget>
     </Grid>
   );
 }

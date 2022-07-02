@@ -21,7 +21,6 @@ export default makeStyles((theme) => ({
   },
   dayBox: {
     marginRight: "8px",
-
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

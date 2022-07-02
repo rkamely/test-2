@@ -73,12 +73,12 @@ const apiaryIdClick=localStorage.getItem("apiaryIdClick")
 
     </Link>,
         <Link
-        to="/app/ApiaryList/Beehive/زنبورستان-۶"
+        to="/app/ApiaryList/Beehive/2"
         key="2"
         style={{textDecoration:"none",cursor:"pointer"}}
       >
             {/* <Title key="2" title="کندووان"/> */}
-            <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold",fontSize:"1.2rem"}} onClick={history.goBack}>{apiaryIdClick}</p>
+            <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold",fontSize:"1.2rem"}} >{apiaryIdClick}</p>
 
   
       </Link>,

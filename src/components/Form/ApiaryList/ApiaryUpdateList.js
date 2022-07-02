@@ -201,7 +201,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose}) => {
             margin="dense"
             color="secondary"
             className={classes.Title}
-
+            color="secondary"
           >
             ویرایش زنبورستان
           </Typography>

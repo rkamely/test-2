@@ -33,7 +33,7 @@ function Calender() {
       <div className={classes.body}>
       <Swiper
    
-      spaceBetween={50}
+      spaceBetween={20}
       slidesPerView={7}
       onSlideChange={() => console.log('slide change')}
       onSwiper={(swiper) => console.log(swiper)}
@@ -53,7 +53,7 @@ function Calender() {
                 >
                   {/* <div className={classes.day}>{day.format("MMMM").toString()}</div> */}
 
-                  <div className={classes.day} >
+                  <div className={classes.day}>
                     {day.format("dddd").toString()}
                   </div>
                   <div
