@@ -7,6 +7,7 @@ export default makeStyles((theme) => ({
     borderRadius: "8px",
     marginTop: "16px",
 
+
     // overflow:"hidden"
   },
   day: {
@@ -15,6 +16,8 @@ export default makeStyles((theme) => ({
     justifyContent: "center",
     cursor: "pointer",
     marginTop: "8px",
+    fontWeight:"600"
+
   },
   dayBox: {
     marginRight: "8px",

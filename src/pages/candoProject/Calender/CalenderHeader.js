@@ -22,7 +22,7 @@ function CalenderHeader({ value, setValue }) {
       <div className={classes.arrow} onClick={() => setValue(prevDay())}>
         <ArrowForwardIosRounded/>
       </div>
-      <div>
+      <div style={{fontWeight:"600"}}>
         {currMnthName()}
         {currYear()}
       </div>
