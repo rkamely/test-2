@@ -10,6 +10,7 @@ export default makeStyles(theme => ({
   },
 
   externalLink: {
+    border:"2px solid red",
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -21,7 +22,11 @@ export default makeStyles(theme => ({
   },
 
   linkNested: {
-    paddingRight: 0,
+    // border:"2px solid red",
+    display:"flex",
+    flexDirection:"row-reverse",
+    marginRight: "16px",
+    paddingLeft:"16px",
     "&:hover, &:focus": {
       backgroundColor: "rgb( 255 ,176 ,4)",
     },
@@ -40,7 +45,8 @@ export default makeStyles(theme => ({
     color: theme.palette.primary.main,
   },
   linkText: {
-    padding: 0,
+
+    paddingLeft: "6px",
     color: "#fff",
     transition: theme.transitions.create(["opacity", "color"]),
     fontSize: 16,
@@ -53,6 +59,7 @@ export default makeStyles(theme => ({
   },
   /////////
   nestedList: {
+
     paddingRight: theme.spacing(2) + 30,
     display:"flex",
     flexDirection:"row",

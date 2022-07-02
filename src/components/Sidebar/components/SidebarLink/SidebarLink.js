@@ -158,7 +158,7 @@ export default function SidebarLink({
           className={classes.nestedList}
         > 
 
-          <List className={classes.bardia} component="div" disablePadding style={{borderRight:"2px solid rgb( 227 156 0)", transform:"translateX(-42px)"}}>
+          <List className={classes.bardia} component="div" disablePadding style={{borderRight:"2px solid rgb( 227 156 0)", transform:"translateX(-50px)"}}>
 
             {children.map(childrenLink => (
               <SidebarLink
