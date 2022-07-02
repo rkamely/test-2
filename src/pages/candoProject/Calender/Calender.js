@@ -32,14 +32,18 @@ function Calender() {
       <Divider />
       <div className={classes.body}>
       <Swiper
+   
       spaceBetween={50}
-      slidesPerView={12}
+      slidesPerView={7}
       onSlideChange={() => console.log('slide change')}
       onSwiper={(swiper) => console.log(swiper)}
       // scrollbar={{ draggable: true }}
     >
+      {  console.log("calender",calender)}
+      <div style={{border:"2px solid red"}}>
         {calender.map((week) => (
-          <div className={classes.day}>
+        
+          <div className={classes.day} >
             {week.map((day) => (
                 <SwiperSlide >
                 <div
@@ -49,7 +53,7 @@ function Calender() {
                 >
                   {/* <div className={classes.day}>{day.format("MMMM").toString()}</div> */}
 
-                  <div className={classes.day}>
+                  <div className={classes.day} >
                     {day.format("dddd").toString()}
                   </div>
                   <div
@@ -65,6 +69,7 @@ function Calender() {
             ))}
           </div>
         ))}
+        </div>
         </Swiper>
       </div>
     </div>
