@@ -34,6 +34,7 @@ import {
 } from "@material-ui/pickers";
 import { date } from "yup/lib/locale";
 import axios from "axios";
+import { Person } from "@material-ui/icons";
 
 const AddJob = ({handleClose,onEventAdded}) => {
 
@@ -196,11 +197,11 @@ const AddJob = ({handleClose,onEventAdded}) => {
 
       <Box px={3} py={2} className={classes.root}>
         <Grid container spacing={1} className={classes.container}>
-          <Grid item xs={12}>
-            <div className={classes.box}>
-              <Grid item xs={12} sm={12} className={classes.Select}>
+          <Grid item xs={12} >
+            <div className={classes.box} >
+              <Grid item xs={12} sm={12} className={classes.Select} >
                 <div className={classes.input}>
-                  <label className={classes.label}>نام کاربر</label>
+                  <label className={classes.label} >نام کاربر</label>
                   <Select
                     className={classes.inputSelect}
                     required
@@ -232,7 +233,7 @@ const AddJob = ({handleClose,onEventAdded}) => {
               </Grid>
 
               <Grid item xs={12} sm={12} className={classes.inputText}>
-                <div className={classes.input}>
+                <div className={classes.input} >
                   <label className={classes.label}> عنوان کار </label>
                   <TextField
                     className={classes.TextField}
@@ -274,7 +275,7 @@ const AddJob = ({handleClose,onEventAdded}) => {
               <Grid item xs={6} sm={6} className={classes.TabHeader}>
                 <Grid>
                   <NavLink
-                    to={`${url}/netflix1`}
+                    to={`${url}/2`}
                     className={classes.item}
                     activeClassName={classes.activeItem}
                   >
@@ -283,7 +284,7 @@ const AddJob = ({handleClose,onEventAdded}) => {
                 </Grid>
                 <Grid>
                   <NavLink
-                    to={`${url}/netflix2`}
+                    to={`${url}/1`}
                     className={classes.item}
                     activeClassName={classes.activeItem}
                   >
@@ -292,7 +293,7 @@ const AddJob = ({handleClose,onEventAdded}) => {
                 </Grid>
                 <Grid>
                   <NavLink
-                    to={`${url}/netflix3`}
+                    to={`${url}/3`}
                     className={classes.item}
                     activeClassName={classes.activeItem}
                   >
@@ -343,10 +344,9 @@ const AddJob = ({handleClose,onEventAdded}) => {
                       variant="outlined"
                       {...register("Hive")}
                       error={errors.Hive ? true : false}
+                      // IconComponent = {()=><img src="./assets/arrow-down-sign-to-navigate.svg"/>}
 
-                      // onChange={(e) =>
-                      //   setValue("select", e.target.value, { shouldValidate: true })
-                      // } // Using setValue
+
                     >
                       {options?.map((option) => {
                         return (
@@ -394,21 +394,26 @@ const AddJob = ({handleClose,onEventAdded}) => {
                 }}
               >
                 <div style={{ width: "100%" }}>
-                  <Grid item xs={12} sm={12}>
-                    <div className={classes.inputDate}>
+                  <Grid item xs={12} sm={12} >
+                    <div className={classes.input} >
                       <label className={classes.label}>از تاریخ</label>
-                      <MuiPickersUtilsProvider utils={JalaliUtils} locale="fa">
+                      <MuiPickersUtilsProvider utils={JalaliUtils} locale="fa" >
                         <Controller
                           control={control}
                           name="fromDate"
-                       
                           render={({ field }) => (
                             <KeyboardDatePicker
-                            className={classes.inputTimePicker}
+                          className={classes.inputSelect}
                             inputVariant="outlined"
                             placeholderText="تاریخ را وارد نمایید"
                             value={fromDate}
                             onChange={(fromDate) => setValue('fromDate', fromDate, { shouldValidate: true, shouldDirty: true })}
+                            keyboardIcon={<img src="./assets/calender-svgrepo-com.svg"/>}
+                            // KeyboardButtonProps={{
+                            //   children: "./assets/calender-svgrepo-com.svg"
+                            // }}
+
+
                             />
                           )}
                         />
@@ -436,11 +441,12 @@ const AddJob = ({handleClose,onEventAdded}) => {
                           name="fromTime"
                           render={({ field }) => (
                             <KeyboardTimePicker
-                            className={classes.inputTimePicker}
+                            className={classes.inputSelect}                        
                             inputVariant="outlined"
                             placeholderText="ساعت را وارد نمایید"
                             value={fromTime}
                             onChange={(fromTime) => setValue('fromTime', fromTime, { shouldValidate: true, shouldDirty: true })}
+
                             />
                           )}
                         />
@@ -468,11 +474,13 @@ const AddJob = ({handleClose,onEventAdded}) => {
                           name="toDate"
                           render={({ field }) => (
                             <KeyboardDatePicker
-                            className={classes.inputTimePicker}
+                            className={classes.inputSelect}
                             inputVariant="outlined"
                             placeholderText="تاریخ را وارد نمایید"
                             value={toDate}
                             onChange={(toDate) => setValue('toDate', toDate, { shouldValidate: true, shouldDirty: true })}
+                            keyboardIcon={<img src="./assets/calender-svgrepo-com.svg"/>}
+
                             />
                           )}
                         />
@@ -500,7 +508,7 @@ const AddJob = ({handleClose,onEventAdded}) => {
                           name="toTime"
                           render={({ field }) => (
                             <KeyboardTimePicker
-                            className={classes.inputTimePicker}
+                            className={classes.inputSelect}
                             inputVariant="outlined"
                             placeholderText="ساعت را وارد نمایید"
                             value={toTime}

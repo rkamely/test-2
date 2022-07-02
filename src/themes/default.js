@@ -219,6 +219,11 @@ const defaultTheme = {
         fontFamily:"Shabnam"
       },
       
+    },
+    MuiOutlinedInput:{
+      adornedEnd:{
+        height:" 40px"
+      }
     }
   },
 };

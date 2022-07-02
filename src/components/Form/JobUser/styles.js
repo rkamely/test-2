@@ -33,7 +33,8 @@ export default makeStyles((theme) => ({
   },
   label: {
     whiteSpace: "nowrap",
-    marginLeft: "50px",
+    // border:"2px solid pink",
+    // marginLeft: "50px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -44,6 +45,8 @@ export default makeStyles((theme) => ({
   box: {
     display: "flex",
     width: "100%",
+    // border:"2px solid red",
+    // gap:"0 32px"
   },
   box2: {
     width: "100%",
@@ -90,6 +93,7 @@ export default makeStyles((theme) => ({
   inputText: {
     display: "flex",
     flexDirection: "column",
+    // border:"2px solid red"
   },
   TextField: {
     width: "50%",
@@ -117,14 +121,20 @@ export default makeStyles((theme) => ({
       },
     },
   },
+Select:{
+  // border:"2px solid red",
+
+},
   input: {
     display: "flex",
-
-    justifyContent: "space-between",
+// border:"2px solid green",
+    justifyContent: "space-around",
+    // alignItems:"flex-start",
+    // padding:"0px 24px",
     alignItems: "center",
-    marginTop: "32px",
+    marginTop: "24px",
     fontFamily: "Shabnam",
-    border: "none",
+    // border: "none",
     "& label.Mui-focused": {
       border: "5px solid red",
       color: "red !important",
@@ -143,6 +153,7 @@ export default makeStyles((theme) => ({
     "&.Mui-focused fieldset": {
         borderRadius: "10px",
         border: "2px solid rgb(255 ,176, 4) !important",
+
       },
     },
   },
@@ -274,6 +285,7 @@ export default makeStyles((theme) => ({
   TabHeader: {
     backgroundColor: "rgb( 255 ,242, 212)",
     margin: "0 auto",
+    width:"300px",
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
@@ -313,5 +325,12 @@ export default makeStyles((theme) => ({
     "&	.MuiSelect-outlined": {
       borderRadius: "10px",
     },
+    
+  },
+  MuiOutlinedInput:{
+    adornedEnd:{
+      border: "2px solid red",
+      height:" 40px"
+    }
   }
 }));
