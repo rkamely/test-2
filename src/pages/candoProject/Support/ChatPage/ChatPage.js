@@ -2,7 +2,6 @@
 import { Breadcrumbs, Button, Grid, TextareaAutosize, Typography } from "@material-ui/core";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Widget from "../../../../components/Widget/Widget";
 import useStyles from "./Style";
 import {
   Link,
@@ -13,7 +12,7 @@ import Loading from "../../../../components/Loading/Loading"
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { NavigateBefore } from "@material-ui/icons";
+import { Close, NavigateBefore } from "@material-ui/icons";
 import Title from "../../../../components/Typography/Title/Title";
 import classNames from "classnames";
 
@@ -62,10 +61,28 @@ function SupportPage() {
     }, []);
   
     /////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
+  
+    useEffect(() => {
+      const fetchData = async () =>{
+        // setLoading(true);
+        try {
+          const {data: response} = await axios.post(`http://185.202.113.165:3000/api/ticket/seen-by-user/${id}`,{"text":"Seen"},{
+            headers: {
+              'token': `${token}` 
+            },
+          },).then((el)=>console.log("elll",el.data))
+        } catch (error) {
+          console.error(error.message);
+        }
+        
+      }
+      fetchData();
+    }, []);
 
+    /////////////////////////////////////////////////////////////////////////////////////////
     const {
       register,
-      control,
       handleSubmit,
       reset,
       formState: { errors },
@@ -249,7 +266,7 @@ const statusTicket= newTicketStatus.status
 const statusTickets=(e)=>{
   switch (statusTicket) {
     case "Open":
-      return    <Grid
+      return  <Grid
       style={{
         backgroundColor: "#fff",
         padding: "48px ",
@@ -287,7 +304,7 @@ const statusTickets=(e)=>{
           justifyContent: "space-between",
         }}
       >
-        <div onClick={closeTicket} style={{cursor:"pointer"}}>بستن تیکت</div>
+        <div onClick={closeTicket} style={{cursor:"pointer",display: "flex",justifyContent: "center",alignItems: "center"}}><Close color="secondary"/><div>بستن تیکت</div> </div>
         <Button className={classes.ButtonSubmitPage} onClick={handleSubmit(onSubmit)}>ثبت</Button>
       </Grid>
  </Grid>
@@ -422,7 +439,7 @@ let btnClass = classNames({
                   {element.text}
                 </Grid>
                 <Grid style={{ color: "rgb(173 ,173 ,173)", marginTop: "8px" }}>
-                {newTicketStatus.createBy.mobile} | {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')} 
+                {/* {newTicketStatus.createBy.mobile} | {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')}  */}
                   
                 </Grid>
               </Grid>)

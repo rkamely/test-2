@@ -36,8 +36,7 @@ import { date } from "yup/lib/locale";
 import axios from "axios";
 import { Person } from "@material-ui/icons";
 
-const AddJob = ({handleClose,onEventAdded}) => {
-
+const AddJob = ({ handleClose, onEventAdded }) => {
   const classes = useStyles();
   // const [selectedDate, handleDateChange] = useState(moment());
   jMoment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
@@ -63,96 +62,107 @@ const AddJob = ({handleClose,onEventAdded}) => {
     watch,
     handleSubmit,
     formState: { errors },
-     getValues, setValue
+    getValues,
+    setValue,
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
   const [start, setStart] = useState(new Date(2022, 4, 19));
   const [selectedDate, handleDateChange] = useState(new Date());
 
-
-
   const [fromDate, setFromDate] = useState(null);
-  const [ toDate,setToDate] =useState(null);
-  const [ fromTime,setFromTime] =useState(null);
-  const [ toTime,setTotime] =useState(null);
-  const value = getValues('fromDate') ;
-  const valueToDate = getValues('toDate') ;
-  const valueFromTime=getValues('fromTime') ;
-  const valueTotime=getValues('toTime') ;
+  const [toDate, setToDate] = useState(null);
+  const [fromTime, setFromTime] = useState(null);
+  const [toTime, setTotime] = useState(null);
+  const value = getValues("fromDate");
+  const valueToDate = getValues("toDate");
+  const valueFromTime = getValues("fromTime");
+  const valueTotime = getValues("toTime");
 
   useEffect(() => {
-    register('fromDate');
-    register('toDate');
+    register("fromDate");
+    register("toDate");
   }, [register]);
 
   useEffect(() => {
-    register('fromTime');
-    register('toTime');
+    register("fromTime");
+    register("toTime");
   }, [register]);
 
   useEffect(() => {
     setFromDate(value || null);
     setToDate(valueToDate || null);
     setFromTime(valueFromTime || null);
-    setTotime(valueTotime || null); 
-  }, [setFromDate, value,setToDate,valueToDate,setFromTime, valueFromTime,setTotime,valueTotime])
-  
+    setTotime(valueTotime || null);
+  }, [
+    setFromDate,
+    value,
+    setToDate,
+    valueToDate,
+    setFromTime,
+    valueFromTime,
+    setTotime,
+    valueTotime,
+  ]);
+
   // useEffect(() => {
-  
-  //   setTotime(valueTotime || null); 
+
+  //   setTotime(valueTotime || null);
   // }, [setFromTime, valueFromTime,setTotime,valueTotime])
 
-      /////////////////////////////////////////////////////////////////////////////////////////
-  
-      const token = localStorage.getItem("id_token")
-   console.log(token);
-      useEffect(() => {
-        const fetchData = async () =>{
-          // setLoading(true);
-          try {
-            const {data: response} = await axios.post("http://188.121.121.225/api/event/GetForMonth",{ "date":"1401/03/01"},{
-              headers: {
-                'token': `${token}` 
-              },
-            },);
-            console.log( "show response" , response.data);
-            // setApiariesList(response.data )
-            // setLoading(false)
-          } catch (error) {
-          //  if (error.response?.status === 401) {
-          //    localStorage.clear("id_token")
-          //  }
-           console.error("سرور دچار مشکل شده است"+"ApiaryList");
-          //  setErrMessage("  با عرض پوزش سرور دچار مشکل شده است")
-          //  setIserror(true)
-          //  history.push("/app/Error")
-          //  window.location.reload()
-          }
-          // setLoading(false);
-        }
-        fetchData();
-      }, []);
-   
-  
-      /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
 
-  const onSubmit =async (data) => {
+  const token = localStorage.getItem("id_token");
+  console.log(token);
+  useEffect(() => {
+    const fetchData = async () => {
+      // setLoading(true);
+      try {
+        const { data: response } = await axios.post(
+          "http://188.121.121.225/api/event/GetForMonth",
+          { date: "1401/03/01" },
+          {
+            headers: {
+              token: `${token}`,
+            },
+          },
+        );
+        console.log("show response", response.data);
+        // setApiariesList(response.data )
+        // setLoading(false)
+      } catch (error) {
+        //  if (error.response?.status === 401) {
+        //    localStorage.clear("id_token")
+        //  }
+        console.error("سرور دچار مشکل شده است" + "ApiaryList");
+        //  setErrMessage("  با عرض پوزش سرور دچار مشکل شده است")
+        //  setIserror(true)
+        //  history.push("/app/Error")
+        //  window.location.reload()
+      }
+      // setLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+
+  const onSubmit = async (data) => {
     // console.log(JSON.stringify(data, null, 2));
     // alert(JSON.stringify(data, null, 2));
     // const response = await axios.post("http://185.202.113.165:3000/api/event", data ,{
     //   headers: {
-    //     'token': `${token}` 
+    //     'token': `${token}`
     //   },
     // },).then((response)=>{console.log("response1",response)})
     // event.preventDefault();
-    const reza=data.fromTime
-     const fromTime= moment(data.fromTime).format('LT');
-     const toTime = moment(data.toTime).format('LT');
+    const reza = data.fromTime;
+    const fromTime = moment(data.fromTime).format("LT");
+    const toTime = moment(data.toTime).format("LT");
     onEventAdded({
       title: data.title,
-      apiary:{
-        _id: "62a3559f5cd336001211ee0e"
+      apiary: {
+        _id: "62a3559f5cd336001211ee0e",
       },
       fromDate: new Date(data.fromDate),
       // endTime: toTime,
@@ -160,10 +170,10 @@ const AddJob = ({handleClose,onEventAdded}) => {
       fromTime: fromTime,
       toTime: toTime,
       category: "General",
-      priority:"High",
-      user:{
-        _id: "62a33f81b621cf0012b6979f"
-      }
+      priority: "High",
+      user: {
+        _id: "62a33f81b621cf0012b6979f",
+      },
     });
 
     console.log("data.fromTime");
@@ -197,11 +207,11 @@ const AddJob = ({handleClose,onEventAdded}) => {
 
       <Box px={3} py={2} className={classes.root}>
         <Grid container spacing={1} className={classes.container}>
-          <Grid item xs={12} >
+          <Grid item xs={12}>
             <div className={classes.box} >
-              <Grid item xs={12} sm={12} className={classes.Select} >
+              <Grid item xs={12} sm={12} className={classes.Select}>
                 <div className={classes.input}>
-                  <label className={classes.label} >نام کاربر</label>
+                  <label className={classes.label}>نام کاربر</label>
                   <Select
                     className={classes.inputSelect}
                     required
@@ -233,7 +243,7 @@ const AddJob = ({handleClose,onEventAdded}) => {
               </Grid>
 
               <Grid item xs={12} sm={12} className={classes.inputText}>
-                <div className={classes.input} >
+                <div className={classes.input}>
                   <label className={classes.label}> عنوان کار </label>
                   <TextField
                     className={classes.TextField}
@@ -345,8 +355,6 @@ const AddJob = ({handleClose,onEventAdded}) => {
                       {...register("Hive")}
                       error={errors.Hive ? true : false}
                       // IconComponent = {()=><img src="./assets/arrow-down-sign-to-navigate.svg"/>}
-
-
                     >
                       {options?.map((option) => {
                         return (
@@ -394,26 +402,31 @@ const AddJob = ({handleClose,onEventAdded}) => {
                 }}
               >
                 <div style={{ width: "100%" }}>
-                  <Grid item xs={12} sm={12} >
-                    <div className={classes.input} >
+                  <Grid item xs={12} sm={12}>
+                    <div className={classes.input}>
                       <label className={classes.label}>از تاریخ</label>
-                      <MuiPickersUtilsProvider utils={JalaliUtils} locale="fa" >
+                      <MuiPickersUtilsProvider utils={JalaliUtils} locale="fa">
                         <Controller
                           control={control}
                           name="fromDate"
                           render={({ field }) => (
                             <KeyboardDatePicker
-                          className={classes.inputSelect}
-                            inputVariant="outlined"
-                            placeholderText="تاریخ را وارد نمایید"
-                            value={fromDate}
-                            onChange={(fromDate) => setValue('fromDate', fromDate, { shouldValidate: true, shouldDirty: true })}
-                            keyboardIcon={<img src="./assets/calender-svgrepo-com.svg"/>}
-                            // KeyboardButtonProps={{
-                            //   children: "./assets/calender-svgrepo-com.svg"
-                            // }}
-
-
+                              className={classes.inputSelect}
+                              inputVariant="outlined"
+                              placeholderText="تاریخ را وارد نمایید"
+                              value={fromDate}
+                              onChange={(fromDate) =>
+                                setValue("fromDate", fromDate, {
+                                  shouldValidate: true,
+                                  shouldDirty: true,
+                                })
+                              }
+                              keyboardIcon={
+                                <img src="./assets/calender-svgrepo-com.svg" />
+                              }
+                              // KeyboardButtonProps={{
+                              //   children: "./assets/calender-svgrepo-com.svg"
+                              // }}
                             />
                           )}
                         />
@@ -463,7 +476,6 @@ const AddJob = ({handleClose,onEventAdded}) => {
                   </Grid>
                 </div>
 
-
                 <div style={{ width: "100%" }}>
                   <Grid item xs={12} sm={12} className={classes.Select}>
                     <div className={classes.input}>
@@ -474,13 +486,19 @@ const AddJob = ({handleClose,onEventAdded}) => {
                           name="toDate"
                           render={({ field }) => (
                             <KeyboardDatePicker
-                            className={classes.inputSelect}
-                            inputVariant="outlined"
-                            placeholderText="تاریخ را وارد نمایید"
-                            value={toDate}
-                            onChange={(toDate) => setValue('toDate', toDate, { shouldValidate: true, shouldDirty: true })}
-                            keyboardIcon={<img src="./assets/calender-svgrepo-com.svg"/>}
-
+                              className={classes.inputSelect}
+                              inputVariant="outlined"
+                              placeholderText="تاریخ را وارد نمایید"
+                              value={toDate}
+                              onChange={(toDate) =>
+                                setValue("toDate", toDate, {
+                                  shouldValidate: true,
+                                  shouldDirty: true,
+                                })
+                              }
+                              keyboardIcon={
+                                <img src="./assets/calender-svgrepo-com.svg" />
+                              }
                             />
                           )}
                         />
@@ -508,11 +526,16 @@ const AddJob = ({handleClose,onEventAdded}) => {
                           name="toTime"
                           render={({ field }) => (
                             <KeyboardTimePicker
-                            className={classes.inputSelect}
-                            inputVariant="outlined"
-                            placeholderText="ساعت را وارد نمایید"
-                            value={toTime}
-                            onChange={(toTime) => setValue('toTime', toTime, { shouldValidate: true, shouldDirty: true })}
+                              className={classes.inputSelect}
+                              inputVariant="outlined"
+                              placeholderText="ساعت را وارد نمایید"
+                              value={toTime}
+                              onChange={(toTime) =>
+                                setValue("toTime", toTime, {
+                                  shouldValidate: true,
+                                  shouldDirty: true,
+                                })
+                              }
                             />
                           )}
                         />
@@ -527,7 +550,6 @@ const AddJob = ({handleClose,onEventAdded}) => {
                       {errors.toTime?.message}
                     </Typography>
                   </Grid>
-  
                 </div>
               </div>
             </div>
