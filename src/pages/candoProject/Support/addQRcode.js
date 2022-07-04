@@ -33,8 +33,8 @@ function AddQRcode(props) {
           .required("لطفا درخواست خود را وارد نمایید."),
           });
           const [newTicket , setNewTicket] = useState()
-          const bardia = localStorage.getItem("id_token")
-          console.log("bardia",bardia);
+          const token = localStorage.getItem("id_token")
+          console.log("token",token);
 
         const {
             register,
@@ -53,7 +53,7 @@ function AddQRcode(props) {
         
             const response = await axios.post("http://185.202.113.165:3000/api/ticket", data , {
               headers: {
-                'token': `${bardia}` 
+                'token': `${token}` 
               }
             });
             reset({
