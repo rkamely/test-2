@@ -20,6 +20,7 @@ import { NavigateBefore } from "@material-ui/icons";
 import Title from "../../../components/Typography/Title/Title";
 import classNames from "classnames";
 import "./Support.css";
+import Youtube from "./youtube";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -209,7 +210,7 @@ function Support() {
               }}
               style={{ fontFamily: "Shabnam" }}
             >
-              درخواست به QR Code
+              درخواست  QR Code
             </Button>
           </Grid>
 
@@ -285,7 +286,7 @@ function Support() {
                 case "moveHive":
                   return <div>انتقال</div>;
                 case "qrCode":
-                  return <div>QRCODE</div>;
+                  return <div>درخواست QRCODE</div>;
 
                 case "other":
                   return <div>سایر</div>;
@@ -325,20 +326,19 @@ function Support() {
                       {title(element.category)}
                     </Typography>
                     <Typography className={classes.Date}>
-                      {" "}
                       {moment
                         .from(element.updatedAt)
                         .locale("fa")
                         .format("YYYY/M/D HH:mm")}
                     </Typography>
-                    {/* <Typography className={classes.Time}>{element.createBy.username}</Typography> */}
+                    {element.createBy?<Typography className={classes.Time}>{element.createBy.username}</Typography>:null}
                   </Grid>
                   <Grid className={btnClass}>{changeText(element.status)}</Grid>
                 </Grid>
 
                 <Grid className={classes.Duration}>
                   {durationDate == "0" ? (
-                    <div>امروز</div>
+                    <div>در ۲۴ ساعت اخیر</div>
                   ) : (
                     <div>{durationDate} روز قبل</div>
                   )}
@@ -406,6 +406,7 @@ function Support() {
                 newTicket={newTicket}
                 setNewTicket={setNewTicket}
               />
+
             ) : (
               <AddTicket
                 input={true}

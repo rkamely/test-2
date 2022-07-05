@@ -21,18 +21,18 @@ import {
   import * as yup from "yup";
   import AuthContext from "../../context/AuthProvider";
 
-function AddQRcode(props) {
+function AddQRcode({handleClose,title,setNewTicket,newTicket}) {
 
     const validationSchema = yup.object().shape({
-        title: yup
+        text: yup
           .string()
           .required("لطفا تعداد QRCODE درخواستی را وارد نمایید."),
         // title: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
-        text: yup
-          .string()
-          .required("لطفا درخواست خود را وارد نمایید."),
+        // text: yup
+        //   .string()
+        //   .required("لطفا درخواست خود را وارد نمایید."),
           });
-          const [newTicket , setNewTicket] = useState()
+          // const [newTicket , setNewTicket] = useState()
           const token = localStorage.getItem("id_token")
           console.log("token",token);
 
@@ -51,18 +51,21 @@ function AddQRcode(props) {
             // console.log(JSON.stringify(data, null, 2));
             // alert(JSON.stringify(data, null, 2));
         
-            const response = await axios.post("http://185.202.113.165:3000/api/ticket", data , {
+            const response = await axios.post("http://185.202.113.165:3000/api/ticket", {text:data.text , category:"qrCode"} , {
               headers: {
                 'token': `${token}` 
               }
-            });
+            }).then((res)=>{
+              console.log("response1", res.data.data);
+              setNewTicket([res.data.data  , ...newTicket])
+            })
             reset({
               text: "",
-              title:"",
+        
             })
             console.log("response ro see kon to addticket",response);
             // setData({ data: [...data, data] });
-            props.handleClose()
+            handleClose()
           };
         
         
@@ -79,7 +82,7 @@ function AddQRcode(props) {
       className={classes.titleBox}
 
       >
-        {props.title} 
+        {title} 
       </div>
       <Divider
         style={{ backgroundColor: "rgb( 244 ,244 ,244)", marginTop: "32px" }}
@@ -119,14 +122,14 @@ function AddQRcode(props) {
         variant="outlined"
         className={classes.inputQrCode}
 
-        {...register("title")}
-        error={errors.title ? true : false}
+        {...register("text")}
+        error={errors.text ? true : false}
       />
         <Typography
             variant="inherit"
             className={classes.errorTitle}
           >
-            {errors.title?.message}
+            {errors.text?.message}
         </Typography>
     </div>
     
@@ -134,7 +137,7 @@ function AddQRcode(props) {
    </div>
         
 
-        <DialogContent style={{ overflow: "hidden", padding: "0" }}>
+        {/* <DialogContent style={{ overflow: "hidden", padding: "0" }}>
           <div style={{ marginTop: "32px" }}>شرح درخواست</div>
           <TextareaAutosize
               id="outlined-basic"
@@ -158,13 +161,13 @@ function AddQRcode(props) {
                   {errors.text?.message}
               </Typography>
 
-        </DialogContent>
+        </DialogContent> */}
       </div>
       <Divider
         style={{ marginTop: "40px", backgroundColor: "rgb( 244 ,244 ,244)" }}
       />
       <DialogActions className={classes.actionButton}>
-        <Button onClick={props.handleClose} className={classes.cancelButton}>
+        <Button onClick={handleClose} className={classes.cancelButton}>
           انصراف
         </Button>
         <Button    onClick={handleSubmit(onSubmit)} className={classes.addButton}>

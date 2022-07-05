@@ -21,6 +21,7 @@ function SupportPage() {
   const classes = useStyles();
   const [newTicket , setNewTicket] = useState([])
   const [newTicketStatus , setNewTicketStatus] = useState([])
+  const [ image , setImage ] = useState('')
 
   const { id } = useParams()
   const[loading,setLoading]=useState(true)
@@ -29,12 +30,11 @@ function SupportPage() {
     // name: yup
     //   .string()
     //   .required("لطفا تعداد QRCODE درخواستی را وارد نمایید."),
-    text: yup
-      .string()
-      .required("لطفا درخواست خود را وارد نمایید."),
+    // text: yup
+    //   .string()
+    //   .required("لطفا درخواست خود را وارد نمایید."),
       });
     /////////////////////////////////////////////////////////////////////////////////////////
-  
     const token = localStorage.getItem("id_token")
     console.log("token",token);
     useEffect(() => {
@@ -81,21 +81,65 @@ function SupportPage() {
     }, []);
 
     /////////////////////////////////////////////////////////////////////////////////////////
+    const download=async (text)=>{
+      console.log("texxxxtttt",text);
+      const response = await axios.post(`http://185.202.113.165:3000/api/ticket/download-file/${text}` , 
+      {
+        headers: {
+          'token': `${token}` ,  
+        },
+      })
+      console.log("download",response.data.data)
+   }
+   /////////////////////////////////////////////////////////////////////////////////////
     const {
       register,
       handleSubmit,
       reset,
+      watch,
       formState: { errors },
     } = useForm({
       resolver: yupResolver(validationSchema),
     });
-
+    const convert2base64 = file =>{
+      const reader = new FileReader();
+      reader.onloadend = () =>{
+          setImage(reader.result.toString())
+      };
+      reader.readAsDataURL(file)
+  }
     const onSubmit = async(data,e) => {
-      const response = await axios.post(`http://185.202.113.165:3000/api/ticket/user-add-message/${id}`, data , {
+
+      e.preventDefault()
+      const fd = new FormData()
+
+      console.log("data.file[0]",data.file[0])
+      if(data.file[0]){
+        console.log("true");
+      fd.append('file',data.file[0])
+      }else{
+     fd.append('text',data.text)
+    }
+ 
+      if(data.file.length > 0){
+          convert2base64(data.file[0])
+      }
+      const response = await axios.post(`http://185.202.113.165:3000/api/ticket/user-add-message/${id}`, fd ,
+      {
         headers: {
-          'token': `${token}` 
+          'token': `${token}` ,
+           "Content-Type": "multipart/form-data",
+
+        },
+        onUploadProgress:ProgressEvent => {
+          let percent = Math.round(ProgressEvent.loaded/ProgressEvent.total*100)+"%"
+          console.log("percent",percent);
+          console.log("در حال بارگذاری"+Math.round(ProgressEvent.loaded/ProgressEvent.total*100)+"%");
         }
-      }).then( (respon) => setNewTicket(respon.data.data.messages))
+        // headers: {
+        //   "Content-Type": "multipart/form-data",
+        // },
+      },).then((respon) => setNewTicket(respon.data.data.messages))
       // console.log("response adduserticket",response.data.data.messages)
       reset({
         text: "",
@@ -237,6 +281,7 @@ const title=(e)=>{
      return <div>بدون عنوان </div>
   }
  }
+ 
 const breadcrumbs = [
 
   <Link
@@ -259,9 +304,9 @@ const breadcrumbs = [
   </Link>,
        <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold"}}>تیکت به پشتیبانی</p>
 
-
-
 ];
+
+
 const statusTicket= newTicketStatus.status
 const statusTickets=(e)=>{
   switch (statusTicket) {
@@ -277,6 +322,11 @@ const statusTickets=(e)=>{
         // width:"80%",
       }}
     >
+
+
+
+     <div>
+        <form onSubmit={handleSubmit(onSubmit)}>
       <TextareaAutosize
         maxRows={4}
         aria-label="maximum height"
@@ -297,6 +347,8 @@ const statusTickets=(e)=>{
             {errors.text?.message}
         </Typography>
 
+
+
       <Grid
         style={{
           display: "flex",
@@ -304,10 +356,55 @@ const statusTickets=(e)=>{
           justifyContent: "space-between",
         }}
       >
-        <div onClick={closeTicket} style={{cursor:"pointer",display: "flex",justifyContent: "center",alignItems: "center"}}><Close color="secondary"/><div>بستن تیکت</div> </div>
-        <Button className={classes.ButtonSubmitPage} onClick={handleSubmit(onSubmit)}>ثبت</Button>
+                {!watch("file")||watch("file").length===0?(
+            <div>
+              <Button
+               variant="contained"
+              component="label"
+              style={{fontFamily:"Shabnam"}}
+              >
+                بارگذاری فایل
+                <input
+                  type="file"
+                  {...register("file")}
+                  id="fileuploaded"
+                  hidden
+                />
+              </Button>
+
+                {/* <input type='file'  id="fileuploaded" {...register("file")} style={{cursor:"pointer"}}/>
+                <label htmlFor='fileuploaded' style={{cursor:"pointer"}}>انتخاب فایل</label> */}
+            </div>):(
+              <>
+                        <div>
+                        <Button
+                         variant="contained"
+                        component="label"
+                        style={{fontFamily:"Shabnam"}}
+                        >
+                          بارگذاری فایل
+                          <input
+                            type="file"
+                            {...register("file")}
+                            id="fileuploaded"
+                            hidden
+                          />
+                        </Button>
+          
+                          {/* <input type='file'  id="fileuploaded" {...register("file")} style={{cursor:"pointer"}}/>
+                          <label htmlFor='fileuploaded' style={{cursor:"pointer"}}>انتخاب فایل</label> */}
+                      </div>
+                      <strong>{watch("file")[0].name}</strong></>)}
+
+        {/* {errors.file && <div className='error'>{errors.file.message}</div>} */}
+        <Button type="submit" className={classes.ButtonSubmitPage} onClick={handleSubmit(onSubmit)}>ثبت</Button>
       </Grid>
+      <div onClick={closeTicket} style={{cursor:"pointer",display: "flex",justifyContent: "flex-start",alignItems: "center" ,marginTop:"16px"}}><Close color="secondary"/><div>بستن تیکت</div> </div>
+
+      </form>
+    </div>
  </Grid>
+
    case "CloseByUser":
      return  <Grid
      style={{
@@ -368,6 +465,8 @@ let btnClass = classNames({
            return <div>در انتظار</div>
       }
     }
+   
+
   return (
     <>
      <Breadcrumbs
@@ -435,11 +534,12 @@ let btnClass = classNames({
                   xs={12}
                   md={6}
                   className={classes.titleQuestion}
+                  onClick={()=>download(element.text)}
                 >
                   {element.text}
                 </Grid>
                 <Grid style={{ color: "rgb(173 ,173 ,173)", marginTop: "8px" }}>
-                {/* {newTicketStatus.createBy.mobile} | {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')}  */}
+                {element.createBy?newTicketStatus.createBy.mobile:null} | {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')} 
                   
                 </Grid>
               </Grid>)
@@ -460,6 +560,7 @@ let btnClass = classNames({
                >
                  {element.text}
                </Grid>
+               {/* {image ? <img src={image} width="450"/>:null} */}
                <Grid style={{ color: "rgb(173 ,173 ,173)", marginTop: "8px" }}>
                پشتیبان | {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')}
                </Grid>
