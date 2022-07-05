@@ -170,7 +170,7 @@ function Support() {
 
     // <Title key="3" title={id}/>
   ];
-
+console.log("show",show);
   return (
     <>
       <Breadcrumbs
@@ -331,7 +331,7 @@ function Support() {
                         .locale("fa")
                         .format("YYYY/M/D HH:mm")}
                     </Typography>
-                    {element.createBy?<Typography className={classes.Time}>{element.createBy.username}</Typography>:null}
+                    <Typography className={classes.Time}>{element.createBy.mobile}</Typography>
                   </Grid>
                   <Grid className={btnClass}>{changeText(element.status)}</Grid>
                 </Grid>

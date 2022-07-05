@@ -1,0 +1,89 @@
+		{
+			"name": "create batch qr code",
+			"request": {
+				"url": "{{kando_url}}/api/hive/qrcode-create",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "token",
+						"value": "{{kando_admin_token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"count\": 50,\n\t\"userId\": \"62a34a1a5cd336001211ecc4\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+
+
+
+
+
+
+
+        {
+			"name": "add file to ticket by admin",
+			"request": {
+				"url": "{{kando_url}}/api/ticket/admin-add-file/62c006cfec99e233f4f57cfe",
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{kando_admin_token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"description": "",
+							"type": "file",
+							"src": "MatinJafari-CV.pdf"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+
+
+
+        {
+			"name": "add file to ticket by user",
+			"request": {
+				"url": "{{kando_url}}/api/ticket/user-add-file/62c006cfec99e233f4f57cfe",
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{kando_token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"description": "",
+							"type": "file",
+							"src": "MatinJafari-CV.pdf"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},

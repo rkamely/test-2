@@ -83,13 +83,11 @@ function SupportPage() {
     /////////////////////////////////////////////////////////////////////////////////////////
     const download=async (text)=>{
       console.log("texxxxtttt",text);
-      const response = await axios.post(`http://185.202.113.165:3000/api/ticket/download-file/${text}` , 
-      {
-        headers: {
-          'token': `${token}` ,  
-        },
+      const response = await axios.get(`http://185.202.113.165:3000/api/ticket/download-file/${text}`,{
+        responseType: 'blob',
       })
-      console.log("download",response.data.data)
+      // console.log(`${text}`,text)
+      fileDownload(response.data,`${text}`)
    }
    /////////////////////////////////////////////////////////////////////////////////////
     const {
@@ -536,10 +534,10 @@ let btnClass = classNames({
                   className={classes.titleQuestion}
                   onClick={()=>download(element.text)}
                 >
-                  {element.text}
-                </Grid>
+{      element.type=="text" ? <div>salam</div>: <a onClick={()=>download(element.text)} target="_blank"  href={`http://185.202.113.165:3000/api/ticket/download-file/${element.text}`} >{element.text}</a>
+}                 </Grid>
                 <Grid style={{ color: "rgb(173 ,173 ,173)", marginTop: "8px" }}>
-                {element.createBy?newTicketStatus.createBy.mobile:null} | {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')} 
+                  {newTicketStatus.createBy.mobile} | {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')} 
                   
                 </Grid>
               </Grid>)
@@ -558,8 +556,8 @@ let btnClass = classNames({
                  className={classes.titleAnswer}
 
                >
-                 {element.text}
-               </Grid>
+{      element.type=="text"  ? <div>{element.text}</div>: <a onClick={()=>download(element.text)} target="_blank"  href={`http://185.202.113.165:3000/api/ticket/download-file/${element.text}`} >{element.text}</a>
+}               </Grid>
                {/* {image ? <img src={image} width="450"/>:null} */}
                <Grid style={{ color: "rgb(173 ,173 ,173)", marginTop: "8px" }}>
                پشتیبان | {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')}
