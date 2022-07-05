@@ -36,6 +36,8 @@ import AuthContext from "../../pages/context/AuthProvider";
 import discoverPage from "../../pages/candoProject/discoverPage/discoverPage";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 import tutorialPage from "../../pages/candoProject/tutorialPage/tutorialPage";
+import QRChatPage from "../../pages/candoProject/Support/ChatPage/QRChatPage";
+
 function Layout(props) {
   var classes = useStyles();
   // global
@@ -82,6 +84,8 @@ function Layout(props) {
 
             <Route path="/app/AboutUS" component={AboutUsMain} />
             <Route path="/app/user" component={TableofUser} />
+
+            <Route path="/app/Support/QrCode/:id" component={QRChatPage} />
             <Route path="/app/Support/:id" component={SupportPage} />
             <Route path="/app/SupportMessage" component={SupportMessage} />
             <Route

@@ -306,45 +306,68 @@ console.log("show",show);
               notSeen: element.seenByUser === false,
               Seen: element.seenByUser === true,
             });
-            return (
-              <Link
+            switch (element.category) {
+              case "qrCode":
+                return(
+                <Link
                 key={element._id}
-                to={`./Support/${element._id}`}
+                to={`./Support/qrCode/${element._id}`  }
+                className={seenClass}
                 item
                 sm={12}
-                className={seenClass}
-                style={{
-                  marginTop: "32px",
-                  color: "#000",
-                  textDecoration: "none",
-                  cursor: "pointer",
-                }}
+            
+                style={{ marginTop: "32px",color: "#000",textDecoration:"none",cursor: "pointer"}}
               >
-                <Grid className={classes.rightContent}>
-                  <Grid item className={classes.Titles}>
-                    <Typography className={classes.Title}>
-                      {title(element.category)}
-                    </Typography>
-                    <Typography className={classes.Date}>
-                      {moment
-                        .from(element.updatedAt)
-                        .locale("fa")
-                        .format("YYYY/M/D HH:mm")}
-                    </Typography>
-                    <Typography className={classes.Time}>{element.createBy.mobile}</Typography>
+                  <Grid className={classes.rightContent}>
+                    <Grid item className={classes.Titles}>
+                      <Typography className={classes.Title}>
+                        {title(element.category)}
+                      </Typography>
+                      <Typography className={classes.Date}> {moment.from(element.updatedAt).locale('fa').format('YYYY/M/D HH:mm')}</Typography>
+                       <Typography className={classes.Time}>{element.createBy.mobile}</Typography>
+      
+      
+      
+      
+                    </Grid>
+                    <Grid className={btnClass}>{changeText(element.status)}</Grid>
                   </Grid>
-                  <Grid className={btnClass}>{changeText(element.status)}</Grid>
-                </Grid>
-
-                <Grid className={classes.Duration}>
-                  {durationDate == "0" ? (
-                    <div>در ۲۴ ساعت اخیر</div>
-                  ) : (
-                    <div>{durationDate} روز قبل</div>
-                  )}
-                </Grid>
+      
+                  <Grid className={classes.Duration}>{durationDate=="0"?<div>در ۲۴ ساعت گذشته</div>:<div>{durationDate} روز قبل</div>}</Grid>
+      
               </Link>
-            );
+            )
+              default:
+                return (
+                <Link
+                key={element._id}
+                to={`./Support/${element._id}`  }
+                className={seenClass}
+                item
+                sm={12}
+            
+                style={{ marginTop: "32px",color: "#000",textDecoration:"none",cursor: "pointer"}}
+              >
+                  <Grid className={classes.rightContent}>
+                    <Grid item className={classes.Titles}>
+                      <Typography className={classes.Title}>
+                        {title(element.category)}
+                      </Typography>
+                      <Typography className={classes.Date}> {moment.from(element.updatedAt).locale('fa').format('YYYY/M/D HH:mm')}</Typography>
+                       <Typography className={classes.Time}>{element.createBy.mobile}</Typography>
+      
+      
+      
+      
+                    </Grid>
+                    <Grid className={btnClass}>{changeText(element.status)}</Grid>
+                  </Grid>
+      
+                  <Grid className={classes.Duration}>{durationDate=="0"?<div>در ۲۴ ساعت گذشته</div>:<div>{durationDate} روز قبل</div>}</Grid>
+      
+              </Link>)
+                break;
+            }
           })}
 
           {/* {data.map((element) => {

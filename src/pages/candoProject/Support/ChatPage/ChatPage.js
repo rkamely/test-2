@@ -15,6 +15,7 @@ import * as yup from "yup";
 import { Close, NavigateBefore } from "@material-ui/icons";
 import Title from "../../../../components/Typography/Title/Title";
 import classNames from "classnames";
+import fileDownload from "js-file-download";
 
 function SupportPage() {
   const history = useHistory()
