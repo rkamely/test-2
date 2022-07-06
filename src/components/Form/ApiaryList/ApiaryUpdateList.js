@@ -143,7 +143,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose}) => {
     // console.log("ApiariesListedit",ApiariesList);
     history.push("/app/apiaryList")
     // setApiariesList([...ApiariesList , {ApiariesList:updatedApiary}])
-    // window.location.reload()
+    window.location.reload()
     // const updatedApiary=[Apiary]
     // const index = updatedApiary.indexOf(data);
     // updatedApiary[index]={...data};

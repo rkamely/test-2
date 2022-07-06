@@ -197,8 +197,8 @@ export default function Header(props) {
           disableAutoFocusItem
         >
           <div className={classes.profileMenuUser}>
-            <Typography variant="h4" weight="medium">
-              John Smith
+            <Typography variant="h4" weight="medium" style={{fontFamily:"Shabnam"}}>
+              پنل کاربری
             </Typography>
           
           </div>
