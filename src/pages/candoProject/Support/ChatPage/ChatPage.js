@@ -12,10 +12,11 @@ import Loading from "../../../../components/Loading/Loading"
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Close, NavigateBefore } from "@material-ui/icons";
+import { Close, Description, NavigateBefore } from "@material-ui/icons";
 import Title from "../../../../components/Typography/Title/Title";
 import classNames from "classnames";
 import fileDownload from "js-file-download";
+import LodaingQr from "./LodaingQr";
 
 function SupportPage() {
   const history = useHistory()
@@ -23,6 +24,7 @@ function SupportPage() {
   const [newTicket , setNewTicket] = useState([])
   const [newTicketStatus , setNewTicketStatus] = useState([])
   const [ image , setImage ] = useState('')
+  const [progress, setProgress] = useState(0);
 
   const { id } = useParams()
   const[loading,setLoading]=useState(true)
@@ -134,6 +136,7 @@ function SupportPage() {
           let percent = Math.round(ProgressEvent.loaded/ProgressEvent.total*100)+"%"
           console.log("percent",percent);
           console.log("در حال بارگذاری"+Math.round(ProgressEvent.loaded/ProgressEvent.total*100)+"%");
+          setProgress(percent)
         }
         // headers: {
         //   "Content-Type": "multipart/form-data",
@@ -232,14 +235,16 @@ function SupportPage() {
 
 const closeTicket= async ()=>{
 
-  window.confirm("با بستن این تیکت دیگر امکان ارسال پیام در این چت باکس را ندارید")
-  const response = await axios.post(`http://185.202.113.165:3000/api/ticket/close-by-user/${id}` ,{"text":"close"} ,{
-    headers: {
-      'token': `${token}` 
-    }
-  });
-  console.log("response ro see kon to addticket",response);
-  history.push("/app/Support")
+  if(window.confirm("با بستن این تیکت دیگر امکان ارسال پیام در این چت باکس را ندارید")){
+    const response = await axios.post(`http://185.202.113.165:3000/api/ticket/close-by-user/${id}` ,{"text":"close"} ,{
+      headers: {
+        'token': `${token}` 
+      }
+    });
+    console.log("response ro see kon to addticket",response);
+    history.push("/app/Support")
+  }
+
 }
 
 const title=(e)=>{
@@ -398,7 +403,8 @@ const statusTickets=(e)=>{
         {/* {errors.file && <div className='error'>{errors.file.message}</div>} */}
         <Button type="submit" className={classes.ButtonSubmitPage} onClick={handleSubmit(onSubmit)}>ثبت</Button>
       </Grid>
-      <div onClick={closeTicket} style={{cursor:"pointer",display: "flex",justifyContent: "flex-start",alignItems: "center" ,marginTop:"16px"}}><Close color="secondary"/><div>بستن تیکت</div> </div>
+     {(progress!==0 && progress > "100%")?<LodaingQr value={progress} setProgress={setProgress}/>:null} 
+      <Grid lg={2}  onClick={closeTicket} style={{cursor:"pointer",display: "flex",justifyContent: "flex-start",alignItems: "center" ,marginTop:"16px"}}><Close color="secondary"/><div>بستن تیکت</div> </Grid>
 
       </form>
     </div>
@@ -533,9 +539,13 @@ let btnClass = classNames({
                   xs={12}
                   md={6}
                   className={classes.titleQuestion}
-                  onClick={()=>download(element.text)}
+              
                 >
-{      element.type=="text" ? <div>salam</div>: <a onClick={()=>download(element.text)} target="_blank"  href={`http://185.202.113.165:3000/api/ticket/download-file/${element.text}`} >{element.text}</a>
+{      element.type=="text" ? <div>{element.text}</div>: 
+<a onClick={()=>download(element.text)} target="_blank"  href={`http://185.202.113.165:3000/api/ticket/download-file/${element.text}`} className={classes.fileLink} >
+  <div> <Description/></div>
+  <div> {element.text}</div>
+  </a>
 }                 </Grid>
                 <Grid style={{ color: "rgb(173 ,173 ,173)", marginTop: "8px" }}>
                   {newTicketStatus.createBy.mobile} | {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')} 
@@ -557,7 +567,11 @@ let btnClass = classNames({
                  className={classes.titleAnswer}
 
                >
-{      element.type=="text"  ? <div>{element.text}</div>: <a onClick={()=>download(element.text)} target="_blank"  href={`http://185.202.113.165:3000/api/ticket/download-file/${element.text}`} >{element.text}</a>
+{      element.type=="text"  ? <div>{element.text}</div>: 
+<a onClick={()=>download(element.text)} target="_blank"  href={`http://185.202.113.165:3000/api/ticket/download-file/${element.text}`} className={classes.fileLink}>
+<div> <Description/></div>
+  <div> {element.text}</div>
+  </a>
 }               </Grid>
                {/* {image ? <img src={image} width="450"/>:null} */}
                <Grid style={{ color: "rgb(173 ,173 ,173)", marginTop: "8px" }}>

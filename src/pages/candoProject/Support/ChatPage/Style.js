@@ -102,4 +102,12 @@ export default makeStyles((theme) => ({
         color:"rgb( 227 156 0)",
         fontWeight:"bold"
       },
+      fileLink:{
+        display:"flex",
+        alignItems:"center",
+        textDecoration:"none",
+        color:"blue",
+        cursor:"pointer",
+        gap:"8px"
+      }
 }));

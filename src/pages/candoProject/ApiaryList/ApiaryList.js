@@ -225,7 +225,7 @@ function ApiaryList() {
         setApiariesList(response.data);
         setLoading(false);
       } catch (error) {
-        if (error.response?.status === 401) {
+        if (error.response?.status == 401) {
           localStorage.clear("id_token");
         }
         console.error("سرور دچار مشکل شده است" + "ApiaryList");

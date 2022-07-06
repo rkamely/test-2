@@ -3,6 +3,8 @@ import {
   Button,
   Dialog,
   Grid,
+  MenuItem,
+  Select,
   Slide,
   Typography,
 } from "@material-ui/core";
@@ -157,6 +159,8 @@ function Support() {
   // console.log("AddTicket",AddTicket);
   console.log("show", show);
 
+
+
   const breadcrumbs = [
     <Link key="1" style={{ textDecoration: "none", cursor: "pointer" }}>
       <Title key="1" title=" پشتیبانی " />
@@ -202,6 +206,8 @@ console.log("show",show);
             >
               تیکت به پشتیبانی
             </Button>
+
+
             <Button
               className={classes.button2}
               onClick={() => {
@@ -324,7 +330,7 @@ console.log("show",show);
                         {title(element.category)}
                       </Typography>
                       <Typography className={classes.Date}> {moment.from(element.updatedAt).locale('fa').format('YYYY/M/D HH:mm')}</Typography>
-                       <Typography className={classes.Time}>{element.createBy.mobile}</Typography>
+                       {/* <Typography className={classes.Time}>({element.createBy.mobile})</Typography> */}
       
       
       
@@ -354,7 +360,7 @@ console.log("show",show);
                         {title(element.category)}
                       </Typography>
                       <Typography className={classes.Date}> {moment.from(element.updatedAt).locale('fa').format('YYYY/M/D HH:mm')}</Typography>
-                       <Typography className={classes.Time}>{element.createBy.mobile}</Typography>
+                       {/* <Typography className={classes.Time}>({element.createBy.mobile})</Typography> */}
       
       
       
