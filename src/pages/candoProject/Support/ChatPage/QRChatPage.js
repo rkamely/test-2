@@ -277,7 +277,9 @@ const title=(e)=>{
    case "moveHive":
            return <div>انتقال</div>             
    case "qrCode":
-           return <div>QRCODE</div>    
+            return <div>درخواست QRCODE</div> 
+   case "requestQRCode":
+            return <div> تیکت QRCODE </div>    
 
    case "other":
            return <div>سایر</div>  
