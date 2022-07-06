@@ -293,6 +293,8 @@ console.log("show",show);
                   return <div>انتقال</div>;
                 case "qrCode":
                   return <div>درخواست QRCODE</div>;
+                  case "requestQRCode":
+                    return <div> درخواست QRCODE (اپلیکیشن)</div>   
 
                 case "other":
                   return <div>سایر</div>;

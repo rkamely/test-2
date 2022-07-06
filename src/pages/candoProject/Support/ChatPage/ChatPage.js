@@ -278,7 +278,8 @@ const title=(e)=>{
            return <div>انتقال</div>             
    case "qrCode":
            return <div>QRCODE</div>    
-
+    case "requestQRCode":
+            return <div> درخواست QRCODE (اپلیکیشن)</div>   
    case "other":
            return <div>سایر</div>  
     default:
