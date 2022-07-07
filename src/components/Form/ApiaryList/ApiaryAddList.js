@@ -20,7 +20,7 @@ import Divider from "@material-ui/core/Divider";
 import axios from "axios";
 import ApiaryList from "../../../pages/candoProject/ApiaryList/ApiaryList";
 
-const ApiaryAddList = ({ ApiariesList, setApiariesList, onClose, refresh }) => {
+const ApiaryAddList = ({ ApiariesList, setApiariesList, onClose, refresh,setStatus,status }) => {
   const classes = useStyles();
   const validationSchema = yup.object().shape({
     name: yup
@@ -43,7 +43,6 @@ const ApiaryAddList = ({ ApiariesList, setApiariesList, onClose, refresh }) => {
     // select4: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
     apiaryUsage: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
   });
-  const [status, setStatus] = useState(false);
   const {
     register,
     control,
@@ -72,11 +71,13 @@ const ApiaryAddList = ({ ApiariesList, setApiariesList, onClose, refresh }) => {
     // setApiariesList([...ApiariesList , data])
     console.log(ApiariesList, "ApiariesList");
     console.log();
-    setStatus(true);
+   
     // refresh("f")
     onClose();
   };
-
+if(status){
+  console.log("true ststus");
+}
   const options = [
     { label: "باغ", value: "Garden" },
     { label: "مزرعه", value: "Farm" },
@@ -400,7 +401,7 @@ const ApiaryAddList = ({ ApiariesList, setApiariesList, onClose, refresh }) => {
 
           <Box mt={12} style={{ width: "100%" }}>
             <div className={classes.button}>
-              <Button variant="contained" className={classes.Button2}>
+              <Button variant="contained" className={classes.Button2} onClick={onClose}>
                 انصراف
               </Button>
 

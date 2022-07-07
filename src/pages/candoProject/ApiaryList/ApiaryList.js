@@ -47,9 +47,10 @@ function ApiaryList() {
   const [selectedRows, setSelectedRows] = useState();
   const [toolbar, setToolbar] = useState(false);
   const [scroll, setScroll] = useState("paper");
-  const [errorMessage, setErrMessage] = useState();
+  const [status, setStatus] = useState(false);
   const [error, setIserror] = useState(false);
   const [loading, setLoading] = useState(true);
+
   const history = useHistory();
 
   const classes = useStyles();
@@ -734,7 +735,12 @@ function ApiaryList() {
   // const { loading, error, data } = useQuery(GET_APIARIES)
   // if (loading) return 'صفحه در حال لود شدن است'
   // if (error) return `Error! ${error.message}`
-
+  if(status){
+    console.log("status is true");
+    return <ApiaryList/>
+    }else{
+      console.log("status is false");   
+    }
   return (
     <>
       {loading ? (
@@ -984,6 +990,8 @@ function ApiaryList() {
               maxWidth="xl"
             >
               <ApiaryAddList
+                setStatus={setStatus}
+                status={status}
                 ApiariesList={ApiariesList}
                 setApiariesList={setApiariesList}
                 onClose={handleClose}
@@ -1007,6 +1015,7 @@ function ApiaryList() {
               <ApiaryUpdateList
                 ApiariesList={ApiariesList}
                 setApiariesList={setApiariesList}
+                setStatus={setStatus}
                 onClose={handleClose}
               />
             </Dialog>

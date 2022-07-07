@@ -22,7 +22,7 @@ import axios from "axios";
 import { useParams,useHistory } from "react-router-dom";
 import Loading from "../../Loading/Loading";
 
-const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose}) => {
+const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
   console.log("editApiariesList",ApiariesList);
   const params = useParams();
   const history = useHistory()
@@ -93,8 +93,10 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose}) => {
         });
         //  setApiariesList(response.data)
          setLoading(false)
+         
        } catch (error) {
          console.error(error.message);
+         
         //  history.push("/app/Error")
         //  window.location.reload()
        }
@@ -119,6 +121,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose}) => {
     const {id}=response.data
     console.log("log response",response);
     setApiariesList(ApiariesList.map((apiary) => apiary.id === edit_id ? apiary : data))
+    setStatus(true)
     // const updatedApiary=ApiariesList
     // console.log("updatedApiary",updatedApiary);
   
@@ -141,14 +144,16 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose}) => {
     // setApiariesList(updatedApiary)
     onClose();
     // console.log("ApiariesListedit",ApiariesList);
-    history.push("/app/apiaryList")
+    // history.push("/app/apiaryList")
     // setApiariesList([...ApiariesList , {ApiariesList:updatedApiary}])
-    window.location.reload()
+    // window.location.reload()
     // const updatedApiary=[Apiary]
     // const index = updatedApiary.indexOf(data);
     // updatedApiary[index]={...data};
     // setApiary({Apiary:updatedApiary})
-
+    // history.push("/app/apiaryList")
+    // setApiariesList([...ApiariesList , {ApiariesList:updatedApiary}])
+    // window.location.reload()
   };
 
   // useEffect(() => {
@@ -437,7 +442,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose}) => {
 
               <Grid item xs={12} sm={12}>
                 <div className={classes.input}>
-                  <label className={classes.label}> کاربرد </label>
+                  <label className={classes.label}  > کاربرد </label>
                   <Select
                     className={classes.inputSelect}
                     required
@@ -481,7 +486,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose}) => {
 
           <Box mt={8} style={{ width: "100%" }}>
             <div className={classes.button}>
-              <Button variant="contained" className={classes.Button2}>
+              <Button variant="contained" className={classes.Button2} onClick={onClose}>
                 انصراف
               </Button>
 
