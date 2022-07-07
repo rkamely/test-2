@@ -225,16 +225,16 @@ function ApiaryList() {
         setApiariesList(response.data);
         setLoading(false);
       } catch (error) {
-        if (error.response?.status == 401) {
-          localStorage.clear("id_token");
-        }
-        console.error("سرور دچار مشکل شده است" + "ApiaryList");
-        setErrMessage("با عرض پوزش سرور دچار مشکل شده است");
-        setIserror(true);
+        if (error.response?.status === 401) {
+          localStorage.clear("id_token")
+          console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
+          window.location.reload()
+        }else{
+        console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
+        history.push("/app/Error")
+        window.location.reload()
+       }}
 
-        //  history.push("/app/Error")
-        //  window.location.reload()
-      }
       // setLoading(false);
     };
     fetchData();

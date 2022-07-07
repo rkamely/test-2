@@ -43,7 +43,7 @@ console.log("setAuth",setAuth);
     username: yup.string().required("لطفا نام کاربری خود را وارد کنید"),
     firstname: yup.string().required("لطفا نام خود را وارد کنید"),
     lastname: yup.string().required("لطفا نام خانوادگی خود را وارد کنید"),
-    // email: yup.string().required("لطفا ایمیل خود را وارد کنید").email("لطفا ایمیل معتبر وارد کنید"),
+    email: yup.string().required("لطفا ایمیل خود را وارد کنید").email("لطفا ایمیل معتبر وارد کنید"),
   });
   const [isLoading, setIsLoading] = useState(false);
 

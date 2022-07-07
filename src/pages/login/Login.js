@@ -31,7 +31,6 @@ import "./styles.css";
 
 function Login(props) {
 
-  const { setAuth } = useContext(AuthContext)
   var classes = useStyles();
   const history = useHistory();
   const errRef = useRef();

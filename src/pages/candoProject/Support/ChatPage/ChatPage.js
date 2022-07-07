@@ -90,7 +90,7 @@ function SupportPage() {
         responseType: 'blob',
       })
       // console.log(`${text}`,text)
-      fileDownload(response.data,`${text}`)
+       fileDownload(response.data,`${text}`)
    }
    /////////////////////////////////////////////////////////////////////////////////////
     const {

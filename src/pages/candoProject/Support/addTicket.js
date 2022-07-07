@@ -92,13 +92,14 @@ function AddTicket({input,handleClose,newTicket,setNewTicket,title,style, setSho
     }).then((res)=>{
       console.log("response1", res.data.data);
       setNewTicket([res.data.data  , ...newTicket])
+      setShow(true)
     })
     console.log("response ro see kon to addticket",response);
     reset({
       text: "",
       category:""
     })
-    setShow(true)
+    
     // setData({ data: [...data, data] });
     // localStorage.setItem("AddTicket",response.data.data)
     handleClose()

@@ -11,7 +11,7 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 import AddTicket from "./addTicket";
 import useStyles from "./Style";
-import { Link } from "react-router-dom";
+import { Link ,useHistory} from "react-router-dom";
 import AuthContext from "../../context/AuthProvider";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import axios from "axios";
@@ -37,6 +37,8 @@ function Support() {
   const { auth, setAuth } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [show, setShow] = useState(false);
+  const history = useHistory();
+
   /////////////////////////////////////////////////////////////////////////////////////////
 
   const axiosInstance = useAxiosPrivate();
@@ -66,9 +68,15 @@ function Support() {
           setShow(false);
         }
       } catch (error) {
-        console.error(error.message);
-        setLoading(true);
-      }
+        if (error.response?.status === 401) {
+          localStorage.clear("id_token")
+          console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
+          window.location.reload()
+        }else{
+        console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
+        history.push("/app/Error")
+        window.location.reload()
+       }}
       // setLoading(false);
     };
     fetchData();
