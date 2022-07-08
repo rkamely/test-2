@@ -619,7 +619,7 @@ function ApiaryList() {
     setdownloadOpen(true);
   };
   const downloadExcel = () => {
-    const newData = Apiary.map((row) => {
+    const newData = ApiariesList.map((row) => {
       // bug
       // delete row.tableData;
       console.log("row", row.tableData);
@@ -728,13 +728,7 @@ function ApiaryList() {
     doc.save("table.pdf");
   };
 
-  // const Status = localStorage.getItem("Status")
-  // if(Status){
-  //   return <ApiaryList/>
-  // }
-  // const { loading, error, data } = useQuery(GET_APIARIES)
-  // if (loading) return 'صفحه در حال لود شدن است'
-  // if (error) return `Error! ${error.message}`
+
   if(status){
     console.log("status is true");
     return <ApiaryList/>
@@ -749,7 +743,7 @@ function ApiaryList() {
           <Loading color="orange" />
         </div>
       ) : (
-        <div>
+        <div className={classes.container}>
           <h2 style={{ color: "rgb(227, 156, 0)", fontSize: "1.2rem" }}>
             زنبورستان
           </h2>

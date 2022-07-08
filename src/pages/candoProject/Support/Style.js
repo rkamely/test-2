@@ -6,8 +6,8 @@ fontFamily: "Shabnam"
     },
     
 container:{
-padding:"0 40px",
-[theme.breakpoints.down('xs')]: {
+  padding:"32px 40px",
+  [theme.breakpoints.down('xs')]: {
 
     padding:0,
 
@@ -241,6 +241,13 @@ width:"100%"  },
     display:"flex",
     alignItems:"center"  ,
     justifyContent:"center"
+},
+LoadingMain:{
+  height:"90%",
+  display:"flex",
+  alignItems:"center"  ,
+  justifyContent:"center",
+  marginTop:"132px"
 }
 
 }));

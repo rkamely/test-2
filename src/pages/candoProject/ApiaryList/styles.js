@@ -6,6 +6,9 @@ export default makeStyles(theme => ({
         display:"flex",
         alignItems:"center"  ,
         justifyContent:"center"
-    }
+    },
+    container:{
+        padding: "32px ",
+      },
 
 }));

@@ -653,7 +653,7 @@ function  Hive() {
   ];
   return (
     
-    <div>
+    <div className={classes.container}>
       <Breadcrumbs 
         separator={<NavigateBefore fontSize="large" style={{color:"rgb(227, 156, 0)"}} />}
         aria-label="breadcrumb"

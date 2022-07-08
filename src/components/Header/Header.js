@@ -36,6 +36,7 @@ import {
   toggleSidebar,
 } from "../../context/LayoutContext";
 import { useUserDispatch, signOut } from "../../context/UserContext";
+import axios from "axios";
 
 const messages = [
   {
@@ -105,6 +106,22 @@ export default function Header(props) {
   const firstName = localStorage.getItem("profileName");
   console.log("firstName",firstName);
 
+
+  const token = localStorage.getItem("id_token")
+
+  try{
+    const response = axios.get("http://185.202.113.165:3000/api/auth/me",{
+      'token': `${token}` ,
+       
+    })
+    console.log("response profile",response.data);
+    console.log(JSON.stringify(response))       
+
+}catch (err) {
+
+
+
+}
 
 
 

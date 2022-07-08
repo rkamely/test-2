@@ -77,7 +77,7 @@ function Main() {
 
   return (
     <>
-      <Grid container>
+      <Grid container className={classes.container}>
         <Title title="تقویم کاری" style={{ fontSize: "2rem" }} variant="h5" />
         <Grid
           item

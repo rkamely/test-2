@@ -1,6 +1,9 @@
 import { makeStyles } from "@material-ui/styles";
 
 export default makeStyles((theme) => ({
+  container:{
+    padding: "32px ",
+  },
   TabHeader: {
     backgroundColor: "rgb( 255 ,242, 212)",
     display: "flex",

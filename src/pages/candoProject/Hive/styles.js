@@ -1,6 +1,9 @@
 import { makeStyles } from "@material-ui/styles";
 
 export default makeStyles((theme) => ({
+  container:{
+    padding: "32px ",
+  },
     inputSelect: {
         width: "250px",
         display:"flex",
