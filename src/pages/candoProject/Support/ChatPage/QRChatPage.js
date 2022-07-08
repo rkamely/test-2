@@ -322,7 +322,7 @@ const statusTickets=(e)=>{
       return  <Grid
       style={{
         backgroundColor: "#fff",
-        padding: "48px ",
+        padding: "32px 48px",
         borderRadius: "12px",
         // position: "fixed",
         // bottom:0,
@@ -380,6 +380,7 @@ const statusTickets=(e)=>{
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          marginTop:"8px"
         }}
       >
            <div>

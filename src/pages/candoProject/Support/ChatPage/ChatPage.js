@@ -361,6 +361,8 @@ const statusTickets=(e)=>{
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          marginTop:"8px"
+
         }}
       >
             <div>
