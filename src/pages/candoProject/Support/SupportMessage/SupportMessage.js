@@ -101,16 +101,18 @@ function SupportMessage() {
   ];
 
   return (
-    <>
+    <div className={classes.container}>
+    <div style={{}}>
       <Breadcrumbs
         separator={<NavigateBefore fontSize="large" style={{color:"rgb(227, 156, 0)"}} />}
         aria-label="breadcrumb"
       >
         {breadcrumbs}
       </Breadcrumbs>
+      </div>
     <Grid
       container
-      className={classes.container}
+      className={classes.container2}
 
     >
       {/* message */}
@@ -210,7 +212,7 @@ function SupportMessage() {
         );
       })}
     </Grid>
-    </>
+    </div>
   );
 }
 

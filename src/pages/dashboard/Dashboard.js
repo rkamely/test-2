@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { Box, Grid, Paper } from "@material-ui/core";
 import { styled, useTheme } from "@material-ui/styles";
 
@@ -19,8 +19,9 @@ import BigStat2 from "./components/BigStat/BigStat2";
 import Title from "../../components/Typography/Title/Title";
 
 import { useQuery, gql } from "@apollo/client";
-import MapBox from "../../components/MapBox/MapBox";
+// import MapBox from "../../components/MapBox/MapBox";
 import Calender from "../candoProject/Calender/Calender";
+const MapBox = React.lazy(() => import('../../components/MapBox/MapBox'));
 
 
 
@@ -36,13 +37,15 @@ export default function Dashboard(props) {
   //   }));
 
   return (
-    <Grid style={{padding:"0px 32px"}}>
+    <Grid className={classes.container} >
       <Title title="نقشه" variant="h6" />
 
       {/* map */}
 
       <Grid item xs={12} className={classes.mapBox}>
+      <Suspense fallback={<div>Loading...</div>}>
         <MapBox />
+      </Suspense>
       </Grid>
 
       {/* second part */}

@@ -143,8 +143,10 @@ function SupportPage() {
         // },
       },).then((respon) => setNewTicket(respon.data.data.messages))
       // console.log("response adduserticket",response.data.data.messages)
+      setProgress(0)
       reset({
         text: "",
+        file:""
       })
       // window.location.reload()
         
@@ -319,7 +321,7 @@ const statusTickets=(e)=>{
       return  <Grid
       style={{
         backgroundColor: "#fff",
-        padding: "48px ",
+        padding: "32px 48px",
         borderRadius: "12px",
         // position: "fixed",
         // bottom:0,
@@ -361,9 +363,9 @@ const statusTickets=(e)=>{
           justifyContent: "space-between",
         }}
       >
-                {!watch("file")||watch("file").length===0?(
             <div>
               <Button
+              
                variant="contained"
               component="label"
               style={{fontFamily:"Shabnam"}}
@@ -376,31 +378,10 @@ const statusTickets=(e)=>{
                   hidden
                 />
               </Button>
-
+              {!watch("file")||watch("file").length===0?null:<strong style={{marginRight:"16px"}}>{watch("file")[0].name}</strong>}
                 {/* <input type='file'  id="fileuploaded" {...register("file")} style={{cursor:"pointer"}}/>
                 <label htmlFor='fileuploaded' style={{cursor:"pointer"}}>انتخاب فایل</label> */}
-            </div>):(
-              <>
-                        <div>
-                        <Button
-                         variant="contained"
-                        component="label"
-                        style={{fontFamily:"Shabnam"}}
-                        >
-                          بارگذاری فایل
-                          <input
-                            type="file"
-                            {...register("file")}
-                            id="fileuploaded"
-                            hidden
-                          />
-                        </Button>
-          
-                          {/* <input type='file'  id="fileuploaded" {...register("file")} style={{cursor:"pointer"}}/>
-                          <label htmlFor='fileuploaded' style={{cursor:"pointer"}}>انتخاب فایل</label> */}
-                      </div>
-                      <strong>{watch("file")[0].name}</strong></>)}
-
+            </div>
         {/* {errors.file && <div className='error'>{errors.file.message}</div>} */}
         <Button type="submit" className={classes.ButtonSubmitPage} onClick={handleSubmit(onSubmit)}>ثبت</Button>
       </Grid>
@@ -475,12 +456,16 @@ let btnClass = classNames({
 
   return (
     <>
+        <div style={{margin:"32px 32px 0px"}}>
+
      <Breadcrumbs
         separator={<NavigateBefore fontSize="large" style={{color:"rgb(227, 156, 0)"}} />}
         aria-label="breadcrumb"
       >
         {breadcrumbs}
       </Breadcrumbs>
+      </div>
+
     {loading?
           <div className={classes.Loading}> <Loading color="orange" /></div>:   
            <div
@@ -499,7 +484,7 @@ let btnClass = classNames({
         style={{
           display: "flex",
           alignItems: "center",
-          padding: "16px 32px",
+          padding: "16px 60px",
           justifyContent: "space-between",
           borderRadius: "12px",
 
@@ -549,7 +534,7 @@ let btnClass = classNames({
   </a>
 }                 </Grid>
                 <Grid style={{ color: "rgb(173 ,173 ,173)", marginTop: "8px" }}>
-                  {newTicketStatus.createBy.mobile} | {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')} 
+                ({newTicketStatus.createBy?newTicketStatus.createBy.firstname +" "+ newTicketStatus.createBy.lastname:null}) | {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')} 
                   
                 </Grid>
               </Grid>)

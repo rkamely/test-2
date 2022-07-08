@@ -2,10 +2,13 @@ import { makeStyles } from "@material-ui/styles";
 
 export default makeStyles((theme) => ({
     container:{
+        padding: "32px 60px",
+      },
+    container2:{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        padding: "16px 32px",
+        // padding: "16px 32px",
         justifyContent: "space-between",
         borderRadius: "12px",
         width: "100%",
@@ -18,7 +21,7 @@ export default makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-end",
-        padding: "16px 32px",
+        // padding: "16px 32px",
         justifyContent: "space-between",
         borderRadius: "12px",
         width: "100%",
@@ -33,7 +36,7 @@ export default makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-end",
-        padding: "16px 32px",
+        // padding: "16px 32px",
         justifyContent: "space-between",
         borderRadius: "12px",
         width: "100%",

@@ -282,7 +282,7 @@ export default function SimpleAccordion() {
   
   ];
   return (
-    <>
+    <div className={classes.container}>
       <Breadcrumbs
          separator=""
         separator={<NavigateBefore fontSize="large" style={{color:"rgb(227, 156, 0)"}} />}
@@ -293,7 +293,7 @@ export default function SimpleAccordion() {
       >
         {breadcrumbs}
       </Breadcrumbs>
-    <Grid container className={classes.container}>
+    <Grid container className={classes.container2}>
 
       <Grid
         item
@@ -337,12 +337,12 @@ export default function SimpleAccordion() {
 
 
       {/* items */}
-      <Typography variant="h3" color="secondary" style={{fontWeight:"600",marginTop:"24px"}}>کندووان پلاس</Typography>
+      <Typography variant="h3" color="secondary" style={{fontWeight:"600",marginTop:"60px"}}>کندووان پلاس</Typography>
       <Grid style={{ width: "100%" }}>
             <Accordion
               // onClick={() => changeColor(el.id)}
               className={classes.Accordion}
-              style={{ borderRadius: "9px", marginTop: "16px" }}
+              style={{ borderRadius: "9px", marginTop: "16px"}}
             >
               <AccordionSummary
                 className={classes.arrowStyle}
@@ -498,6 +498,6 @@ export default function SimpleAccordion() {
       
 
     </Grid>
-    </>
+    </div>
   );
 }

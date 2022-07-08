@@ -1,13 +1,17 @@
 import { makeStyles } from "@material-ui/styles";
 
 export default makeStyles((theme) => ({
-  container:{
-padding:"80px",
+  container2:{
+padding:"60px 0px ",
+
 [theme.breakpoints.down('sm')]: {
 
   padding:0,
 
 },
+  },
+  container:{
+    padding: "32px 60px",
   },
   yellowBorder: {
     borderRadius: " 9px",
@@ -55,7 +59,7 @@ padding:"80px",
 
   
   Accordion: {
-
+    padding:"0 36px" ,
  
     flexDirection: "row-reverse",
     "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {

@@ -184,7 +184,7 @@ function Support() {
   ];
 console.log("show",show);
   return (
-    <>
+    <div className={classes.container}>
       <Breadcrumbs
         separator={
           <NavigateBefore
@@ -197,12 +197,12 @@ console.log("show",show);
         {breadcrumbs}
       </Breadcrumbs>
       {loading ? (
-        <div className={classes.Loading}>
+        <div className={classes.LoadingMain}>
           {" "}
           <Loading color="orange" />
         </div>
       ) : (
-        <Grid container className={classes.container}>
+        <Grid container >
           <Grid item xs={12} className={classes.Button}>
             <Button
               className={classes.button1}
@@ -460,7 +460,7 @@ console.log("show",show);
           </Dialog>
         </Grid>
       )}
-    </>
+    </div>
   );
 }
 
