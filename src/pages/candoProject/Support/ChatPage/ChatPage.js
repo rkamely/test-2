@@ -385,7 +385,7 @@ const statusTickets=(e)=>{
                 <label htmlFor='fileuploaded' style={{cursor:"pointer"}}>انتخاب فایل</label> */}
             </div>
         {/* {errors.file && <div className='error'>{errors.file.message}</div>} */}
-        <Button type="submit" className={classes.ButtonSubmitPage} onClick={handleSubmit(onSubmit)}>ثبت</Button>
+        <Button type="submit" className={classes.ButtonSubmitPage} onClick={handleSubmit(onSubmit)} disabled={progress!==0}>ثبت</Button>
       </Grid>
      {(progress!==0 && progress > "100%")?<LodaingQr value={progress} setProgress={setProgress}/>:null} 
      {!watch("file")||watch("file").length!==0 && progress==0?null:<div style={{marginTop:"16px" , color:"red"}}>لطفا منتظر بمانید...</div>} 
