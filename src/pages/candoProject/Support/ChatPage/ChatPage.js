@@ -388,6 +388,7 @@ const statusTickets=(e)=>{
         <Button type="submit" className={classes.ButtonSubmitPage} onClick={handleSubmit(onSubmit)}>ثبت</Button>
       </Grid>
      {(progress!==0 && progress > "100%")?<LodaingQr value={progress} setProgress={setProgress}/>:null} 
+     {!watch("file")||watch("file").length!==0 && progress==0?null:<div style={{marginTop:"16px" , color:"red"}}>لطفا منتظر بمانید...</div>} 
       <Grid lg={2}  onClick={closeTicket} style={{cursor:"pointer",display: "flex",justifyContent: "flex-start",alignItems: "center" ,marginTop:"16px"}}><Close color="secondary"/><div>بستن تیکت</div> </Grid>
 
       </form>

@@ -81,7 +81,6 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
          console.log( "show response" , response.data);
          const responseData = response.data;
          reset({ 
-     
           name: responseData.name ,
           hivesWithGoodCondition: responseData.hivesWithGoodCondition,
           hivesWithBadCondition: responseData. hivesWithBadCondition,
