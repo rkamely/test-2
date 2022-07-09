@@ -59,7 +59,7 @@ padding:"60px 0px ",
 
   
   Accordion: {
-    padding:"0 36px" ,
+    padding:"0 16px" ,
  
     flexDirection: "row-reverse",
     "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {

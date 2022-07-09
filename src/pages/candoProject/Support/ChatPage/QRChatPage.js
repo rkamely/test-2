@@ -335,7 +335,7 @@ const statusTickets=(e)=>{
 
      <div>
         <form onSubmit={handleSubmit(onSubmit)}>
-      {/* <TextareaAutosize
+      <TextareaAutosize
         maxRows={4}
         aria-label="maximum height"
         defaultValue=""
@@ -353,11 +353,10 @@ const statusTickets=(e)=>{
             className={classes.errorTitle}
           >
             {errors.text?.message}
-        </Typography> */}
+        </Typography>
 
-        <TextField
+       {/* <TextField
       
-      type="number"
        variant="outlined"
        placeholder="لطفا تعداد QrCode درخواستی خود را با عدد انگلیسی وارد نمایید."
         defaultValue=""
@@ -373,7 +372,7 @@ const statusTickets=(e)=>{
             className={classes.errorTitle}
           >
             {errors.text?.message}
-        </Typography>
+        </Typography> */}
 
       <Grid
         style={{
