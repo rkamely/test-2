@@ -15,6 +15,7 @@ import {
   TableChart,
   Accessibility,
   ArrowForwardRounded,
+  DehazeRounded,
 
 } from "@material-ui/icons";
 
@@ -149,8 +150,8 @@ const changeIcon=()=>{
             classes={{
               root: classNames(classes.headerIcon, classes.headerIconCollapse),
             }}
-          />:<ArrowBackIcon   onClick={changeIcon} classes={{
-            root: classNames(classes.headerIcon, classes.headerIconCollapse),
+            />:<DehazeRounded style={{color:"#fff",marginRight:"8px"}}  onClick={changeIcon} classes={{
+              root: classNames(classes.headerIcon, classes.headerIconCollapse),
           }}/>}
         </IconButton>
       </div>

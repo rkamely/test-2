@@ -68,13 +68,15 @@ function RightTopCard() {
             marginTop: "50px",
             justifyContent: "space-between",
             alignItems: "center",
-           
+            
+            gap:"25px",
+
           }}
         >
 
           <Grid
             item
-            sm={3}
+            sm={4}
             xs={12}
             color="secondary"
             className={classes.cards}
@@ -117,7 +119,7 @@ function RightTopCard() {
 
           <Grid
             item
-            sm={3}
+            sm={4}
             xs={12}
             color="secondary"
             className={classes.cards}
@@ -145,7 +147,7 @@ function RightTopCard() {
 
           <Grid
             item
-            sm={3}
+            sm={4}
             xs={12}
             color="secondary"
             className={classes.cards}
@@ -181,11 +183,13 @@ function RightTopCard() {
             marginTop: "32px",
             justifyContent: "space-between",
             alignItems: "center",
+            gap:"25px",
+
           }}
         >
           <Grid
             item
-            sm={3}
+            sm={4}
             xs={12}
             color="secondary"
             className={classes.cards}
@@ -214,7 +218,7 @@ function RightTopCard() {
 
           <Grid
             item
-            sm={3}
+            sm={4}
             xs={12}
             color="secondary"
             className={classes.cards}
@@ -242,7 +246,7 @@ function RightTopCard() {
 
           <Grid
             item
-            sm={3}
+            sm={4}
             xs={12}
             color="secondary"
             className={classes.cards}
@@ -277,11 +281,13 @@ function RightTopCard() {
             marginTop: "32px",
             justifyContent: "space-between",
             alignItems: "center",
+            gap:"25px",
+
           }}
         >
           <Grid
             item
-            sm={3}
+            sm={4}
             xs={12}
             color="secondary"
             className={classes.cards}
@@ -310,7 +316,7 @@ function RightTopCard() {
 
           <Grid
             item
-            sm={3}
+            sm={4}
             xs={12}
             color="secondary"
             className={classes.cards}
@@ -338,7 +344,7 @@ function RightTopCard() {
 
           <Grid
             item
-            sm={3}
+            sm={4}
             xs={12}
             color="secondary"
             className={classes.cards}
@@ -373,12 +379,14 @@ function RightTopCard() {
             marginTop: "32px",
             justifyContent: "space-between",
             alignItems: "center",
+            gap:"25px",
+
             
           }}
         >
           <Grid
             item
-            sm={3}
+            sm={4}
             xs={12}
             color="secondary"
             className={classes.cards}
@@ -407,7 +415,7 @@ function RightTopCard() {
 
           <Grid
             item
-            sm={3}
+            sm={4}
             xs={12}
             color="secondary"
             className={classes.cards}
@@ -438,7 +446,7 @@ function RightTopCard() {
 
           <Grid
             item
-            sm={3}
+            sm={4}
             xs={12}
             color="secondary"
             className={classes.cards}

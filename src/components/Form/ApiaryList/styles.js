@@ -4,6 +4,16 @@ export default makeStyles((theme) => ({
   root: {
     width: "100%",
     fontFamily: "Shabnam",
+    /////////////////////
+    // position: "absolute",
+    // top: 0,
+    // left: 0,
+    // bottom: 0,
+    // right: 0,
+    // background: "rgba(0, 0, 0, 0.15)",
+    zIndex: 200,
+    paddingRight:" 64px",
+    paddingLeft:" 64px"
   },
   notAccess:{
      textAlign:"center",
@@ -15,21 +25,38 @@ export default makeStyles((theme) => ({
     display:"flex",
     flexDirection:"row",
     justifyContent:"space-between",
+    // gap:"60px",
+    flexWrap:"noWrap",
+    // border:"2px solid red",
+    marginTop:"24px",
+    [theme.breakpoints.down('md')]: {
+      width:"100%",
+      flexWrap:"Wrap",
+    
+    },
   },
   main:{
 
     [theme.breakpoints.down('md')]: {
-      width:"100%"
+      width:"100%",
+
+    
     },
 
   },
   Title:{
-    fontWeight: "bold" 
+    fontWeight: "bold" ,
+    color:"rgb( 227 156 0)",
+    marginTop:"8px"
+
+
   },
   errorTitle:{ 
-    color: "red"
+    color: "red",
+    fontSize:"0.6rem",
+    fontWeight:"600"
   },
-  label: {
+  mainLabel: {
     whiteSpace: "nowrap",
     marginRight: "25px",
     display: "flex",
@@ -38,11 +65,36 @@ export default makeStyles((theme) => ({
     border: "none",
     fontWeight: "bold",
     fontFamily: "Shabnam",
+    fontSize:"0.9rem"
+
+  },
+  label: {
+    whiteSpace: "nowrap",
+    marginRight: "25px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    border: "none",
+    fontWeight: "600",
+    fontFamily: "Shabnam",
 
   },
 
   Divider:{
-    marginTop: "32px"
+    marginTop: "24px",
+    width:"97%",
+    position:"absolute",
+    right:"0",
+    left:"0"
+  },
+  Divider2:{
+    marginTop: "80px",
+    background:"rgb(244 244 244)",
+
+    width:"97%",
+    position:"absolute",
+    right:"0",
+    left:"0"
   },
   // Button1: {
   //   marginTop: "8px",
@@ -66,11 +118,15 @@ export default makeStyles((theme) => ({
   // },
   Map:{
     borderRadius: "8px",
-    height: "250px",
-    // width:"100%"
+    height: "320px",
+    width:"50px"
   },
+
   mapTitle:{
     marginTop: "32px" , fontWeight: "bold"
+  },
+  ButtonBox:{
+    width: "100%",padding:"24px 32px 8px 32px" ,marginTop:"80px"
   },
   button:{
     display: "flex", 
@@ -80,8 +136,7 @@ export default makeStyles((theme) => ({
     fontFamily: "Shabnam",
     cursor: "pointer",
     border: "none",
-
-    padding: "8px 0px",
+    padding: "12px 30px",
     borderRadius: "16px",
     backgroundColor: "rgb( 26 ,115, 233)",
     color:"#fff",
@@ -89,7 +144,7 @@ export default makeStyles((theme) => ({
     boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
     fontWeight: "bold",
     fontSize: "16px",
-    width: "12%",
+    // width: "12%",
     "&:hover": {
       backgroundColor: "rgb( 26 ,115, 233)",
       borderWidth: 2,
@@ -100,14 +155,14 @@ export default makeStyles((theme) => ({
     fontFamily: "Shabnam",
     cursor: "pointer",
     border: "none",
-    padding: "8px 0px",
+    padding: "12px 30px",
     borderRadius: "16px",
     backgroundColor: "rgb( 255 255 255)",
 
     boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
     fontWeight: "bold",
     fontSize: "16px",
-    width: "12%",
+    // width: "12%",
     "&:hover": {
       backgroundColor: "rgb( 255 255 255)",
       borderWidth: 2,
@@ -117,9 +172,10 @@ export default makeStyles((theme) => ({
   inputText:{
     display: "flex",
     flexDirection:"column",
+
   },
   TextField:{
-    width: "250px",
+    width: "200px",
     background:"rgb( 244 244 244)",
     border:"none",
     borderRadius: "10px",
@@ -151,7 +207,7 @@ export default makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems:"center",
-    marginTop: "32px",
+    marginTop: "16px",
     fontFamily: "Shabnam",
     border: "none",
     "& label.Mui-focused": {
@@ -182,7 +238,8 @@ width:"100%",display:"flex",flexDirection:"column"
 
   },
   inputSelect: {
-    width: "250px",
+    width: "200px",
+    marginTop: "8px",
     display:"flex",
     height:"40px",
     backgroundColor: "rgb( 244, 244 ,244)",

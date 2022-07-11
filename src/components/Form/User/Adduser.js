@@ -21,7 +21,7 @@ import {
 } from "react-router-dom";
 import PreviewImage from "./PreviewImage";
 
-function Adduser() {
+function Adduser(props) {
   const classes = useStyles();
   const phoneRegExp = /9([0-3][0-9])-?[0-9]{3}-?[0-9]{4}/;
   const FILE_SIZE = 10000*10000;

@@ -20,7 +20,7 @@ import axios from "axios";
 import useStyles from "./styles";
 import "./Hive.css";
 import XLSX from "xlsx";
-import { Delete, Edit, Edit as EditIcon, MoreVertOutlined, NavigateBefore, NavigateNext, Share } from "@material-ui/icons";
+import {  Close, Edit, Edit as EditIcon, MoreVertOutlined, NavigateBefore, Share } from "@material-ui/icons";
 import { Link ,useParams } from "react-router-dom";
 import MaterialTable, { MTableToolbar } from "material-table";
 import CompanyAddList from "../../../components/Form/ApiaryList/ApiaryAddList";
@@ -96,14 +96,15 @@ function  Hive() {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    overflow:'scroll',
-    width: 400,
-    bgcolor: "background.paper",
-    borderRadius:"16px",
+    overflow: "scroll",
+    width: 430,
+    // bgcolor: "background.paper",
+    background:" rgb( 244 244 244)",
+    borderRadius: "16px",
     boxShadow: 24,
-    pt: 2,
-    px: 4,
-    pb: 3,
+    pt: 4,
+    px: 6,
+    pb: 4,
   };
   const [Company, setCompany] = useState([
     {
@@ -147,25 +148,28 @@ function  Hive() {
       title: "نام کندو",
       field: "name",
       cellStyle: {
-        // textAlign: "center !important",
-        whiteSpace: "nowrap",
+        textAlign:" center !important",
+        transform:"translateX(10px)",
         fontSize:"0.8rem",
+        justifyContent:"center",
       },
-      headerStyle: {
-        textAlign: "center !importamt",
-        whiteSpace: "nowrap",
 
-        fontSize:"0.8rem",
-        colot:"slateGrey",
-        paddingRight:"40px"
+      headerStyle: {
+        textAlign: "right",
+        whiteSpace: "nowrap",
+           fontSize:"0.8rem",
+           color:"rgb( 102, 103, 104)",
+           
       },
 
       render: (rowData) => {
         console.log("rowData", rowData);
         return (
           <Link
-            to={`/app/ApiaryList/Beehive/Hive/${rowData.name.split(' ').join('-')}`}
+            to={`/app/ApiaryList/Beehive/Hive/${rowData.name.split(' ').join('-')}`}   
             style={{ textDecoration:"none" ,color:"black",cursor:"pointer"}}
+            className="description"
+
           >
             {rowData.name}
           </Link>
@@ -177,7 +181,7 @@ function  Hive() {
       title: " نوع کندو",
       field: "HiveType",
       cellStyle: {
-        textAlign:" center !important",
+        textAlign:" right !important",
 
         fontSize:"0.8rem",
         justifyContent:"center",
@@ -187,8 +191,9 @@ function  Hive() {
         textAlign: "right",
         whiteSpace: "nowrap",
            fontSize:"0.8rem",
-           colot:"slateGrey",
-           paddingRight:"40px"
+           color:"rgb( 102, 103, 104)",
+           fontWeight:"600",
+          //  paddingRight:"20px"
       },
       render: (rowData) => {
         return <p className="description">{rowData.HiveType}</p>;
@@ -209,7 +214,6 @@ function  Hive() {
         whiteSpace: "nowrap",
            fontSize:"0.8rem",
            colot:"slateGrey",
-           paddingRight:"40px"
       },
       render: (rowData) => {
         return <p className="description">{rowData.RaceQueen}</p>;
@@ -229,8 +233,8 @@ function  Hive() {
         textAlign: "right",
         whiteSpace: "nowrap",
            fontSize:"0.8rem",
-           colot:"slateGrey",
-           paddingRight:"40px"
+           color:"rgb( 102, 103, 104)",
+           fontWeight:"600", 
       },
       render: (rowData) => {
         return <p className="description">{rowData.date}</p>;
@@ -241,17 +245,19 @@ function  Hive() {
       field: "status",
       cellStyle: {
         textAlign:" center !important",
-        paddingRight:"30px",
         fontSize:"0.8rem",
         justifyContent:"center",
+        paddingRight:"16px"
       },
 
       headerStyle: {
         textAlign: "right",
         whiteSpace: "nowrap",
            fontSize:"0.8rem",
-           colot:"slateGrey",
-           paddingRight:"40px"
+           color:"rgb( 102, 103, 104)",
+           fontWeight:"600", 
+           paddingRight:"16px"
+           
       },
       render: (rowData) => {
         return (
@@ -265,18 +271,19 @@ function  Hive() {
       title: "کار",
       field: "Job",
       cellStyle: {
-        textAlign:" center !important",
-
+        textAlign:" left !important",
+        transform:"translateX(12px)",
         fontSize:"0.8rem",
-        justifyContent:"center",
+        // justifyContent:"flex-end",
       },
 
       headerStyle: {
         textAlign: "right",
         whiteSpace: "nowrap",
            fontSize:"0.8rem",
-           colot:"slateGrey",
-           paddingRight:"40px"
+           color:"rgb( 102, 103, 104)",
+           fontWeight:"600", 
+
       },
       render: (rowData) => {
         return (
@@ -295,7 +302,7 @@ function  Hive() {
       field: "Sick",
       cellStyle: {
         textAlign:" center !important",
-
+        transform:"translateX(10px)",
         fontSize:"0.8rem",
         justifyContent:"center",
       },
@@ -304,8 +311,9 @@ function  Hive() {
         textAlign: "right",
         whiteSpace: "nowrap",
            fontSize:"0.8rem",
-           colot:"slateGrey",
-           paddingRight:"40px"
+           color:"rgb( 102, 103, 104)",
+           fontWeight:"600", 
+          // paddingRight:"20px"
       },
       render: (rowData) => {
         return (
@@ -324,7 +332,7 @@ function  Hive() {
       field: "Queen",
       cellStyle: {
         textAlign:" center !important",
-
+        transform:"translateX(10px)",
         fontSize:"0.8rem",
         justifyContent:"center",
       },
@@ -333,8 +341,9 @@ function  Hive() {
         textAlign: "right",
         whiteSpace: "nowrap",
            fontSize:"0.8rem",
-           colot:"slateGrey",
-           paddingRight:"40px"
+           color:"rgb( 102, 103, 104)",
+           fontWeight:"600", 
+          // paddingRight:"20px"
       },
       render: (rowData) => {
         return (
@@ -353,7 +362,7 @@ function  Hive() {
       field: "action",
       cellStyle: {
         textAlign:" center !important",
-
+        transform:"translateX(10px)",
         fontSize:"0.8rem",
         justifyContent:"center",
       },
@@ -362,8 +371,9 @@ function  Hive() {
         textAlign: "right",
         whiteSpace: "nowrap",
            fontSize:"0.8rem",
-           colot:"slateGrey",
-           paddingRight:"40px"
+           color:"rgb( 102, 103, 104)",
+           fontWeight:"600", 
+          // paddingRight:"20px"
       },
       render: (rowData) => {
         return (
@@ -385,107 +395,9 @@ function  Hive() {
                       horizontal: "center",
                     }}
                   >
-                    <div style={{ borderRadius: " 16px", padding: " 16px" }} >
-                 
-                          <div
-                            onClick={handleCureHive}
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "flex-start",
-                              cursor:"pointer"
-
-                        
-                            }}
-                          >
-                            <img src="/assets/medicine-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
-                            درمان
-                          </div>
-                          <hr
-                            style={{
-                              borderTop: "1px solid rgb( 240, 240, 240)",
-                              height: "2px",
-                            }}
-                          />
-                          <div
-                          onClick={handleNutrition}
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "flex-start",
-                              cursor:"pointer"
-                              
-                        
-                            }}
-                          >
-                            <img src="/assets/flower-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
-                            تغذیه
-                          </div>
-                          <hr
-                            style={{
-                              borderTop: "1px solid rgb( 240, 240, 240)",
-                              height: "2px",
-                            }}
-                          />
-                          <div
-                             onClick={handleCatchHoney}
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "flex-start",
-                              cursor:"pointer"
-
-                        
-                            }}
-                          >
-                            <img src="/assets/honey-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
-                            برداشت عسل
-                          </div>
-                          <hr
-                            style={{
-                              borderTop: "1px solid rgb( 240, 240, 240)",
-                              height: "2px",
-                            }}
-                          />
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "flex-start",
-                              cursor:"pointer"
-
-                        
-                            }}
-                          >
-                            <img src="/assets/move-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
-                            طبق عسل
-                          </div>
-                          <hr
-                            style={{
-                              borderTop: "1px solid rgb( 240, 240, 240)",
-                              height: "2px",
-                            }}
-                          />
-                           <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "flex-start",
-                              cursor:"pointer"
-
-                        
-                            }}
-                          >
-                            <img src="/assets/noun-migration-2781863.svg" style={{ margin: "0 0px 0 24px"}} />
-                             کوچ
-                          </div>
-                          <hr
-                            style={{
-                              borderTop: "1px solid rgb( 240, 240, 240)",
-                              height: "2px",
-                            }}
-                          />
-                      <div
+                    <div style={{ borderRadius: " 16px", padding: " 16px" }}>
+                      {/* <div
+                      
                         style={{
                           display: "flex",
                           alignItems: "center",
@@ -500,7 +412,7 @@ function  Hive() {
                           borderTop: "1px solid rgb( 240, 240, 240)",
                           height: "2px",
                         }}
-                      />
+                      /> */}
                       <div
                         style={{
                           display: "flex",
@@ -508,7 +420,7 @@ function  Hive() {
                           justifyContent: "flex-start",
                         }}
                       >
-                            <img src="/assets/share-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                        <Edit style={{ marginLeft: "16px" }} />
                         اشتراک گذاری
                       </div>
                       <hr
@@ -550,7 +462,6 @@ function  Hive() {
                             <img src="/assets/trash-svgrepo-com-2.svg" style={{ margin: "0 0px 0 24px" }} />
                             حذف
                           </div>
-
                     </div>
                   </Popover>
                 </div>
@@ -955,6 +866,8 @@ function  Hive() {
                     alignItems: "center",
                     justifyContent: "center",
                     borderRadius: "8px",
+                    boxShadow:"0px 3px 6px 0px rgba(0,0,0,0.16)"
+
                   }}
                   src="/assets/Group 182.svg"
                 />
@@ -977,6 +890,8 @@ function  Hive() {
                   justifyContent: "center",
                   borderRadius: "8px",
                   padding: "8px",
+                  boxShadow:"0px 3px 6px 0px rgba(0,0,0,0.16)"
+
                   // marginLeft: "32px",
                 }}
               >
@@ -1070,16 +985,28 @@ function  Hive() {
           aria-labelledby="parent-modal-title"
           aria-describedby="parent-modal-description"
         >
-          <Box sx={{
+          <Box
+            sx={{
               ...style,
-              width: {
-                xs: "350px",
-                sm: "500px",
-              },
 
-            }} className="downloadFile" style={{ display: "flex" ,alignItems: "center",justifyContent: "center"}}>
-            <div onClick={downloadExcel} className="downloadExcel" ><img src="/assets/excel-svgrepo-com.svg"/></div>
-            <div onClick={downloadPdf} className="downloadPdf" ><img src="/assets/pdf-svgrepo-com (1).svg"/></div>
+
+            }}
+            className="downloadFile"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              position:"relative",
+           
+            }}
+          >
+            <div  onClick={handleClose} style={{position:"absolute",top:"10px",right:"10px",cursor:"pointer"}}><Close/></div>
+            <div onClick={downloadPdf} className="downloadPdf">
+              <img src="/assets/pdf-svgrepo-com (1).svg" width="100px" height="100px"/>
+            </div>
+            <div onClick={downloadExcel} className="downloadExcel">
+              <img src="/assets/excel-svgrepo-com.svg" width="100px"  height="100px"/>
+            </div>
           </Box>
         </Modal>
       </div>

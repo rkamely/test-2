@@ -23,7 +23,7 @@ export default makeStyles((theme) => ({
     color: "rgb( 227, 156, 0)",
   },
   rightTopCard_Container:{
-    fontWeight: 600,height:"auto",background:"#fff",padding:"20px 30px 100px",borderRadius:"15px",
+    fontWeight: 600,height:"auto",background:"#fff",padding:"50px 50px 100px",borderRadius:"15px",
     boxShadow:"0px 3px 6px 0px rgba(0 ,0 ,0, 0.16)"
   },
   LeftCard_Container:{
@@ -98,6 +98,8 @@ export default makeStyles((theme) => ({
   cardBottomPart: {
     display: "flex",
     flexDirection: "column",
+    alignItems:"center",
+    justifyContent:"center"
   },
   midPartAudio: {
     boxShadow: " rgba(0, 0, 0, 0.16) 0px 0px 4px 0px",
@@ -158,9 +160,16 @@ export default makeStyles((theme) => ({
   },
   select: {
     backgroundColor: "#fff",
-    width: "100%",
+    width: "200%",
+    height:"40px",
     borderRadius: "8px",
     margin: "8px 0",
+    border:"none",
+    outline:"0",
+    boxShadow:"0px 1px 2px 0px rgba(0,0,0,0.16)",
+    fontWeight:"600",fontFamily:"Shabnam",
+    fontSize:"0.8rem",
+    
   },
   mainChartHeaderLabels: { display: "flex",alignItems: "center",   borderRadius: "12px",backgroundColor: "rgb(244 244 244)", padding: "12px",
 },

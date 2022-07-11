@@ -248,7 +248,7 @@ console.log("show",show);
           {/* new ticket main*/}
 
           {newTicket?.map((element) => {
-            const ticketDate = moment.from(element.createdAt).locale("fa");
+            const ticketDate = moment.from(element.updatedAt).locale("fa");
             let durationDate = moment().diff(ticketDate, "days");
 
             //css calss

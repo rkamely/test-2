@@ -257,7 +257,7 @@ function Diagram() {
                   variant="p"
                   color="text"
                   colorBrightness="secondary"
-                  style={{ fontFamily: "Shabnam" }}
+                  style={{ fontFamily: "Shabnam",fontSize:"0.8rem" }}
                 >
                   تاریخ شروع
                 </Typography>
@@ -287,6 +287,7 @@ function Diagram() {
           <ComposedChart
             margin={{ top: 0, right: -15, left: -15, bottom: 0 }}
             data={data}
+            style={{marginTop:"16px"}} 
           >
             <YAxis
               tickMargin={32}

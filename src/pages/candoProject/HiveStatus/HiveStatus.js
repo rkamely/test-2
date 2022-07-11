@@ -34,7 +34,15 @@ import WebHiveSubmit from "./webHiveSubmit";
 import { NavigateBefore } from "@material-ui/icons";
 import Title from "../../../components/Typography/Title/Title";
 import LinaerStepper from "./LinaerStepper";
+import {
 
+  Close,
+  Edit,
+  
+  MoreVertOutlined,
+  Share,
+
+} from "@material-ui/icons";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -145,7 +153,7 @@ const apiaryIdClick=localStorage.getItem("apiaryIdClick")
           <div>
           
          
-          <Button onClick={handleClickOpen}> رو من کلیک کن</Button>
+          {/* <Button onClick={handleClickOpen}> رو من کلیک کن</Button> */}
       <Dialog 
           
         open={open}

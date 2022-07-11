@@ -472,7 +472,8 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
             </div>
             <Grid
               item
-              xs={6}
+              xs={12}
+              lg={5}
               className={classes.Map}
 
             >
@@ -483,7 +484,8 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
             </Grid>
           </Grid>
 
-          <Box mt={8} style={{ width: "100%" }}>
+          <Divider className={classes.Divider2}/>
+          <Box  className={classes.ButtonBox}>
             <div className={classes.button}>
               <Button variant="contained" className={classes.Button2} onClick={onClose}>
                 انصراف

@@ -99,7 +99,7 @@ if(status){
   const style = {
     borderRadius: "12px",
     overflow: "hidden",
-    marginTop: "16px",
+    marginTop: "10px",
   };
 
   let undefin = !localStorage.getItem("isStaff");
@@ -124,7 +124,7 @@ if(status){
             className={classes.Title}
             color="secondary"
           >
-            افزودن زنبورستان
+            افزودن زنبورستان جدید 
           </Typography>
 
           <Divider className={classes.Divider} />
@@ -132,7 +132,7 @@ if(status){
             <div className={classes.main}>
               <Grid item xs={12} sm={12} className={classes.inputText}>
                 <div className={classes.input}>
-                  <label className={classes.label}>نام زنبورستان</label>
+                <label className={classes.mainLabel}>نام زنبورستان</label>
                   <TextField
                     className={classes.TextField}
                     required
@@ -180,7 +180,7 @@ if(status){
               </Grid>
               <Grid item xs={12} sm={12} className={classes.inputText}>
                 <div className={classes.input}>
-                  <label className={classes.label}>وضعیت نامناسب </label>
+                <label className={classes.label}>وضعیت نامناسب</label>
                   <TextField
                     className={classes.TextField}
                     required
@@ -393,13 +393,14 @@ if(status){
               </Grid>
             </div>
 
-            <Grid item xs={12} lg={6} className={classes.Map}>
+            <Grid item xs={12} lg={5}  className={classes.Map}>
               <div className={classes.mapTitle}>انتخاب مکان از روی نقشه</div>
               <MapBox style={style} />
             </Grid>
           </Grid>
 
-          <Box mt={12} style={{ width: "100%" }}>
+          <Divider className={classes.Divider2}/>
+          <Box  className={classes.ButtonBox} >
             <div className={classes.button}>
               <Button variant="contained" className={classes.Button2} onClick={onClose}>
                 انصراف

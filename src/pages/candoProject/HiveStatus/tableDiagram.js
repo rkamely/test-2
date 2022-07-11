@@ -17,17 +17,25 @@ function TableDiagram() {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
+                transform:"translateX(-12px)"
               }}
             >
-              <p style={{ padding: "0", margin: "0" }}>تاریخ</p>
+              <p style={{ padding: "0" }}>تاریخ</p>
             </div>
           ),
           field: "date",
           headerStyle: {
             backgroundColor: "rgb( 255 ,242, 212)",
             color: "#000",
+            fontSize:"0.6rem",
+            fontWeight:"600",
+            textAlign:"center !important"
           },
-    
+          cellStyle: {
+            textAlign: "center",
+            fontSize:"0.6rem",
+            
+        },
         },
         {
           title: (
@@ -37,7 +45,8 @@ function TableDiagram() {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-              }}
+                transform:"translateX(-12px)"
+                            }}
             >
               <p style={{ padding: "0", margin: "0" }}>بازدید</p>
               <div>
@@ -54,13 +63,18 @@ function TableDiagram() {
           headerStyle: {
             backgroundColor: "rgb( 255 ,242, 212)",
             color: "#000",
+            fontSize:"0.6rem",
+            fontWeight:"600",
+            textAlign:"center !important", 
+            
           },
           cellStyle: {
             textAlign: "center",
+            
         },
           render: (row) => (
             <div >
-              {row.visit ?<img src="/assets/check-svgrepo-com (2).svg" width="20px" style={{margin: "0 10px"}}/>:<img src="/assets/minus-svgrepo-com.svg" width="20px" style={{margin: "0 10px"}}/>}
+              {row.visit ?<img src="/assets/check-svgrepo-com (2).svg" width="16px" style={{margin: "0 10px"}}/>:<img src="/assets/minus-svgrepo-com.svg" width="16px" style={{margin: "0 10px"}}/>}
             </div>
           ),
         },
@@ -72,6 +86,7 @@ function TableDiagram() {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
+                transform:"translateX(-12px)"
               }}
             >
               <p style={{ padding: "0", margin: "0" }}>تغذیه</p>
@@ -88,11 +103,13 @@ function TableDiagram() {
 
           headerStyle: {
             backgroundColor: "rgb( 255 ,242, 212)",
-            color: "#000"
+            color: "#000",
+            fontSize:"0.6rem",
+            fontWeight:"600"
           },
           render: (row) => (
             <div>
-              {row.Nutrition ?<img src="/assets/check-svgrepo-com (2).svg" width="20px"/>:<img src="/assets/minus-svgrepo-com.svg" width="20px" style={{margin: "0 10px"}}/>}
+              {row.Nutrition ?<img src="/assets/check-svgrepo-com (2).svg" width="16px"/>:<img src="/assets/minus-svgrepo-com.svg" width="16px" style={{margin: "0 10px"}}/>}
             </div>
           ),
         },
@@ -104,7 +121,8 @@ function TableDiagram() {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                whiteSpace: "nowrap"
+                whiteSpace: "nowrap",
+                transform:"translateX(-12px)"
               }}
             >
               <p style={{ padding: "0", margin: "0" }}>صدای کندو</p>
@@ -122,10 +140,12 @@ function TableDiagram() {
           headerStyle: {
             backgroundColor: "rgb( 255 ,242, 212)",
             color: "#000",
+            fontSize:"0.6rem",
+            fontWeight:"600"
           },
           render: (row) => (
             <div >
-              {row.soundOfHive ?<img src="/assets/Group 11029.svg" />:<img src="/assets/minus-svgrepo-com.svg" width="20px" style={{margin: "0 20px"}}/>}
+              {row.soundOfHive ?<img src="/assets/Group 11029.svg" />:<img src="/assets/minus-svgrepo-com.svg" width="16px" style={{margin: "0 20px"}}/>}
             </div>
           ),
         },
@@ -136,7 +156,7 @@ function TableDiagram() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                justifyContent: "center", whiteSpace: "nowrap"
+                justifyContent: "center", whiteSpace: "nowrap",  transform:"translateX(-12px)"
               }}
             >
               <p style={{ padding: "0", margin: "0" }}>درب</p>
@@ -154,10 +174,12 @@ function TableDiagram() {
           headerStyle: {
             backgroundColor: "rgb( 255 ,242, 212)",
             color: "#000",
+            fontSize:"0.6rem",
+            fontWeight:"600"
           },
           render: (row) => (
             <div >
-              {row.door ?<img src="/assets/check-svgrepo-com (2).svg" width="20px"/>:<img src="/assets/minus-svgrepo-com.svg" width="20px" style={{margin: "0 10px"}} />}
+              {row.door ?<img src="/assets/check-svgrepo-com (2).svg" width="16px"/>:<img src="/assets/minus-svgrepo-com.svg" width="16px" style={{margin: "0 10px"}} />}
             </div>
           ),
         },
@@ -168,12 +190,13 @@ function TableDiagram() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                justifyContent: "center", whiteSpace: "nowrap"
+                justifyContent: "center", whiteSpace: "nowrap",
+                transform:"translateX(-12px)"
               }}
             >
               <p style={{ padding: "0", margin: "0" }}>تصویر</p>
               <div>
-                <img src="/assets/flower-svgrepo-com.svg" />
+                <img src="/assets/picture-svgrepo-com (1).svg" width="16px"/>
               </div>
             </div>
           ),
@@ -186,10 +209,12 @@ function TableDiagram() {
           headerStyle: {
             backgroundColor: "rgb( 255 ,242, 212)",
             color: "#000",
+            fontSize:"0.6rem",
+            fontWeight:"600"
           },
           render: (row) => (
             <div >
-              {row.picture ?<img src="/assets/Group 11030.svg" />:<img src="/assets/minus-svgrepo-com.svg" width="20px" style={{margin: "0 10px"}}  />}
+              {row.picture ?<img src="/assets/Group 11030.svg" />:<img src="/assets/minus-svgrepo-com.svg" width="16px" style={{margin: "0 10px"}}  />}
             </div>
           ),
         },
@@ -200,7 +225,8 @@ function TableDiagram() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                justifyContent: "center", whiteSpace: "nowrap"
+                justifyContent: "center",
+                transform:"translateX(-12px)"
               }}
             >
               <p style={{ padding: "0", margin: "0" }}>یادداشت صوتی</p>
@@ -208,18 +234,20 @@ function TableDiagram() {
             </div>
           ),
           field: "voiceNotes",
-          // cellStyle: {
-          //   backgroundColor: "red",
-          //   color: "#FFF",
-          // },
+          cellStyle: {
+            // backgroundColor: "red",
+            // color: "#FFF",
+          },
 
           headerStyle: {
             backgroundColor: "rgb( 255 ,242, 212)",
             color: "#000",
+            fontSize:"0.6rem",
+            fontWeight:"600"
           },
           render: (row) => (
             <div >
-              {row.voiceNotes ?<img src="/assets/Group 11029.svg" />:<img src="/assets/check-svgrepo-com (2).svg" width="20px" style={{margin: "0 10px"}}/>}
+              {row.voiceNotes ?<img src="/assets/Group 11029.svg" />:<img src="/assets/check-svgrepo-com (2).svg" width="16px" style={{margin: "0 10px"}}/>}
             </div>
           ),
         },
@@ -230,7 +258,8 @@ function TableDiagram() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                justifyContent: "center", whiteSpace: "nowrap"
+                justifyContent: "center",
+                transform:"translateX(-12px)"
               }}
             >
               <p style={{ padding: "0", margin: "0" }}>یادداشت متنی</p>
@@ -246,10 +275,12 @@ function TableDiagram() {
           headerStyle: {
             backgroundColor: "rgb( 255 ,242, 212)",
             color: "#000",
+            fontSize:"0.6rem",
+            fontWeight:"600"
           },
           render: (row) => (
             <div >
-              {row.textNotes ?<img src="/assets/note-svgrepo-com.svg" />:<img src="/assets/check-svgrepo-com (2).svg" width="20px" style={{margin: "0 10px"}}/>}
+              {row.textNotes ?<img src="/assets/note-svgrepo-com.svg" />:<img src="/assets/check-svgrepo-com (2).svg" width="16px" style={{margin: "0 10px"}}/>}
             </div>
           ),
         },
@@ -282,6 +313,8 @@ function TableDiagram() {
         headerStyle: {
           backgroundColor: "#01579b",
           color: "#FFF",
+          fontSize:"0.6rem",
+          fontWeight:"600"
         },
         toolbar: false,
         paging: false,

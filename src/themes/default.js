@@ -128,7 +128,7 @@ const defaultTheme = {
         width: "85%",
         borderRadius: "10px",
         marginTop: "12px",
-        padding: "4px 0px !important",
+        padding: "2px 0px !important",
       },
       button: {
         "&:hover, &:focus": {
@@ -153,17 +153,36 @@ const defaultTheme = {
     MuiTableCell: {
       root: {
         borderBottom: "1px solid rgba(224, 224, 224, .5)",
-        paddingRight: 24,
+        padding: "16px 0px",
+        // border:"2px solid red"
+
       },
       head: {
         fontSize: "0.95rem",
         textAlign: "right ",
         fontFamily: "Shabnam",
-      },
+        // border:"2px solid green",
+        textAlign: "center !important",
+        },
       body: {
         fontSize: "0.95rem",
-        textAlign: "left !important",
+        color:"#000",
+        //مهم
+        textAlign: "center !important",
+        //
         fontFamily: "Shabnam",
+        // border:"2px solid blue",
+
+
+      },
+      alignLeft:{
+        textAlign:"center !important",
+        fontFamily:"Shabnam",
+      //  border:"2px solid red"
+      },
+      alignLeft:{
+        textAlign:"center !important",
+        fontFamily:"Shabnam"
       },
     },
     MuiTypography: {
@@ -213,13 +232,7 @@ const defaultTheme = {
       }
         
     },
-    MuiTableCell:{
-      alignLeft:{
-        textAlign:"center !important",
-        fontFamily:"Shabnam"
-      },
-      
-    },
+
     MuiOutlinedInput:{
       adornedEnd:{
         height:" 40px"

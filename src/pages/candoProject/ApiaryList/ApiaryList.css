@@ -25,26 +25,33 @@
 }
 .downloadExcel,.downloadPdf {
   box-shadow:0px 3px 6px 0px rgba(0, 0 ,0, 0.16);
- padding:24px;
- display: flex;
+  padding:16px;
+  display: flex;
  align-items: center;
  justify-content: center;
  cursor: pointer;  border-radius:15px;
- width: 200px;
- height: 200px;
+ width: 150px;
+ height: 150px;
 
 }
 .downloadExcel img ,.downloadPdf img{
   width: 150px;
 }
 .downloadPdf {
-margin-right: 32px;
-
-}
-.title{
-  text-decoration: none;
-  color: #000;
-}
+  margin-left: 32px;
+  background-color: #fff !important;
+  
+  }
+  .downloadExcel{
+    background-color: #fff !important;
+  }
+  .title{
+    text-decoration: none;
+    color: #000;
+  }
+  .description{
+    transform:translateX(12px)
+  }
 @media screen and (max-width: 480px) {
   .downloadExcel  ,.downloadPdf  {
       width: 100px;

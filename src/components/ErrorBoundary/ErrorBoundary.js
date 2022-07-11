@@ -16,8 +16,9 @@ class ErrorBoundary extends Component {
     render(){
 
             return (
-                <>
-            <h1>پوزش خطایی رخ داده است  برای ادامه روی دکمه زیر کلیک کنید</h1>
+              <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",height:"90%"}}>
+              <h1>پوزش خطایی رخ داده است لطفا از وصل بودن اینترنت خود مطمئن شوید. </h1>
+              <h2>برای ادامه روی دکمه زیر کلیک کنید</h2>
             <Button
             variant="contained"
             color="primary"
@@ -31,7 +32,7 @@ class ErrorBoundary extends Component {
           >
             برگشت به خانه
           </Button>
-          </>
+          </div>
      
             )
     }

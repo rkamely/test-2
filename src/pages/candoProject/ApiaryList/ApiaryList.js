@@ -20,10 +20,11 @@ import {
   Info,
   MoreVertOutlined,
   Share,
+  Close,
   TrainRounded,
   TramRounded,
 } from "@material-ui/icons";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory,useLocation } from "react-router-dom";
 import MaterialTable, { MTableToolbar } from "material-table";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 import jsPDF from "jspdf";
@@ -50,6 +51,7 @@ function ApiaryList() {
   const [status, setStatus] = useState(false);
   const [error, setIserror] = useState(false);
   const [loading, setLoading] = useState(true);
+  let location = useLocation();
 
   const history = useHistory();
 
@@ -83,6 +85,8 @@ function ApiaryList() {
     setdownloadOpen(false);
     setOpenEdit(false);
     setOpenDelete(false);
+    history.push("/app/ApiaryList")
+
   };
 
   console.log("salam  refs");
@@ -100,13 +104,14 @@ function ApiaryList() {
     left: "50%",
     transform: "translate(-50%, -50%)",
     overflow: "scroll",
-    width: 400,
-    bgcolor: "background.paper",
+    width: 430,
+    // bgcolor: "background.paper",
+    background:" rgb( 244 244 244)",
     borderRadius: "16px",
     boxShadow: 24,
-    pt: 2,
-    px: 4,
-    pb: 3,
+    pt: 4,
+    px: 6,
+    pb: 4,
   };
   const [ApiariesList, setApiariesList] = useState([]);
   const [Apiary, setApiary] = useState([
@@ -261,33 +266,36 @@ function ApiaryList() {
       field: "name",
 
       cellStyle: {
-        // textAlign: "center !important",
-        whiteSpace: "nowrap",
-        fontSize: "0.8rem",
-      },
-      headerStyle: {
-        textAlign: "center !importamt",
-        whiteSpace: "nowrap",
+        // textAlign:" center !important",
 
-        fontSize: "0.8rem",
-        colot: "slateGrey",
-        paddingRight: "40px",
+        fontSize:"0.8rem",
+        justifyContent:"center",
+      },
+
+      headerStyle: {
+        textAlign: "right",
+        whiteSpace: "nowrap",
+           fontSize:"0.8rem",
+           color:"rgb( 102, 103, 104)",
+           fontWeight:"600",
+
+  
       },
 
       render: (rowData) => {
         console.log("rowData", rowData);
-        const str = rowData.name.split(" ").join("-");
+        const str = rowData.name.split(' ').join('-') 
         console.log();
         return (
           <Link
             to={{
               pathname: `/app/ApiaryList/Beehive/${str}`,
-              state: { state: rowData.name },
+              state: { state:rowData.name },
             }}
-            className="title"
+            className="title" 
             // style={{ display: "flex" }}
           >
-            <p className="title">{rowData.name}</p>
+            <p className="title" style={{transform:"translateX(12px)"}}>{rowData.name}</p>
           </Link>
         );
       },
@@ -333,37 +341,37 @@ function ApiaryList() {
     //   },
     // },
     {
-      title: "پوشش گیاهی",
+      title: "پوشش گیاهی منطقه",
       field: "regionVegetation",
       cellStyle: {
-        textAlign: " center !important",
+        // textAlign:" right !important",
 
-        fontSize: "0.8rem",
-        justifyContent: "center",
+        fontSize:"0.8rem",
+        // justifyContent:"center",
       },
 
       headerStyle: {
         textAlign: "right",
-        whiteSpace: "nowrap",
-        fontSize: "0.8rem",
-        colot: "slateGrey",
-        paddingRight: "40px",
-      },
 
+           fontSize:"0.8rem",
+           color:"rgb( 102, 103, 104)",
+           fontWeight:"600",
+
+      },
       render: (rowData) => {
         switch (rowData.regionVegetation) {
-          case "Garden":
-            return <p className="description">باغ</p>;
-          case "Farm":
-            return <p className="description">مزرعه</p>;
-          case "Mountain":
-            return <p className="description">مرتع کوهستانی</p>;
-          case "Plain":
-            return <p className="description">دشت</p>;
-          case "Other":
-            return <p className="description">سایر</p>;
+          case 'Garden':
+            return <p className="description">باغ</p>
+          case 'Farm':
+            return <p className="description">مزرعه</p>
+          case 'Mountain':
+            return <p className="description">مرتع کوهستانی</p>
+          case 'Plain':
+            return <p className="description">دشت</p>
+            case 'Other':
+              return <p className="description">سایر</p>
           default:
-            return null;
+            return null
         }
         // return <p className="description">{rowData.regionVegetation}</p>;
       },
@@ -372,25 +380,28 @@ function ApiaryList() {
       title: "نوع منطقه",
       field: "regionType",
       cellStyle: {
-        textAlign: "center",
-        fontSize: "0.8rem",
-        justifyContent: "center",
-        // padding:"0 28px"
+        textAlign:" center !important",
+
+        fontSize:"0.8rem",
+        justifyContent:"center",
       },
+
       headerStyle: {
+        textAlign: "right",
         whiteSpace: "nowrap",
-        fontSize: "0.8rem",
-        colot: "slateGrey",
-        paddingRight: "40px",
+           fontSize:"0.8rem",
+           color:"rgb( 102, 103, 104)",
+           fontWeight:"600", 
+          // paddingRight:"20px"
       },
       render: (rowData) => {
         switch (rowData.regionType) {
-          case "Urban":
-            return <p className="description">شهری</p>;
-          case "Village":
-            return <p className="description">روستایی</p>;
+          case 'Urban':
+            return <p className="description">شهری</p>
+          case 'Village':
+            return <p className="description">روستایی</p>
           default:
-            return null;
+            return null
         }
         // return <p className="description">{rowData.apiaryUsage}</p>;
       },
@@ -399,29 +410,33 @@ function ApiaryList() {
       title: "کاربرد",
       field: "apiaryUsage",
       cellStyle: {
-        textAlign: "right",
+        textAlign:" center !important",
         whiteSpace: "nowrap",
-        fontSize: "0.8rem",
+
+        fontSize:"0.8rem",
+        justifyContent:"center",
       },
+
       headerStyle: {
         textAlign: "right",
         whiteSpace: "nowrap",
-        fontSize: "0.8rem",
-        colot: "slateGrey",
-        paddingRight: "40px",
+           fontSize:"0.8rem",
+           color:"rgb( 102, 103, 104)",
+           fontWeight:"600",
+          //  paddingRight:"20px"
       },
       render: (rowData) => {
         switch (rowData.apiaryUsage) {
-          case "Queen":
-            return <p className="description">پرورش ملکه</p>;
-          case "Royal":
-            return <p className="description">ژل رویال</p>;
-          case "Honey":
-            return <p className="description">تولید عسل</p>;
-          case "Other":
-            return <p className="description">سایر</p>;
+          case 'Queen':
+            return <p className="description">پرورش ملکه</p>
+          case 'Royal':
+            return <p className="description">ژل رویال</p>
+          case 'Honey':
+            return <p className="description">تولید عسل</p>
+          case 'Other':
+              return <p className="description">سایر</p>
           default:
-            return null;
+            return null
         }
       },
     },
@@ -429,18 +444,23 @@ function ApiaryList() {
       title: "وضعیت نامناسب",
       field: "hivesWithBadCondition",
       cellStyle: {
-        textAlign: "right",
-        fontSize: "0.8rem",
-        padding: "0 46px",
-      },
+        textAlign: "center !important",
+        fontSize:"0.8rem",
+
+
+          // margin:"0 auto"
+            },
       headerStyle: {
-        textAlign: "right",
-        whiteSpace: "nowrap",
-        colot: "slateGrey",
-        fontSize: "0.8rem",
+        // textAlign: "center !important",
+        // whiteSpace: "nowrap",
+        color:"rgb( 102, 103, 104)",
+        fontWeight:"600",        fontSize:"0.8rem",
+        // paddingRight:"20px"
+
       },
       render: (rowData) => {
-        return <div className="circleRed">{rowData.hivesWithBadCondition}</div>;
+        return <div style={{display:"flex",alignItems:"center",justifyContent:"center",marginRight:"-20px"}}><div className="circleRed">{rowData.hivesWithBadCondition}</div></div>;
+        // <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}><div className="circleRed">{rowData.hivesWithBadCondition}</div></div>
       },
     },
     {
@@ -448,17 +468,20 @@ function ApiaryList() {
       field: "hivesWithVisitRequired",
       cellStyle: {
         textAlign: "right",
-        fontSize: "0.8rem",
-        padding: "0 40px",
+        fontSize:"0.8rem",
+        padding:"0 30px"
+
       },
       headerStyle: {
         textAlign: "right",
-        whiteSpace: "nowrap",
-        fontSize: "0.8rem",
-        colot: "slateGrey",
+        // whiteSpace: "nowrap",
+        fontSize:"0.8rem",
+        color:"rgb( 102, 103, 104)",
+        fontWeight:"600",        // paddingRight:"20px"
+
       },
       render: (rowData) => {
-        return <p className="circleYellow">{rowData.hivesWithVisitRequired}</p>;
+        return <div style={{display:"flex",alignItems:"center",justifyContent:"center",marginRight:"-20px"}}><div className="circleYellow">{rowData.hivesWithVisitRequired}</div></div>;
       },
     },
     {
@@ -466,17 +489,20 @@ function ApiaryList() {
       field: "hivesWithGoodCondition",
       cellStyle: {
         textAlign: "right",
-        fontSize: "0.8rem",
-        padding: "0 46px",
+        fontSize:"0.8rem",
+        padding:"0 30px"
+
       },
       headerStyle: {
         textAlign: "right",
-        whiteSpace: "nowrap",
-        colot: "slateGrey",
-        fontSize: "0.8rem",
+        // whiteSpace: "nowrap",
+        fontWeight:"600",        // paddingRight:"20px"
+        fontSize:"0.8rem",
+        // paddingRight:"20px"
+
       },
       render: (rowData) => {
-        return <p className="circleGreen">{rowData.hivesWithGoodCondition}</p>;
+        return <div style={{display:"flex",alignItems:"center",justifyContent:"center",marginRight:"-20px"}}><div className="circleGreen">{rowData.hivesWithGoodCondition}</div></div>;
       },
     },
 
@@ -484,127 +510,132 @@ function ApiaryList() {
       title: "عملیات",
       field: "thumbnail",
       cellStyle: {
-        textAlign: "right",
-        fontSize: "0.8rem",
+        textAlign:" center !important",
+        fontSize:"0.8rem",
+        justifyContent:"center",
       },
+
       headerStyle: {
-        textAlign: "right",
+        textAlign: "center !important",
         whiteSpace: "nowrap",
-        colot: "slateGrey",
-        fontSize: "0.8rem",
-        paddingRight: "40px",
+           fontSize:"0.8rem",
+           fontWeight:"600",        // paddingRight:"20px"
+           paddingRight:"20px"
       },
+
       render: (rowData) => {
         return (
           // <Link to={`/app/ApiaryList/${rowData.id}`}>
           <div>
-            <PopupState variant="popover" popupId="demo-popup-popover">
+          <PopupState variant="popover" popupId="demo-popup-popover">
               {(popupState) => (
                 <div>
-                  <MoreVertOutlined
+                  <MoreVertOutlined 
                     variant="contained"
                     {...bindTrigger(popupState)}
                     style={{ cursor: "pointer" }}
+                    
+
                   />
 
-                  <Popover
-                    {...bindPopover(popupState)}
-                    anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "center",
-                    }}
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "center",
-                    }}
-                  >
-                    <div
-                      style={{
-                        borderRadius: " 16px",
-                        padding: " 16px",
-                        textDecoration: "none",
+            
+                    <Popover
+                      {...bindPopover(popupState)}
+                      anchorOrigin={{
+                        vertical: "bottom",
+                        horizontal: "center",
+                      }}
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "center",
                       }}
                     >
-                      <Link
-                        to={`/app/ApiaryList/${rowData._id}`}
-                        onClick={handleClickEdit("body", rowData._id)}
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "flex-start",
-                          cursor: "pointer",
-                          color: "#000",
-                          textDecoration: "none",
-                          color: "#000",
-                        }}
-                      >
-                        <Edit style={{ marginLeft: "16px" }} />
-                        ویرایش
-                      </Link>
-                      <hr
-                        style={{
-                          borderTop: "1px solid rgb( 240, 240, 240)",
-                          height: "2px",
-                        }}
-                      />
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "flex-start",
-                          cursor: "pointer",
-                          color: "#000",
-                        }}
-                      >
-                        <Share style={{ marginLeft: "16px" }} />
-                        اشتراک گذاری
-                      </div>
-                      <hr
-                        style={{
-                          borderTop: "1px solid rgb( 240, 240, 240)",
-                          height: "2px",
-                        }}
-                      />
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "flex-start",
-                          cursor: "pointer",
-                          color: "#000",
-                        }}
-                      >
-                        <img
-                          src="/assets/move-svgrepo-com.svg"
-                          style={{ margin: "0 0px 0 24px" }}
+                      <div style={{ borderRadius: " 16px", padding: " 16px",textDecoration:"none"}}>
+                        <Link
+                          to={{pathname:`/app/ApiaryList/${rowData._id}` , state: { modal: true ,background: location ,id:rowData._id }}}
+                          
+                          onClick={handleClickEdit("body",rowData._id)}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "flex-start",
+                            cursor: "pointer",
+                            color:"#000",
+                            textDecoration:"none" 
+                          }}
+                        >
+                          <Edit style={{ marginLeft: "16px" }} />
+                        
+                          ویرایش
+                        </Link>
+                        <hr
+                          style={{
+                            borderTop: "1px solid rgb( 240, 240, 240)",
+                            height: "2px",
+                          }}
                         />
-                        انتقال
-                      </div>
-                      <hr
-                        style={{
-                          borderTop: "1px solid rgb( 240, 240, 240)",
-                          height: "2px",
-                        }}
-                      />
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          color: "red",
-                          justifyContent: "flex-start",
-                          cursor: "pointer",
-                        }}
-                        onClick={() => onRowDelete(rowData, popupState)}
-                        // onClick={handleDeleteOpen}
-                      >
-                        <img
-                          src="/assets/trash-svgrepo-com-2.svg"
-                          style={{ margin: "0 0px 0 24px" }}
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "flex-start",
+                            cursor: "pointer",
+                            color: "#000",
+
+                          }}
+                        >
+                          <Share style={{ marginLeft: "16px" }} />
+                          اشتراک گذاری
+                        </div>
+                        <hr
+                          style={{
+                            borderTop: "1px solid rgb( 240, 240, 240)",
+                            height: "2px",
+                          }}
                         />
-                        حذف
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "flex-start",
+                            cursor: "pointer",
+                            color: "#000",
+
+                          }}
+                        >
+                          <img
+                            src="/assets/move-svgrepo-com.svg"
+                            style={{ margin: "0 0px 0 24px" }}
+                          />
+                          انتقال
+                        </div>
+                        <hr
+                          style={{
+                            borderTop: "1px solid rgb( 240, 240, 240)",
+                            height: "2px",
+                          }}
+                        />
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            color: "red",
+                            justifyContent: "flex-start",
+                            cursor: "pointer",
+                          }}
+
+                          onClick={() => onRowDelete(rowData,popupState)}
+                          // onClick={handleDeleteOpen}
+                        >
+                          <img
+                            src="/assets/trash-svgrepo-com-2.svg"
+                            style={{ margin: "0 0px 0 24px" }}
+                          />
+                          حذف
+                        </div>
                       </div>
-                    </div>
-                  </Popover>
+                    </Popover>
+                  
                 </div>
               )}
             </PopupState>
@@ -755,7 +786,7 @@ function ApiaryList() {
               },
             }}
             title=""
-            style={{ borderRadius: "25px", marginTop: "32px" }}
+            style={{ borderRadius: "25px",marginTop:"32px"}}
             data={ApiariesList}
             columns={columns}
             onSelectionChange={(rows) => setSelectedRows(rows)}
@@ -785,9 +816,7 @@ function ApiaryList() {
 
               body: {
                 emptyDataSourceMessage: "موردی جهت نمایش وجود ندارد.",
-                filterRow: {
-                  filterTooltip: "فیلتر",
-                },
+
               },
             }}
             options={{
@@ -930,6 +959,8 @@ function ApiaryList() {
                         alignItems: "center",
                         justifyContent: "center",
                         borderRadius: "8px",
+                        boxShadow:"0px 3px 6px 0px rgba(0,0,0,0.16)"
+
                       }}
                       src="/assets/Group 182.svg"
                     />
@@ -953,6 +984,7 @@ function ApiaryList() {
                       justifyContent: "center",
                       borderRadius: "8px",
                       padding: "8px",
+                      boxShadow:"0px 3px 6px 0px rgba(0,0,0,0.16)"
                       // marginLeft: "32px",
                     }}
                   >
@@ -974,7 +1006,7 @@ function ApiaryList() {
           <div>
             <Dialog
               PaperProps={{
-                style: { borderRadius: 12, width: "80%" },
+                style: { borderRadius: 12, width: "60%" },
               }}
               open={open}
               onClose={handleClose}
@@ -997,7 +1029,7 @@ function ApiaryList() {
           <div>
             <Dialog
               PaperProps={{
-                style: { borderRadius: 12, width: "70%" },
+                style: { borderRadius: 12, width: "60%" },
               }}
               open={openEdit}
               onClose={handleClose}
@@ -1048,24 +1080,24 @@ function ApiaryList() {
               <Box
                 sx={{
                   ...style,
-                  width: {
-                    xs: "350px",
-                    sm: "500px",
-                  },
+
                 }}
                 className="downloadFile"
                 style={{
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  position:"relative",
+
                 }}
               >
-                <div onClick={downloadExcel} className="downloadExcel">
-                  <img src="/assets/excel-svgrepo-com.svg" />
-                </div>
-                <div onClick={downloadPdf} className="downloadPdf">
-                  <img src="/assets/pdf-svgrepo-com (1).svg" />
-                </div>
+            <div  onClick={handleClose} style={{position:"absolute",top:"10px",right:"10px",cursor:"pointer"}}><Close/></div>
+            <div onClick={downloadPdf} className="downloadPdf">
+              <img src="/assets/pdf-svgrepo-com (1).svg" width="100px" height="100px"/>
+            </div>
+              <div onClick={downloadPdf} className="downloadPdf">
+                <img src="/assets/excel-svgrepo-com.svg" width="100px"  height="100px"/>
+              </div>
               </Box>
             </Modal>
           </div>
