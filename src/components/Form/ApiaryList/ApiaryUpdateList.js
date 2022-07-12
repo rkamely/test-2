@@ -66,7 +66,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
     defaultValues:preLoadValues
   });
    /////////////////////////////////////////////////////////////////////////////////////////
-  
+   const [ticketEdit,setTicketEdit]=useState([])
    const token = localStorage.getItem("id_token")
    console.log("token",token);
    useEffect(() => {
@@ -90,9 +90,9 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
           apiaryUsage: responseData.apiaryUsage,
           users:responseData.users.map((el)=>{return {_id:el}})
         });
-        //  setApiariesList(response.data)
+        setTicketEdit(response.data)
          setLoading(false)
-         setTicketEdit(response.data)
+
        } catch (error) {
          console.error(error.message);
          
@@ -107,7 +107,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
 
  
    /////////////////////////////////////////////////////////////////////////////////////////
-   const [ticketEdit,setTicketEdit]=useState([])
+
 
   const onSubmit = async (data) => {
 
@@ -193,6 +193,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
     overflow: "hidden",
     marginTop: "16px",
   };
+  console.log("defaultValue={ticketEdit.regionType}  ",ticketEdit.regionType);
   const isStaff = localStorage.getItem("isStaff")
   return (
     <Fragment>
@@ -353,9 +354,10 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
-                    defaultValue={ticketEdit.regionType}
+               
 
                     {...register("regionType")}
+                    defaultValue={ticketEdit.regionType}
                     error={errors.regionType ? true : false}
                     // value={}
                   >

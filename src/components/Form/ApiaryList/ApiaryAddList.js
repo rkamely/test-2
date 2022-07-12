@@ -370,7 +370,7 @@ if(status){
                     variant="outlined"
                     {...register("apiaryUsage")}
                     error={errors.apiaryUsage ? true : false}
-                    defaultValue="Queen"
+                    defaultValue="Honey"
 
                     // onChange={(e) =>
                     //   setValue("select", e.target.value, { shouldValidate: true })
