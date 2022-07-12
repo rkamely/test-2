@@ -236,6 +236,7 @@ if(status){
                     variant="outlined"
                     {...register("regionVegetation")}
                     error={errors.regionVegetation ? true : false}
+                    defaultValue="Garden"
 
                     // onChange={(e) =>
                     //   setValue("regionVegetation", e.target.value, { shouldValidate: true })
@@ -269,6 +270,7 @@ if(status){
                     variant="outlined"
                     {...register("regionType")}
                     error={errors.regionType ? true : false}
+                    defaultValue="Urban"
 
                     // onChange={(e) =>
                     //   setValue("select", e.target.value, { shouldValidate: true })
@@ -368,6 +370,7 @@ if(status){
                     variant="outlined"
                     {...register("apiaryUsage")}
                     error={errors.apiaryUsage ? true : false}
+                    defaultValue="Queen"
 
                     // onChange={(e) =>
                     //   setValue("select", e.target.value, { shouldValidate: true })

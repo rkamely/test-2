@@ -92,7 +92,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
         });
         //  setApiariesList(response.data)
          setLoading(false)
-         
+         setTicketEdit(response.data)
        } catch (error) {
          console.error(error.message);
          
@@ -107,6 +107,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
 
  
    /////////////////////////////////////////////////////////////////////////////////////////
+   const [ticketEdit,setTicketEdit]=useState([])
 
   const onSubmit = async (data) => {
 
@@ -322,7 +323,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
                     required
                     variant="outlined"
                     name = "regionVegetation"
-                    // defaultValue={option[1].value}
+                    defaultValue={ticketEdit.regionVegetation}
                     {...register("regionVegetation")}
                     error={errors.regionVegetation ? true : false}
                     // value={}
@@ -352,7 +353,8 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
-                    // defaultValue={option2[1].value}
+                    defaultValue={ticketEdit.regionType}
+
                     {...register("regionType")}
                     error={errors.regionType ? true : false}
                     // value={}
@@ -446,7 +448,8 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
-                    // defaultValue={option3[1].value}
+                    defaultValue={ticketEdit.apiaryUsage}
+
                     {...register("apiaryUsage")}
                     error={errors.apiaryUsage ? true : false}
                     // value={}

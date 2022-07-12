@@ -74,7 +74,7 @@ function AddTicket({input,handleClose,newTicket,setNewTicket,title,style, setSho
     { label: "دسترسی ها"       ,       value: "accesses"      },
     { label: "حساب کاربری"       ,     value: "profile"    },
     { label: "انتقال"       ,          value: "moveHive"         },
-    { label: "QRCODE"       ,          value: "requestQRCode"         },
+    { label: "QRCODE"       ,          value: "qrCode"         },
     { label: "سایر"       ,            value: "other"           },
 
 

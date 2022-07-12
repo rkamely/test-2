@@ -278,10 +278,10 @@ const title=(e)=>{
            return <div>حساب کاربری</div> 
    case "moveHive":
            return <div>انتقال</div>             
-    case "qrCode":
-            return <div>درخواست QRCODE</div> 
-  case "requestQRCode":
-            return <div> تیکت QRCODE </div>    
+  case "qrCode":
+            return <div> تیکت QRCODE </div>   
+   case "requestQRCode":
+            return <div>درخواست QRCODE</div>  
    case "other":
            return <div>سایر</div>  
     default:

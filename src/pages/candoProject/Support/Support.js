@@ -300,9 +300,9 @@ console.log("show",show);
                 case "moveHive":
                   return <div>انتقال</div>;
                   case "qrCode":
-                    return <div>درخواست QRCODE</div> 
-                 case "requestQRCode":
                     return <div> تیکت QRCODE </div>    
+                  case "requestQRCode":
+                    return <div>درخواست QRCODE</div>   
 
                 case "other":
                   return <div>سایر</div>;
@@ -323,7 +323,7 @@ console.log("show",show);
               Seen: element.seenByUser === true,
             });
             switch (element.category) {
-              case "qrCode":
+              case "requestQRCode":
                 return(
                 <Link
                 key={element._id}
