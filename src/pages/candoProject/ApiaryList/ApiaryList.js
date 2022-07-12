@@ -757,6 +757,7 @@ function ApiaryList() {
     doc.setFont("font");
     // doc.setFont("Shabnam"); // set custom font
     doc.save("table.pdf");
+    
   };
 
 
