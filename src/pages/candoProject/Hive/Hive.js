@@ -654,7 +654,7 @@ const[ filter,setFilter]=useState([])
         }}
         title=""
         style={{ borderRadius: "25px",marginTop:"16px" }}
-        data={hiveTable}
+        data={Company}
         columns={columns}
         onSelectionChange={(rows) => setSelectedRows(rows)}
         localization={{
