@@ -6,6 +6,7 @@ export default makeStyles(theme => ({
   menuButton: {
     marginLeft: 12,
     marginRight: 36,
+ 
   },
   hide: {
     display: "none",
@@ -14,6 +15,7 @@ export default makeStyles(theme => ({
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: "nowrap",
+  
   },
   drawerOpen: {
     width: drawerWidth,
@@ -56,6 +58,7 @@ export default makeStyles(theme => ({
      marginTop: theme.spacing(0),
      marginBottom: theme.spacing(4),
      color:"#fff",
+     
     //   [theme.breakpoints.up("md")]: {
     //   display: "none",
     // },

@@ -74,6 +74,7 @@ export default makeStyles(theme => ({
     marginBottom: theme.spacing(2),
   },
   divider: {
+    position:"absolut",
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(4),
     height: 1,

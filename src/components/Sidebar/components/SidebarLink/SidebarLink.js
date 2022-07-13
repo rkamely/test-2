@@ -48,6 +48,7 @@ export default function SidebarLink({
     );
 
   if (type === "divider") return <Divider className={classes.divider} />;
+
   if (link && link.includes('http')) {
     return (
       <ListItem
@@ -84,6 +85,8 @@ export default function SidebarLink({
       </ListItem>
     )
   }
+
+  
   if (!children)
     return (
       <ListItem

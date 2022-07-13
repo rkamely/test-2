@@ -4,7 +4,7 @@ function discoverPage() {
     alert("درحال بارگیری سایت کندووان پلاس. لطفا چند لحظه صبر کنید:)")
   return (
 
-        <iframe  src="https://kandoo1plus.ir/"></iframe>
+       <div ><iframe scrolling="no" style={{height: '8000px'}}src="https://kandoo1plus.ir/"></iframe></div> 
   )
 }
 

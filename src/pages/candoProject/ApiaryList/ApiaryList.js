@@ -109,8 +109,9 @@ function ApiaryList() {
     background:" rgb( 244 244 244)",
     borderRadius: "16px",
     boxShadow: 24,
-    pt: 4,
-    px: 6,
+    paddingLeft: "24px",
+    pt: 5,
+    
     pb: 4,
   };
   const [ApiariesList, setApiariesList] = useState([]);
@@ -292,6 +293,7 @@ function ApiaryList() {
               pathname: `/app/ApiaryList/Beehive/${str}`,
               state: { state:rowData.name },
             }}
+            onClick={() =>localStorage.setItem("Apiary_id",rowData._id)}
             className="title" 
             // style={{ display: "flex" }}
           >
@@ -1085,6 +1087,7 @@ function ApiaryList() {
                 }}
                 className="downloadFile"
                 style={{
+                  overflow: "hidden",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",

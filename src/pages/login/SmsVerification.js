@@ -82,6 +82,7 @@ function SmsVerification(props) {
         )
         .then((respons) => respons.data);
         console.log("response smsVerify",response);
+        localStorage.setItem("profileName",response.data.firstname)
         const token = response?.token;
         const idUser =response.data._id
         console.log("idUser",idUser);

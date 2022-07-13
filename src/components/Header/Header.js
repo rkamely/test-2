@@ -107,27 +107,27 @@ export default function Header(props) {
   console.log("firstName",firstName);
 
 
-  const token = localStorage.getItem("id_token")
+//   const token = localStorage.getItem("id_token")
 
-  try{
-    const response = axios.get("http://185.202.113.165:3000/api/auth/me",{
-      'token': `${token}` ,
+//   try{
+//     const response = axios.get("http://185.202.113.165:3000/api/auth/me",{
+//       'token': `${token}` ,
        
-    })
-    console.log("response profile",response.data);
-    console.log(JSON.stringify(response))       
+//     })
+//     console.log("response profile",response.data);
+//     console.log(JSON.stringify(response))       
 
-}catch (err) {
+// }catch (err) {
 
 
 
-}
+// }
 
 
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
-      <Toolbar className={classes.toolbar}>
+      <Toolbar className={classes.toolbar} style={{border:"2px solid red"}}>
         <IconButton
           color="inherit"
           onClick={() => toggleSidebar(layoutDispatch)}
