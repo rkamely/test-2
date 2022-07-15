@@ -130,6 +130,7 @@ function  Hive() {
       Queen: 0,
     },
   ]);
+  const[hiveTable,setHiveTable]= useState([])
   // const useStyles = makeStyles({
   //   Button: {
   //     margin: "8px 0px",
@@ -140,7 +141,81 @@ function  Hive() {
   // });
   
   const classes = useStyles();
+/////////////////////////////////////////////////////////////////////////////////////////
+const Apiary_id= localStorage.getItem("Apiary_id")
+console.log("Apiary_id",Apiary_id);
+const token = localStorage.getItem("id_token");
+console.log("token", token);
+useEffect(() => {
+  const fetchData = async () => {
+    // setLoading(true);
+    try {
+      const { data: response } = await axios.get(
+        `http://185.202.113.165:3000/api/hive/get-by-apiary/${Apiary_id}`,
+        {
+          headers: {
+            token: `${token}`,
+          },
+        },
+      );
+      console.log("show response hive", response.data);
+      setHiveTable(response.data);
+      // setLoading(false);
+    } catch (error) {
+      if (error.response?.status === 401) {
+        localStorage.clear("id_token")
+        console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
+        window.location.reload()
+      }else{
+      console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
+      // history.push("/app/Error")
+      // window.location.reload()
+     }}
 
+    // setLoading(false);
+  };
+  fetchData();
+}, []);
+
+
+////////////////////////////////////////////////////////////////////
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+const[ filter,setFilter]=useState([])
+  console.log("token", token);
+  useEffect(() => {
+    const fetchData = async () => {
+      // setLoading(true);
+      try {
+        const { data: response } = await axios.get(
+          "http://185.202.113.165:3000/api/apiary/get-for-user",
+          {
+            headers: {
+              token: `${token}`,
+            },
+          },
+        );
+        console.log("show response", response.data);
+        setFilter(response.data);
+      } catch (error) {
+        if (error.response?.status === 401) {
+          localStorage.clear("id_token")
+          console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
+          window.location.reload()
+        }else{
+        console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
+        // history.push("/app/Error")
+        window.location.reload()
+       }}
+
+      // setLoading(false);
+    };
+    fetchData();
+  }, []);
+
+
+  ////////////////////////////////////////////////
   console.log(Company);
   const columns = [
 
@@ -646,23 +721,25 @@ function  Hive() {
 
         actions={[
           {
+
             icon: () => <Select
                labelId="demo-simple-select-label"
                variant="outlined"
                Id='demo-simple-select'
-               style={{width:100}}
+               style={{width:150}}
                value={Hive}
                className={classes.inputSelect}
                onChange={(e)=>setHive(e.target.value)}>
-                 <MenuItem value={"all"}><em>All</em></MenuItem>
-                 <MenuItem value={2019}>2019</MenuItem>
-                 <MenuItem value={2020}>2020</MenuItem>
-                 <MenuItem value={2021}>2021</MenuItem>
+                 {filter.map((el)=>([
+                     <Link to={`/app/ApiaryList/Beehive/${el.name.split(' ').join('-')}`} style={{color:"#000",textDecoration:"none",cursor: "pointer"}}><MenuItem  value={el.name} >{el.name}</MenuItem></Link>
+                 ]))}
+
             </Select>,
 
-            tooltip: "دانلود",
             isFreeAction: true,
-          },
+          },            
+          // console.log("rowData", rowData);
+          // const str = rowData.name.split(' ').join('-') 
           {
             icon: () => (
               
@@ -997,7 +1074,7 @@ function  Hive() {
               alignItems: "center",
               justifyContent: "center",
               position:"relative",
-           
+              overflow: "hidden"
             }}
           >
             <div  onClick={handleClose} style={{position:"absolute",top:"10px",right:"10px",cursor:"pointer"}}><Close/></div>

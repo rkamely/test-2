@@ -88,15 +88,16 @@ const structure = [
   },
 
   { id: 10, type: "divider"  ,backgroundColor:"#fff"},
-
   {
     id: 5,
+    type:"bottom",
     label: "درباره ما",
     link:"/app/AboutUs",
     icon: <Dot size="small" color="secondary" />,
   },
   {
     id: 6,
+    type:"bottom",
     label: "تنظیمات",
     link: "/app/setting",
     icon: <Dot size="small" color="secondary" />,
@@ -139,7 +140,7 @@ const changeIcon=()=>{
       }}
       open={isSidebarOpened}
     >
-      <div  />
+      <div/>
 
 
       <List className={classes.sidebarList}>
@@ -176,10 +177,8 @@ const changeIcon=()=>{
 
 
 
-        {structure.map((link) => (
-           
-          <SidebarLink
-          
+        {structure.map((link) => (          
+          <SidebarLink     
             key={link.id}
             location={location}
             isSidebarOpened={isSidebarOpened}

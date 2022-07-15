@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 
 export default makeStyles((theme) => ({
+
   logotype: {
     color: "white",
     marginLeft: theme.spacing(2.5),
@@ -28,6 +29,7 @@ export default makeStyles((theme) => ({
   toolbar: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
+    height: "100%",
   },
   hide: {
     display: "none",
