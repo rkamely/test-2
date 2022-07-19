@@ -122,7 +122,7 @@ const apiaryIdClick=localStorage.getItem("apiaryIdClick")
 
       <Switch>
         <Route exact path={`${path}`}>
-            <RightTopCard />
+            <RightTopCard onClickOpen={handleClickOpen}/>
         </Route>
         <Route path={`${path}/Sound`}>
             <Audio />
@@ -153,7 +153,6 @@ const apiaryIdClick=localStorage.getItem("apiaryIdClick")
           <div>
           
          
-          {/* <Button onClick={handleClickOpen}> رو من کلیک کن</Button> */}
       <Dialog 
           
         open={open}

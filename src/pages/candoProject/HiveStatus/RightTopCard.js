@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Widget from "../../../components/Widget/Widget";
 import useStyles from "./Style";
 
-function RightTopCard() {
+function RightTopCard({onClickOpen}) {
   const classes = useStyles();
   const [cards,setCards]=useState([
     {
@@ -35,6 +35,8 @@ function RightTopCard() {
           alignItems="center"
           justifyContent="space-between"
           className={classes.greenHeader}
+          onClick={onClickOpen}
+          
         >
           <Grid item>
             <Typography

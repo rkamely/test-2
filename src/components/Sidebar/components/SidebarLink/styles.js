@@ -80,7 +80,7 @@ export default makeStyles(theme => ({
   },
   divider: {
     marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(4),
+    // marginBottom: theme.spacing(0.5),
     backgroundColor: "#fff",
     position:"absolute",
      width:"90%",

@@ -57,6 +57,7 @@ export default makeStyles((theme) => ({
     padding: theme.spacing(2.5),
     borderRadius: "15px",
     color: "#fff",
+    cursor:"pointer"
   },
   cards: {
     boxShadow: "red 0px 6px 0px,  0px 7px 13px -3px, red 0px -3px 0px inset",

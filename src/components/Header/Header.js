@@ -130,7 +130,7 @@ export default function Header(props) {
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
-      <Toolbar className={classes.toolbar} style={{border:"2px solid red"}}>
+      <Toolbar className={classes.toolbar} >
         <IconButton
           color="inherit"
           onClick={() => toggleSidebar(layoutDispatch)}

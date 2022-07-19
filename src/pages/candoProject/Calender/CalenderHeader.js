@@ -10,10 +10,10 @@ function CalenderHeader({ value, setValue }) {
         return value.format("YYYY");
       }
       function prevDay() {
-        return value.clone().subtract(1, "day");
+        return value.clone().subtract(1, "days");
       }
       function nextDay() {
-        return value.clone().add(1, "day");
+        return value.clone().add(1, "days");
       }
       const classes = useStyles();
 

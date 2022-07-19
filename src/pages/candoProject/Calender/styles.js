@@ -16,7 +16,8 @@ export default makeStyles((theme) => ({
     justifyContent: "center",
     cursor: "pointer",
     marginTop: "8px",
-    fontWeight:"600"
+    fontWeight:"600",
+ 
 
   },
   dayBox: {
@@ -27,9 +28,11 @@ export default makeStyles((theme) => ({
     justifyContent: "center",
   },
   body: {
-    display: "flex",
-    width: "100%",
-    justifyContent: "center",
+    // display: "flex",
+    // width: "100%",
+    // justifyContent: "center",
+    // alignItems:"center",
+    // border:"2px solid red"
   },
   daySelected: {
     display: "flex",

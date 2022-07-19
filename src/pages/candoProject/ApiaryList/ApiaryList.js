@@ -570,7 +570,7 @@ function ApiaryList() {
                           <Edit style={{ marginLeft: "16px" }} />
                         
                           ویرایش
-                        </Link>
+                       </Link>
                         <hr
                           style={{
                             borderTop: "1px solid rgb( 240, 240, 240)",

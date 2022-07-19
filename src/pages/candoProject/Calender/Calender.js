@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import 'swiper/swiper-bundle.min.css'
 import 'swiper/swiper.min.css'
+import { ArrowBackIosRounded, ArrowForwardIosRounded } from "@material-ui/icons";
 
 function Calender() {
   const classes = useStyles();
@@ -21,7 +22,12 @@ function Calender() {
   useEffect(() => {
     setCalender(buildCalender(value));
   }, [value]);
-
+  function prevDay() {
+    return value.clone().subtract(1, "days");
+  }
+  function nextDay() {
+    return value.clone().add(1, "days");
+  }
 
   //   console.log("startDay", startDay);
   return (
@@ -31,6 +37,8 @@ function Calender() {
       </div>
       <Divider />
       <div className={classes.body}>
+      {/* <ArrowForwardIosRounded onClick={() => setValue(prevDay())}/> */}
+
       <Swiper
    
       spaceBetween={20}
@@ -51,6 +59,7 @@ function Calender() {
 
                   onClick={() => setValue(day)}
                 >
+              
                   {/* <div className={classes.day}>{day.format("MMMM").toString()}</div> */}
 
                   <div className={classes.day}>
@@ -70,8 +79,11 @@ function Calender() {
           </div>
         ))}
         </div>
-        </Swiper>
+      </Swiper>
+        {/* <ArrowBackIosRounded  onClick={() => setValue(nextDay())}/> */}
+
       </div>
+      
     </div>
   );
 }

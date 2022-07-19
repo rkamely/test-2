@@ -69,14 +69,17 @@ function  Hive() {
 
     setScroll(scrollType);
   };
-  const handleNutrition=()=>{
+  const handleNutrition=(popupState)=>{
     setOpenNutrition(true)
+    popupState.close() 
   }
-  const handleCatchHoney=()=>{
+  const handleCatchHoney=(popupState)=>{
     setopenCatchHoney(true)
+    popupState.close()
   }
-  const handleCureHive=()=>{
+  const handleCureHive=(popupState)=>{
     setOpenCureHive(true)
+    popupState.close()
   }
   const handleOpen = () => {
     setOpen(true);
@@ -458,95 +461,184 @@ const[ filter,setFilter]=useState([])
         return (
           // <Link to={`/app/CompanyList/${rowData.id}`}>
           <div>
-            <PopupState variant="popover" popupId="demo-popup-popover" style={{cursor:"pointer"}}>
-              {(popupState) => (
-                <div>
-                  <MoreVertOutlined variant="contained" {...bindTrigger(popupState)} style={{cursor:"pointer"}}/>
+          <PopupState variant="popover" popupId="demo-popup-popover">
+            {(popupState) => (
+              <div>
+            <MoreVertOutlined variant="contained" {...bindTrigger(popupState)} style={{cursor:"pointer"}}/>
 
-                  <Popover
-                    {...bindPopover(popupState)}
-                    anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "center",
-                    }}
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "center",
-                    }}
+                
+                <Popover
+              
+
+                  {...bindPopover(popupState)}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "center",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "center",
+                  }}
+                >
+                  <div
+                    style={{ borderRadius: " 16px", padding: " 16px" }}
                   >
-                    <div style={{ borderRadius: " 16px", padding: " 16px" }}>
-                      {/* <div
-                      
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "flex-start",
-                        }}
-                      >
-                        <Edit style={{ marginLeft: "16px" }} />
-                        ویرایش
-                      </div>
-                      <hr
-                        style={{
-                          borderTop: "1px solid rgb( 240, 240, 240)",
-                          height: "2px",
-                        }}
-                      /> */}
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "flex-start",
-                        }}
-                      >
-                        <Edit style={{ marginLeft: "16px" }} />
-                        اشتراک گذاری
-                      </div>
-                      <hr
-                        style={{
-                          borderTop: "1px solid rgb( 240, 240, 240)",
-                          height: "2px",
-                        }}
-                      />
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "flex-start",
-                              cursor:"pointer"
+                     <div
+                     onClick={()=>handleCureHive(popupState)}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "flex-start",
+                        cursor:"pointer"
 
-                        
-                            }}
-                          >
-                            <img src="/assets/move-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
-                            انتقال
-                          </div>
-                          <hr
-                            style={{
-                              borderTop: "1px solid rgb( 240, 240, 240)",
-                              height: "2px",
-                            }}
-                          />
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              color:"red",
-                              justifyContent: "flex-start",
-                              cursor:"pointer"
-
-                            }}
-                            onClick={() => onRowDelete(rowData)}
-                          >
-                            <img src="/assets/trash-svgrepo-com-2.svg" style={{ margin: "0 0px 0 24px" }} />
-                            حذف
-                          </div>
+                  
+                      }}
+                    >
+                      <img src="/assets/medicine-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                      درمان
                     </div>
-                  </Popover>
-                </div>
-              )}
-            </PopupState>
-          </div>
+                    <hr
+                      style={{
+                        borderTop: "1px solid rgb( 240, 240, 240)",
+                        height: "2px",
+                      }}
+                    />
+                    <div
+                    onClick={()=>handleNutrition(popupState)}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "flex-start",
+                        cursor:"pointer"
+
+                  
+                      }}
+                    >
+                      <img src="/assets/flower-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                      تغذیه
+                    </div>
+                    <hr
+                      style={{
+                        borderTop: "1px solid rgb( 240, 240, 240)",
+                        height: "2px",
+                      }}
+                    />
+                    <div
+                    onClick={()=>handleCatchHoney(popupState)}  
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "flex-start",
+                        cursor:"pointer"
+
+                  
+                      }}
+                    >
+                      <img src="/assets/honey-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                      برداشت عسل
+                    </div>
+                    <hr
+                      style={{
+                        borderTop: "1px solid rgb( 240, 240, 240)",
+                        height: "2px",
+                      }}
+                    />
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "flex-start",
+                        cursor:"pointer"
+
+                  
+                      }}
+                    >
+                      <img src="/assets/move-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                      طبق عسل
+                    </div>
+                    <hr
+                      style={{
+                        borderTop: "1px solid rgb( 240, 240, 240)",
+                        height: "2px",
+                      }}
+                    />
+                     <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "flex-start",
+                        cursor:"pointer"
+
+                  
+                      }}
+                    >
+                      <img src="/assets/noun-migration-2781863.svg" style={{ margin: "0 0px 0 24px"}} />
+                       کوچ
+                    </div>
+                    <hr
+                      style={{
+                        borderTop: "1px solid rgb( 240, 240, 240)",
+                        height: "2px",
+                      }}
+                    />
+
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "flex-start",
+                        cursor:"pointer"
+
+                      }}
+                    >
+                      <Share style={{ marginLeft: "16px" }} />
+                      اشتراک گذاری
+                    </div>
+                    <hr
+                      style={{
+                        borderTop: "1px solid rgb( 240, 240, 240)",
+                        height: "2px",
+                      }}
+                    />
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "flex-start",
+                        cursor:"pointer"
+
+                  
+                      }}
+                    >
+                      <img src="/assets/move-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                      انتقال
+                    </div>
+                    <hr
+                      style={{
+                        borderTop: "1px solid rgb( 240, 240, 240)",
+                        height: "2px",
+                      }}
+                    />
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        color:"red",
+                        justifyContent: "flex-start",
+                        cursor:"pointer"
+
+                      }}
+                      onClick={() => handleBulkDelete(selectedRows)}
+                    >
+                      <img src="/assets/trash-svgrepo-com-2.svg" style={{ margin: "0 8px 0 16px" }} />
+                      حذف
+                    </div>
+                  </div>
+                </Popover>
+              </div>
+            )}
+          </PopupState>
+        </div>
         );
       },
     },
@@ -710,8 +802,6 @@ const changeApiary =async(index)=>{
     >
           {/* <Title key="2" title="زنبورستان"/> */}
           <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold",fontSize:"1.2rem"}}>زنبورستان</p>
-
-
     </Link>,
 
 
@@ -836,184 +926,184 @@ const changeApiary =async(index)=>{
 
               
               <div>
-                <PopupState variant="popover" popupId="demo-popup-popover">
-                  {(popupState) => (
-                    <div>
-                  <MoreVertOutlined variant="contained" {...bindTrigger(popupState)} style={{cursor:"pointer"}}/>
-
-                      
-                      <Popover
+              <PopupState variant="popover" popupId="demo-popup-popover">
+                {(popupState) => (
+                  <div>
+                <MoreVertOutlined variant="contained" {...bindTrigger(popupState)} style={{cursor:"pointer"}}/>
+    
                     
-
-                        {...bindPopover(popupState)}
-                        anchorOrigin={{
-                          vertical: "bottom",
-                          horizontal: "center",
-                        }}
-                        transformOrigin={{
-                          vertical: "top",
-                          horizontal: "center",
-                        }}
+                    <Popover
+                  
+    
+                      {...bindPopover(popupState)}
+                      anchorOrigin={{
+                        vertical: "bottom",
+                        horizontal: "center",
+                      }}
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "center",
+                      }}
+                    >
+                      <div
+                        style={{ borderRadius: " 16px", padding: " 16px" }}
                       >
-                        <div
-                          style={{ borderRadius: " 16px", padding: " 16px" }}
+                         <div
+                         onClick={()=>handleCureHive(popupState)}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "flex-start",
+                            cursor:"pointer"
+    
+                      
+                          }}
                         >
-                           <div
-                           onClick={handleCureHive}
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "flex-start",
-                              cursor:"pointer"
-
-                        
-                            }}
-                          >
-                            <img src="/assets/medicine-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
-                            درمان
-                          </div>
-                          <hr
-                            style={{
-                              borderTop: "1px solid rgb( 240, 240, 240)",
-                              height: "2px",
-                            }}
-                          />
-                          <div
-                          onClick={handleNutrition}
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "flex-start",
-                              cursor:"pointer"
-
-                        
-                            }}
-                          >
-                            <img src="/assets/flower-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
-                            تغذیه
-                          </div>
-                          <hr
-                            style={{
-                              borderTop: "1px solid rgb( 240, 240, 240)",
-                              height: "2px",
-                            }}
-                          />
-                          <div
-                          onClick={handleCatchHoney}  
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "flex-start",
-                              cursor:"pointer"
-
-                        
-                            }}
-                          >
-                            <img src="/assets/honey-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
-                            برداشت عسل
-                          </div>
-                          <hr
-                            style={{
-                              borderTop: "1px solid rgb( 240, 240, 240)",
-                              height: "2px",
-                            }}
-                          />
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "flex-start",
-                              cursor:"pointer"
-
-                        
-                            }}
-                          >
-                            <img src="/assets/move-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
-                            طبق عسل
-                          </div>
-                          <hr
-                            style={{
-                              borderTop: "1px solid rgb( 240, 240, 240)",
-                              height: "2px",
-                            }}
-                          />
-                           <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "flex-start",
-                              cursor:"pointer"
-
-                        
-                            }}
-                          >
-                            <img src="/assets/noun-migration-2781863.svg" style={{ margin: "0 0px 0 24px"}} />
-                             کوچ
-                          </div>
-                          <hr
-                            style={{
-                              borderTop: "1px solid rgb( 240, 240, 240)",
-                              height: "2px",
-                            }}
-                          />
-
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "flex-start",
-                              cursor:"pointer"
-
-                            }}
-                          >
-                            <Share style={{ marginLeft: "16px" }} />
-                            اشتراک گذاری
-                          </div>
-                          <hr
-                            style={{
-                              borderTop: "1px solid rgb( 240, 240, 240)",
-                              height: "2px",
-                            }}
-                          />
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "flex-start",
-                              cursor:"pointer"
-
-                        
-                            }}
-                          >
-                            <img src="/assets/move-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
-                            انتقال
-                          </div>
-                          <hr
-                            style={{
-                              borderTop: "1px solid rgb( 240, 240, 240)",
-                              height: "2px",
-                            }}
-                          />
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              color:"red",
-                              justifyContent: "flex-start",
-                              cursor:"pointer"
-
-                            }}
-                            onClick={() => handleBulkDelete(selectedRows)}
-                          >
-                            <img src="/assets/trash-svgrepo-com-2.svg" style={{ margin: "0 8px 0 16px" }} />
-                            حذف
-                          </div>
+                          <img src="/assets/medicine-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                          درمان
                         </div>
-                      </Popover>
-                    </div>
-                  )}
-                </PopupState>
-              </div>
+                        <hr
+                          style={{
+                            borderTop: "1px solid rgb( 240, 240, 240)",
+                            height: "2px",
+                          }}
+                        />
+                        <div
+                        onClick={()=>handleNutrition(popupState)}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "flex-start",
+                            cursor:"pointer"
+    
+                      
+                          }}
+                        >
+                          <img src="/assets/flower-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                          تغذیه
+                        </div>
+                        <hr
+                          style={{
+                            borderTop: "1px solid rgb( 240, 240, 240)",
+                            height: "2px",
+                          }}
+                        />
+                        <div
+                        onClick={()=>handleCatchHoney(popupState)}  
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "flex-start",
+                            cursor:"pointer"
+    
+                      
+                          }}
+                        >
+                          <img src="/assets/honey-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                          برداشت عسل
+                        </div>
+                        <hr
+                          style={{
+                            borderTop: "1px solid rgb( 240, 240, 240)",
+                            height: "2px",
+                          }}
+                        />
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "flex-start",
+                            cursor:"pointer"
+    
+                      
+                          }}
+                        >
+                          <img src="/assets/move-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                          طبق عسل
+                        </div>
+                        <hr
+                          style={{
+                            borderTop: "1px solid rgb( 240, 240, 240)",
+                            height: "2px",
+                          }}
+                        />
+                         <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "flex-start",
+                            cursor:"pointer"
+    
+                      
+                          }}
+                        >
+                          <img src="/assets/noun-migration-2781863.svg" style={{ margin: "0 0px 0 24px"}} />
+                           کوچ
+                        </div>
+                        <hr
+                          style={{
+                            borderTop: "1px solid rgb( 240, 240, 240)",
+                            height: "2px",
+                          }}
+                        />
+    
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "flex-start",
+                            cursor:"pointer"
+    
+                          }}
+                        >
+                          <Share style={{ marginLeft: "16px" }} />
+                          اشتراک گذاری
+                        </div>
+                        <hr
+                          style={{
+                            borderTop: "1px solid rgb( 240, 240, 240)",
+                            height: "2px",
+                          }}
+                        />
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "flex-start",
+                            cursor:"pointer"
+    
+                      
+                          }}
+                        >
+                          <img src="/assets/move-svgrepo-com.svg" style={{ margin: "0 0px 0 24px"}} />
+                          انتقال
+                        </div>
+                        <hr
+                          style={{
+                            borderTop: "1px solid rgb( 240, 240, 240)",
+                            height: "2px",
+                          }}
+                        />
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            color:"red",
+                            justifyContent: "flex-start",
+                            cursor:"pointer"
+    
+                          }}
+                          onClick={() => handleBulkDelete(selectedRows)}
+                        >
+                          <img src="/assets/trash-svgrepo-com-2.svg" style={{ margin: "0 8px 0 16px" }} />
+                          حذف
+                        </div>
+                      </div>
+                    </Popover>
+                  </div>
+                )}
+              </PopupState>
+            </div>
             ),
 
             // isFreeAction: true,
@@ -1078,7 +1168,7 @@ const changeApiary =async(index)=>{
       <div>
         <Dialog
           PaperProps={{
-            style: { borderRadius: 12,width:"70%" }
+            style: { borderRadius: 12,width:"50%"}
           }}
         open={open}
         onClose={handleClose}
@@ -1087,7 +1177,8 @@ const changeApiary =async(index)=>{
         aria-describedby="scroll-dialog-description"
         maxWidth="xl"
         >
-            <ApiaryAddList />
+            {/* <ApiaryAddList /> */}
+            <div style={{textAlign:"center",background:"orange",padding:"16px"}}>در حال حاضر برای اضافه کردن کندو از طریق اپلیکیشن اقدام کنید.</div>
         </Dialog>
       </div>
 
