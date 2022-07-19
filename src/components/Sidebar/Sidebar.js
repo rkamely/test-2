@@ -90,14 +90,14 @@ const structure = [
   { id: 10, type: "divider"  ,backgroundColor:"#fff"},
   {
     id: 5,
-    type:"bottom",
+    type: 'title',
     label: "درباره ما",
     link:"/app/AboutUs",
     icon: <Dot size="small" color="secondary" />,
   },
   {
     id: 6,
-    type:"bottom",
+    type: 'title2',
     label: "تنظیمات",
     link: "/app/setting",
     icon: <Dot size="small" color="secondary" />,

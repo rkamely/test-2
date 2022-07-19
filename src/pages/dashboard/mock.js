@@ -55,7 +55,7 @@ const mock = {
     },
     {
       product: "بررسی ملکه",
-      icon:"./assets/Group 11035.svg",
+      icon:"./assets/Group 11036.svg",
       total: {
         monthly: 4232,
         weekly: 1465,
@@ -76,7 +76,7 @@ const mock = {
     },
     {
       product: "بررسی بچه دهی",
-      icon:"./assets/Group 11035.svg",
+      icon:"./assets/Group 11037.svg",
       total: {
         monthly: 4232,
         weekly: 1465,
@@ -100,7 +100,7 @@ const mock = {
     },
     {
       product: "بررسی شاخون",
-      icon:"./assets/Group 11035.svg",
+      icon:"./assets/Group 11038.svg",
       total: {
         monthly: 4232,
         weekly: 1465,

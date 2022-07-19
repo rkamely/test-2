@@ -17,6 +17,7 @@ import AddJob from '../JobUser/AddJob';
 import Title from '../../Typography/Title/Title';
 import { withStyles } from '@material-ui/styles';
 import IOSSwitch from './IOSSwitch';
+import axios from 'axios';
 
 function Edituser() {
     const [open, setOpen] = useState(false);
@@ -72,7 +73,21 @@ function Edituser() {
       },
     ]);
 
+    const token = localStorage.getItem("id_token")
 
+    try{
+      const response = axios.get("http://185.202.113.165:3000/api/auth/me",{
+        'token': `${token}` ,
+         
+      })
+      console.log("response profile",response.data);
+      console.log(JSON.stringify(response))       
+  
+  }catch (err) {
+  
+  
+  
+  }
     const {
         register,
         control,
@@ -152,7 +167,7 @@ function Edituser() {
 <Grid xs={12} justifyContent='space-between' style={{display:"flex"}}>  
     <TextField
       
-      style={{direction:"ltr"}}
+      // style={{direction:"ltr"}}
       className={classes.TextField}
       label="شماره موبایل"
     //   onChange={e => setLoginValue(e.target.value)}
@@ -173,7 +188,7 @@ function Edituser() {
 
     <TextField
       
-              style={{direction:"ltr"}}
+              // style={{direction:"ltr"}}
                 className={classes.TextField}
               label="نام کاربری"
                 id="Username"
@@ -193,7 +208,7 @@ function Edituser() {
 <Grid xs={12} justifyContent='space-between' style={{display:"flex"}}>
               <TextField
       
-      style={{direction:"ltr"}}
+      // style={{direction:"ltr"}}
         className={classes.TextField}
       label="نام"
         id="name"
@@ -213,7 +228,7 @@ function Edituser() {
 
       <TextField
       
-      style={{direction:"ltr"}}
+      // style={{direction:"ltr"}}
         className={classes.TextField}
       label="نام خانوادگی"
         id="family"
@@ -235,7 +250,7 @@ function Edituser() {
      <Grid>
      <TextField
       
-      style={{direction:"ltr"}}
+      // style={{direction:"ltr"}}
         className={classes.TextField}
       label="ایمیل"
         id="email"

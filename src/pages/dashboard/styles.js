@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/styles";
 
 export default makeStyles((theme) => ({
   container:{
-    padding: "36px 60px",
+    padding: "48px 100px",
   },
   breakpoints: {
     values: {

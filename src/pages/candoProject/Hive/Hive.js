@@ -21,7 +21,7 @@ import useStyles from "./styles";
 import "./Hive.css";
 import XLSX from "xlsx";
 import {  Close, Edit, Edit as EditIcon, MoreVertOutlined, NavigateBefore, Share } from "@material-ui/icons";
-import { Link ,useParams } from "react-router-dom";
+import { Link ,useParams,useHistory } from "react-router-dom";
 import MaterialTable, { MTableToolbar } from "material-table";
 import CompanyAddList from "../../../components/Form/ApiaryList/ApiaryAddList";
 import SearchBar from "material-ui-search-bar";
@@ -36,6 +36,7 @@ import { useLocation } from 'react-router-dom'
 import NutritionStepper from "./Questionnaire/NutritionStepper";
 import CureHiveStepper from "./Questionnaire/CureHiveStepper";
 import CatchHoneyStepper from "./Questionnaire/CatchHoneyStepper";
+import Loading from "../../../components/Loading/Loading";
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -44,7 +45,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 
 function  Hive() {
-  
+  const history = useHistory()
+
   const location = useLocation()
   // window.localStorage.getItem(location.state.rowDatas)
   // const rowDatas= window.localStorage.setItem()
@@ -55,6 +57,7 @@ function  Hive() {
   const[openCatchHoney,setopenCatchHoney]=useState(false);
   const[openCureHive,setOpenCureHive]=useState(false);
   const [downloadOpen, setdownloadOpen] = useState(false);
+  const [ loading , setLoading]=useState(true)
 
   const [selectedRows, setSelectedRows] = useState();
 
@@ -109,25 +112,25 @@ function  Hive() {
   const [Company, setCompany] = useState([
     {
       id: "1",
-      name: "کندوی 1",
-      HiveType: "نوع کندو",
-      RaceQueen: "نژاد ملکه",
-      date: "23/09/1400",
-      status: 1,
-      Job: 1,
-      Sick: 1,
-      Queen: 1,
+      title: "کندوی 1",
+      type: "نوع کندو",
+      queenType: "نژاد ملکه",
+      dateCreated: "23/09/1400",
+      active: 1,
+      isCheckListDone: 1,
+      isHiveSick: 1,
+      hasQueen: 1,
     },
     {
       id: "2",
-      name: "کندوی 2",
-      HiveType: "نوع کندو",
-      RaceQueen: "نژاد ملکه",
-      date: "23/09/1400",
-      status: 0,
-      Job: 0,
-      Sick: 0,
-      Queen: 0,
+      title: "کندوی 2",
+      type: "نوع کندو",
+      queenType: "نژاد ملکه",
+      dateCreated: "23/09/1400",
+      active: 0,
+      isCheckListDone: 0,
+      isHiveSick: 0,
+      hasQueen: 0,
     },
   ]);
   const[hiveTable,setHiveTable]= useState([])
@@ -147,11 +150,12 @@ console.log("Apiary_id",Apiary_id);
 const token = localStorage.getItem("id_token");
 console.log("token", token);
 useEffect(() => {
-  const fetchData = async () => {
-    // setLoading(true);
+  const fetchData = async (index) => {
+    console.log("salam id",index);
+    setLoading(true);
     try {
       const { data: response } = await axios.get(
-        `http://185.202.113.165:3000/api/hive/get-by-apiary/${Apiary_id}`,
+        `http://185.202.113.165:3000/api/hive/get-by-apiary/${id}`,
         {
           headers: {
             token: `${token}`,
@@ -160,7 +164,7 @@ useEffect(() => {
       );
       console.log("show response hive", response.data);
       setHiveTable(response.data);
-      // setLoading(false);
+      setLoading(false);
     } catch (error) {
       if (error.response?.status === 401) {
         localStorage.clear("id_token")
@@ -221,7 +225,7 @@ const[ filter,setFilter]=useState([])
 
     {
       title: "نام کندو",
-      field: "name",
+      field: "title",
       cellStyle: {
         textAlign:" center !important",
         transform:"translateX(10px)",
@@ -241,12 +245,12 @@ const[ filter,setFilter]=useState([])
         console.log("rowData", rowData);
         return (
           <Link
-            to={`/app/ApiaryList/Beehive/Hive/${rowData.name.split(' ').join('-')}`}   
+            to={`/app/ApiaryList/Beehive/Hive/${rowData.title.split(' ').join('-')}`}   
             style={{ textDecoration:"none" ,color:"black",cursor:"pointer"}}
             className="description"
 
           >
-            {rowData.name}
+            {rowData.title}
           </Link>
         );
       },
@@ -254,7 +258,7 @@ const[ filter,setFilter]=useState([])
 
     {
       title: " نوع کندو",
-      field: "HiveType",
+      field: "type",
       cellStyle: {
         textAlign:" right !important",
 
@@ -271,12 +275,12 @@ const[ filter,setFilter]=useState([])
           //  paddingRight:"20px"
       },
       render: (rowData) => {
-        return <p className="description">{rowData.HiveType}</p>;
+        return <p className="description">{rowData.type}</p>;
       },
     },
     {
       title: " نژاد ملکه",
-      field: "RaceQueen",
+      field: "queenType",
       cellStyle: {
         textAlign:" center !important",
 
@@ -291,12 +295,12 @@ const[ filter,setFilter]=useState([])
            colot:"slateGrey",
       },
       render: (rowData) => {
-        return <p className="description">{rowData.RaceQueen}</p>;
+        return <p className="description">{rowData.queenType}</p>;
       },
     },
     {
       title: "تاریخ ایجاد",
-      field: "date",
+      field: "dateCreated",
       cellStyle: {
         textAlign:" center !important",
 
@@ -312,17 +316,18 @@ const[ filter,setFilter]=useState([])
            fontWeight:"600", 
       },
       render: (rowData) => {
-        return <p className="description">{rowData.date}</p>;
+        return <p className="description">{rowData.dateCreated}</p>;
       },
     },
     {
       title: "وضعیت برد",
-      field: "status",
+      field: "active",
       cellStyle: {
         textAlign:" center !important",
+
         fontSize:"0.8rem",
         justifyContent:"center",
-        paddingRight:"16px"
+        // paddingRight:"8px"
       },
 
       headerStyle: {
@@ -331,20 +336,19 @@ const[ filter,setFilter]=useState([])
            fontSize:"0.8rem",
            color:"rgb( 102, 103, 104)",
            fontWeight:"600", 
-           paddingRight:"16px"
            
       },
       render: (rowData) => {
         return (
-          <div className={rowData.status ? "statusActive" : "statusDeactive"}>
-            {rowData.status ? "فعال" : "غیرفعال"}
+          <div className={rowData.active ? "statusActive" : "statusDeactive"}>
+            {rowData.active ? "فعال" : "غیرفعال"}
           </div>
         );
       },
     },
     {
       title: "کار",
-      field: "Job",
+      field: "isCheckListDone",
       cellStyle: {
         textAlign:" left !important",
         transform:"translateX(12px)",
@@ -362,8 +366,8 @@ const[ filter,setFilter]=useState([])
       },
       render: (rowData) => {
         return (
-          <div className={rowData.Job ? "jobActive" : "jobDeactive"}>
-            {rowData.Job ? (
+          <div >
+            {rowData.isCheckListDone ? (
               <img src="/assets/checklist-svgrepo-com-1.svg" />
             ) : (
               <img src="/assets/checklist-svgrepo-com.svg" />
@@ -374,7 +378,7 @@ const[ filter,setFilter]=useState([])
     },
     {
       title: "بیماری",
-      field: "Sick",
+      field: "isHiveSick",
       cellStyle: {
         textAlign:" center !important",
         transform:"translateX(10px)",
@@ -392,8 +396,8 @@ const[ filter,setFilter]=useState([])
       },
       render: (rowData) => {
         return (
-          <div className={rowData.Job ? "sickActive" : "sickDeactive"}>
-            {rowData.Job ? (
+          <div className={rowData.isHiveSick ? "sickActive" : "sickDeactive"}>
+            {rowData.isHiveSick ? (
               <img src="/assets/sickness-svgrepo-com-1.svg" />
             ) : (
               <img src="/assets/sickness-svgrepo-com-2.svg" />
@@ -404,7 +408,7 @@ const[ filter,setFilter]=useState([])
     },
     {
       title: "ملکه",
-      field: "Queen",
+      field: "hasQueen",
       cellStyle: {
         textAlign:" center !important",
         transform:"translateX(10px)",
@@ -422,11 +426,11 @@ const[ filter,setFilter]=useState([])
       },
       render: (rowData) => {
         return (
-          <div className={rowData.Job ? "jobActive" : "jobDeactive"}>
-            {rowData.Job ? (
-              <img src="/assets/Component 24 – 6.svg" />
-            ) : (
+          <div className={rowData.hasQueen ? "jobActive" : "jobDeactive"}>
+            {rowData.hasQueen ? (
               <img src="/assets/Component 24 – 5.svg" />
+            ) : (
+              <img src="/assets/Component 24 – 6.svg" />
             )}
           </div>
         );
@@ -553,33 +557,110 @@ const[ filter,setFilter]=useState([])
     setdownloadOpen(true);
   };
   const downloadExcel = () => {
-    const newData = Company.map((row) => {
-      delete row.tableData;
-      return row;
+    const type=(e)=>{
+      console.log("eeeee",e);
+      switch (e) {
+        case 'Garden':
+          return "باغ"
+        case 'Farm':
+           return "مزرعه"
+        case 'Mountain':
+          return "مرتع کوهستانی"
+        case 'Plain':
+          return "دشت"
+          case 'Other':
+            return "سایر"
+        default:
+          return null
+      }
+    }
+    const queenType=(e)=>{
+      console.log("eeeee",e);
+      switch (e) {
+        case 'Urban':
+          return "شهری"
+        case 'Village':
+          return "روستایی"
+        default:
+          return null
+      }
+    }
+
+
+    const newData = hiveTable.map((row) => {
+      // bug
+      // delete row.tableData;
+      console.log("row", row);
+      console.log("name", row.name);
+
+      console.log("regionType", row.regionType);
+      console.log("123413412342",type(row.type));
+      console.log("123413412342",queenType(row.queenType));
+      return {
+        "نام کندو":row.title,
+        " نوع کندو": type(row.type),
+        "نژاد ملکه":queenType(row.queenType),
+        "تاریخ ایجاد":row.dateCreated,
+        "وضعیت برد":row.active,
+        "کار":row.isCheckListDone,
+        "بیماری":row.isHiveSick,
+        "ملکه":row.hasQueen  
+      };
     });
     const workSheet = XLSX.utils.json_to_sheet(newData);
     const workBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workBook, workSheet, "students");
+    XLSX.utils.book_append_sheet(workBook, workSheet, "Apiary");
     //Buffer
     let buf = XLSX.write(workBook, { bookType: "xlsx", type: "buffer" });
     //Binary string
     XLSX.write(workBook, { bookType: "xlsx", type: "binary" });
     //Download
-    XLSX.writeFile(workBook, "StudentsData.xlsx");
+    XLSX.writeFile(workBook, "لیست کندوها.xlsx");
   };
+  
   const [searched, setSearched] = useState();
+////////////////////////////////////////////////////////////////////
+const changeApiary =async(index)=>{
+  console.log("salam id",index);
+  setLoading(true);
+  try {
+    const { data: response } = await axios.get(
+      `http://185.202.113.165:3000/api/hive/get-by-apiary/${index}`,
+      {
+        headers: {
+          token: `${token}`,
+        },
+      },
+    );
+    console.log("show response hive", response.data);
+    setHiveTable(response.data);
+    setLoading(false);
+   
+  } catch (error) {
+    if (error.response?.status === 401) {
+      localStorage.clear("id_token")
+      console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
+      window.location.reload()
+    }else{
+    console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
+    // history.push("/app/Error")
+    // window.location.reload()
+   }}
+}
 
+  ///////////////////////////////////////////////////////////////////////////////
   const requestSearch = (searchedVal) => {
-    const filteredRows = Company.map((rows) => {
+    const filteredRows = hiveTable.map((rows) => {
       return rows.name;
       // console.log("rows.title",rows)
     }).filter((row) => {
       return row.toLowerCase().includes(searchedVal.toLowerCase());
     });
-    setCompany(filteredRows);
-    console.log("Company", Company);
+    setHiveTable(filteredRows);
+    console.log("hiveTable", hiveTable);
     console.log("filteredRows", filteredRows);
   };
+  
   const cancelSearch = () => {
     setSearched("");
     requestSearch(searched);
@@ -589,16 +670,16 @@ const[ filter,setFilter]=useState([])
       // const response = await axios.delete(`https://sdfsdf/${selectedRows[0].id}`)
       console.log("selectedRows",selectedRows[0].id)
    
-    const updatedData = Company.filter((row) => !selectedRows.includes(row));
-    setCompany(updatedData);
+      const updatedData = hiveTable.filter((row) => !selectedRows.includes(row));
+      setHiveTable(updatedData);
   }};
 
   const onRowDelete= async(rowData) => {
     if(window.confirm("آیا از حدف این مورد اطمینان دارید؟")){
       // const response = await axios.delete(`https://sdfsdf/${rowData.id}`)
       console.log("rowData",rowData.id)
-    const updatedData=Company.filter((row)=>![rowData].includes(row))
-    setCompany(updatedData);
+      const updatedData=hiveTable.filter((row)=>![rowData].includes(row))
+      setHiveTable(updatedData);
   }};
 
   const downloadPdf = () => {
@@ -607,7 +688,7 @@ const[ filter,setFilter]=useState([])
     doc.autoTable({
       theme: "grid",
       columns: columns.map((col) => ({ ...col, dataKey: col.field })),
-      body: Company,
+      body: hiveTable,
     });
     doc.setFont('Iran-Sans'); // set custom font
     doc.save("table.pdf");
@@ -634,11 +715,14 @@ const[ filter,setFilter]=useState([])
     </Link>,
 
 
-       <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold",fontSize:"1.2rem"}}>{id}</p>
+         <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold",fontSize:"1.2rem"}}>{Apiary_id}</p>
 
   ];
+
   return (
-    
+    <>
+    {loading?
+          <div className={classes.Loading}> <Loading color="orange" /></div>:   
     <div className={classes.container}>
       <Breadcrumbs 
         separator={<NavigateBefore fontSize="large" style={{color:"rgb(227, 156, 0)"}} />}
@@ -654,7 +738,7 @@ const[ filter,setFilter]=useState([])
         }}
         title=""
         style={{ borderRadius: "25px",marginTop:"16px" }}
-        data={Company}
+        data={hiveTable}
         columns={columns}
         onSelectionChange={(rows) => setSelectedRows(rows)}
         localization={{
@@ -721,21 +805,26 @@ const[ filter,setFilter]=useState([])
 
         actions={[
           {
-
-            icon: () => <Select
+            icon: () => 
+            <Select
                labelId="demo-simple-select-label"
                variant="outlined"
                Id='demo-simple-select'
-               style={{width:150}}
-               value={Hive}
+               placeholder="زنبورستان "
+               style={{width:"auto"}}
+            defaultValue={Apiary_id}
+              //  defaultValue={Hive}
                className={classes.inputSelect}
                onChange={(e)=>setHive(e.target.value)}>
-                 {filter.map((el)=>([
-                     <Link to={`/app/ApiaryList/Beehive/${el.name.split(' ').join('-')}`} style={{color:"#000",textDecoration:"none",cursor: "pointer"}}><MenuItem  value={el.name} >{el.name}</MenuItem></Link>
+                 { 
+                 filter.map((el)=>([
+                   <MenuItem  onClick={()=>changeApiary(el._id)} value={el.name}>
+                     <Link to={`/app/ApiaryList/Beehive/${el._id}`} style={{color:"#000",textDecoration:"none",cursor: "pointer"}} onClick={() => localStorage.setItem("Apiary_id",el.name)}>
+                      {el.name}
+                     </Link>
+                    </MenuItem>
                  ]))}
-
             </Select>,
-
             isFreeAction: true,
           },            
           // console.log("rowData", rowData);
@@ -1088,6 +1177,8 @@ const[ filter,setFilter]=useState([])
         </Modal>
       </div>
     </div>
+    }
+     </>
   );
 }
 

@@ -111,6 +111,15 @@ const handleChangenumber=(event)=>{
 
   return (
     <div className="containerLogin">
+      <div className={classes.candoTopItem} > 
+          <div className={classes.candoLogo} >
+            <img src="/assets/Component 24 – 53.svg" alt="عکس زنبور" width="50px"/>
+          </div>
+          <div style={{marginRight:"16px"}}>
+            <h1 className={classes.candoTopTitle}>کندووان پلاس</h1>
+            <h2 className={classes.candoTopsubTitle}>مدیریت هوشمند زنبورستان</h2>
+          </div>
+        </div>
       <div className="contact-form">
      {errMsg? <p ref={errRef} className="errmsg" aria-live="assertive">{errMsg}</p>:null}
 

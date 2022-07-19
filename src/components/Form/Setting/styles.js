@@ -107,8 +107,9 @@ color:"red"
     border:"none",
     borderRadius: "10px",
     "& label.Mui-focused": {
-      color: "rgb( 26 ,115, 233) !important",
+      color: "orange !important",
       borderRadius: "10px",
+      fontWeight:"bold"
     },
     "& .MuiInput-underline:after": {
       borderBottomColor: "red !important",

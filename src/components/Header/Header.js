@@ -105,7 +105,10 @@ export default function Header(props) {
   var [isSearchOpen, setSearchOpen] = useState(false);
   const firstName = localStorage.getItem("profileName");
   console.log("firstName",firstName);
+  const email = localStorage.getItem("email")
+  const lastname = localStorage.getItem("lastname")
 
+    console.log("email",email);
 
 //   const token = localStorage.getItem("id_token")
 
@@ -157,7 +160,7 @@ export default function Header(props) {
           )}
         </IconButton>
         <Typography variant="h6" weight="medium" className={classes.logotype}>
-ادمین پنل
+پنل کاربری
         </Typography>
         <div className={classes.grow} />
         <div
@@ -216,8 +219,20 @@ export default function Header(props) {
           disableAutoFocusItem
         >
           <div className={classes.profileMenuUser}>
-            <Typography variant="h4" weight="medium" style={{fontFamily:"Shabnam"}}>
+          <Typography variant="h6" weight="medium">
               پنل کاربری
+            </Typography>
+          
+          </div>
+          <div className={classes.profileMenuUser}>
+            <Typography variant="p" weight="medium">
+            نام: {firstName} {lastname}
+            </Typography>
+          
+          </div>
+          <div className={classes.profileMenuUser}>
+            <Typography variant="p" weight="medium">
+            ایمیل: {email}
             </Typography>
           
           </div>

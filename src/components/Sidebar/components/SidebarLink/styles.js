@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/styles";
 
 export default makeStyles(theme => ({
   link: {
+    margin:"14px 24px",
     textDecoration: "none",
     "&:hover, &:focus": {
       backgroundColor: theme.palette.background.light,
@@ -49,10 +50,14 @@ export default makeStyles(theme => ({
     paddingLeft: "6px",
     color: "#fff",
     transition: theme.transitions.create(["opacity", "color"]),
-    fontSize: 16,
+    fontSize: 15,
   },
   linkTextActive: {
     color: "#fff",
+  },
+  linkActive1: {
+    backgroundColor: theme.palette.background.light,
+    
   },
   linkTextHidden: {
     opacity: 0,
@@ -74,10 +79,13 @@ export default makeStyles(theme => ({
     marginBottom: theme.spacing(2),
   },
   divider: {
-    position:"absolut",
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(4),
-    height: 1,
     backgroundColor: "#fff",
+    position:"absolute",
+     width:"90%",
+     margin:"0 16px",
+     height:"1px",
+     bottom:"110px",
   },
 }));

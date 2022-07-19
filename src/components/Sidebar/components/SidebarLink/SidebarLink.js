@@ -36,15 +36,97 @@ export default function SidebarLink({
     link &&
     (location.pathname === link || location.pathname.indexOf(link) !== -1);
 
-  if (type === "title")
+    if (type === "title")
     return (
-      <Typography
-        className={classnames(classes.linkText, classes.sectionTitle, {
-          [classes.linkTextHidden]: !isSidebarOpened,
+      <div style={{position:"absolute",bottom:"20px",width:"100%"}}>
+      
+      <ListItem
+      button
+      component={link && Link}
+      to={link}
+      className={classes.link}
+      classes={{
+        root: classnames(classes.linkRoot, {
+          [classes.linkActive]: isLinkActive && !nested,
+          [classes.linkNested]: nested,
+        }),
+      }}
+      disableRipple
+    >
+      <ListItemIcon
+        className={classnames(classes.linkIcon, {
+          [classes.linkIconActive]: isLinkActive,
         })}
       >
-        {label}
-      </Typography>
+        {nested ? <Dot color={isLinkActive && "#000"} /> : icon}
+     
+
+      </ListItemIcon>
+      <ListItemText
+        classes={{
+          primary: classnames(classes.linkText, {
+            [classes.linkTextActive]: isLinkActive,
+            [classes.linkTextHidden]: !isSidebarOpened,
+          }),
+        }}
+        primary={label}
+      />
+    </ListItem>
+      </div>
+
+      // <Typography
+      //   className={classnames(classes.linkText, classes.sectionTitle, {
+      //     [classes.linkTextHidden]: !isSidebarOpened,
+      //   })}
+      // >
+      //   {label}
+      // </Typography>
+    );
+    if (type === "title2")
+    return (
+      <div style={{position:"absolute",bottom:"70px",width:"100%"}}>
+      
+      <ListItem
+      button
+      component={link && Link}
+      to={link}
+      className={classes.link}
+      classes={{
+        root: classnames(classes.linkRoot, {
+          [classes.linkActive]: isLinkActive && !nested,
+          [classes.linkNested]: nested,
+        }),
+      }}
+      disableRipple
+    >
+      <ListItemIcon
+        className={classnames(classes.linkIcon, {
+          [classes.linkIconActive]: isLinkActive,
+        })}
+      >
+        {nested ? <Dot color={isLinkActive && "#000"} /> : icon}
+     
+
+      </ListItemIcon>
+      <ListItemText
+        classes={{
+          primary: classnames(classes.linkText, {
+            [classes.linkTextActive]: isLinkActive,
+            [classes.linkTextHidden]: !isSidebarOpened,
+          }),
+        }}
+        primary={label}
+      />
+    </ListItem>
+      </div>
+
+      // <Typography
+      //   className={classnames(classes.linkText, classes.sectionTitle, {
+      //     [classes.linkTextHidden]: !isSidebarOpened,
+      //   })}
+      // >
+      //   {label}
+      // </Typography>
     );
 
   if (type === "divider") return <Divider className={classes.divider} />;

@@ -71,7 +71,7 @@ function EditPhoneNumber() {
    <Grid className={classes.main}>
     <TextField
       onClick={steps[activeStep].id == steps.length - 1 ? handleNext : console.log("inja code daryaft mishe mire server baraye taeed")}  className={classes.buttonLogin}
-      style={{direction:"ltr"}}
+      // style={{direction:"ltr"}}
       className={classes.TextField}
       label={steps[activeStep].id == steps.length - 1 ? '    شماره تلفن   ' : '   کد تایید را وارد نمایید'  }
       onChange={e => setLoginValue(e.target.value)}
@@ -91,7 +91,7 @@ function EditPhoneNumber() {
 
    
 
-    <Button onClick={steps[activeStep].id == steps.length - 1 ? onSubmit : console.log("inja code daryaft mishe mire server baraye taeed")}  className={classes.buttonLogin} >{steps[activeStep].id == steps.length - 1 ? 'ثبت تمام پاسخ ها' : ' دریافت کد تایید'}</Button>
+    <Button onClick={steps[activeStep].id == steps.length - 1 ? onSubmit : console.log("inja code daryaft mishe mire server baraye taeed")}  className={classes.buttonLogin} >{steps[activeStep].id == steps.length - 1 ? 'ثبت' : ' دریافت کد تایید'}</Button>
 
 {/* 
 <Button

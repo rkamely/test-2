@@ -53,7 +53,23 @@ export default makeStyles((theme) => ({
  marginTop:"16px",
     color: "red",
   },
-
+  candoTopItem:{
+    position:"absolute",
+    display:"flex",
+    fontSize:"0.5rem",
+    color:"#000",
+    alignItems:"center",
+    justifyContent:"center",
+    margin:"16px"
+  },
+  candoTopTitle: {
+    fontWeight:"600",
+    color:"#000"
+  },
+  candoTopsubTitle:{
+    fontWeight:"600",
+    color:"rgb(52,52,52)"
+  },
   //   /////////////////////////
   //   container :{
   //     // backgroundImage: `url(/Untitled-1.png)`,    backgroundPosition : "center center",

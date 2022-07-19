@@ -283,17 +283,18 @@ function ApiaryList() {
   
       },
 
+
       render: (rowData) => {
         console.log("rowData", rowData);
-        const str = rowData.name.split(' ').join('-') 
-        console.log();
+        const str = rowData.name
+
         return (
           <Link
             to={{
-              pathname: `/app/ApiaryList/Beehive/${str}`,
+              pathname: `/app/ApiaryList/Beehive/${rowData._id}`,
               state: { state:rowData.name },
             }}
-            onClick={() =>localStorage.setItem("Apiary_id",rowData._id)}
+            onClick={() =>localStorage.setItem("Apiary_id",str)}
             className="title" 
             // style={{ display: "flex" }}
           >
