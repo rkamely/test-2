@@ -46,7 +46,7 @@ function Layout(props) {
   console.log("auth ro see kon to layout",auth);
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} >
       <>
         <div className={classes.headerSidebar}>
           <Header history={props.history} />
