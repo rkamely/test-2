@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
-  <g id="status-info-information-svgrepo-com" transform="translate(1 1.088)">
-    <circle id="Ellipse_18" data-name="Ellipse 18" cx="12.5" cy="12.5" r="12.5" transform="translate(-1 -1.088)"/>
-    <rect id="Rectangle_62" data-name="Rectangle 62" width="2.933" height="2.933" rx="1.467" transform="translate(13.158 7.43) rotate(180)" fill="#fff"/>
-    <path id="Path_265" data-name="Path 265" d="M23.933,31.529a.978.978,0,0,1-.978-.978V24.2h-.978a.978.978,0,0,1,0-1.956h1.956a.978.978,0,0,1,.978.978v7.334A.978.978,0,0,1,23.933,31.529Z" transform="translate(-11.731 -12.563)" fill="#fff"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"><path d="M12.5,0A12.5,12.5,0,1,1,0,12.5,12.5,12.5,0,0,1,12.5,0Z" fill="#fff"/><rect width="2.933" height="2.933" rx="1.467" transform="translate(14.158 8.518) rotate(180)" fill="#353535"/><path d="M23.933,31.529a.978.978,0,0,1-.978-.978V24.2h-.978a.978.978,0,0,1,0-1.956h1.956a.978.978,0,0,1,.978.978v7.334A.978.978,0,0,1,23.933,31.529Z" transform="translate(-10.73 -11.475)" fill="#353535"/></svg>

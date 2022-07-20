@@ -143,9 +143,9 @@ function SmsVerification(props) {
     <div className="containerLogin">
        <div className={classes.candoTopItem} > 
           <div className={classes.candoLogo} >
-            <img src="/assets/Component 24 – 53.svg" alt="عکس زنبور" width="50px"/>
+          <img src="/assets/Kandoo1+-Black.svg" alt="عکس زنبور" width="100px" />
           </div>
-          <div style={{marginRight:"16px"}}>
+          <div >
             <h1 className={classes.candoTopTitle}>کندووان پلاس</h1>
             <h2 className={classes.candoTopsubTitle}>مدیریت هوشمند زنبورستان</h2>
           </div>

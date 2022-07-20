@@ -58,7 +58,7 @@ export default function Dashboard(props) {
           <Grid item lg={3}  xs={12} className={classes.CardItem}>
             <Widget
               color="secondary"
-              Img="/assets/hive-svgrepo-com (-1.svg"
+              Img="/assets/Group 11021.png"
               title="تعداد زنبورستان"
               upperTitle
               style={{ fontWeight: 600,   borderRadius:"32px"}}
@@ -119,7 +119,7 @@ export default function Dashboard(props) {
           <Grid item lg={3} xs={12} className={classes.CardItem}>
             <Widget
               color="secondary"
-              Img="/assets/hive-svgrepo-com (3).svg"
+              Img="/assets/Group 408.svg"
               title="تعداد کندو"
               upperTitle
               style={{ fontWeight: 600}}
@@ -177,7 +177,7 @@ export default function Dashboard(props) {
           <Grid item lg={3}  xs={12} className={classes.CardItem}>
             <Widget
               color="secondary"
-              Img="/assets/Group 11039.svg"
+              Img="/assets/Group 409.svg"
               title="تعداد بازدید"
               upperTitle
               style={{ fontWeight: 600}}
@@ -235,7 +235,7 @@ export default function Dashboard(props) {
           <Grid item lg={3} xs={12} className={classes.CardItem}>
             <Widget
               color="secondary"
-              Img="/assets/power-svgrepo-com-1.svg"
+              Img="./assets/Group 410.svg"
               title="میانگین قدرت"
               upperTitle
               style={{ fontWeight: 600}}
@@ -293,7 +293,7 @@ export default function Dashboard(props) {
           <Grid item lg={3}  xs={12} className={classes.CardItem}>
             <Widget
               color="secondary"
-              Img="/assets/12425575071619191957.svg"
+              Img="/assets/Group 11021.svg"
               title="تعداد کارها"
               upperTitle
               style={{ fontWeight: 600}}
