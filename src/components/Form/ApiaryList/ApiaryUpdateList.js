@@ -214,7 +214,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
           <Divider className={classes.Divider}/>
 
           <Grid container spacing={1} className={classes.container}>
-            <div >
+            <div className={classes.main} >
               <Grid item xs={12} sm={12} className={classes.inputText}>
                 <div className={classes.input}>
                   <label className={classes.label}>نام زنبورستان</label>
