@@ -38,7 +38,7 @@ export default function SidebarLink({
 
     if (type === "title")
     return (
-      <div style={{position:"absolute",bottom:"0px",width:"100%",    background:"rgb( 53 53 53)"}}>
+      <div style={{position:"absolute",bottom:"45px",width:"100%",    background:"rgb( 53 53 53)"}}>
       
       <ListItem
       button
@@ -84,7 +84,7 @@ export default function SidebarLink({
     );
     if (type === "title2")
     return (
-      <div style={{position:"absolute",bottom:"45px",width:"100%" ,   background:"rgb( 53 53 53)"}}>
+      <div style={{position:"absolute",bottom:"0px",width:"100%" ,   background:"rgb( 53 53 53)"}}>
       
       <ListItem
       button

@@ -4,7 +4,8 @@ const drawerWidth = 280;
 
 export default makeStyles(theme => ({
   sidebarList:{
-    position:"relative"
+    position:"relative",
+    overflow:"hidden"
  },
   menuButton: {
     marginLeft: 12,
@@ -50,8 +51,9 @@ export default makeStyles(theme => ({
   },
   ///////////sidebar top
   candoLogo:{
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(0),
     marginBottom:theme.spacing(3),
+    
   },
   candoTopSidebar:{
      display:"flex",

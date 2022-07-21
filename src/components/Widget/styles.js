@@ -46,7 +46,7 @@ export default makeStyles(theme => ({
     boxShadow: 'none'
   },
   Img:{
-    width:"16px ",
-    height:"16px"
+    width:"30px ",
+    height:"30px"
   }
 }));

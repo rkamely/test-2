@@ -47,7 +47,7 @@ const structure = [
   // { id: -4, label: "زنبورستان", link: "/app/user", icon:<img src="/assets/hive-svgrepo-com (1).svg"/> },
   { id: -4, label: "زنبورستان", link: "/app/ApiaryList", icon:<img src="/assets/hive-svgrepo-com (1).svg"/> },
 
-  { id: -3, label: "پشتیبانی", link: "/app/Support", icon:<img src="/assets/customer-support-symbol-svgrepo-com-1.svg"/>, 
+  { id: -3, label: "پشتیبانی", link: "/app/Support", icon:<img src="/assets/Path 221.svg"/>, 
   children: [
     { label: "پیام های من", link: "/app/Support",color:"secondary" },
     { label: "پیام های پشتیبانی", link: "/app/SupportMessage" },
@@ -84,7 +84,7 @@ const structure = [
     id: 3,
     label: "تقویم کاری",
     link: "/app/JobCalender",
-    icon: <NotificationsIcon />,
+    icon: <img src="/assets/XMLID_2_.svg"/>,
   },
 
   { id: 10, type: "divider"  ,backgroundColor:"#fff"},
@@ -93,14 +93,14 @@ const structure = [
     type: 'title',
     label: "درباره ما",
     link:"/app/AboutUs",
-    icon: <Dot size="small" color="secondary" />,
+    icon: <img src="/assets/status-info-information-svgrepo-com.svg"/>,
   },
   {
     id: 6,
     type: 'title2',
     label: "تنظیمات",
     link: "/app/setting",
-    icon: <Dot size="small" color="secondary" />,
+    icon: <img src="/assets/setting-svgrepo-com.svg"/>,
   },
 ];
 
@@ -163,7 +163,7 @@ const changeIcon=()=>{
 
        {icon?<div className={classes.candoTopSidebar}> 
           <div className={classes.candoLogo}>
-            <img src="/assets/Component 24 – 53.svg" alt="عکس زنبور" width="50px"/>
+            <img src="/assets/Kandoo1+-Black.svg" alt="عکس زنبور" width="100px" style={{marginRight: "-16px"}}/>
           </div>
           <div>
             <h1 className={classes.candoTopSidebarTitle}>کندوان پلاس</h1>
