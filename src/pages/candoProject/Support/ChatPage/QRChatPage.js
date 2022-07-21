@@ -495,8 +495,9 @@ let btnClass = classNames({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        height: "100%",
+        height: "100vh",
         position:"relative",
+        overflowY:"hidden"
 
       }}
     >

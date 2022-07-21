@@ -1101,7 +1101,8 @@ function ApiaryList() {
           <div>
             <Dialog
               PaperProps={{
-                style: { borderRadius: 12, width: "60%" },
+                style: { borderRadius: 12, width: "60%", overflowY:"hidden"
+              },
               }}
               open={open}
               onClose={handleClose}
@@ -1124,7 +1125,7 @@ function ApiaryList() {
           <div>
             <Dialog
               PaperProps={{
-                style: { borderRadius: 12, width: "60%" },
+                style: { borderRadius: 12, width: "60%",overflowY:"hidden" },
               }}
               open={openEdit}
               onClose={handleClose}
