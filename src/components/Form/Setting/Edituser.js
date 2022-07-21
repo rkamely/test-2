@@ -1,5 +1,5 @@
 import { Avatar, Box, Divider, FormControlLabel, FormGroup, Grid, Modal, Switch, TextField, Typography } from '@material-ui/core';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -18,8 +18,13 @@ import Title from '../../Typography/Title/Title';
 import { withStyles } from '@material-ui/styles';
 import IOSSwitch from './IOSSwitch';
 import axios from 'axios';
+import { useUserDispatch, signOut } from "../../../context/UserContext";
 
-function Edituser() {
+function Edituser(props) {
+  var userDispatch = useUserDispatch()
+  const firstNames = localStorage.getItem("profileName");
+    const mobile = localStorage.getItem("data")
+    const lastname = localStorage.getItem("lastname")
     const [open, setOpen] = useState(false);
 
     const classes = useStyles();
@@ -75,19 +80,32 @@ function Edituser() {
 
     const token = localStorage.getItem("id_token")
 
-    try{
-      const response = axios.get("http://185.202.113.165:3000/api/auth/me",{
-        'token': `${token}` ,
-         
-      })
-      console.log("response profile",response.data);
-      console.log(JSON.stringify(response))       
-  
-  }catch (err) {
-  
-  
-  
-  }
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const { data: response } = await axios.get(
+            `http://185.202.113.165:3000/api/auth/me`,
+            {
+              headers: {
+                token: `${token}`,
+              },
+            },
+          );
+          console.log("show response profile", response);
+        } catch (error) {
+          if (error.response?.status === 401) {
+            localStorage.clear("id_token")
+            console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
+            window.location.reload()
+          }else{
+          console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
+          // history.push("/app/Error")
+          // window.location.reload()
+         }}
+        // setLoading(false);
+      };
+      fetchData();
+    }, []);
     const {
         register,
         control,
@@ -152,12 +170,12 @@ function Edituser() {
       <div style={{ fontSize: "16px", fontWeight: "bold" ,display:"flex",alignItems:"center",justifyContent:"center"}}>
           <Avatar src='./assets/HeaderProfile.svg' style={{width:"60px",height:"60px",marginLeft:"8px"}}/>
           <div>
-              <p>شاهین رضوی</p>
-              <p style={{color:"rgb( 102 ,103 ,104)"}}>۰۹۱۲۳۴۵۶۷۸۹</p>
+          <p>{firstNames} {lastname}</p>
+              <p style={{color:"rgb( 102 ,103 ,104)",fontSize:"0.8rem"}}>0{mobile}</p>
           </div>
       </div>
       <div style={{backgroundColor:"rgba(227 ,23 ,10, 0.11)",padding:"8px 16px",borderRadius:"8px",
-           color:"rgb( 227, 23 ,10)",fontWeight:600}}>خروج از حساب کاربری</div>
+           color:"rgb( 227, 23 ,10)",fontWeight:600,cursor:"pointer"}}  onClick={() => signOut(userDispatch, props.history)}>خروج از حساب کاربری</div>
     </Grid>
 
     <Grid xs={12} style={{padding:" 32px ", borderRadius:"12px",     backgroundColor:"#fff",marginTop:"32px"}}>

@@ -37,6 +37,7 @@ import {
 } from "../../context/LayoutContext";
 import { useUserDispatch, signOut } from "../../context/UserContext";
 import axios from "axios";
+import {  useHistory } from "react-router-dom";
 
 const messages = [
   {
@@ -93,7 +94,7 @@ const notifications = [
 
 export default function Header(props) {
   var classes = useStyles();
-
+ 
   // global
   var layoutState = useLayoutState();
   var layoutDispatch = useLayoutDispatch();
@@ -103,28 +104,21 @@ export default function Header(props) {
 
   var [profileMenu, setProfileMenu] = useState(null);
   var [isSearchOpen, setSearchOpen] = useState(false);
+  const history=useHistory()
   const firstName = localStorage.getItem("profileName");
   console.log("firstName",firstName);
   const email = localStorage.getItem("email")
   const lastname = localStorage.getItem("lastname")
 
     console.log("email",email);
+    console.log("email",firstName);
 
-//   const token = localStorage.getItem("id_token")
-
-//   try{
-//     const response = axios.get("http://185.202.113.165:3000/api/auth/me",{
-//       'token': `${token}` ,
-       
-//     })
-//     console.log("response profile",response.data);
-//     console.log(JSON.stringify(response))       
-
-// }catch (err) {
-
-
-
-// }
+   if(!firstName){
+    //  console.log("login dispach access",!!firstName);
+    localStorage.clear("id_token")
+    userDispatch({ type: "SIGN_OUT_SUCCESS" });
+    history.push("/login");
+   }
 
 
 
