@@ -684,11 +684,71 @@ function ApiaryList() {
     setdownloadOpen(true);
   };
   const downloadExcel = () => {
+    const regionVegetation=(e)=>{
+      console.log("eeeee",e);
+      switch (e) {
+        case 'Garden':
+          return "باغ"
+        case 'Farm':
+           return "مزرعه"
+        case 'Mountain':
+          return "مرتع کوهستانی"
+        case 'Plain':
+          return "دشت"
+          case 'Other':
+            return "سایر"
+        default:
+          return null
+      }
+    }
+    const regionType=(e)=>{
+      console.log("eeeee",e);
+      switch (e) {
+        case 'Urban':
+          return "شهری"
+        case 'Village':
+          return "روستایی"
+        default:
+          return null
+      }
+    }
+    const apiaryUsage=(e)=>{
+      console.log("eeeee",e);
+      switch (e) {
+        case 'Queen':
+          return "پرورش ملکه"
+        case 'Royal':
+          return "ژل رویال"
+        case 'Honey':
+          return "تولید عسل"
+        case 'Other':
+            return "سایر"
+        default:
+          return null
+      }
+    }
+
     const newData = ApiariesList.map((row) => {
       // bug
       // delete row.tableData;
-      console.log("row", row.tableData);
-      return row;
+      console.log("row", row);
+      console.log("name", row.name);
+
+      console.log("regionType", row.regionType);
+      console.log("123413412342",regionVegetation(row.regionVegetation));
+      console.log("123413412342",regionType(row.regionType));
+      console.log("123413412342",apiaryUsage(row.apiaryUsage));
+      return {
+        "زنبورستان":row.name,
+        " پوشش گیاهی منطقه": regionVegetation(row.regionVegetation),
+        "نوع منطقه":regionType(row.regionType),
+        "استان":row.name,
+        "شهر":row.name,
+        "کاربرد":apiaryUsage(row.apiaryUsage),
+        "وضعیت نامناسب":row.hivesWithBadCondition,
+        "نیازمند بازدید":row.hivesWithGoodCondition,
+        "وضعیت مناسب":row.hivesWithVisitRequired      
+      };
     });
     const workSheet = XLSX.utils.json_to_sheet(newData);
     const workBook = XLSX.utils.book_new();
@@ -1131,7 +1191,7 @@ function ApiaryList() {
             <div onClick={downloadPdf} className="downloadPdf">
               <img src="/assets/pdf-svgrepo-com (1).svg" width="100px" height="100px"/>
             </div>
-              <div onClick={downloadPdf} className="downloadPdf">
+              <div onClick={downloadExcel} className="downloadPdf">
                 <img src="/assets/excel-svgrepo-com.svg" width="100px"  height="100px"/>
               </div>
               </Box>

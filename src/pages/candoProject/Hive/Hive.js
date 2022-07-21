@@ -278,9 +278,21 @@ const[ filter,setFilter]=useState([])
           //  paddingRight:"20px"
       },
       render: (rowData) => {
-        return <p className="description">{rowData.type}</p>;
+        switch (rowData.type) {
+          case 'Langestrot':
+            return <p className="description">لانگستروت</p>
+          case 'Dadanet':
+            return <p className="description">دادانت</p>
+          case 'Aquarium':
+            return <p className="description">آکواریومی</p>
+          case 'Other':
+              return <p className="description">سایر</p>
+          default:
+            return null
+        }
       },
     },
+
     {
       title: " نژاد ملکه",
       field: "queenType",
@@ -298,7 +310,20 @@ const[ filter,setFilter]=useState([])
            colot:"slateGrey",
       },
       render: (rowData) => {
-        return <p className="description">{rowData.queenType}</p>;
+        switch (rowData.queenType) {
+          case 'Native':
+            return <p className="description">بومی</p>
+          case 'Karnika':
+            return <p className="description">کارنیکا</p>
+          case 'Italian':
+            return <p className="description">ایتالیایی</p>
+          case 'Caucasian':
+              return <p className="description">قفقازی</p>
+          case 'Other':
+                return <p className="description">سایر</p>
+          default:
+            return null
+        }
       },
     },
     {
@@ -652,27 +677,32 @@ const[ filter,setFilter]=useState([])
     const type=(e)=>{
       console.log("eeeee",e);
       switch (e) {
-        case 'Garden':
-          return "باغ"
-        case 'Farm':
-           return "مزرعه"
-        case 'Mountain':
-          return "مرتع کوهستانی"
-        case 'Plain':
-          return "دشت"
-          case 'Other':
+        case 'Langestrot':
+          return "لانگستروت"
+        case 'Dadanet':
+          return "دادانت"
+        case 'Aquarium':
+          return "آکواریومی"
+        case 'Other':
             return "سایر"
         default:
           return null
+      
       }
     }
     const queenType=(e)=>{
       console.log("eeeee",e);
       switch (e) {
-        case 'Urban':
-          return "شهری"
-        case 'Village':
-          return "روستایی"
+        case 'Native':
+          return "بومی"
+        case 'Karnika':
+          return "کارنیکا"
+        case 'Italian':
+          return "ایتالیایی"
+        case 'Caucasian':
+            return "قفقازی"
+        case 'Other':
+              return "سایر"
         default:
           return null
       }
