@@ -16,6 +16,8 @@ import { useAppApolloClient } from "./config/apolloClient";
 import { ApolloProvider } from "@apollo/client";
 import AuthContext from "../pages/context/AuthProvider";
 import axios from "../pages/api/axios";
+import "./App.css"
+
 // import { createBrowserHistory } from "history";
 
 // const history = createBrowserHistory();
