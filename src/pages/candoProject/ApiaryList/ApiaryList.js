@@ -304,111 +304,124 @@ function ApiaryList() {
       },
     },
 
-    // {
-    //   title: " استان",
-    //   field: "State",
-    //   cellStyle: {
-    //     textAlign: "right",
-    //   },
-    //   headerStyle: {
-    //     textAlign: "right",
-    //   },
-    //   render: (rowData) => {
-    //     return <p className="description">{rowData.State}</p>;
-    //   },
-    // },
-    // {
-    //   title: " شهر",
-    //   field: "city",
-    //   cellStyle: {
-    //     textAlign: "right",
-    //   },
-    //   headerStyle: {
-    //     textAlign: "right",
-    //   },
-    //   render: (rowData) => {
-    //     return <p className="description">{rowData.city}</p>;
-    //   },
-    // },
-    // {
-    //   title: "تعداد کندو",
-    //   field: "Hives",
-    //   cellStyle: {
-    //     textAlign: "right",
-    //   },
-    //   headerStyle: {
-    //     textAlign: "right",
-    //   },
-    //   render: (rowData) => {
-    //     return <p className="description">{rowData.Hives}</p>;
-    //   },
-    // },
     {
-      title: "پوشش گیاهی منطقه",
-      field: "regionVegetation",
+      title: " استان",
+      field: "State",
       cellStyle: {
-        // textAlign:" right !important",
-
         fontSize:"0.8rem",
-        // justifyContent:"center",
       },
-
       headerStyle: {
         textAlign: "right",
 
-           fontSize:"0.8rem",
-           color:"rgb( 102, 103, 104)",
-           fontWeight:"600",
-
+        fontSize:"0.8rem",
+        color:"rgb( 102, 103, 104)",
+        fontWeight:"600",
       },
       render: (rowData) => {
-        switch (rowData.regionVegetation) {
-          case 'Garden':
-            return <p className="description">باغ</p>
-          case 'Farm':
-            return <p className="description">مزرعه</p>
-          case 'Mountain':
-            return <p className="description">مرتع کوهستانی</p>
-          case 'Plain':
-            return <p className="description">دشت</p>
-            case 'Other':
-              return <p className="description">سایر</p>
-          default:
-            return null
-        }
-        // return <p className="description">{rowData.regionVegetation}</p>;
+        return <p className="description">{rowData.State}</p>;
       },
     },
     {
-      title: "نوع منطقه",
-      field: "regionType",
+      title: " شهر",
+      field: "city",
       cellStyle: {
-        textAlign:" center !important",
-
         fontSize:"0.8rem",
-        justifyContent:"center",
       },
-
       headerStyle: {
         textAlign: "right",
-        whiteSpace: "nowrap",
-           fontSize:"0.8rem",
-           color:"rgb( 102, 103, 104)",
-           fontWeight:"600", 
-          // paddingRight:"20px"
+
+        fontSize:"0.8rem",
+        color:"rgb( 102, 103, 104)",
+        fontWeight:"600",
       },
       render: (rowData) => {
-        switch (rowData.regionType) {
-          case 'Urban':
-            return <p className="description">شهری</p>
-          case 'Village':
-            return <p className="description">روستایی</p>
-          default:
-            return null
-        }
-        // return <p className="description">{rowData.apiaryUsage}</p>;
+        return <p className="description">{rowData.city}</p>;
       },
     },
+    {
+      title: " آب و هوا",
+      field: "city",
+      cellStyle: {
+        fontSize:"0.8rem",
+      },
+      headerStyle: {
+        textAlign: "right",
+
+        fontSize:"0.8rem",
+        color:"rgb( 102, 103, 104)",
+        fontWeight:"600",
+      },
+      render: (rowData) => {
+        return <p className="description">{rowData.city}</p>;
+      },
+    },
+
+    // {
+    //   title: "پوشش گیاهی منطقه",
+    //   field: "regionVegetation",
+    //   cellStyle: {
+    //     // textAlign:" right !important",
+
+    //     fontSize:"0.8rem",
+    //     // justifyContent:"center",
+    //   },
+
+    //   headerStyle: {
+    //     textAlign: "right",
+
+    //        fontSize:"0.8rem",
+    //        color:"rgb( 102, 103, 104)",
+    //        fontWeight:"600",
+
+    //   },
+    //   render: (rowData) => {
+    //     switch (rowData.regionVegetation) {
+    //       case 'Garden':
+    //         return <p className="description">باغ</p>
+    //       case 'Farm':
+    //         return <p className="description">مزرعه</p>
+    //       case 'Mountain':
+    //         return <p className="description">مرتع کوهستانی</p>
+    //       case 'Plain':
+    //         return <p className="description">دشت</p>
+    //         case 'Other':
+    //           return <p className="description">سایر</p>
+    //       default:
+    //         return null
+    //     }
+    //     // return <p className="description">{rowData.regionVegetation}</p>;
+    //   },
+    // },
+    // {
+    //   title: "نوع منطقه",
+    //   field: "regionType",
+    //   cellStyle: {
+    //     textAlign:" center !important",
+
+    //     fontSize:"0.8rem",
+    //     justifyContent:"center",
+    //   },
+
+    //   headerStyle: {
+    //     textAlign: "right",
+    //     whiteSpace: "nowrap",
+    //        fontSize:"0.8rem",
+    //        color:"rgb( 102, 103, 104)",
+    //        fontWeight:"600", 
+    //       // paddingRight:"20px"
+    //   },
+    //   render: (rowData) => {
+    //     switch (rowData.regionType) {
+    //       case 'Urban':
+    //         return <p className="description">شهری</p>
+    //       case 'Village':
+    //         return <p className="description">روستایی</p>
+    //       default:
+    //         return null
+    //     }
+    //     // return <p className="description">{rowData.apiaryUsage}</p>;
+    //   },
+    // },
     {
       title: "کاربرد",
       field: "apiaryUsage",
@@ -441,6 +454,24 @@ function ApiaryList() {
           default:
             return null
         }
+      },
+    },
+    {
+      title: "تعداد کندو",
+      field: "Hives",
+      cellStyle: {
+        textAlign: "right",
+        fontSize:"0.8rem",
+      },
+      headerStyle: {
+        textAlign: "right",
+
+        fontSize:"0.8rem",
+        color:"rgb( 102, 103, 104)",
+        fontWeight:"600",
+      },
+      render: (rowData) => {
+        return <p className="description">{rowData.Hives}</p>;
       },
     },
     {

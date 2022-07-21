@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 import useStyles from "./styles";
 import MapBox from "../../../components/MapBox/MapBox";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -39,8 +39,8 @@ const ApiaryAddList = ({ ApiariesList, setApiariesList, onClose, refresh,setStat
       .required(" پر کردن این فیلد الزامی است "),
     regionVegetation: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
     regionType: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
-    // select3: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
-    // select4: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
+    state: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
+    city: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
     apiaryUsage: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
   });
   const {
@@ -101,7 +101,48 @@ if(status){
     overflow: "hidden",
     marginTop: "10px",
   };
+  const[states,setStates]=useState([])
 
+  ///////////////////////////////////////////////////////////////////////////////////////////
+  //استان
+  useEffect(() => {
+    const fetchData = async () => {
+      // setLoading(true);
+      try {
+        const { data: response } = await axios.get(
+          "https://iran-locations-api.vercel.app/api/v1/states"
+        ).then((res)=>setStates(res.data))
+        console.log("show response state1", response.data.data);
+
+      } catch (error) {
+       console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+//////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////
+  //شهر
+  const[city,setCities]=useState([])
+  const changeState= async (state)=>{
+   
+    console.log("state cities",state);
+    try {
+      const { data: response } = await axios.get(
+        `https://iran-locations-api.vercel.app/api/v1/cities?state=${state}`
+      ).then((res)=> setCities( res.data.cities))
+      // console.log("show response city12", response.data.data.cities);
+
+    } catch (error) {
+     console.log(error);
+    }
+  
+  }
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
   let undefin = !localStorage.getItem("isStaff");
   let isStaff = localStorage.getItem("isStaff");
   console.log("is staff 1", isStaff);
@@ -154,7 +195,7 @@ if(status){
                 </Typography>
               </Grid>
 
-              <Grid item xs={12} sm={12} className={classes.inputText}>
+              {/* <Grid item xs={12} sm={12} className={classes.inputText}>
                 <div className={classes.input}>
                   <label className={classes.label}>وضعیت مناسب</label>
                   <TextField
@@ -225,7 +266,9 @@ if(status){
                 >
                   {errors.hivesWithVisitRequired?.message}
                 </Typography>
-              </Grid>
+              </Grid> */}
+
+              
 
               <Grid item xs={12} sm={12} className={classes.Select}>
                 <div className={classes.input}>
@@ -295,71 +338,73 @@ if(status){
                 </Typography>
               </Grid>
 
-              {/* <Grid item xs={12} sm={12}>
-            <div className={classes.input}>
-              <label className={classes.label}>استان</label>
-              <Select
-                className={classes.inputSelect}
-                required
-                variant="outlined"
-                {...register("select3")}
-                error={errors.select3 ? true : false}
+              <Grid item xs={12} sm={12}>
+                <div className={classes.input}>
+                  <label className={classes.label}>استان</label>
+                  <Select
+                    className={classes.inputSelect}
+                    required
+                    variant="outlined"
+                    {...register("state")}
+                    error={errors.state ? true : false}
+                    defaultValue="Honey"
+                    // onChange={(e) =>
+                    //   setValue("select", e.target.value, { shouldValidate: true })
+                    // } // Using setValue
+                  >
+                    {states?.map((option) => {
+                      return (
+                        <MenuItem key={option.name} value={option.name} onClick={()=>changeState(option.name)}>
+                          {option.label ?? option.name}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </div>
+                {/* {errors.select && <p>{errors.select.message}</p>} */}
+                <Typography
+                  variant="inherit"
+                  color="textSecondary"
+                  className={classes.errorTitle}
+                >
+                  {errors.state?.message}
+                </Typography>
+              </Grid>
 
-                // onChange={(e) =>
-                //   setValue("select", e.target.value, { shouldValidate: true })
-                // } // Using setValue
-              >
-                {options?.map((option) => {
-                  return (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label ?? option.value}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </div>
-            {/* {errors.select && <p>{errors.select.message}</p>} */}
-              {/* <Typography
-              variant="inherit"
-              color="textSecondary"
-              className={classes.errorTitle}
-            >
-              {errors.select3?.message}
-            </Typography>
-          </Grid>  */}
 
-              {/* <Grid item xs={12} sm={12}>
-            <div className={classes.input}>
-              <label className={classes.label}>شهر </label>
-              <Select
-                className={classes.inputSelect}
-                required
-                variant="outlined"
-                {...register("select4")}
-                error={errors.select4 ? true : false}
-
-                // onChange={(e) =>
-                //   setValue("select", e.target.value, { shouldValidate: true })
-                // } // Using setValue
-              >
-                {options?.map((option) => {
-                  return (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label ?? option.value}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </div>
-            {/* {errors.select && <p>{errors.select.message}</p>} */}
-              {/* <Typography
-              variant="inherit"
-              color="textSecondary"
-              className={classes.errorTitle}
-            >
-              {errors.select4?.message}
-            </Typography>
-          </Grid>  */}
+              <Grid item xs={12} sm={12}>
+                <div className={classes.input}>
+                  <label className={classes.label}>شهر</label>
+                  <Select
+                    className={classes.inputSelect}
+                    required
+                    variant="outlined"
+                    {...register("city")}
+                    error={errors.city ? true : false}
+                    defaultValue="Honey"
+                    // onChange={(e) =>
+                    //   setValue("select", e.target.value, { shouldValidate: true })
+                    // } // Using setValue
+                  >
+                    {city?.map((option) => {
+                      console.log("option city state",option.name);
+                      return (
+                        <MenuItem key={option.name} value={option.name}>
+                          {option.label ?? option.name}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </div>
+                {/* {errors.select && <p>{errors.select.message}</p>} */}
+                <Typography
+                  variant="inherit"
+                  color="textSecondary"
+                  className={classes.errorTitle}
+                >
+                  {errors.city?.message}
+                </Typography>
+              </Grid>
 
               <Grid item xs={12} sm={12}>
                 <div className={classes.input}>
