@@ -104,6 +104,7 @@ export default function Header(props) {
 
   var [profileMenu, setProfileMenu] = useState(null);
   var [isSearchOpen, setSearchOpen] = useState(false);
+  
   const history=useHistory()
   const firstName = localStorage.getItem("profileName");
   console.log("firstName",firstName);

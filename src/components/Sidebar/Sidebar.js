@@ -171,14 +171,14 @@ const changeIcon=()=>{
           </div>
         </div>:null} 
         <Divider style={
-          {backgroundColor:"#fff"}
+          {backgroundColor:"#fff",marginTop:"-24px"}
         }/>,
 
 
 
 
         {structure.map((link) => (          
-          <SidebarLink     
+          <SidebarLink    
             key={link.id}
             location={location}
             isSidebarOpened={isSidebarOpened}

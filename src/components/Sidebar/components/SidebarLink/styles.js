@@ -86,6 +86,6 @@ export default makeStyles(theme => ({
      width:"90%",
      margin:"0 16px",
      height:"1px",
-     bottom:"110px",
+     bottom:"108px",
   },
 }));

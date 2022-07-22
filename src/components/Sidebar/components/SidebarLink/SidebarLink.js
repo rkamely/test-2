@@ -84,7 +84,7 @@ export default function SidebarLink({
     );
     if (type === "title2")
     return (
-      <div style={{position:"absolute",bottom:"0px",width:"100%" ,   background:"rgb( 53 53 53)"}}>
+      <div style={{position:"absolute",bottom:"0px",width:"100%" ,   background:"rgb( 53 53 53)"}} >
       
       <ListItem
       button
@@ -134,6 +134,7 @@ export default function SidebarLink({
   if (link && link.includes('http')) {
     return (
       <ListItem
+      
         button
         className={classes.link}
         classes={{
@@ -176,6 +177,7 @@ export default function SidebarLink({
         component={link && Link}
         to={link}
         className={classes.link}
+        
         classes={{
           root: classnames(classes.linkRoot, {
             [classes.linkActive]: isLinkActive && !nested,
@@ -209,7 +211,7 @@ export default function SidebarLink({
     );
 
   return (
-    <>
+    <div >
       <ListItem
         button
         component={link && Link}
@@ -243,7 +245,7 @@ export default function SidebarLink({
           className={classes.nestedList}
         > 
 
-          <List className={classes.bardia} component="div" disablePadding style={{borderRight:"2px solid rgb( 227 156 0)", transform:"translateX(-50px)"}}>
+          <List  component="div" disablePadding style={{borderRight:"2px solid rgb( 227 156 0)", transform:"translateX(-50px)",marginTop:"-8px"}} >
 
             {children.map(childrenLink => (
               <SidebarLink
@@ -258,7 +260,7 @@ export default function SidebarLink({
           </List>
         </Collapse>
       )}
-    </>
+    </div>
   );
 
   // ###########################################################

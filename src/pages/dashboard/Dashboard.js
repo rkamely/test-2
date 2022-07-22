@@ -22,6 +22,7 @@ import { useQuery, gql } from "@apollo/client";
 // import MapBox from "../../components/MapBox/MapBox";
 import Calender from "../candoProject/Calender/Calender";
 import axios from "axios";
+import { useUserDispatch } from "../../context/UserContext";
 const MapBox = React.lazy(() => import('../../components/MapBox/MapBox'));
 
 
@@ -38,25 +39,35 @@ export default function Dashboard(props) {
   //   }))
   const token = localStorage.getItem("id_token")
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data: response } = await axios.get(
-          `http://185.202.113.165:3000/api/question`,
-          {
-            headers: {
-              token: `${token}`,
-            },
-          },
-        );
-        console.log("show response profile", response);
-      } catch (error) {
-        console.log(error)
-      }
-      // setLoading(false);
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const { data: response } = await axios.get(
+  //         `http://185.202.113.165:3000/api/question`,
+  //         {
+  //           headers: {
+  //             token: `${token}`,
+  //           },
+  //         },
+  //       );
+  //       console.log("show response profile", response);
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //     // setLoading(false);
+  //   };
+  //   fetchData();
+  // }, []);
+  const history=useHistory()
+  var userDispatch = useUserDispatch();
+  const firstName = localStorage.getItem("profileName");
+   if(!firstName){
+    //  console.log("login dispach access",!!firstName);
+    localStorage.clear("id_token")
+    userDispatch({ type: "SIGN_OUT_SUCCESS" });
+    history.push("/login");
+   }
+
 
   return (
     <Grid className={classes.container} >
