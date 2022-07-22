@@ -82,9 +82,9 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
          const responseData = response.data;
          reset({ 
           name: responseData.name ,
-          hivesWithGoodCondition: responseData.hivesWithGoodCondition,
-          hivesWithBadCondition: responseData. hivesWithBadCondition,
-          hivesWithVisitRequired: responseData.hivesWithVisitRequired,
+          // hivesWithGoodCondition: responseData.hivesWithGoodCondition,
+          // hivesWithBadCondition: responseData. hivesWithBadCondition,
+          // hivesWithVisitRequired: responseData.hivesWithVisitRequired,
           regionVegetation: responseData.regionVegetation,
           regionType: responseData.regionType,
           apiaryUsage: responseData.apiaryUsage,
@@ -166,7 +166,48 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
   //       setIserror(true)
   //     })
   // }, [])
+  const[states,setStates]=useState([])
 
+  ///////////////////////////////////////////////////////////////////////////////////////////
+    //استان
+    useEffect(() => {
+      const fetchData = async () => {
+        // setLoading(true);
+        try {
+          const { data: response } = await axios.get(
+            "https://iran-locations-api.vercel.app/api/v1/states"
+          ).then((res)=>setStates(res.data))
+          console.log("show response state1", response.data.data);
+  
+        } catch (error) {
+         console.log(error);
+        }
+      };
+      fetchData();
+    }, []);
+  //////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    //شهر
+    const[city,setCities]=useState([])
+    const changeState= async (state)=>{
+     
+      console.log("state cities",state);
+      try {
+        const { data: response } = await axios.get(
+          `https://iran-locations-api.vercel.app/api/v1/cities?state=${state}`
+        ).then((res)=> setCities( res.data.cities))
+        // console.log("show response city12", response.data.data.cities);
+  
+      } catch (error) {
+       console.log(error);
+      }
+    
+    }
+  
+  
+  
+  
+  //////////////////////////////////////////////////////////////////////////////////////////////
 
   const option = [  
     { label: "باغ", value: "Garden" },
@@ -240,7 +281,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
                 </Typography>
               </Grid>
 
-              <Grid item xs={12} sm={12} className={classes.inputText} >
+              {/* <Grid item xs={12} sm={12} className={classes.inputText} >
                 <div className={classes.input} >
                   <label className={classes.label}>وضعیت مناسب</label>
                   <TextField
@@ -313,7 +354,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
                 >
                   {errors.hivesWithVisitRequired?.message}
                 </Typography>
-              </Grid>
+              </Grid> */}
 
 
               <Grid item xs={12} sm={12} className={classes.Select}>
@@ -442,6 +483,74 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
                   {errors.select4?.message}
                 </Typography>
               </Grid>  */}
+              <Grid item xs={12} sm={12}>
+                <div className={classes.input}>
+                  <label className={classes.label}>استان</label>
+                  <Select
+                    className={classes.inputSelect}
+                    required
+                    variant="outlined"
+                    {...register("state")}
+                    error={errors.state ? true : false}
+                    defaultValue="Honey"
+                    // onChange={(e) =>
+                    //   setValue("select", e.target.value, { shouldValidate: true })
+                    // } // Using setValue
+                  >
+                    {states?.map((option) => {
+                      return (
+                        <MenuItem key={option.name} value={option.name} onClick={()=>changeState(option.name)}>
+                          {option.label ?? option.name}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </div>
+                {/* {errors.select && <p>{errors.select.message}</p>} */}
+                <Typography
+                  variant="inherit"
+                  color="textSecondary"
+                  className={classes.errorTitle}
+                >
+                  {errors.state?.message}
+                </Typography>
+              </Grid>
+
+
+              <Grid item xs={12} sm={12}>
+                <div className={classes.input}>
+                  <label className={classes.label}>شهر</label>
+                  <Select
+                    className={classes.inputSelect}
+                    required
+                    variant="outlined"
+                    {...register("city")}
+                    error={errors.city ? true : false}
+                    defaultValue="Honey"
+                    // onChange={(e) =>
+                    //   setValue("select", e.target.value, { shouldValidate: true })
+                    // } // Using setValue
+                  >
+                    {city?.map((option) => {
+                      console.log("option city state",option.name);
+                      return (
+                        <MenuItem key={option.name} value={option.name}>
+                          {option.label ?? option.name}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </div>
+                {/* {errors.select && <p>{errors.select.message}</p>} */}
+                <Typography
+                  variant="inherit"
+                  color="textSecondary"
+                  className={classes.errorTitle}
+                >
+                  {errors.city?.message}
+                </Typography>
+              </Grid>
+
 
               <Grid item xs={12} sm={12}>
                 <div className={classes.input}>
