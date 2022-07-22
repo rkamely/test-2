@@ -12,7 +12,7 @@ import Loading from "../../../../components/Loading/Loading"
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Close, Description, NavigateBefore } from "@material-ui/icons";
+import { Close, Description, InsertLink, NavigateBefore } from "@material-ui/icons";
 import Title from "../../../../components/Typography/Title/Title";
 import classNames from "classnames";
 import fileDownload from "js-file-download";
@@ -25,6 +25,7 @@ function SupportPage() {
   const [newTicketStatus , setNewTicketStatus] = useState([])
   const [ image , setImage ] = useState('')
   const [progress, setProgress] = useState(0);
+  const[deleteSelectedFile,setDeleteSelectedFile]=useState(true)
 
   const { id } = useParams()
   const[loading,setLoading]=useState(true)
@@ -97,7 +98,9 @@ function SupportPage() {
       register,
       handleSubmit,
       reset,
-      watch,
+      watch,     
+     resetField,
+
       formState: { errors },
     } = useForm({
       resolver: yupResolver(validationSchema),
@@ -110,44 +113,50 @@ function SupportPage() {
       reader.readAsDataURL(file)
   }
     const onSubmit = async(data,e) => {
+      if(data.text || !data.file.length==0){
+        e.preventDefault()
+        const fd = new FormData()
+  
+        console.log("data.file[0]",data.file[0])
 
-      e.preventDefault()
-      const fd = new FormData()
-
-      console.log("data.file[0]",data.file[0])
-      if(data.file[0]){
-        console.log("true");
-      fd.append('file',data.file[0])
-      }else{
-     fd.append('text',data.text)
-    }
- 
-      if(data.file.length > 0){
-          convert2base64(data.file[0])
-      }
-      const response = await axios.post(`http://185.202.113.165:3000/api/ticket/user-add-message/${id}`, fd ,
-      {
-        headers: {
-          'token': `${token}` ,
-           "Content-Type": "multipart/form-data",
-
-        },
-        onUploadProgress:ProgressEvent => {
-          let percent = Math.round(ProgressEvent.loaded/ProgressEvent.total*100)+"%"
-          console.log("percent",percent);
-          console.log("در حال بارگذاری"+Math.round(ProgressEvent.loaded/ProgressEvent.total*100)+"%");
-          setProgress(percent)
+        fd.append('file',data.file[0])
+        
+       fd.append('text',data.text)
+      
+   
+        if(data.file.length > 0){
+            convert2base64(data.file[0])
         }
-        // headers: {
-        //   "Content-Type": "multipart/form-data",
-        // },
-      },).then((respon) => setNewTicket(respon.data.data.messages))
-      // console.log("response adduserticket",response.data.data.messages)
-      setProgress(0)
-      reset({
-        text: "",
-        file:""
-      })
+        const response = await axios.post(`http://185.202.113.165:3000/api/ticket/user-add-message/${id}`, fd ,
+        {
+          headers: {
+            'token': `${token}` ,
+             "Content-Type": "multipart/form-data",
+  
+          },
+          onUploadProgress:ProgressEvent => {
+            let percent = Math.round(ProgressEvent.loaded/ProgressEvent.total*100)+"%"
+            console.log("percent",percent);
+            console.log("در حال بارگذاری"+Math.round(ProgressEvent.loaded/ProgressEvent.total*100)+"%");
+            setProgress(percent)
+          }
+          // headers: {
+          //   "Content-Type": "multipart/form-data",
+          // },
+        },).then((respon) => setNewTicket(respon.data.data.messages))
+        // console.log("response adduserticket",response.data.data.messages)
+        setProgress(0)
+        reset({
+          text: "",
+          file:""
+        })
+        if(!deleteSelectedFile){
+          setDeleteSelectedFile(true)
+        }
+      }else{
+         console.log("هیچ موردی فرستاده نشد!");
+      }
+     
       // window.location.reload()
         
     };
@@ -234,7 +243,10 @@ function SupportPage() {
   //     Time: "12:14",
   //   },
   // ]);
-
+  const removeFileSelected=()=>{
+    setDeleteSelectedFile(!deleteSelectedFile)
+    resetField("file");
+  }
   const closeTicket= async ()=>{
 
     if(window.confirm("با بستن این تیکت دیگر امکان ارسال پیام در این چت باکس را ندارید")){
@@ -374,42 +386,64 @@ const statusTickets=(e)=>{
             {errors.text?.message}
         </Typography> */}
 
-      <Grid
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          marginTop:"8px"
-        }}
-      >
-           <div>
-              <Button
-              
+  {/* //file upload      */}
+  <div style={{display:"flex",alignItems:"center"}}>
+              {deleteSelectedFile?  <Button
                variant="contained"
-              component="label"
-              style={{fontFamily:"Shabnam"}}
+               component="label"
+               style={{fontFamily:"Shabnam",width:"130px",display:"flex",justifyContent:"space-between",alignItems:"center"}}
+               onChange={()=>setDeleteSelectedFile(!deleteSelectedFile)}
               >
-                بارگذاری فایل
+             
+                <div >ساخت QR</div>
+               <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",transform:"rotate(-45deg)"}}><InsertLink/></div> 
                 <input
                   type="file"
                   {...register("file")}
                   id="fileuploaded"
                   hidden
                 />
-              </Button>
-              {!watch("file")||watch("file").length===0?null:<strong style={{marginRight:"16px"}}>{watch("file")[0].name}</strong>}
+              </Button>:
+              <div style={{border:"2px solid black",padding:"5px",display:"flex"}}>
+              <div style={{display:"flex",alignItems:"center",gap:"8px"}}>
+               {!watch("file")||watch("file").length===0 ?null:<strong style={{marginRight:"16px"}}>{watch("file")[0].name}</strong>}
+              <Close   onClick={()=>removeFileSelected(!deleteSelectedFile)} style={{cursor:"pointer"}}/>
+              </div>
+              <Button
+              variant="contained"
+              component="label"
+              style={{fontFamily:"Shabnam",display:"flex",justifyContent:"center",alignItems:"center"}}
+             >
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",transform:"rotate(-45deg)"}}><InsertLink/></div> 
+               <input
+                 type="file"
+                 {...register("file")}
+                 id="fileuploaded"
+                 hidden
+               />
+             </Button> 
+             
+
+              </div>
+              }
+              {/* {!watch("file")||watch("file").length===0 ?null:<strong style={{marginRight:"16px"}}>{watch("file")[0].name}</strong>} */}
                 {/* <input type='file'  id="fileuploaded" {...register("file")} style={{cursor:"pointer"}}/>
                 <label htmlFor='fileuploaded' style={{cursor:"pointer"}}>انتخاب فایل</label> */}
-            </div>
-
+            </div>   
         {/* {errors.file && <div className='error'>{errors.file.message}</div>} */}
-        <Button type="submit" className={classes.ButtonSubmitPage} onClick={handleSubmit(onSubmit)} disabled={progress!==0}>ثبت</Button>
-      </Grid>
-     {(progress!==0 && progress > "120%")?<LodaingQr value={progress} setProgress={setProgress}/>:null} 
-     {/* {!watch("file")||watch("file").length===0 && progress!==0?null:<div style={{marginTop:"16px" , color:"red"}}>لطفا منتظر بمانید...</div>}  */}
-     {!watch("file")||watch("file").length!==0 && progress==0?null:<div style={{marginTop:"16px" , color:"red"}}>لطفا منتظر بمانید...</div>} 
 
-      <Grid lg={2}  onClick={closeTicket} style={{cursor:"pointer",display: "flex",justifyContent: "flex-start",alignItems: "center" ,marginTop:"16px"}}><Close color="secondary"/><div>بستن تیکت</div> </Grid>
+
+<div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+      
+      {/* {!watch("file")||watch("file").length===0 && progress!==0?null:<div style={{marginTop:"16px" , color:"red"}}>لطفا منتظر بمانید...</div>}  */}
+      {/* {console.log("watch(file).length!==0",watch("file").length!==0)} */}
+
+      <Grid lg={2} onClick={closeTicket} style={{cursor:"pointer",display: "flex",justifyContent: "flex-start",alignItems: "center" ,marginTop:"16px" }}><Close color="secondary"/><div>بستن تیکت</div></Grid>
+      <Button type="submit" className={classes.ButtonSubmitPage} onClick={handleSubmit(onSubmit)} disabled={progress!==0} >ثبت</Button>
+
+</div>
+{progress!==0  ? <LodaingQr value={progress} setProgress={setProgress}/>:null} 
+{(!watch("file")||!watch("file").length!==0)&& progress==0   ?null:<div style={{marginTop:"16px" , color:"red"}}>لطفا منتظر بمانید...</div>} 
 
       </form>
     </div>
@@ -495,7 +529,7 @@ let btnClass = classNames({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        height: "100vh",
+        height: "100%",
         position:"relative",
         overflowY:"hidden"
 

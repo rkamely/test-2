@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Box, Grid, Paper } from "@material-ui/core";
 import { styled, useTheme } from "@material-ui/styles";
 
@@ -21,6 +21,7 @@ import Title from "../../components/Typography/Title/Title";
 import { useQuery, gql } from "@apollo/client";
 // import MapBox from "../../components/MapBox/MapBox";
 import Calender from "../candoProject/Calender/Calender";
+import axios from "axios";
 const MapBox = React.lazy(() => import('../../components/MapBox/MapBox'));
 
 
@@ -34,7 +35,28 @@ export default function Dashboard(props) {
   //     padding: theme.spacing(1),
   //     textAlign: 'center',
   //     color: theme.palette.text.secondary,
-  //   }));
+  //   }))
+  const token = localStorage.getItem("id_token")
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data: response } = await axios.get(
+          `http://185.202.113.165:3000/api/question`,
+          {
+            headers: {
+              token: `${token}`,
+            },
+          },
+        );
+        console.log("show response profile", response);
+      } catch (error) {
+        console.log(error)
+      }
+      // setLoading(false);
+    };
+    fetchData();
+  }, []);
 
   return (
     <Grid className={classes.container} >
