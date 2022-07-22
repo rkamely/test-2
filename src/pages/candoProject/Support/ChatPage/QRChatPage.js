@@ -26,6 +26,7 @@ function SupportPage() {
   const [ image , setImage ] = useState('')
   const [progress, setProgress] = useState(0);
   const[deleteSelectedFile,setDeleteSelectedFile]=useState(true)
+  const[Message,setMessage]=useState("")
 
   const { id } = useParams()
   const[loading,setLoading]=useState(true)
@@ -119,9 +120,11 @@ function SupportPage() {
   
         console.log("data.file[0]",data.file[0])
 
-        fd.append('file',data.file[0])
-        
-       fd.append('text',data.text)
+        if(data.file[0]){
+          fd.append('file',data.file[0])
+        }else{
+          fd.append('text',data.text)
+        }
       
    
         if(data.file.length > 0){
@@ -146,6 +149,10 @@ function SupportPage() {
         },).then((respon) => setNewTicket(respon.data.data.messages))
         // console.log("response adduserticket",response.data.data.messages)
         setProgress(0)
+        setMessage("ارسال با موفقت انجام شد!")
+        const timer = setTimeout(() => {
+          setMessage("")
+        }, 3000);
         reset({
           text: "",
           file:""
@@ -444,6 +451,7 @@ const statusTickets=(e)=>{
 </div>
 {progress!==0  ? <LodaingQr value={progress} setProgress={setProgress}/>:null} 
 {(!watch("file")||!watch("file").length!==0)&& progress==0   ?null:<div style={{marginTop:"16px" , color:"red"}}>لطفا منتظر بمانید...</div>} 
+<div style={{marginTop:"8px",color:"green"}}>{Message}</div>
 
       </form>
     </div>
