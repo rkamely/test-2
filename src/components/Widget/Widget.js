@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   Paper,
   Grid,
+  Typography,
 } from "@material-ui/core";
 import { MoreVert as MoreIcon } from "@material-ui/icons";
 import classnames from "classnames";
@@ -50,7 +51,7 @@ export default function Widget({
               <Grid item style={{ width: "100%"}}>
                 <Grid item xs={12} container alignItems={"center"}>
                  <div > <img src={Img}  className={classes.Img}/></div>
-                  <Title title={title} variant="p" />
+                  <Typography  style={{color:"rgb( 227 ,156 ,0)",marginRight:"8px",fontWeight:"900",fontSize:"0.8rem"}} variant="p" >{title}</Typography>
                 </Grid>
               </Grid>
             </React.Fragment>

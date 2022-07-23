@@ -54,6 +54,12 @@ const structure = [
     { label: "سوالات متداول", link: "/app/FrequentlyQuestions"  },
   ],
 },
+{
+  id: -2,
+  label: "بازدید دستی",
+  link: "/app/Question",
+  icon:<img src="/assets/megaphone-svgrepo-com.svg"/>,
+},
   {
     id: -2,
     label: "تازه ها",
@@ -143,7 +149,7 @@ const changeIcon=()=>{
       <div/>
 
 
-      <List className={classes.sidebarList}>
+      <List className={classes.sidebarList} >
       <div className={classes.mobileBackButton}>
         <IconButton onClick={() => toggleSidebar(layoutDispatch)}> 
           {icon?<ArrowForwardRounded 
