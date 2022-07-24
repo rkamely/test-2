@@ -456,6 +456,8 @@ import AddJob from "../../../../components/Form/JobUser/AddJob";
             toolbar: {
               nRowsSelected: "{0} مورد انتخاب شد",
               searchPlaceholder: "جستجو ",
+              addRemoveColumns:"اضافه یا حذف کردن ستون‌ها",
+              showColumnsTitle:"اضافه یا حذف کردن ستون‌ها",
             },
             header: {
               actions: "عملیات",

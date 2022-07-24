@@ -1,7 +1,7 @@
 
 import { Breadcrumbs, Button, Grid, TextareaAutosize, TextField, Typography } from "@material-ui/core";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import useStyles from "./Style";
 import {
   Link,
@@ -27,6 +27,7 @@ function SupportPage() {
   const [progress, setProgress] = useState(0);
   const[deleteSelectedFile,setDeleteSelectedFile]=useState(true)
   const[Message,setMessage]=useState("")
+  const chatRef = useRef(null);
 
   const { id } = useParams()
   const[loading,setLoading]=useState(true)
@@ -38,6 +39,9 @@ function SupportPage() {
     // text: yup
     //   .string()
     //   .required("لطفا درخواست خود را وارد نمایید."),
+      });
+      useEffect(() => {
+        chatRef.current?.scrollIntoView({ behavior: 'smooth' });
       });
     /////////////////////////////////////////////////////////////////////////////////////////
     const token = localStorage.getItem("id_token")
@@ -701,7 +705,7 @@ let btnClass = classNames({
 
 
       {/* bottom Page */}
-    {statusTickets()}
+      <div ref={chatRef}>{statusTickets()}</div>
 
             </div> 
     }

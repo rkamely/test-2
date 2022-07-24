@@ -88,7 +88,7 @@ const FirstQuestion = () => {
       <ErrorMessage
         errors={errors}
         name="Frame"
-        render={({ message }) => <p>{message}</p>}
+        render={({ message }) => <p style={{color:"red"}}>{message}</p>}
       />
     </>
   );

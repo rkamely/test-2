@@ -13,7 +13,8 @@ export default makeStyles((theme) => ({
     // background: "rgba(0, 0, 0, 0.15)",
     zIndex: 200,
     paddingRight:" 64px",
-    paddingLeft:" 64px"
+    paddingLeft:" 64px",
+
   },
 
   container:{
@@ -31,13 +32,19 @@ export default makeStyles((theme) => ({
     },
   },
   main:{
-
     [theme.breakpoints.down('md')]: {
       width:"100%",
 
     
     },
 
+  },
+  formContainer:{
+    display:"flex",
+    flexDirection:"column",
+    justifyContent:"center",
+    alignItems:"center",
+    marginTop:"100px"
   },
   Title:{
     fontWeight: "bold" ,
@@ -63,6 +70,10 @@ export default makeStyles((theme) => ({
     position:"absolute",
     right:"0",
     left:"0"
+  },
+  FormLable:{
+    fontWeight:600,
+    fontFamily:"Shabnam"
   },
   // Button1: {
   //   marginTop: "8px",
@@ -108,7 +119,7 @@ export default makeStyles((theme) => ({
     borderRadius: "16px",
     backgroundColor: "rgb( 26 ,115, 233)",
     color:"#fff",
-
+    width:"100px",
     boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
     fontWeight: "bold",
     fontSize: "16px",
@@ -126,7 +137,7 @@ export default makeStyles((theme) => ({
     padding: "12px 30px",
     borderRadius: "16px",
     backgroundColor: "rgb( 255 255 255)",
-
+    width:"100px",
     boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
     fontWeight: "bold",
     fontSize: "16px",
@@ -139,7 +150,91 @@ export default makeStyles((theme) => ({
   },
 
 
+  TextField:{
+    width: "100%",
+    background:"rgb( 244 244 244)",
+    border:"none",
+    borderRadius: "10px",
+    "& label.Mui-focused": {
+      color: "rgb( 26 ,115, 233) !important",
+      borderRadius: "10px",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "red !important",
+      borderRadius: "10px",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        border: "none",
+        borderRadius: "10px",
+      },
 
+      "&.Mui-focused fieldset": {
+        border: "2px solid rgb(255 ,176, 4) !important",
+        borderRadius: "10px",
+
+      },
+    },
+    [theme.breakpoints.down('md')]: {
+      width:"100%"
+        },
+  },
+  input: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems:"center",
+    marginTop: "16px",
+    fontFamily: "Shabnam",
+    border: "none",
+    "& label.Mui-focused": {
+      border:"5px solid red",
+      color: "red !important",
+      borderRadius: "10px",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "2px solid red !important",
+      borderRadius: "10px",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        border: "none", 
+        borderRadius: "10px",
+      },
+
+      "&.Mui-focused fieldset": {
+        border: "2px solid red !important",
+        borderRadius: "10px",  
+        border: "2px solid rgb(255 ,176, 4) !important",
+
+      },
+    },
+    [theme.breakpoints.down('md')]: {
+width:"100%",display:"flex",flexDirection:"column"
+    },
+
+  },
+  inputSelect: {
+    width: "200px",
+    marginTop: "8px",
+    display:"flex",
+    height:"40px",
+    backgroundColor: "rgb( 244, 244 ,244)",
+    boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
+    borderRadius: "10px",
+    border: "none",
+    // height: "40px",
+    fontFamily: "Shabnam",
+
+    "&	.MuiSelect-outlined":{
+    
+      borderRadius: "10px",
+    },
+
+    [theme.breakpoints.down('md')]: {
+      width:"100%",
+      marginTop:"8px"
+        },
+  },
 
 
 }));

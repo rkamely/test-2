@@ -903,6 +903,8 @@ function ApiaryList() {
               toolbar: {
                 nRowsSelected: "{0} مورد انتخاب شد",
                 searchPlaceholder: "جستجو زنبورستان",
+                addRemoveColumns:"اضافه یا حذف کردن ستون‌ها",
+                showColumnsTitle:"اضافه یا حذف کردن ستون‌ها",
               },
 
               header: {

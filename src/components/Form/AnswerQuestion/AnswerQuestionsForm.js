@@ -9,6 +9,7 @@ import {
     Button,
     Select,
     MenuItem,
+    FormLabel,
   } from "@material-ui/core";
   import useStyles from "./styles";
   import MapBox from "../../MapBox/MapBox";
@@ -20,9 +21,12 @@ import {
   import axios from "axios";
   import ApiaryList from "../../../pages/candoProject/ApiaryList/ApiaryList";
 import { ContentHook } from "@fullcalendar/react";
-  
+import { useParams, useHistory } from "react-router-dom";
+import { ErrorMessage } from "@hookform/error-message";
+
   const AnswerQuestionsForm = ({ newQuestion, onClose, refresh,setStatus,status }) => {
     const classes = useStyles();
+    const[QuestionForm,setQuestionForm]=useState([])
     const validationSchema = yup.object().shape({
     //   name: yup
     //     .string()
@@ -53,11 +57,35 @@ import { ContentHook } from "@fullcalendar/react";
       resolver: yupResolver(validationSchema),
     });
     const token = localStorage.getItem("id_token");
+    const Question_id = localStorage.getItem("Question_id")
+    console.log("Question_id",Question_id);
+      ///////////////////////////////////////////////////////////////////////////////////////////
   
+  useEffect(() => {
+    const fetchData = async () => {
+      // setLoading(true);
+      try {
+        const { data: response } = await axios.get(
+          `http://185.202.113.165:3000/api/question/get-by-id/${Question_id}`, {
+            headers: {
+              token: `${token}`,
+            },
+          },
+        )
+        console.log("show response Question", response.data);
+        setQuestionForm(response.data)
+      } catch (error) {
+       console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+  console.log("salam iran");
+//////////////////////////////////////////////////////////////////////////////////////////////
     const onSubmit = async (data) => {
       const response = await axios
         .post(
-          "http://185.202.113.165:3000/api/apiary/create-by-user",
+          `http://185.202.113.165:3000/api/question/get-by-id/${Question_id}`,
           { ...data, locationLangitude: 8, locationLatitude: 10  },
           {
             headers: {
@@ -81,11 +109,38 @@ import { ContentHook } from "@fullcalendar/react";
 
 const Content=()=>{
 
- return newQuestion.map((el)=>{
-    switch (el.type) {
+
+    switch (QuestionForm.type) {
       case "InputText":
         return(
-        <div style={{marginTop:"32px"}}>InputText</div>
+          <div className={classes.formContainer}>
+          <FormLabel component="legend" className={classes.FormLable}>تعداد برداشت قاب عسل</FormLabel>
+            <Controller
+              control={control}
+              {...register("Frame", {
+                required: "پر کردن این قسمت الزامی است"
+              })}
+              name="Frame"
+              
+              render={({ field }) => (
+                <TextField
+                className={classes.TextField}
+                  type="number"
+                  id="Frame"
+                  label="پاسخ"
+                  variant="outlined"
+                  fullWidth
+                  margin="normal"
+                  {...field}
+                />
+              )}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="Frame"
+              render={({ message }) => <p style={{color:"red"}}>{message}</p>}
+            />
+          </div>
         )
       case "Yes_No":
         return(
@@ -110,11 +165,11 @@ const Content=()=>{
           )
         break;
     }
-})
-
-
-
 }
+
+
+
+
 
   
 
@@ -136,7 +191,7 @@ const Content=()=>{
 
 
 
-{Content()}
+              <div >{Content()}</div>
 
   
             <Divider className={classes.Divider2}/>

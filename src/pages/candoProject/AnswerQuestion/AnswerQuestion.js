@@ -64,6 +64,7 @@ const handleClose = () => {
 
     <div >سوالات</div>
     {newQuestion?.map((element) => {
+          
           return(
 
                   <Grid item sm={12} className={classes.QuestionBox} >
@@ -76,6 +77,7 @@ const handleClose = () => {
             <Link
                 key={element._id}
                 to={`./question/${element._id}`}
+                onClick={() =>localStorage.setItem("Question_id",element._id)}
                 // className={seenClass}       
                 style={{ color: "#000",textDecoration:"none",cursor: "pointer"}}
               >  
@@ -91,17 +93,18 @@ const handleClose = () => {
                        ) })}
             <Dialog
             PaperProps={{
-                        style: { borderRadius: 12, width: "60%",overflowY:"hidden" },
+                        style: { borderRadius: 12, width: "40%",overflowY:"hidden" },
             }}
             style={{ backgroundColor: "rgba(0 ,0 ,0, 0.5)" }}
             maxWidth="xl"
             open={openQuestion}
-            // TransitionComponent={Transition}
+            TransitionComponent={Transition}
             // keepMounted
             onClose={handleClose}
             aria-describedby="alert-dialog-slide-description"
           >
-                  <AnswerQuestionsForm newQuestion={newQuestion} onClose={handleClose}/>
+                  <AnswerQuestionsForm onClose={handleClose}/>
+                  
           </Dialog>
     
     </div>
