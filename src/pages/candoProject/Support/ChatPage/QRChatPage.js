@@ -12,7 +12,7 @@ import Loading from "../../../../components/Loading/Loading"
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Close, Description, InsertLink, NavigateBefore } from "@material-ui/icons";
+import { Close, Description, InsertLink, LinkRounded, NavigateBefore } from "@material-ui/icons";
 import Title from "../../../../components/Typography/Title/Title";
 import classNames from "classnames";
 import fileDownload from "js-file-download";
@@ -142,7 +142,7 @@ function SupportPage() {
   
           },
           onUploadProgress:ProgressEvent => {
-            let percent = Math.round(ProgressEvent.loaded/ProgressEvent.total*100)+"%"
+            let percent = Math.round(ProgressEvent.loaded/ProgressEvent.total*100)
             console.log("percent",percent);
             console.log("در حال بارگذاری"+Math.round(ProgressEvent.loaded/ProgressEvent.total*100)+"%");
             setProgress(percent)
@@ -153,7 +153,7 @@ function SupportPage() {
         },).then((respon) => setNewTicket(respon.data.data.messages))
         // console.log("response adduserticket",response.data.data.messages)
         setProgress(0)
-        setMessage("ارسال با موفقت انجام شد!")
+        setMessage("ارسال با موفقیت انجام شد")
         const timer = setTimeout(() => {
           setMessage("")
         }, 3000);
@@ -417,7 +417,8 @@ const statusTickets=(e)=>{
               </Button>:
               <div style={{border:"2px solid black",padding:"5px",display:"flex"}}>
               <div style={{display:"flex",alignItems:"center",gap:"8px"}}>
-               {!watch("file")||watch("file").length===0 ?null:<strong style={{marginRight:"16px"}}>{watch("file")[0].name}</strong>}
+              {!watch("file")||watch("file").length===0 || progress!==0  ?null:<strong style={{marginRight:"16px"}}>{watch("file")[0].name}</strong>}
+               {progress!==0  ? <div style={{width:"200px"}}><LodaingQr value={progress} setProgress={setProgress}/></div>:null}   
               <Close   onClick={()=>removeFileSelected(!deleteSelectedFile)} style={{cursor:"pointer"}}/>
               </div>
               <Button
@@ -443,7 +444,8 @@ const statusTickets=(e)=>{
             </div>   
         {/* {errors.file && <div className='error'>{errors.file.message}</div>} */}
 
-
+        <div style={{color:"green",marginTop:"16px"}}>{Message}</div>
+{(!watch("file")||!watch("file").length!==0)&& progress==0   ?null:<div style={{color:"red",marginTop:"16px"}}>لطفا منتظر بمانید...</div>} 
 <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
       
       {/* {!watch("file")||watch("file").length===0 && progress!==0?null:<div style={{marginTop:"16px" , color:"red"}}>لطفا منتظر بمانید...</div>}  */}
@@ -453,9 +455,7 @@ const statusTickets=(e)=>{
       <Button type="submit" className={classes.ButtonSubmitPage} onClick={handleSubmit(onSubmit)} disabled={progress!==0} >ثبت</Button>
 
 </div>
-{progress!==0  ? <LodaingQr value={progress} setProgress={setProgress}/>:null} 
-{(!watch("file")||!watch("file").length!==0)&& progress==0   ?null:<div style={{marginTop:"16px" , color:"red"}}>لطفا منتظر بمانید...</div>} 
-<div style={{marginTop:"8px",color:"green"}}>{Message}</div>
+
 
       </form>
     </div>
@@ -622,13 +622,20 @@ let btnClass = classNames({
                  className={classes.titleAnswer}
 
                >
-{   
-   element.type=="text"  ? <div>{element.text}</div>: 
-<a onClick={()=>download(element.text)} target="_blank"  href={`http://185.202.113.165:3000/api/ticket/download-file/${element.text}`} className={classes.fileLink}>
-<div> <Description/></div>
-  <div> {element.text}</div>
-  </a>
-}               </Grid>
+{      element.type=="text"     ? <div>
+  {element.text.includes("http://185.202.113.165:3000/")?
+  <div style={{display:"flex",alignitems:"center",gap:"8px"}}>
+    <LinkRounded />
+    <a href={element.text} style={{textDecoration:"none",color:"blue"}}>
+    
+  برای دانلود بارکد ساخته شده کلیک نمایید.  
+ </a></div>:<div>{element.text}</div>}
+  
+  </div>  : <a onClick={()=>download(element.text)} target="_blank"  href={`http://185.202.113.165:3000/api/ticket/download-file/${element.text}`} className={classes.fileLink} > 
+   <div> <Description/></div>
+   <div> {element.text}</div>
+    </a>   
+}                 </Grid>
                {/* {image ? <img src={image} width="450"/>:null} */}
                <Grid style={{ color: "rgb(173 ,173 ,173)", marginTop: "8px" }}>
                پشتیبان | {moment.from(element.sentAt).locale('fa').format('YYYY/M/D HH:mm')}

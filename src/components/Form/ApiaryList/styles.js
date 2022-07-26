@@ -88,7 +88,7 @@ export default makeStyles((theme) => ({
     left:"0"
   },
   Divider2:{
-    marginTop: "80px",
+    marginTop: "40px",
     background:"rgb(244 244 244)",
 
     width:"97%",
@@ -126,7 +126,7 @@ export default makeStyles((theme) => ({
     marginTop: "32px" , fontWeight: "bold"
   },
   ButtonBox:{
-    width: "100%",padding:"24px 32px 8px 32px" ,marginTop:"80px"
+    width: "100%",padding:"24px 32px 8px 32px" ,marginTop:"40px"
   },
   button:{
     display: "flex", 

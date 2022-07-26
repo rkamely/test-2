@@ -8,19 +8,33 @@ import { makeStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import { withStyles } from '@material-ui/styles';
 
+const LinearProgresses = withStyles((theme) => ({
+  root: {
+    height: 10,
+    borderRadius: 5,
+  },
+  colorPrimary: {
+    backgroundColor: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
+  },
+  bar: {
+    borderRadius: 5,
+    backgroundColor: 'orange',
+  },
+}))(LinearProgress);
 function LinearProgressWithLabel(props) {
   console.log("props Value",props)
   return (
     
-    <Box display="flex" alignItems="center">
-      {/* <Box width="20%" mr={1}>
-        <LinearProgress variant="determinate" {...props} />
-      </Box> */}
+    <Box display="flex" alignItems="center" style={{width:"200px"}}>
+      <Box width="100%" mr={2}  >
+        <LinearProgresses variant="determinate" {...props} style={{color:"red" }}/>
+      </Box>
       <Box minWidth={35}>
-        <Typography variant="body2" style={{color:"blue" , fontWeight:600 , marginTop:"8px" , border:"2px solid blue" ,borderRadius:"50%",height:"50px",width:"50px",display:"flex",alignItems:"center",justifyContent:"center"}}>{
-          props.value
-        }</Typography>
+        <Typography variant="body2" style={{color:"red" , fontWeight:600  }}>
+          {props.value}%
+          </Typography>
       </Box>
     </Box>
   );

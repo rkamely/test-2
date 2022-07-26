@@ -3,11 +3,14 @@ import {
   Button,
   createTheme,
   Dialog,
+  Divider,
   Fade,
+  Grid,
   IconButton,
   Modal,
   Popover,
   Popper,
+  TablePagination,
 } from "@material-ui/core";
 import React, { Children, useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/styles";
@@ -428,7 +431,7 @@ function ApiaryList() {
       cellStyle: {
         textAlign:" center !important",
         whiteSpace: "nowrap",
-
+        transform:"translateX(10px)",
         fontSize:"0.8rem",
         justifyContent:"center",
       },
@@ -441,20 +444,22 @@ function ApiaryList() {
            fontWeight:"600",
           //  paddingRight:"20px"
       },
-      render: (rowData) => {
-        switch (rowData.apiaryUsage) {
-          case 'Queen':
-            return <p className="description">پرورش ملکه</p>
-          case 'Royal':
-            return <p className="description">ژل رویال</p>
-          case 'Honey':
-            return <p className="description">تولید عسل</p>
-          case 'Other':
-              return <p className="description">سایر</p>
-          default:
-            return null
-        }
-      },
+      lookup:{Queen:"پرورش ملکه",Royal:"ژل رویال",Honey:"تولید عسل" ,Other:"سایر"},
+
+      // render: (rowData) => {
+      //   switch (rowData.apiaryUsage) {
+      //     case 'Queen':
+      //       return <p className="description">پرورش ملکه</p>
+      //     case 'Royal':
+      //       return <p className="description">ژل رویال</p>
+      //     case 'Honey':
+      //       return <p className="description">تولید عسل</p>
+      //     case 'Other':
+      //         return <p className="description">سایر</p>
+      //     default:
+      //       return null
+      //   }
+      // },
     },
     {
       title: "تعداد کندو",
@@ -837,19 +842,19 @@ function ApiaryList() {
 
   const downloadPdf = () => {
     const doc = new jsPDF();
-    doc.text("جزییات زنبورستان", 20, 10);
     console.log("doc", doc.text);
     doc.autoTable({
       theme: "grid",
       columns: columns.map((col) => ({ ...col, dataKey: col.field })),
-      body: Apiary,
+      body: ApiariesList,
     });
-    console.log("Apiary", Apiary);
+    console.log("Apiary", ApiariesList);
     console.log("columns", columns);
     // doc.addFileToVFS("Shabnam-normal.ttf", font);
-    doc.addFont("Shabnam-normal.ttf", "Shabnam", "normal");
-    doc.setFont("font");
-    // doc.setFont("Shabnam"); // set custom font
+    // doc.addFont("Shabnam-normal.ttf", "Shabnam", "normal");
+    doc.setFont("Shabnam");
+    doc.text("جدول زنبورستان", 20, 10);
+
     doc.save("table.pdf");
     
   };
@@ -884,6 +889,184 @@ function ApiaryList() {
             style={{ borderRadius: "25px",marginTop:"32px"}}
             data={ApiariesList}
             columns={columns}
+            components={{
+              Toolbar:(props)=> 
+              <>
+              {console.log("aasdasdasdasdasd",selectedRows?.length)}
+              {(selectedRows?.length==0||selectedRows?.length==undefined)? 
+              <>     
+               <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"8px 0px"}}>
+                 
+              <div style={{width:"100%"}}><MTableToolbar {...props}/></div>
+              <Grid style={{paddingLeft:"32px"}}>
+              <div
+                    onClick={downloadFile}
+                    style={{
+                      backgroundColor: "black",
+                      cursor: "pointer",
+                      color: "white",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderRadius: "8px",
+                      padding: "8px",
+                      boxShadow:"0px 3px 6px 0px rgba(0,0,0,0.16)"
+    
+                      // marginLeft: "32px",
+                    }}
+                  >
+                    <span style={{ fontFamily: "Shabnam", fontSize: "1rem" }}>
+                      دانلود
+                    </span>
+                    <img
+                      src="/assets/download-arrow-svgrepo-com.svg"
+                      style={{ marginRight: "8px" }}
+                    />
+                  </div>
+              </Grid>
+             
+             </div>
+             <Divider style={{background:"rgb( 244 244 244)"}}/>
+             </>   
+             : 
+              <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",background:"#fff4df"}}>
+                  <div><MTableToolbar {...props}/></div>  
+    
+                  <div style={{ marginLeft: "16px"}}>
+                    <PopupState variant="popover" popupId="demo-popup-popover">
+                      {(popupState) => (
+                        <div>
+                          <MoreVertOutlined
+                            variant="contained"
+                            {...bindTrigger(popupState)}
+                            style={{ cursor: "pointer" }}
+    
+                          />
+    
+                          <Popover
+                            {...bindPopover(popupState)}
+                            anchorOrigin={{
+                              vertical: "bottom",
+                              horizontal: "center",
+                            }}
+                            transformOrigin={{
+                              vertical: "top",
+                              horizontal: "center",
+                            }}
+                          >
+                            <div
+                              style={{ borderRadius: " 16px", padding: " 16px" }}
+                            >
+                       
+                              {/* <Link
+                                to={`/app/ApiaryList/${selectedRows}`}
+                                onClick={handleClickEdit("body")}
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "flex-start",
+                                  cursor: "pointer",
+                                }}
+                              >
+                                <Edit style={{ marginLeft: "16px" }} />
+                               s ویرایش
+                              </Link>
+                              <hr
+                                style={{
+                                  borderTop: "1px solid rgb( 240, 240, 240)",
+                                  height: "2px",
+                                }}
+                              /> */}
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "flex-start",
+                                  cursor: "pointer",
+                                }}
+                              >
+                                <Share style={{ marginLeft: "16px" }} />
+                                اشتراک گذاری
+                              </div>
+                              <hr
+                                style={{
+                                  borderTop: "1px solid rgb( 240, 240, 240)",
+                                  height: "2px",
+                                }}
+                              />
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "flex-start",
+                                  cursor: "pointer",
+                                }}
+                              >
+                                <img
+                                  src="/assets/move-svgrepo-com.svg"
+                                  style={{ margin: "0 0px 0 24px" }}
+                                />
+                                انتقال
+                              </div>
+                              <hr
+                                style={{
+                                  borderTop: "1px solid rgb( 240, 240, 240)",
+                                  height: "2px",
+                                }}
+                              />
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  color: "red",
+                                  justifyContent: "flex-start",
+                                  cursor: "pointer",
+                                }}
+                                onClick={() => handleBulkDelete(selectedRows)}
+                              >
+                                <img
+                                  src="/assets/trash-svgrepo-com-2.svg"
+                                  style={{ margin: "0 8px 0 16px" }}
+                                  alt=""
+                                />
+                                 حذف
+                              </div>
+                            </div>
+                          </Popover>
+                        </div>
+                      )}
+                    </PopupState>
+                  </div>
+              
+    
+       
+                
+                
+                </div>
+    }
+    
+           </> ,
+               Pagination: props => (
+                <>
+                {/* <div>salam</div> */}
+               <TablePagination
+                 {...props}
+                 
+                 labelRowsPerPage={<div style={{border:"2px solid red"}}>sdcs</div>}
+                 labelDisplayedRows={row => <div style={{border:"2px solid red"}}>dcsd</div>}
+                 showLastButton={true}
+                 SelectProps={{
+                   style:{
+                     fontSize: 14,
+                     border:"2px soldi red",
+                   }
+                 }}
+               />
+               </>
+             )
+             
+             
+             }}
             onSelectionChange={(rows) => setSelectedRows(rows)}
             localization={{
               body: {
@@ -938,6 +1121,8 @@ function ApiaryList() {
               }),
               search: true,
               searchFieldAlignment: "left",
+              toolbarButtonAlignment:"left",
+
               searchFieldStyle: {
                 borderTop: "2px solid  rgb( 240 ,240, 240)",
                 borderRight: "2px solid  rgb( 240 ,240, 240)",
@@ -949,99 +1134,99 @@ function ApiaryList() {
               // filtering: true,
             }}
             actions={[
-              {
-                icon: () => (
-                  <div>
-                    <PopupState variant="popover" popupId="demo-popup-popover">
-                      {(popupState) => (
-                        <div>
-                          <MoreVertOutlined
-                            variant="contained"
-                            {...bindTrigger(popupState)}
-                            style={{ cursor: "pointer" }}
-                          />
+              // {
+              //   icon: () => (
+              //     <div>
+              //       <PopupState variant="popover" popupId="demo-popup-popover">
+              //         {(popupState) => (
+              //           <div>
+              //             <MoreVertOutlined
+              //               variant="contained"
+              //               {...bindTrigger(popupState)}
+              //               style={{ cursor: "pointer" }}
+              //             />
 
-                          <Popover
-                            {...bindPopover(popupState)}
-                            anchorOrigin={{
-                              vertical: "bottom",
-                              horizontal: "center",
-                            }}
-                            transformOrigin={{
-                              vertical: "top",
-                              horizontal: "center",
-                            }}
-                          >
-                            <div
-                              style={{
-                                borderRadius: " 16px",
-                                padding: " 16px",
-                              }}
-                            >
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  justifyContent: "flex-start",
-                                  cursor: "pointer",
-                                }}
-                              >
-                                <Share style={{ marginLeft: "16px" }} />
-                                اشتراک گذاری
-                              </div>
-                              <hr
-                                style={{
-                                  borderTop: "1px solid rgb( 240, 240, 240)",
-                                  height: "2px",
-                                }}
-                              />
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  justifyContent: "flex-start",
-                                  cursor: "pointer",
-                                }}
-                              >
-                                <img
-                                  src="/assets/move-svgrepo-com.svg"
-                                  style={{ margin: "0 0px 0 24px" }}
-                                />
-                                انتقال
-                              </div>
-                              <hr
-                                style={{
-                                  borderTop: "1px solid rgb( 240, 240, 240)",
-                                  height: "2px",
-                                }}
-                              />
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  color: "red",
-                                  justifyContent: "flex-start",
-                                  cursor: "pointer",
-                                }}
-                                onClick={() => handleBulkDelete(selectedRows)}
-                              >
-                                <img
-                                  src="/assets/trash-svgrepo-com-2.svg"
-                                  style={{ margin: "0 8px 0 16px" }}
-                                  alt=""
-                                />
-                                حذف
-                              </div>
-                            </div>
-                          </Popover>
-                        </div>
-                      )}
-                    </PopupState>
-                  </div>
-                ),
+              //             <Popover
+              //               {...bindPopover(popupState)}
+              //               anchorOrigin={{
+              //                 vertical: "bottom",
+              //                 horizontal: "center",
+              //               }}
+              //               transformOrigin={{
+              //                 vertical: "top",
+              //                 horizontal: "center",
+              //               }}
+              //             >
+              //               <div
+              //                 style={{
+              //                   borderRadius: " 16px",
+              //                   padding: " 16px",
+              //                 }}
+              //               >
+              //                 <div
+              //                   style={{
+              //                     display: "flex",
+              //                     alignItems: "center",
+              //                     justifyContent: "flex-start",
+              //                     cursor: "pointer",
+              //                   }}
+              //                 >
+              //                   <Share style={{ marginLeft: "16px" }} />
+              //                   اشتراک گذاری
+              //                 </div>
+              //                 <hr
+              //                   style={{
+              //                     borderTop: "1px solid rgb( 240, 240, 240)",
+              //                     height: "2px",
+              //                   }}
+              //                 />
+              //                 <div
+              //                   style={{
+              //                     display: "flex",
+              //                     alignItems: "center",
+              //                     justifyContent: "flex-start",
+              //                     cursor: "pointer",
+              //                   }}
+              //                 >
+              //                   <img
+              //                     src="/assets/move-svgrepo-com.svg"
+              //                     style={{ margin: "0 0px 0 24px" }}
+              //                   />
+              //                   انتقال
+              //                 </div>
+              //                 <hr
+              //                   style={{
+              //                     borderTop: "1px solid rgb( 240, 240, 240)",
+              //                     height: "2px",
+              //                   }}
+              //                 />
+              //                 <div
+              //                   style={{
+              //                     display: "flex",
+              //                     alignItems: "center",
+              //                     color: "red",
+              //                     justifyContent: "flex-start",
+              //                     cursor: "pointer",
+              //                   }}
+              //                   onClick={() => handleBulkDelete(selectedRows)}
+              //                 >
+              //                   <img
+              //                     src="/assets/trash-svgrepo-com-2.svg"
+              //                     style={{ margin: "0 8px 0 16px" }}
+              //                     alt=""
+              //                   />
+              //                   حذف
+              //                 </div>
+              //               </div>
+              //             </Popover>
+              //           </div>
+              //         )}
+              //       </PopupState>
+              //     </div>
+              //   ),
 
-                // isFreeAction: true,
-              },
+              //   // isFreeAction: true,
+              // },
 
               {
                 icon: () => (
@@ -1068,35 +1253,35 @@ function ApiaryList() {
                 isFreeAction: true,
               },
 
-              {
-                icon: () => (
-                  <div
-                    onClick={downloadFile}
-                    style={{
-                      backgroundColor: "black",
-                      cursor: "pointer",
-                      color: "white",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      borderRadius: "8px",
-                      padding: "8px",
-                      boxShadow:"0px 3px 6px 0px rgba(0,0,0,0.16)"
-                      // marginLeft: "32px",
-                    }}
-                  >
-                    <span style={{ fontFamily: "Shabnam", fontSize: "1rem" }}>
-                      دانلود
-                    </span>
-                    <img
-                      src="/assets/download-arrow-svgrepo-com.svg"
-                      style={{ marginRight: "8px" }}
-                    />
-                  </div>
-                ),
-                tooltip: "دانلود",
-                isFreeAction: true,
-              },
+              // {
+              //   icon: () => (
+              //     <div
+              //       onClick={downloadFile}
+              //       style={{
+              //         backgroundColor: "black",
+              //         cursor: "pointer",
+              //         color: "white",
+              //         display: "flex",
+              //         alignItems: "center",
+              //         justifyContent: "center",
+              //         borderRadius: "8px",
+              //         padding: "8px",
+              //         boxShadow:"0px 3px 6px 0px rgba(0,0,0,0.16)"
+              //         // marginLeft: "32px",
+              //       }}
+              //     >
+              //       <span style={{ fontFamily: "Shabnam", fontSize: "1rem" }}>
+              //         دانلود
+              //       </span>
+              //       <img
+              //         src="/assets/download-arrow-svgrepo-com.svg"
+              //         style={{ marginRight: "8px" }}
+              //       />
+              //     </div>
+              //   ),
+              //   tooltip: "دانلود",
+              //   isFreeAction: true,
+              // },
             ]}
           />
 
