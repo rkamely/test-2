@@ -391,9 +391,9 @@ const statusTickets=(e)=>{
                style={{fontFamily:"Shabnam",width:"130px",display:"flex",justifyContent:"space-between",alignItems:"center"}}
                onChange={()=>setDeleteSelectedFile(!deleteSelectedFile)}
               >
-             
-                <div >ساخت QR</div>
-               <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",transform:"rotate(-45deg)"}}><InsertLink/></div> 
+                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",transform:"rotate(-45deg)"}}><InsertLink/></div> 
+
+                <div >انتخاب فایل</div>
                 <input
                   type="file"
                   {...register("file")}

@@ -169,7 +169,7 @@ const changeIcon=()=>{
 
        {icon?<div className={classes.candoTopSidebar}> 
           <div className={classes.candoLogo}>
-            <img src="/assets/Kandoo1+-Black.svg" alt="عکس زنبور" width="100px" style={{marginRight: "-16px"}}/>
+            <img src="./assets/لوگو کندووان پلاس2 (1).png" alt="عکس زنبور" width="100px" style={{marginRight: "-16px"}}/>
           </div>
           <div>
             <h1 className={classes.candoTopSidebarTitle}>کندوان پلاس</h1>
@@ -177,12 +177,12 @@ const changeIcon=()=>{
           </div>
         </div>:null} 
         <Divider style={
-          {backgroundColor:"#fff",marginTop:"-24px"}
+          {backgroundColor:"#fff",marginTop:"-40px"}
         }/>,
 
 
 
-
+<div    style={{overflowY:"auto",overflowX:"hidden",marginTop:"-15px",paddingBottom:"150px"}}>
         {structure.map((link) => (          
           <SidebarLink    
             key={link.id}
@@ -190,7 +190,7 @@ const changeIcon=()=>{
             isSidebarOpened={isSidebarOpened}
             {...link}
           />
-        ))}
+        ))}</div>
 
       </List>
     </Drawer>

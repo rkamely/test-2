@@ -53,51 +53,51 @@ const mock = {
         daily: { value: 3.25, profit: true }
       }
     },
-    {
-      product: "بررسی ملکه",
-      icon:"./assets/Group 11036.svg",
-      total: {
-        monthly: 4232,
-        weekly: 1465,
-        daily: 199,
-        percent: { value: 3.7, profit: false }
-      },
-      color: "primary",
-      registrations: {
-        monthly: { value: 830, profit: false },
-        weekly: { value: 215, profit: true },
-        daily: { value: " زنبورستان ۱ -کندوی ۱ ", profit: false, title2:"26 آذر تا ۲۹ آذر" }
-      },
-      bounce: {
-        monthly: { value: 4.5, profit: false },
-        weekly: { value: 3, profit: true },
-        daily: { value: 3.25, profit: true }
-      }
-    },
-    {
-      product: "بررسی بچه دهی",
-      icon:"./assets/Group 11037.svg",
-      total: {
-        monthly: 4232,
-        weekly: 1465,
-        daily: 199,
-        percent: { value: 3.7, profit: false }
-      },
-      color: "primary",
-      registrations: {
-        monthly: { value: 830, profit: false },
-        weekly: { value: 215, profit: true },
-        daily: { value: " زنبورستان ۱ -کندوی ۱ ", profit: true,title2:"26 آذر تا ۲۹ آذر"}
-      },
-      bounce: {
-        monthly: { value: 4.5, profit: false },
-        weekly: { value: 3, profit: true },
-        daily: { value: 3.25, profit: true }
-      },
-      Zanborestan1:{
-         cando1:{paragraph:"زنبورستان ۱", cando:""}
-      },
-    },
+    // {
+    //   product: "بررسی ملکه",
+    //   icon:"./assets/Group 11036.svg",
+    //   total: {
+    //     monthly: 4232,
+    //     weekly: 1465,
+    //     daily: 199,
+    //     percent: { value: 3.7, profit: false }
+    //   },
+    //   color: "primary",
+    //   registrations: {
+    //     monthly: { value: 830, profit: false },
+    //     weekly: { value: 215, profit: true },
+    //     daily: { value: " زنبورستان ۱ -کندوی ۱ ", profit: false, title2:"26 آذر تا ۲۹ آذر" }
+    //   },
+    //   bounce: {
+    //     monthly: { value: 4.5, profit: false },
+    //     weekly: { value: 3, profit: true },
+    //     daily: { value: 3.25, profit: true }
+    //   }
+    // },
+    // {
+    //   product: "بررسی بچه دهی",
+    //   icon:"./assets/Group 11037.svg",
+    //   total: {
+    //     monthly: 4232,
+    //     weekly: 1465,
+    //     daily: 199,
+    //     percent: { value: 3.7, profit: false }
+    //   },
+    //   color: "primary",
+    //   registrations: {
+    //     monthly: { value: 830, profit: false },
+    //     weekly: { value: 215, profit: true },
+    //     daily: { value: " زنبورستان ۱ -کندوی ۱ ", profit: true,title2:"26 آذر تا ۲۹ آذر"}
+    //   },
+    //   bounce: {
+    //     monthly: { value: 4.5, profit: false },
+    //     weekly: { value: 3, profit: true },
+    //     daily: { value: 3.25, profit: true }
+    //   },
+    //   Zanborestan1:{
+    //      cando1:{paragraph:"زنبورستان ۱", cando:""}
+    //   },
+    // },
     {
       product: "بررسی شاخون",
       icon:"./assets/Group 11038.svg",

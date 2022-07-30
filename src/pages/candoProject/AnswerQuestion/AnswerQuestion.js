@@ -15,6 +15,7 @@ function AnswerQuestion() {
     const history = useHistory();
 
 
+
     const token = localStorage.getItem("id_token")
 
     useEffect(() => {
@@ -93,7 +94,7 @@ const handleClose = () => {
                        ) })}
             <Dialog
             PaperProps={{
-                        style: { borderRadius: 12, width: "40%",overflowY:"hidden" },
+                        style: { borderRadius: 12, width: "auto",overflowY:"hidden" },
             }}
             style={{ backgroundColor: "rgba(0 ,0 ,0, 0.5)" }}
             maxWidth="xl"

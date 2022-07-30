@@ -46,6 +46,13 @@ export default makeStyles((theme) => ({
     alignItems:"center",
     marginTop:"100px"
   },
+  formContainerCheckbox:{
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"center",
+    alignItems:"center",
+
+  },
   Title:{
     fontWeight: "bold" ,
     color:"rgb( 227 156 0)",
@@ -57,7 +64,9 @@ export default makeStyles((theme) => ({
 
   Divider:{
     marginTop: "24px",
-    width:"97%",
+    width:"95%",
+    background:"rgb(244 244 244)",
+
     position:"absolute",
     right:"0",
     left:"0"
@@ -66,14 +75,15 @@ export default makeStyles((theme) => ({
     marginTop: "80px",
     background:"rgb(244 244 244)",
 
-    width:"97%",
+    width:"95%",
     position:"absolute",
     right:"0",
     left:"0"
   },
   FormLable:{
     fontWeight:600,
-    fontFamily:"Shabnam"
+    fontFamily:"Shabnam",
+    marginBottom:"8px"
   },
   // Button1: {
   //   marginTop: "8px",
@@ -105,7 +115,7 @@ export default makeStyles((theme) => ({
     marginTop: "32px" , fontWeight: "bold"
   },
   ButtonBox:{
-    width: "100%",padding:"24px 32px 8px 32px" ,marginTop:"80px"
+    width: "100%",padding:"24px 0px 8px 0px" ,marginTop:"80px",display:"flex",justifyContent:"Space-between",alignItems:"center",gap:"80px"
   },
   button:{
     display: "flex", 
@@ -115,7 +125,7 @@ export default makeStyles((theme) => ({
     fontFamily: "Shabnam",
     cursor: "pointer",
     border: "none",
-    padding: "12px 30px",
+    padding: "12px 16px",
     borderRadius: "16px",
     backgroundColor: "rgb( 26 ,115, 233)",
     color:"#fff",
@@ -123,7 +133,7 @@ export default makeStyles((theme) => ({
     boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
     fontWeight: "bold",
     fontSize: "16px",
-    // width: "12%",
+    width: "90px",
     "&:hover": {
       backgroundColor: "rgb( 26 ,115, 233)",
       borderWidth: 2,
@@ -134,14 +144,14 @@ export default makeStyles((theme) => ({
     fontFamily: "Shabnam",
     cursor: "pointer",
     border: "none",
-    padding: "12px 30px",
+    padding: "12px 16px",
     borderRadius: "16px",
     backgroundColor: "rgb( 255 255 255)",
     width:"100px",
     boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
     fontWeight: "bold",
     fontSize: "16px",
-    // width: "12%",
+    width: "90px",
     "&:hover": {
       backgroundColor: "rgb( 255 255 255)",
       borderWidth: 2,
@@ -235,6 +245,12 @@ width:"100%",display:"flex",flexDirection:"column"
       marginTop:"8px"
         },
   },
-
+  Loading:{
+    height:"90%",
+    display:"flex",
+    alignItems:"center"  ,
+    justifyContent:"center",
+    margin:"32px"
+}
 
 }));

@@ -405,9 +405,9 @@ const statusTickets=(e)=>{
                style={{fontFamily:"Shabnam",width:"130px",display:"flex",justifyContent:"space-between",alignItems:"center"}}
                onChange={()=>setDeleteSelectedFile(!deleteSelectedFile)}
               >
-             
-                <div >ساخت QR</div>
-               <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",transform:"rotate(-45deg)"}}><InsertLink/></div> 
+                <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",transform:"rotate(-45deg)"}}><InsertLink/></div> 
+
+                <div >انتخاب فایل</div>
                 <input
                   type="file"
                   {...register("file")}
@@ -622,14 +622,14 @@ let btnClass = classNames({
                  className={classes.titleAnswer}
 
                >
-{      element.type=="text"     ? <div>
-  {element.text.includes("http://185.202.113.165:3000/")?
+{      element.type=="text"     ? <div><div>{element.text}</div>
+  {/* {element.text.includes("http://185.202.113.165:3000/")?
   <div style={{display:"flex",alignitems:"center",gap:"8px"}}>
     <LinkRounded />
     <a href={element.text} style={{textDecoration:"none",color:"blue"}}>
     
   برای دانلود بارکد ساخته شده کلیک نمایید.  
- </a></div>:<div>{element.text}</div>}
+ </a></div>:<div>{element.text}</div>} */}
   
   </div>  : <a onClick={()=>download(element.text)} target="_blank"  href={`http://185.202.113.165:3000/api/ticket/download-file/${element.text}`} className={classes.fileLink} > 
    <div> <Description/></div>

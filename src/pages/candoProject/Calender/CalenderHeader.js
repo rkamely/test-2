@@ -9,24 +9,24 @@ function CalenderHeader({ value, setValue }) {
       function currYear() {
         return value.format("YYYY");
       }
-      function prevDay() {
-        return value.clone().subtract(1, "days");
+      function prevMonth() {
+        return value.clone().subtract(1, "month");
       }
-      function nextDay() {
-        return value.clone().add(1, "days");
+      function nextMonth() {
+        return value.clone().add(1, "month");
       }
       const classes = useStyles();
 
   return (
     <div className={classes.Header}>
-      <div className={classes.arrow} onClick={() => setValue(prevDay())}>
+      <div className={classes.arrow} onClick={() => setValue(prevMonth())}>
         <ArrowForwardIosRounded/>
       </div>
       <div style={{fontWeight:"600"}}>
         {currMnthName()}
         {currYear()}
       </div>
-      <div className={classes.arrow} onClick={() => setValue(nextDay())}>
+      <div className={classes.arrow} onClick={() => setValue(nextMonth())}>
       <ArrowBackIosRounded/>
       </div>
     </div>

@@ -82,10 +82,10 @@ export default makeStyles(theme => ({
     marginTop: theme.spacing(2),
     // marginBottom: theme.spacing(0.5),
     backgroundColor: "#fff",
-    position:"absolute",
-     width:"90%",
+    position:"fixed",
+     width:"250px",
      margin:"0 16px",
      height:"1px",
-     bottom:"108px",
+     bottom:"113px",
   },
 }));

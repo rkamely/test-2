@@ -33,6 +33,8 @@ const MapBox = React.lazy(() => import('../../components/MapBox/MapBox'));
 
 export default function Dashboard(props) {
   const classes = useStyles();
+  const[show,setShow]=useState(false)
+  const[showJob,setShowJob]=useState(false)
 
   // const Item = styled(Paper)(({ theme }) => ({
   //     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -113,16 +115,16 @@ export default function Dashboard(props) {
                 <Grid item>
                   <Typography
                     variant="p"
-                    weight="Bold"
+              
                     noWrap
-                    style={{ fontWeight: 600}}
+                    style={{ fontWeight: 600,fontSize:"0.7rem"}}
                   >
                     اکانت خودم
                   </Typography>
                 </Grid>
                 <Grid item>
                   <Typography variant="p" weight="Bold" noWrap>
-                    1
+                    ۰
                   </Typography>
                 </Grid>
               </Grid>
@@ -137,16 +139,14 @@ export default function Dashboard(props) {
                 <Grid item>
                   <Typography
                     variant="p"
-                    weight="Bold"
                     noWrap
-                    style={{ fontWeight: 600 }}
-                  >
-                    اکانت
+                    style={{ fontWeight: 600,fontSize:"0.7rem"}}                  >
+                      اکانت مدیر
                   </Typography>
                 </Grid>
                 <Grid item>
                   <Typography variant="p" weight="Bold" noWrap>
-                    1
+                  ۰
                   </Typography>
                 </Grid>
               </Grid>
@@ -173,16 +173,14 @@ export default function Dashboard(props) {
                 <Grid item>
                   <Typography
                     variant="p"
-                    weight="Bold"
                     noWrap
-                    style={{ fontWeight: 600 }}
-                  >
-                    اکانت خودم
+                    style={{ fontWeight: 600,fontSize:"0.7rem"}}                  >
+                     زنبورستان ۱
                   </Typography>
                 </Grid>
                 <Grid item>
                   <Typography variant="p" weight="Bold" noWrap>
-                    1
+                  ۰
                   </Typography>
                 </Grid>
               </Grid>
@@ -196,16 +194,14 @@ export default function Dashboard(props) {
                 <Grid item>
                   <Typography
                     variant="p"
-                    weight="Bold"
                     noWrap
-                    style={{ fontWeight: 600 }}
-                  >
-                    اکانت
+                    style={{ fontWeight: 600,fontSize:"0.7rem"}}                  >
+                    زنبورستان ۲
                   </Typography>
                 </Grid>
                 <Grid item>
                   <Typography variant="p" weight="Bold" noWrap>
-                    1
+                  ۰ 
                   </Typography>
                 </Grid>
               </Grid>
@@ -231,16 +227,14 @@ export default function Dashboard(props) {
                 <Grid item>
                   <Typography
                     variant="p"
-                    weight="Bold"
                     noWrap
-                    style={{ fontWeight: 600 }}
-                  >
-                    اکانت خودم
+                    style={{ fontWeight: 600,fontSize:"0.7rem"}}                  >
+                    زنبورستان ۱
                   </Typography>
                 </Grid>
                 <Grid item>
                   <Typography variant="p" weight="Bold" noWrap>
-                    1
+                  ۰
                   </Typography>
                 </Grid>
               </Grid>
@@ -254,16 +248,14 @@ export default function Dashboard(props) {
                 <Grid item>
                   <Typography
                     variant="p"
-                    weight="Bold"
                     noWrap
-                    style={{ fontWeight: 600 }}
-                  >
-                    اکانت
+                    style={{ fontWeight: 600,fontSize:"0.7rem"}} >
+                    زنبورستان ۲
                   </Typography>
                 </Grid>
                 <Grid item>
                   <Typography variant="p" weight="Bold" noWrap>
-                    1
+                  ۰
                   </Typography>
                 </Grid>
               </Grid>
@@ -289,16 +281,14 @@ export default function Dashboard(props) {
                 <Grid item>
                   <Typography
                     variant="p"
-                    weight="Bold"
                     noWrap
-                    style={{ fontWeight: 600 }}
-                  >
-                    اکانت خودم
+                    style={{ fontWeight: 600,fontSize:"0.7rem"}}>
+                    زنبورستان ۱
                   </Typography>
                 </Grid>
                 <Grid item>
                   <Typography variant="p" weight="Bold" noWrap>
-                    1
+                  ۰
                   </Typography>
                 </Grid>
               </Grid>
@@ -312,16 +302,15 @@ export default function Dashboard(props) {
                 <Grid item>
                   <Typography
                     variant="p"
-                    weight="Bold"
                     noWrap
-                    style={{ fontWeight: 600 }}
-                  >
-                    اکانت
+                    style={{ fontWeight: 600,fontSize:"0.7rem"}} >
+                  
+                    زنبورستان ۲
                   </Typography>
                 </Grid>
                 <Grid item>
                   <Typography variant="p" weight="Bold" noWrap>
-                    1
+                  ۰
                   </Typography>
                 </Grid>
               </Grid>
@@ -347,16 +336,15 @@ export default function Dashboard(props) {
                 <Grid item>
                   <Typography
                     variant="p"
-                    weight="Bold"
                     noWrap
-                    style={{ fontWeight: 600 }}
-                  >
-                    اکانت خودم
+                    style={{ fontWeight: 600,fontSize:"0.7rem"}} >
+                  
+                    انجام داده
                   </Typography>
                 </Grid>
                 <Grid item>
                   <Typography variant="p" weight="Bold" noWrap>
-                    1
+                  ۰
                   </Typography>
                 </Grid>
               </Grid>
@@ -370,16 +358,15 @@ export default function Dashboard(props) {
                 <Grid item>
                   <Typography
                     variant="p"
-                    weight="Bold"
                     noWrap
-                    style={{ fontWeight: 600 }}
-                  >
-                    اکانت
+                    style={{ fontWeight: 600,fontSize:"0.7rem"}} >
+                  
+                    انجام نداده
                   </Typography>
                 </Grid>
                 <Grid item>
                   <Typography variant="p" weight="Bold" noWrap>
-                    1
+                  ۰
                   </Typography>
                 </Grid>
               </Grid>
@@ -491,9 +478,10 @@ export default function Dashboard(props) {
           xs={12}
           style={{ display: "flex" ,gap:"32px"}}
         >
-          <Grid className={classes.reminderJob} item lg={12} xs={12}>
+  <Grid className={classes.reminderJob} item lg={12} xs={12}>
             <Title title="يادآوری کارها" variant="h6" />
-            {mock.bigState.map((stat, index) => (
+                 { show? <div>
+                  {mock.bigState.map((stat, index) => (
               <Grid item lg={12} xs={12} style={{ display: "flex" }}>
                 <Grid
                   item
@@ -507,12 +495,28 @@ export default function Dashboard(props) {
                   <BigStat2 {...stat} />
                 </Grid>
               </Grid>
-            ))}
-          </Grid>
-          <Grid className={classes.workDone} item lg={12} xs={12}>
+            ))}</div>:<div
+              style={{
+                width: "100%",
+                height: "60vh",
+                boxShadow: "0px 3px 6px 3px rgba( 0, 0, 0, 0.16)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "12px",
+                marginTop: "32px",
+              }}
+            >
+              کاری جهت یادآوری وجود ندارد.
+            </div>}
+          </Grid> 
+             
+
+         <Grid className={classes.workDone} item lg={12} xs={12}>
             <Title title="کارهای انجام شده" variant="h6" />
         
-            {mock.DoneJob.map((stat, index) => (
+          { showJob?  <div>
+          {mock.DoneJob.map((stat, index) => (
               <Grid item lg={12} xs={12} style={{ display: "flex" }}>
                 <Grid
                   item
@@ -526,7 +530,21 @@ export default function Dashboard(props) {
                   <BigStat {...stat} />
                 </Grid>
               </Grid>
-            ))}
+            ))}</div> :    
+            <div
+              style={{
+                width: "100%",
+                height: "60vh",
+                boxShadow: "0px 3px 6px 3px rgba( 0, 0, 0, 0.16)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "12px",
+                marginTop: "32px",
+              }}
+            >
+              در حال حاضر کاری انجام نشده است.
+            </div>}
          
           </Grid>
         </Grid>

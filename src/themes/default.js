@@ -237,6 +237,12 @@ const defaultTheme = {
       adornedEnd:{
         height:" 40px"
       }
+    },
+    MuiMenuItem:{
+      root:{
+        padding:"0px 20px !important"
+      }
+   
     }
   },
 };

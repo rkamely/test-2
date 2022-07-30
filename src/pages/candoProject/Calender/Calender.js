@@ -36,7 +36,10 @@ function Calender() {
         <CalenderHeader value={value} setValue={setValue} />
       </div>
       <Divider />
-      <div className={classes.body}>
+      <div className={classes.body} style={{display:"flex",alignItems:"center"}}>
+      <div className={classes.arrow} onClick={() => setValue(prevDay())}>
+        <ArrowForwardIosRounded/>
+      </div>
       {/* <ArrowForwardIosRounded onClick={() => setValue(prevDay())}/> */}
 
       <Swiper
@@ -80,6 +83,9 @@ function Calender() {
         ))}
         </div>
       </Swiper>
+      <div className={classes.arrow} onClick={() => setValue(nextDay())}>
+      <ArrowBackIosRounded/>
+      </div>
         {/* <ArrowBackIosRounded  onClick={() => setValue(nextDay())}/> */}
 
       </div>

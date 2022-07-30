@@ -30,6 +30,10 @@ export default makeStyles((theme) => ({
     fontWeight: 600,height:"auto",background:"#fff",padding:"20px 30px 100px",borderRadius:"15px",
     boxShadow:"0px 3px 6px 0px rgba(0 ,0 ,0, 0.16)"
   },
+  ManualVisit_Container:{
+    fontWeight: 600,background:"#fff",padding:"20px 30px 20px",marginTop:"16px",borderRadius:"15px",
+    boxShadow:"0px 3px 6px 0px rgba(0 ,0 ,0, 0.16)",display:"flex"
+  },
   diagram_container:{
     fontWeight: 600,height:"auto",background:"#fff",padding:"20px 30px",borderRadius:"15px",
     boxShadow:"0px 3px 6px 0px rgba(0 ,0 ,0, 0.16)"

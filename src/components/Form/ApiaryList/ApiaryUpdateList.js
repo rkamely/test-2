@@ -234,14 +234,13 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
     overflow: "hidden",
     marginTop: "16px",
   };
-  console.log("defaultValue={ticketEdit.regionType}  ",ticketEdit.regionType);
-  const isStaff = localStorage.getItem("isStaff")
+ 
   return (
     <Fragment>
      {loading?
           <div className={classes.Loading}> <Loading color="orange" /></div>: 
       <Paper>
-{   isStaff? <Box px={3} py={2} className={classes.root}>
+    <Box px={3} py={2} className={classes.root}>
           <Typography
             variant="h6"
             align="center"
@@ -614,7 +613,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
               </Button>
             </div>
           </Box>
-        </Box>:<Box px={2} py={2} className={classes.notAccess}>اجازه دسترسی به این صفحه را ندارید!</Box>}
+        </Box>
       </Paper>}
     </Fragment>
   );

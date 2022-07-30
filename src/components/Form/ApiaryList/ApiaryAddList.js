@@ -143,19 +143,7 @@ if(status){
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
-  let undefin = !localStorage.getItem("isStaff");
-  let isStaff = localStorage.getItem("isStaff");
-  console.log("is staff 1", isStaff);
 
-  console.log("isStaff 1", undefin);
-
-  if (undefin) {
-    isStaff = "false";
-  }
-
-  console.log("isStaff 2", isStaff);
-  switch (isStaff) {
-    case "true":
       return (
         <Box px={3} py={2} className={classes.root}>
           <Typography
@@ -465,18 +453,7 @@ if(status){
           </Box>
         </Box>
       );
-    case "false":
-      return (
-        <Box px={2} py={2} className={classes.notAccess}>
-          این قسمت فقط برای مدیران کندو فعال است!
-        </Box>
-      );
-    default:
-      return (
-        <Box px={2} py={2} className={classes.notAccess}>
-          این قسمت فقط برای مدیران فعال است!
-        </Box>
-      );
-  }
-};
+
+  };
+
 export default ApiaryAddList;

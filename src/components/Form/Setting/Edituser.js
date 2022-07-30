@@ -127,12 +127,13 @@ function Edituser(props) {
 
 
       const [state, setState] = React.useState({
-        checkedA: false,
+        manualVisit: true,
         checkedB: true,
       });
     
       const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
+        
       };
 
 
@@ -328,7 +329,7 @@ function Edituser(props) {
          بازدید دستی
       </div>
       <FormControlLabel
-        control={<IOSSwitch checked={state.checkedA} onChange={handleChange} name="checkedA" />}
+        control={<IOSSwitch checked={state.manualVisit} onClick={localStorage.setItem("manualVisit",state.manualVisit)} onChange={handleChange} name="manualVisit" />}
       />
     </Grid>
 </Grid>
