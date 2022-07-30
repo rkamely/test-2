@@ -114,7 +114,7 @@ function  Hive() {
   };
   const [Company, setCompany] = useState([
     {
-      id: "1",
+      _id: "1",
       title: "کندوی 1",
       type: "نوع کندو",
       queenType: "نژاد ملکه",
@@ -125,7 +125,7 @@ function  Hive() {
       hasQueen: 1,
     },
     {
-      id: "2",
+      _id: "2",
       title: "کندوی 2",
       type: "نوع کندو",
       queenType: "نژاد ملکه",
@@ -246,11 +246,13 @@ const[ filter,setFilter]=useState([])
 
       render: (rowData) => {
         console.log("rowData", rowData);
+
         return (
           <Link
-            to={`/app/ApiaryList/Beehive/Hive/${rowData.title.split(' ').join('-')}`}   
+            to={`/app/ApiaryList/Beehive/${id}/${rowData._id}`}   
             style={{ textDecoration:"none" ,color:"black",cursor:"pointer"}}
             className="description"
+            onClick={() =>{localStorage.setItem("Hive_name",rowData.title)}}
 
           >
             {rowData.title}

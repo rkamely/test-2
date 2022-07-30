@@ -64,7 +64,7 @@ function Layout(props) {
 
             <Route path="/app/dashboard" component={Dashboard} />
             <Route
-              path="/app/ApiaryList/Beehive/Hive/:id"
+              path="/app/ApiaryList/Beehive/:id/:id"
               component={HiveStatus}
             />
             {/* <Route path="/app/Beehive/Hive/:id/:id" component={Audio} /> */}

@@ -68,7 +68,10 @@ function HiveStatus() {
   let { id } = useParams();
   
   console.log("id ro bebin " , id);
-const apiaryIdClick=localStorage.getItem("apiaryIdClick")
+const Apiary_id= localStorage.getItem("Apiary_id")
+const Hive_name= localStorage.getItem("Hive_name")
+localStorage.setItem("Hive_id",id)
+
   const breadcrumbs = [
 
     <Link
@@ -86,12 +89,12 @@ const apiaryIdClick=localStorage.getItem("apiaryIdClick")
         style={{textDecoration:"none",cursor:"pointer"}}
       >
             {/* <Title key="2" title="کندووان"/> */}
-            <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold",fontSize:"1.2rem"}} >{apiaryIdClick}</p>
+            <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold",fontSize:"1.2rem"}} >{Apiary_id}</p>
 
   
       </Link>,
 
-            <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold",fontSize:"1.2rem"}}>{id}</p>
+            <p style={{color:"rgb(227, 156, 0)" ,fontWeight:"bold",fontSize:"1.2rem"}}>{Hive_name}</p>
             
   ];
 

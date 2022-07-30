@@ -1,11 +1,21 @@
 import { Avatar, Grid, Typography } from "@material-ui/core";
 import { MoreVertOutlined } from "@material-ui/icons";
-import React from "react";
+import { Link ,useParams,useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import Widget from "../../../components/Widget/Widget";
 import useStyles from "./Style";
 function LeftCard() {
   const classes = useStyles();
+  const history=useHistory()
+  const manualVisit=localStorage.getItem("manualVisit")
+  console.log("manualVisit",manualVisit);
+  // const[manualVisitBoolean,setManualVisitBoolean]=useState(true)
+  // useEffect(()=>{
+  //   setManualVisitBoolean(manualVisit)
+  // },[manualVisitBoolean])
+  // console.log("manualVisitBoolean",manualVisitBoolean);
   return (
+    <>
     <Grid item  xs={12} className={classes.LeftCard_Container}  style={{ height: "250px" }}>
 
         {/* top */}
@@ -156,6 +166,11 @@ function LeftCard() {
           </Grid>
         </Grid>
     </Grid>
+    <Grid item  xs={12} className={classes.ManualVisit_Container}  >
+     {manualVisit=="true"?<div onClick={()=>history.push("/app/Question")} >برای پاسخ به سوالات دستی کلیک نمایید.</div>:    <div onClick={()=>history.push("/app/setting")}>جهت فعال کردن بازدید دستی کلیک کنید.</div>} 
+    </Grid>
+
+    </>
   );
 }
 export default LeftCard;
