@@ -289,7 +289,6 @@ function ApiaryList() {
 
       render: (rowData) => {
         console.log("rowData", rowData);
-        const str = rowData.name
 
         return (
           <Link
@@ -297,7 +296,7 @@ function ApiaryList() {
               pathname: `/app/ApiaryList/Beehive/${rowData._id}`,
               state: { state:rowData.name },
             }}
-            onClick={() =>localStorage.setItem("Apiary_id",str)}
+            onClick={() =>localStorage.setItem("Apiary_id", rowData.name)}
             className="title" 
             // style={{ display: "flex" }}
           >

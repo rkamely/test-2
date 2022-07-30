@@ -5,10 +5,10 @@ export default makeStyles((theme) => ({
 
   logotype: {
     color: "white",
-    marginLeft: theme.spacing(2.6),
-    marginRight: theme.spacing(2.6),
-    marginTop: theme.spacing(3.1),
-    marginBottom: theme.spacing(2.6),
+    marginLeft: theme.spacing(2.7),
+    marginRight: theme.spacing(2.7),
+    marginTop: theme.spacing(3.2),
+    marginBottom: theme.spacing(2.7),
     fontWeight: 500,
     fontSize: 18,
     whiteSpace: "nowrap",

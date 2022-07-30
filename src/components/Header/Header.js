@@ -156,7 +156,7 @@ export default function Header(props) {
             />
           )}
         </IconButton>
-        <Typography variant="h6" weight="medium" className={classes.logotype}>
+        <Typography variant="h6" weight="medium" className={classes.logotype} >
 پنل کاربری
         </Typography>
         <div className={classes.grow} />
