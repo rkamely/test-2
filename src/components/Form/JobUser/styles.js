@@ -4,12 +4,14 @@ export default makeStyles((theme) => ({
   root: {
     width: "100%",
     fontFamily: "Shabnam",
+
   },
 
   container: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+
   },
 
   Title: {
@@ -25,7 +27,8 @@ export default makeStyles((theme) => ({
 
   Divider1: {
     marginTop: "8px",
-    width: "100%",
+    width: "95%",
+    marginLeft:"24px"
   },
   Divider2: {
     margin: "32px auto 0",

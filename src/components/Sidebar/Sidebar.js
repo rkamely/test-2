@@ -157,7 +157,7 @@ const changeIcon=()=>{
             classes={{
               root: classNames(classes.headerIcon, classes.headerIconCollapse),
             }}
-            />:<DehazeRounded style={{color:"#fff",marginRight:"8px"}}  onClick={changeIcon} classes={{
+            />:<DehazeRounded style={{color:"#fff",marginRight:"8px",marginTop:"30px",transform:"translateY(-30px)"}}  onClick={changeIcon} classes={{
               root: classNames(classes.headerIcon, classes.headerIconCollapse),
           }}/>}
         </IconButton>

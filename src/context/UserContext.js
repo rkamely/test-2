@@ -78,9 +78,8 @@ function loginUser(dispatch, login , history, setIsLoading, setError) {
 }
 
 function signOut(dispatch, history) {
-  if(window.confirm("آیا تمایل دارید از حساب کاربری خود خارج شوید؟")){
     localStorage.removeItem("id_token");
     dispatch({ type: "SIGN_OUT_SUCCESS" });
     history.push("/login");
-  }
+  
 }

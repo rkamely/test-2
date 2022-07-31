@@ -193,7 +193,7 @@ const AddJob = ({ handleClose, onEventAdded }) => {
   console.log("whatch", watch("fromDate"));
 
   return (
-    <Paper>
+    <Paper style={{overflowX:"hidden"}}>
       <Typography
         variant="h6"
         align="center"

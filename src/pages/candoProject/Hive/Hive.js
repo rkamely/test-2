@@ -52,12 +52,13 @@ function  Hive() {
   // const rowDatas= window.localStorage.setItem()
   // console.log("location",location)
   // console.log("rowDatanew",rowDatas)
-  const [open, setOpen] = useState(false);
   const[openNutrition,setOpenNutrition]=useState(false);
   const[openCatchHoney,setopenCatchHoney]=useState(false);
   const[openCureHive,setOpenCureHive]=useState(false);
   const [downloadOpen, setdownloadOpen] = useState(false);
   const [ loading , setLoading]=useState(true)
+  const [openDeleteRow, setOpenDeleteRow] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
 
   const [selectedRows, setSelectedRows] = useState();
 
@@ -65,7 +66,7 @@ function  Hive() {
   const[Hive,setHive]=useState("all")
   const [scroll, setScroll] = useState('paper');
   const handleClickOpen = (scrollType) => () => {
-    setOpen(true);
+    // setOpen(true);
 
     setScroll(scrollType);
   };
@@ -81,16 +82,23 @@ function  Hive() {
     setOpenCureHive(true)
     popupState.close()
   }
-  const handleOpen = () => {
-    setOpen(true);
-  };
 
+  const handleDeleteOpen = (scrollType) => () => {
+    setOpenDelete(true);
+    setScroll(scrollType);
+  };
+  const handleDeleteOpenRow = (scrollType) => () => {
+    setOpenDeleteRow(true);
+    setScroll(scrollType);
+  };
   const handleClose = () => {
-    setOpen(false);
     setdownloadOpen(false);
     setOpenNutrition(false)
     setopenCatchHoney(false)
     setOpenCureHive(false)
+    setOpenDeleteRow(false);
+    setOpenDelete(false);
+
   };
   
   useEffect(()=>{
@@ -655,12 +663,32 @@ const[ filter,setFilter]=useState([])
                         cursor:"pointer"
 
                       }}
-                      onClick={() => handleBulkDelete(selectedRows)}
-                    >
+                      onClick={handleDeleteOpenRow()}
+                      >
                       <img src="/assets/trash-svgrepo-com-2.svg" style={{ margin: "0 8px 0 16px" }} />
                       حذف
                     </div>
                   </div>
+                  <Dialog
+              PaperProps={{
+                style: { borderRadius: 12, width: "24%", overflowY:"hidden"
+              },
+              }}
+              open={openDeleteRow}
+              onClose={handleClose}
+              // scroll={scroll}
+              aria-labelledby="scroll-dialog-title"
+              aria-describedby="scroll-dialog-description"
+              maxWidth="xl"
+              style={{background:"rgba(0,0,0,0.6)"}}
+            >
+              <div style={{padding:"48px 16px",textAlign:"center",fontFamily:"Shabnam"}}>
+              <div style={{fontWeight:"600"}}>آیا میخواهید کندو انتخاب شده را حذف نمایید؟</div>
+              <div  style={{marginTop:"32px",display:"flex",justifyContent:"space-around",alignItems:"center"}}>
+                 <Button onClick={() => onRowDelete(rowData,popupState)} className={classes.addButton}>بله</Button>
+                 <Button  onClick={handleClose} className={classes.cancelButton}>خیر</Button>
+              </div></div>
+                  </Dialog>
                 </Popover>
               </div>
             )}
@@ -1125,7 +1153,9 @@ const changeApiary =async(index)=>{
                             cursor:"pointer"
     
                           }}
-                          onClick={() => handleBulkDelete(selectedRows)}
+                          // onClick={() => handleBulkDelete(selectedRows)}
+                          onClick={handleDeleteOpen()}
+
                         >
                           <img src="/assets/trash-svgrepo-com-2.svg" style={{ margin: "0 8px 0 16px" }} />
                           حذف
@@ -1197,24 +1227,28 @@ const changeApiary =async(index)=>{
 
         ]}
       />
-      <div>
-        <Dialog
-          PaperProps={{
-            style: { borderRadius: 12,width:"50%"}
-          }}
-        open={open}
-        onClose={handleClose}
-        scroll={scroll}
-        aria-labelledby="scroll-dialog-title"
-        aria-describedby="scroll-dialog-description"
-        maxWidth="xl"
-        >
-            {/* <ApiaryAddList /> */}
-            <div style={{textAlign:"center",background:"orange",padding:"16px"}}>در حال حاضر برای اضافه کردن کندو از طریق اپلیکیشن اقدام کنید.</div>
-        </Dialog>
-      </div>
 
 
+      <Dialog
+              PaperProps={{
+                style: { borderRadius: 12, width: "24%", overflowY:"hidden"
+              },
+              }}
+              open={openDelete}
+              onClose={handleClose}
+              // scroll={scroll}
+              aria-labelledby="scroll-dialog-title"
+              aria-describedby="scroll-dialog-description"
+              maxWidth="xl"
+              style={{background:"rgba(0,0,0,0.6)"}}
+            >
+              <div style={{padding:"48px 16px",textAlign:"center",fontFamily:"Shabnam"}}>
+              <div style={{fontWeight:"600"}}>آیا میخواهید کندو انتخاب شده را حذف نمایید؟</div>
+              <div  style={{marginTop:"32px",display:"flex",justifyContent:"space-around",alignItems:"center"}}>
+                 <Button onClick={() => handleBulkDelete(selectedRows)} className={classes.addButton}>بله</Button>
+                 <Button  onClick={handleClose} className={classes.cancelButton}>خیر</Button>
+              </div></div>
+            </Dialog>
 
 
       <div>       

@@ -167,7 +167,7 @@ function LeftCard() {
         </Grid>
     </Grid>
     <Grid item  xs={12} className={classes.ManualVisit_Container}  >
-     {manualVisit=="true"?<div onClick={()=>history.push("/app/Question")} >برای پاسخ به سوالات دستی کلیک نمایید.</div>:    <div onClick={()=>history.push("/app/setting")}>جهت فعال کردن بازدید دستی کلیک کنید.</div>} 
+     {manualVisit=="true"?<div onClick={()=>history.push("/app/Question")} style={{cursor:"pointer"}} >برای پاسخ به سوالات دستی کلیک نمایید.</div>:    <div onClick={()=>history.push("/app/setting")}>جهت فعال کردن بازدید دستی کلیک کنید.</div>} 
     </Grid>
 
     </>

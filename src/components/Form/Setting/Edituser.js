@@ -1,4 +1,4 @@
-import { Avatar, Box, Divider, FormControlLabel, FormGroup, Grid, Modal, Switch, TextField, Typography } from '@material-ui/core';
+import { Avatar, Box, Button, Dialog, Divider, FormControlLabel, FormGroup, Grid, Modal, Switch, TextField, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -26,6 +26,7 @@ function Edituser(props) {
     const mobile = localStorage.getItem("data")
     const lastname = localStorage.getItem("lastname")
     const [open, setOpen] = useState(false);
+    const [openDelete, setOpenDelete] = useState(false);
 
     const classes = useStyles();
      const handleOpen = () => {
@@ -33,8 +34,14 @@ function Edituser(props) {
       };
       const handleClose = () => {
         setOpen(false);
+        setOpenDelete(false);
 
       };
+      const handleDeleteOpen = (scrollType) => () => {
+        setOpenDelete(true);
+        // setScroll(scrollType);
+      };
+
       const style = {
         position: "absolute",
         top: "50%",
@@ -176,7 +183,7 @@ function Edituser(props) {
           </div>
       </div>
       <div style={{backgroundColor:"rgba(227 ,23 ,10, 0.11)",padding:"8px 16px",borderRadius:"8px",
-           color:"rgb( 227, 23 ,10)",fontWeight:600,cursor:"pointer"}}  onClick={() => signOut(userDispatch, props.history)}>خروج از حساب کاربری</div>
+           color:"rgb( 227, 23 ,10)",fontWeight:600,cursor:"pointer"}}  onClick={handleDeleteOpen()}>خروج از حساب کاربری</div>
     </Grid>
 
     <Grid xs={12} style={{padding:" 32px ", borderRadius:"12px",     backgroundColor:"#fff",marginTop:"32px"}}>
@@ -352,7 +359,26 @@ function Edituser(props) {
         </Modal>
     </div>
 
-
+    <Dialog
+              PaperProps={{
+                style: { borderRadius: 12, width: "24%", overflowY:"hidden"
+              },
+              }}
+              open={openDelete}
+              onClose={handleClose}
+              // scroll={scroll}
+              aria-labelledby="scroll-dialog-title"
+              aria-describedby="scroll-dialog-description"
+              maxWidth="xl"
+              style={{background:"rgba(0,0,0,0.6)"}}
+            >
+              <div style={{padding:"48px 16px",textAlign:"center",fontFamily:"Shabnam"}}>
+              <div style={{fontWeight:"600"}}>آیا میخواهید از حساب کاربری خود خارج شوید؟</div>
+              <div  style={{marginTop:"32px",display:"flex",justifyContent:"space-around",alignItems:"center"}}>
+                 <Button onClick={() => signOut(userDispatch, props.history)} className={classes.addButton}>بله</Button>
+                 <Button  onClick={handleClose} className={classes.cancelButton}>خیر</Button>
+              </div></div>
+                  </Dialog>
     </Grid>
   )
 }

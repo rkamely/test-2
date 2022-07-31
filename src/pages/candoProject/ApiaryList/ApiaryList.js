@@ -47,6 +47,7 @@ function ApiaryList() {
   const [open, setOpen] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
+  const [openDeleteRow, setOpenDeleteRow] = useState(false);
   const [downloadOpen, setdownloadOpen] = useState(false);
   const [selectedRows, setSelectedRows] = useState();
   const [toolbar, setToolbar] = useState(false);
@@ -74,6 +75,10 @@ function ApiaryList() {
     setOpenDelete(true);
     setScroll(scrollType);
   };
+  const handleDeleteOpenRow = (scrollType) => () => {
+    setOpenDeleteRow(true);
+    setScroll(scrollType);
+  };
   const handleOpen = () => {
     setOpen(true);
   };
@@ -88,6 +93,7 @@ function ApiaryList() {
     setdownloadOpen(false);
     setOpenEdit(false);
     setOpenDelete(false);
+    setOpenDeleteRow(false)
     history.push("/app/ApiaryList")
 
   };
@@ -662,7 +668,7 @@ function ApiaryList() {
                             cursor: "pointer",
                           }}
 
-                          onClick={() => onRowDelete(rowData,popupState)}
+                          onClick={handleDeleteOpenRow()}
                           // onClick={handleDeleteOpen}
                         >
                           <img
@@ -671,6 +677,26 @@ function ApiaryList() {
                           />
                           حذف
                         </div>
+                        <Dialog
+              PaperProps={{
+                style: { borderRadius: 12, width: "24%", overflowY:"hidden"
+              },
+              }}
+              open={openDeleteRow}
+              onClose={handleClose}
+              // scroll={scroll}
+              aria-labelledby="scroll-dialog-title"
+              aria-describedby="scroll-dialog-description"
+              maxWidth="xl"
+              style={{background:"rgba(0,0,0,0.6)"}}
+            >
+              <div style={{padding:"48px 16px",textAlign:"center",fontFamily:"Shabnam"}}>
+              <div style={{fontWeight:"600"}}>آیا میخواهید زنبورستان انتخاب شده را حذف نمایید؟</div>
+              <div  style={{marginTop:"32px",display:"flex",justifyContent:"space-around",alignItems:"center"}}>
+                 <Button onClick={() => onRowDelete(rowData,popupState)} className={classes.addButton}>بله</Button>
+                 <Button  onClick={handleClose} className={classes.cancelButton}>خیر</Button>
+              </div></div>
+            </Dialog>
                       </div>
                     </Popover>
                   
@@ -1021,7 +1047,7 @@ function ApiaryList() {
                                   justifyContent: "flex-start",
                                   cursor: "pointer",
                                 }}
-                                onClick={() => handleBulkDelete(selectedRows)}
+                                onClick={handleDeleteOpen()}
                               >
                                 <img
                                   src="/assets/trash-svgrepo-com-2.svg"
@@ -1329,28 +1355,28 @@ function ApiaryList() {
             </Dialog>
           </div>
 
-          <div>
-            <Modal
+
+
+          <Dialog
+              PaperProps={{
+                style: { borderRadius: 12, width: "24%", overflowY:"hidden"
+              },
+              }}
               open={openDelete}
               onClose={handleClose}
-              aria-labelledby="parent-modal-title"
-              aria-describedby="parent-modal-description"
+              // scroll={scroll}
+              aria-labelledby="scroll-dialog-title"
+              aria-describedby="scroll-dialog-description"
+              maxWidth="xl"
+              style={{background:"rgba(0,0,0,0.6)"}}
             >
-              <Box
-                sx={{ ...style, width: 1000 }}
-                className="downloadFile"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <button onClick={() => handleBulkDelete(selectedRows)}>
-                  Delete
-                </button>
-              </Box>
-            </Modal>
-          </div>
+              <div style={{padding:"48px 16px",textAlign:"center",fontFamily:"Shabnam"}}>
+              <div style={{fontWeight:"600"}}>آیا میخواهید زنبورستان انتخاب شده را حذف نمایید؟</div>
+              <div  style={{marginTop:"32px",display:"flex",justifyContent:"space-around",alignItems:"center"}}>
+                 <Button onClick={() => handleBulkDelete(selectedRows)} className={classes.addButton}>بله</Button>
+                 <Button  onClick={handleClose} className={classes.cancelButton}>خیر</Button>
+              </div></div>
+            </Dialog>
 
           <div>
             <Modal

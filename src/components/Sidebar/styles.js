@@ -5,6 +5,7 @@ const drawerWidth = 280;
 export default makeStyles(theme => ({
   sidebarList:{
     position:"relative",
+    overflowX:"hidden"
  },
   menuButton: {
     marginLeft: 12,

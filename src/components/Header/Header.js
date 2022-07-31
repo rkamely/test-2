@@ -8,7 +8,9 @@ import {
   MenuItem,
   Fab,
   Link,
-  Avatar
+  Avatar,
+  Dialog,
+  Grid
 } from "@material-ui/core";
 import {
   Menu as MenuIcon,
@@ -102,8 +104,10 @@ export default function Header(props) {
 
   // local
 
-  var [profileMenu, setProfileMenu] = useState(null);
-  var [isSearchOpen, setSearchOpen] = useState(false);
+  const [profileMenu, setProfileMenu] = useState(null);
+  const [isSearchOpen, setSearchOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [scroll, setScroll] = useState("paper");
 
   const history=useHistory()
   const firstName = localStorage.getItem("profileName");
@@ -123,6 +127,13 @@ export default function Header(props) {
     history.push("/login");
    }
 
+   const handleClose = () => {
+    setOpen(false);
+  };
+  const handleClickOpen = (scrollType) => () => {
+    setOpen(true);
+    setScroll(scrollType);
+  };
 
 
   return (
@@ -246,13 +257,37 @@ export default function Header(props) {
             <Typography
               className={classes.profileMenuLink}
               color="secondary"
-              onClick={() => signOut(userDispatch, props.history)}
+              onClick={handleClickOpen()}
+              // onClick={() => signOut(userDispatch, props.history)}
             >
 خروج از حساب
             </Typography>
           </div>
         </Menu>
       </Toolbar>
+
+      
+            <Dialog
+              PaperProps={{
+                style: { borderRadius: 12, width: "24%", overflowY:"hidden"
+              },
+              }}
+              open={open}
+              onClose={handleClose}
+              // scroll={scroll}
+              aria-labelledby="scroll-dialog-title"
+              aria-describedby="scroll-dialog-description"
+              maxWidth="xl"
+              style={{background:"rgba(0,0,0,0.6)"}}
+            >
+              <div style={{padding:"48px 16px",textAlign:"center",fontFamily:"Shabnam"}}>
+              <div style={{fontWeight:"600"}}>آیا میخواهید از حساب کاربری خود خارج شوید؟</div>
+              <div  style={{marginTop:"32px",display:"flex",justifyContent:"space-around",alignItems:"center"}}>
+                 <Button onClick={()=>signOut(userDispatch, props.history)} className={classes.addButton}>بله</Button>
+                 <Button  onClick={handleClose} className={classes.cancelButton}>خیر</Button>
+              </div></div>
+            </Dialog>
+        
     </AppBar>
   );
 }
