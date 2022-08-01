@@ -888,7 +888,7 @@ const changeApiary =async(index)=>{
         }}
         title=""
         style={{ borderRadius: "25px",marginTop:"16px" }}
-        data={Company}
+        data={hiveTable}
         columns={columns}
         onSelectionChange={(rows) => setSelectedRows(rows)}
         localization={{

@@ -27,7 +27,8 @@ function Edituser(props) {
     const lastname = localStorage.getItem("lastname")
     const [open, setOpen] = useState(false);
     const [openDelete, setOpenDelete] = useState(false);
-
+    const [setting,setSetting] = useState([]);
+    const [openCode,setOpenCode] = useState(false);
     const classes = useStyles();
      const handleOpen = () => {
         setOpen(true);
@@ -35,13 +36,15 @@ function Edituser(props) {
       const handleClose = () => {
         setOpen(false);
         setOpenDelete(false);
-
+        // setOpenCode(false)
       };
       const handleDeleteOpen = (scrollType) => () => {
         setOpenDelete(true);
         // setScroll(scrollType);
       };
-
+      const handleCloseCode =()=>{
+                setOpenCode(false)
+      }
       const style = {
         position: "absolute",
         top: "50%",
@@ -59,7 +62,7 @@ function Edituser(props) {
 
     const validationSchema = yup.object().shape({
   
-      phoneNumber:yup.string().matches(phoneRegExp, 'شماره موبایل را بدون صفر و با حروف انگلیسی وارد کنید'),
+      // phoneNumber:yup.string().matches(phoneRegExp, 'شماره موبایل را بدون صفر و با حروف انگلیسی وارد کنید'),
       Username:yup.string().required( 'لطفا نام کاربری خود را وارد کنید'),
       name:yup.string().required('لطفا نام خود را وارد کنید'),
       family:yup.string().required('لطفا نام خانوادگی خود را وارد کنید'),
@@ -67,23 +70,17 @@ function Edituser(props) {
   
     });
 
-    const [data, setData] = useState([
-      {
-        id: 1,
-        titleQuestion:
-          "باسلام زنبوردار عزیز از طریق لینک زیر اپلیکیشن کندووان پلاس را بروز رسانی کنید.",
-        name: "جعفر",
-        Date: "1400/01/01",
-        Time: "12:14",
-      },
-      {
-        id: 1,
-        titleQuestion: "ممنون از شما حتما رسیدگی خواهد شد.",
-        name: "رضا",
-        Date: "1400/01/01",
-        Time: "12:14",
-      },
-    ]);
+    // const [data, setData] = useState([
+    //   {
+    //     id: 1,
+    //     titleQuestion:
+    //       "باسلام زنبوردار عزیز از طریق لینک زیر اپلیکیشن کندووان پلاس را بروز رسانی کنید.",
+    //     firstname: "جعفر",
+    //     Date: "1400/01/01",
+    //     Time: "12:14",
+    //   },
+
+    // ]);
 
     const token = localStorage.getItem("id_token")
 
@@ -99,6 +96,7 @@ function Edituser(props) {
             },
           );
           console.log("show response profile", response);
+          setSetting(response)
         } catch (error) {
           if (error.response?.status === 401) {
             localStorage.clear("id_token")
@@ -120,7 +118,7 @@ function Edituser(props) {
         formState: { errors }
       } = useForm({
         resolver: yupResolver(validationSchema),
-        defaultValues: data
+        // defaultValues: data
       });
       const onSubmit = data => {
         console.log(JSON.stringify(data, null, 2));
@@ -232,11 +230,11 @@ function Edituser(props) {
 </Grid>
 
 <Grid xs={12} justifyContent='space-between' style={{display:"flex"}}>
-              <TextField
-      
+   
+    <TextField      
       // style={{direction:"ltr"}}
         className={classes.TextField}
-      label="نام"
+        label="نام"
         id="name"
         name="name"
         variant="outlined"
@@ -273,7 +271,7 @@ function Edituser(props) {
 
 </Grid> 
 
-     <Grid>
+     <Grid style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
      <TextField
       
       // style={{direction:"ltr"}}
@@ -288,10 +286,19 @@ function Edituser(props) {
         {...register('email')}
         error={errors.phoneNumber ? true : false}
       />
+
       {/* <Typography variant="inherit" color="textSecondary" style={{color:"red"}}>
         {errors.email?.message}
       </Typography> */}
+         <Button
+                variant="contained"
+                color="secondary"
+                onClick={handleSubmit(onSubmit)}
+              >
+                افزودن
+        </Button>
     </Grid>
+    
     </Grid>
 
 <Grid   xs={12} style={{display:"flex",gap:"36px"}}>
@@ -353,7 +360,7 @@ function Edituser(props) {
           aria-describedby="parent-modal-description"
         >
           <Box sx={{ ...style, width: "40vw" }} >
-            <EditPhoneNumber />
+            <EditPhoneNumber onClose={handleClose} setOpenCode={setOpenCode}/>
           </Box>
           
         </Modal>
@@ -378,7 +385,26 @@ function Edituser(props) {
                  <Button onClick={() => signOut(userDispatch, props.history)} className={classes.addButton}>بله</Button>
                  <Button  onClick={handleClose} className={classes.cancelButton}>خیر</Button>
               </div></div>
-                  </Dialog>
+      </Dialog>
+      <Dialog
+              PaperProps={{
+                style: { borderRadius: 12, width: "24%", overflowY:"hidden"
+              },
+              }}
+              open={openCode}
+              onClose={handleCloseCode}
+              // scroll={scroll}
+              aria-labelledby="scroll-dialog-title"
+              aria-describedby="scroll-dialog-description"
+              maxWidth="xl"
+              style={{background:"rgba(0,0,0,0.6)"}}
+            >
+              <div style={{padding:"48px 16px",textAlign:"center",fontFamily:"Shabnam"}}>
+              <div style={{fontWeight:"600"}}>کد ارسال شده را وارد نمایید</div>
+              <div  style={{marginTop:"32px",display:"flex",justifyContent:"space-around",alignItems:"center"}}>
+                 <Button  onClick={handleCloseCode} className={classes.cancelButton}>خیر</Button>
+              </div></div>
+      </Dialog>
     </Grid>
   )
 }

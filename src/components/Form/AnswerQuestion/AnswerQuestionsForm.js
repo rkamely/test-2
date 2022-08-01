@@ -71,8 +71,8 @@ import Loading from "../../Loading/Loading";
     console.log("Question_id",Question_id);
     const Hive_id = localStorage.getItem("Hive_id")
     console.log("Hive_id",Hive_id);
-      ///////////////////////////////////////////////////////////////////////////////////////////
-  
+
+////////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     const fetchData = async () => {
       // setLoading(true);
@@ -94,13 +94,35 @@ import Loading from "../../Loading/Loading";
     fetchData();
   }, []);
 //////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+//get all answer
+useEffect(() => {
+  const fetchData = async () => {
+    // setLoading(true);
+    try {
+      const { data: response } = await axios.get(
+        `http://185.202.113.165:3000/api/answer/get-by-id/${Question_id}`, {
+          headers: {
+            token: `${token}`,
+          },
+        },
+      )
+      console.log("show response Question", response.data);
+      setQuestionForm(response.data)
+      setLoading(false)
+    } catch (error) {
+     console.log(error);
+    }
+  };
+  fetchData();
+}, []);
+////////////////////////////////////////////////////////////////////////////////
     const onSubmit = async (data) => {
       alert(data)
-      console.log("asdasdasd",data);
       const response = await axios
         .post(
           `http://185.202.113.165:3000/api/answer`,
-          { input:data.Input ,question:{_id:`${Question_id}`}, hive:{_id:`${Hive_id}`}},
+          { selected:`${data.newOptions}` ,question:{_id:`${Question_id}`}, hive:{_id:`${Hive_id}`}},
           {
             headers: {
               token: `${token}`,
@@ -194,27 +216,27 @@ const Content=()=>{
 
       case "MultipleChoice":
         const handleCheck = checkedId => {
-          const { item_ids: ids } = getValues();
+          const { newOptions: ids } = getValues();
           const newIds = ids?.includes(checkedId)
             ? ids?.filter(id => id !== checkedId)
             : [...(ids ?? []), checkedId];
           return newIds;
         };
         return(
-          <FormControl error={!!errors.item_ids?.message}  className={classes.formContainer}>
+          <FormControl error={!!errors.newOptions?.message}  className={classes.formContainer}>
           <FormLabel component="legend" className={classes.FormLable}>{QuestionForm.title}</FormLabel>
-          <FormHelperText>{errors.item_ids?.message}</FormHelperText>
+          <FormHelperText>{errors.newOptions?.message}</FormHelperText>
           <div  className={classes.formContainerCheckbox}>
           <Controller
   
-            name="item_ids"
+            name="newOptions"
             render={props =>
               QuestionForm?.options?.map((option, index) => (
                 <FormControlLabel  style={{whiteSpace:"noWrap"}}      
                   control={
                     <Checkbox
                       
-                      onChange={() => props.field.onChange(handleCheck(option?._id))}
+                      onChange={() => props.field.onChange(handleCheck(option?.text))}
                       // defaultChecked={defaultIds.includes(item.id)}
                     />
                   }

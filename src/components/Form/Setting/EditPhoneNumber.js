@@ -6,24 +6,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import useStyles from "./styles";
 
-function EditPhoneNumber() {
-  const steps = [
-    {
-      id:"1",
-     
-    },
-    {
-      id:"2",
-    },
+function EditPhoneNumber({onClose,setOpenCode}) {
 
-  ];
   const classes = useStyles();
   // const history=useHistory()
   const [loginValue, setLoginValue] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   var [error, setError] = useState(null);
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = steps.length;
+
 
   // global
   const userDispatch = useUserDispatch();
@@ -48,10 +39,11 @@ function EditPhoneNumber() {
     resolver: yupResolver(validationSchema)
   });
   const onSubmit = data => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-
+    // setActiveStep((prevActiveStep) => prevActiveStep + 1);
+   
     console.log(JSON.stringify(data, null, 2));
-    alert(JSON.stringify(data, null, 2));
+    setOpenCode(true)
+    onClose()
     // history.push("/login/step2")
 
   };
@@ -70,12 +62,6 @@ function EditPhoneNumber() {
     
    <Grid className={classes.main}>
     <TextField
-      onClick={steps[activeStep].id == steps.length - 1 ? handleNext : console.log("inja code daryaft mishe mire server baraye taeed")}  className={classes.buttonLogin}
-      // style={{direction:"ltr"}}
-      className={classes.TextField}
-      label={steps[activeStep].id == steps.length - 1 ? '    شماره تلفن   ' : '   کد تایید را وارد نمایید'  }
-      onChange={e => setLoginValue(e.target.value)}
-
       id="phoneNumber"
       name="phoneNumber"
       variant="outlined"
@@ -90,8 +76,9 @@ function EditPhoneNumber() {
     </Typography><br/>
 
    
+    <Button   className={classes.buttonLogin}     onClick={handleSubmit(onSubmit)}>ثبت</Button>
 
-    <Button onClick={steps[activeStep].id == steps.length - 1 ? onSubmit : console.log("inja code daryaft mishe mire server baraye taeed")}  className={classes.buttonLogin} >{steps[activeStep].id == steps.length - 1 ? 'ثبت' : ' دریافت کد تایید'}</Button>
+    {/* <Button onClick={steps[activeStep].id == steps.length - 1 ? onSubmit : console.log("inja code daryaft mishe mire server baraye taeed")}  className={classes.buttonLogin} >{steps[activeStep].id == steps.length - 1 ? 'ثبت' : ' دریافت کد تایید'}</Button> */}
 
 {/* 
 <Button
