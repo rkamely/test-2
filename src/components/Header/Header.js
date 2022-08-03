@@ -10,7 +10,7 @@ import {
   Link,
   Avatar,
   Dialog,
-  Grid
+  Grid,
 } from "@material-ui/core";
 import {
   Menu as MenuIcon,
@@ -39,7 +39,7 @@ import {
 } from "../../context/LayoutContext";
 import { useUserDispatch, signOut } from "../../context/UserContext";
 import axios from "axios";
-import {  useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const messages = [
   {
@@ -96,7 +96,7 @@ const notifications = [
 
 export default function Header(props) {
   var classes = useStyles();
- 
+
   // global
   var layoutState = useLayoutState();
   var layoutDispatch = useLayoutDispatch();
@@ -109,25 +109,25 @@ export default function Header(props) {
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
 
-  const history=useHistory()
+  const history = useHistory();
   const firstName = localStorage.getItem("profileName");
   // console.log("firstName",firstName);
-  const email = localStorage.getItem("email")
-  const lastname = localStorage.getItem("lastname")
+  const email = localStorage.getItem("email");
+  const lastname = localStorage.getItem("lastname");
 
-    console.log("email",email);
-    console.log("email",firstName);
+  console.log("email", email);
+  console.log("email", firstName);
 
-   if(!firstName){
+  if (!firstName) {
     //  console.log("login dispach access",!!firstName);
-    localStorage.clear("id_token")
+    localStorage.clear("id_token");
 
     userDispatch({ type: "SIGN_OUT_SUCCESS" });
-    
-    history.push("/login");
-   }
 
-   const handleClose = () => {
+    history.push("/login");
+  }
+
+  const handleClose = () => {
     setOpen(false);
   };
   const handleClickOpen = (scrollType) => () => {
@@ -135,10 +135,9 @@ export default function Header(props) {
     setScroll(scrollType);
   };
 
-
   return (
     <AppBar position="fixed" className={classes.appBar}>
-      <Toolbar className={classes.toolbar} >
+      <Toolbar className={classes.toolbar}>
         <IconButton
           color="inherit"
           onClick={() => toggleSidebar(layoutDispatch)}
@@ -167,8 +166,8 @@ export default function Header(props) {
             />
           )}
         </IconButton>
-        <Typography variant="h6" weight="medium" className={classes.logotype} >
-پنل کاربری
+        <Typography variant="h6" weight="medium" className={classes.logotype}>
+          پنل کاربری
         </Typography>
         <div className={classes.grow} />
         <div
@@ -195,27 +194,32 @@ export default function Header(props) {
 
         {/* <div className={classes.HeaderBarcode}>
         <img src="/assets/qr-code.svg" width="20%"/>  اسکن بارکد</div> */}
-        
-     <div className={classes.HeaderLeft}>
-      <div className={classes.HeaderLogo} >
-        <Avatar
-        style={{cursor:"pointer"}}
-         alt="Remy Sharp" 
-         src="/assets/HeaderProfile.svg"
-          aria-haspopup="true"
-          color="inherit"
-          className={classes.headerMenuButton}
-          aria-controls="profile-menu"
-          onClick={e => setProfileMenu(e.currentTarget)}
-        >
-          <AccountIcon style={{cursor:"pointer"}} classes={{ root: classes.headerIcon }} />
-        </Avatar>
-         <KeyboardArrowDown    onClick={e => setProfileMenu(e.currentTarget)}/>
-      </div>
-         <Typography variant="p" weight="medium" className={classes.logotype}>
-          {`سلام ${firstName}!`}
-        </Typography>
-       </div> 
+
+        <div className={classes.HeaderLeft}>
+          <div className={classes.HeaderLogo}>
+            <Avatar
+              style={{ cursor: "pointer" }}
+              alt="Remy Sharp"
+              src="/assets/HeaderProfile.svg"
+              aria-haspopup="true"
+              color="inherit"
+              className={classes.headerMenuButton}
+              aria-controls="profile-menu"
+              onClick={(e) => setProfileMenu(e.currentTarget)}
+            >
+              <AccountIcon
+                style={{ cursor: "pointer" }}
+                classes={{ root: classes.headerIcon }}
+              />
+            </Avatar>
+            <KeyboardArrowDown
+              onClick={(e) => setProfileMenu(e.currentTarget)}
+            />
+          </div>
+          <Typography variant="p" weight="medium" className={classes.logotype}>
+            {`سلام ${firstName}!`}
+          </Typography>
+        </div>
 
         <Menu
           id="profile-menu"
@@ -227,22 +231,19 @@ export default function Header(props) {
           disableAutoFocusItem
         >
           <div className={classes.profileMenuUser}>
-          <Typography variant="h6" weight="medium">
+            <Typography variant="h6" weight="medium">
               پنل کاربری
             </Typography>
-          
           </div>
           <div className={classes.profileMenuUser}>
             <Typography variant="p" weight="medium">
-            نام: {firstName} {lastname}
+              نام: {firstName} {lastname}
             </Typography>
-          
           </div>
           <div className={classes.profileMenuUser}>
             <Typography variant="p" weight="medium">
-            ایمیل: {email}
+              ایمیل: {email}
             </Typography>
-          
           </div>
           {/* <MenuItem
             className={classNames(
@@ -260,34 +261,54 @@ export default function Header(props) {
               onClick={handleClickOpen()}
               // onClick={() => signOut(userDispatch, props.history)}
             >
-خروج از حساب
+              خروج از حساب
             </Typography>
           </div>
         </Menu>
       </Toolbar>
 
-      
-            <Dialog
-              PaperProps={{
-                style: { borderRadius: 12, width: "24%", overflowY:"hidden"
-              },
-              }}
-              open={open}
-              onClose={handleClose}
-              // scroll={scroll}
-              aria-labelledby="scroll-dialog-title"
-              aria-describedby="scroll-dialog-description"
-              maxWidth="xl"
-              style={{background:"rgba(0,0,0,0.6)"}}
+      <Dialog
+        PaperProps={{
+          style: { borderRadius: 12, width: "24%", overflowY: "hidden" },
+        }}
+        open={open}
+        onClose={handleClose}
+        // scroll={scroll}
+        aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description"
+        maxWidth="xl"
+        style={{ background: "rgba(0,0,0,0.6)" }}
+      >
+        <div
+          style={{
+            padding: "48px 16px",
+            textAlign: "center",
+            fontFamily: "Shabnam",
+          }}
+        >
+          <div style={{ fontWeight: "600" }}>
+            آیا میخواهید از حساب کاربری خود خارج شوید؟
+          </div>
+          <div
+            style={{
+              marginTop: "32px",
+              display: "flex",
+              justifyContent: "space-around",
+              alignItems: "center",
+            }}
+          >
+            <Button
+              onClick={() => signOut(userDispatch, props.history)}
+              className={classes.addButton}
             >
-              <div style={{padding:"48px 16px",textAlign:"center",fontFamily:"Shabnam"}}>
-              <div style={{fontWeight:"600"}}>آیا میخواهید از حساب کاربری خود خارج شوید؟</div>
-              <div  style={{marginTop:"32px",display:"flex",justifyContent:"space-around",alignItems:"center"}}>
-                 <Button onClick={()=>signOut(userDispatch, props.history)} className={classes.addButton}>بله</Button>
-                 <Button  onClick={handleClose} className={classes.cancelButton}>خیر</Button>
-              </div></div>
-            </Dialog>
-        
+              بله
+            </Button>
+            <Button onClick={handleClose} className={classes.cancelButton}>
+              خیر
+            </Button>
+          </div>
+        </div>
+      </Dialog>
     </AppBar>
   );
 }

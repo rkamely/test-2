@@ -271,7 +271,7 @@ export default makeStyles((theme) => ({
     backgroundColor: "rgb( 26, 115 ,233)",
     fontFamily: "Shabnam",
     padding: "8px 12px",
-    width: "20px",
+    width: "80px",
     boxShadow: "0px 3px 6px 0px rgba( 0 ,0, 0, 0.16)",
     color: "#fff",
     fontWeight: 600,

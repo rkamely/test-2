@@ -27,7 +27,7 @@ import {
   TrainRounded,
   TramRounded,
 } from "@material-ui/icons";
-import { Link, useHistory,useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import MaterialTable, { MTableToolbar } from "material-table";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 import jsPDF from "jspdf";
@@ -94,9 +94,8 @@ function ApiaryList() {
     setdownloadOpen(false);
     setOpenEdit(false);
     setOpenDelete(false);
-    setOpenDeleteRow(false)
-    history.push("/app/ApiaryList")
-
+    setOpenDeleteRow(false);
+    history.push("/app/ApiaryList");
   };
 
   console.log("salam  refs");
@@ -116,12 +115,12 @@ function ApiaryList() {
     overflow: "scroll",
     width: 430,
     // bgcolor: "background.paper",
-    background:" rgb( 244 244 244)",
+    background: " rgb( 244 244 244)",
     borderRadius: "16px",
     boxShadow: 24,
     paddingLeft: "24px",
     pt: 5,
-    
+
     pb: 4,
   };
   const [ApiariesList, setApiariesList] = useState([]);
@@ -243,14 +242,21 @@ function ApiaryList() {
         setLoading(false);
       } catch (error) {
         if (error.response?.status === 401) {
-          localStorage.clear("id_token")
-          console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
-          window.location.reload()
-        }else{
-        console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
-        history.push("/app/Error")
-        window.location.reload()
-       }}
+          localStorage.clear("id_token");
+          console.log(
+            "سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" +
+              "ApiaryList",
+          );
+          window.location.reload();
+        } else {
+          console.log(
+            "سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" +
+              "ApiaryList",
+          );
+          history.push("/app/Error");
+          window.location.reload();
+        }
+      }
 
       // setLoading(false);
     };
@@ -258,8 +264,7 @@ function ApiaryList() {
   }, []);
 
   console.log("ApiariesList247", ApiariesList.length);
-  localStorage.setItem("NumberOfApiaries", ApiariesList?.length)
- 
+  localStorage.setItem("NumberOfApiaries", ApiariesList?.length);
 
   /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -281,20 +286,17 @@ function ApiaryList() {
       cellStyle: {
         // textAlign:" center !important",
 
-        fontSize:"0.8rem",
-        justifyContent:"center",
+        fontSize: "0.8rem",
+        justifyContent: "center",
       },
 
       headerStyle: {
         textAlign: "right",
         whiteSpace: "nowrap",
-           fontSize:"0.8rem",
-           color:"rgb( 102, 103, 104)",
-           fontWeight:"600",
-
-  
+        fontSize: "0.8rem",
+        color: "rgb( 102, 103, 104)",
+        fontWeight: "600",
       },
-
 
       render: (rowData) => {
         console.log("rowData", rowData);
@@ -303,13 +305,15 @@ function ApiaryList() {
           <Link
             to={{
               pathname: `/app/ApiaryList/Beehive/${rowData._id}`,
-              state: { state:rowData.name },
+              state: { state: rowData.name },
             }}
-            onClick={() =>localStorage.setItem("Apiary_id", rowData.name)}
-            className="title" 
+            onClick={() => localStorage.setItem("Apiary_id", rowData.name)}
+            className="title"
             // style={{ display: "flex" }}
           >
-            <p className="title" style={{transform:"translateX(12px)"}}>{rowData.name}</p>
+            <p className="title" style={{ transform: "translateX(12px)" }}>
+              {rowData.name}
+            </p>
           </Link>
         );
       },
@@ -319,14 +323,14 @@ function ApiaryList() {
       title: " استان",
       field: "State",
       cellStyle: {
-        fontSize:"0.8rem",
+        fontSize: "0.8rem",
       },
       headerStyle: {
         textAlign: "right",
 
-        fontSize:"0.8rem",
-        color:"rgb( 102, 103, 104)",
-        fontWeight:"600",
+        fontSize: "0.8rem",
+        color: "rgb( 102, 103, 104)",
+        fontWeight: "600",
       },
       render: (rowData) => {
         return <p className="description">{rowData.State}</p>;
@@ -336,14 +340,14 @@ function ApiaryList() {
       title: " شهر",
       field: "city",
       cellStyle: {
-        fontSize:"0.8rem",
+        fontSize: "0.8rem",
       },
       headerStyle: {
         textAlign: "right",
 
-        fontSize:"0.8rem",
-        color:"rgb( 102, 103, 104)",
-        fontWeight:"600",
+        fontSize: "0.8rem",
+        color: "rgb( 102, 103, 104)",
+        fontWeight: "600",
       },
       render: (rowData) => {
         return <p className="description">{rowData.city}</p>;
@@ -353,14 +357,14 @@ function ApiaryList() {
       title: " آب و هوا",
       field: "city",
       cellStyle: {
-        fontSize:"0.8rem",
+        fontSize: "0.8rem",
       },
       headerStyle: {
         textAlign: "right",
 
-        fontSize:"0.8rem",
-        color:"rgb( 102, 103, 104)",
-        fontWeight:"600",
+        fontSize: "0.8rem",
+        color: "rgb( 102, 103, 104)",
+        fontWeight: "600",
       },
       render: (rowData) => {
         return <p className="description">{rowData.city}</p>;
@@ -418,7 +422,7 @@ function ApiaryList() {
     //     whiteSpace: "nowrap",
     //        fontSize:"0.8rem",
     //        color:"rgb( 102, 103, 104)",
-    //        fontWeight:"600", 
+    //        fontWeight:"600",
     //       // paddingRight:"20px"
     //   },
     //   render: (rowData) => {
@@ -437,22 +441,27 @@ function ApiaryList() {
       title: "کاربرد",
       field: "apiaryUsage",
       cellStyle: {
-        textAlign:" center !important",
+        textAlign: " center !important",
         whiteSpace: "nowrap",
-        transform:"translateX(10px)",
-        fontSize:"0.8rem",
-        justifyContent:"center",
+        transform: "translateX(10px)",
+        fontSize: "0.8rem",
+        justifyContent: "center",
       },
 
       headerStyle: {
         textAlign: "right",
         whiteSpace: "nowrap",
-           fontSize:"0.8rem",
-           color:"rgb( 102, 103, 104)",
-           fontWeight:"600",
-          //  paddingRight:"20px"
+        fontSize: "0.8rem",
+        color: "rgb( 102, 103, 104)",
+        fontWeight: "600",
+        //  paddingRight:"20px"
       },
-      lookup:{Queen:"پرورش ملکه",Royal:"ژل رویال",Honey:"تولید عسل" ,Other:"سایر"},
+      lookup: {
+        Queen: "پرورش ملکه",
+        Royal: "ژل رویال",
+        Honey: "تولید عسل",
+        Other: "سایر",
+      },
 
       // render: (rowData) => {
       //   switch (rowData.apiaryUsage) {
@@ -474,14 +483,14 @@ function ApiaryList() {
       field: "Hives",
       cellStyle: {
         textAlign: "right",
-        fontSize:"0.8rem",
+        fontSize: "0.8rem",
       },
       headerStyle: {
         textAlign: "right",
 
-        fontSize:"0.8rem",
-        color:"rgb( 102, 103, 104)",
-        fontWeight:"600",
+        fontSize: "0.8rem",
+        color: "rgb( 102, 103, 104)",
+        fontWeight: "600",
       },
       render: (rowData) => {
         return <p className="description">{rowData.Hives}</p>;
@@ -492,21 +501,31 @@ function ApiaryList() {
       field: "hivesWithBadCondition",
       cellStyle: {
         textAlign: "center !important",
-        fontSize:"0.8rem",
+        fontSize: "0.8rem",
 
-
-          // margin:"0 auto"
-            },
+        // margin:"0 auto"
+      },
       headerStyle: {
         // textAlign: "center !important",
         // whiteSpace: "nowrap",
-        color:"rgb( 102, 103, 104)",
-        fontWeight:"600",        fontSize:"0.8rem",
+        color: "rgb( 102, 103, 104)",
+        fontWeight: "600",
+        fontSize: "0.8rem",
         // paddingRight:"20px"
-
       },
       render: (rowData) => {
-        return <div style={{display:"flex",alignItems:"center",justifyContent:"center",marginRight:"-20px"}}><div className="circleRed">{rowData.hivesWithBadCondition}</div></div>;
+        return (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginRight: "-20px",
+            }}
+          >
+            <div className="circleRed">{rowData.hivesWithBadCondition}</div>
+          </div>
+        );
         // <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}><div className="circleRed">{rowData.hivesWithBadCondition}</div></div>
       },
     },
@@ -515,20 +534,29 @@ function ApiaryList() {
       field: "hivesWithVisitRequired",
       cellStyle: {
         textAlign: "right",
-        fontSize:"0.8rem",
-        padding:"0 30px"
-
+        fontSize: "0.8rem",
+        padding: "0 30px",
       },
       headerStyle: {
         textAlign: "right",
         // whiteSpace: "nowrap",
-        fontSize:"0.8rem",
-        color:"rgb( 102, 103, 104)",
-        fontWeight:"600",        // paddingRight:"20px"
-
+        fontSize: "0.8rem",
+        color: "rgb( 102, 103, 104)",
+        fontWeight: "600", // paddingRight:"20px"
       },
       render: (rowData) => {
-        return <div style={{display:"flex",alignItems:"center",justifyContent:"center",marginRight:"-20px"}}><div className="circleYellow">{rowData.hivesWithVisitRequired}</div></div>;
+        return (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginRight: "-20px",
+            }}
+          >
+            <div className="circleYellow">{rowData.hivesWithVisitRequired}</div>
+          </div>
+        );
       },
     },
     {
@@ -536,20 +564,29 @@ function ApiaryList() {
       field: "hivesWithGoodCondition",
       cellStyle: {
         textAlign: "right",
-        fontSize:"0.8rem",
-        padding:"0 30px"
-
+        fontSize: "0.8rem",
+        padding: "0 30px",
       },
       headerStyle: {
         textAlign: "right",
         // whiteSpace: "nowrap",
-        fontWeight:"600",        // paddingRight:"20px"
-        fontSize:"0.8rem",
+        fontWeight: "600", // paddingRight:"20px"
+        fontSize: "0.8rem",
         // paddingRight:"20px"
-
       },
       render: (rowData) => {
-        return <div style={{display:"flex",alignItems:"center",justifyContent:"center",marginRight:"-20px"}}><div className="circleGreen">{rowData.hivesWithGoodCondition}</div></div>;
+        return (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginRight: "-20px",
+            }}
+          >
+            <div className="circleGreen">{rowData.hivesWithGoodCondition}</div>
+          </div>
+        );
       },
     },
 
@@ -557,152 +594,185 @@ function ApiaryList() {
       title: "عملیات",
       field: "thumbnail",
       cellStyle: {
-        textAlign:" center !important",
-        fontSize:"0.8rem",
-        justifyContent:"center",
+        textAlign: " center !important",
+        fontSize: "0.8rem",
+        justifyContent: "center",
       },
 
       headerStyle: {
         textAlign: "center !important",
         whiteSpace: "nowrap",
-           fontSize:"0.8rem",
-           fontWeight:"600",        // paddingRight:"20px"
-           paddingRight:"20px"
+        fontSize: "0.8rem",
+        fontWeight: "600", // paddingRight:"20px"
+        paddingRight: "20px",
       },
 
       render: (rowData) => {
         return (
           // <Link to={`/app/ApiaryList/${rowData.id}`}>
           <div>
-          <PopupState variant="popover" popupId="demo-popup-popover">
+            <PopupState variant="popover" popupId="demo-popup-popover">
               {(popupState) => (
                 <div>
-                  <MoreVertOutlined 
+                  <MoreVertOutlined
                     variant="contained"
                     {...bindTrigger(popupState)}
                     style={{ cursor: "pointer" }}
-                    
-
                   />
 
-            
-                    <Popover
-                      {...bindPopover(popupState)}
-                      anchorOrigin={{
-                        vertical: "bottom",
-                        horizontal: "center",
-                      }}
-                      transformOrigin={{
-                        vertical: "top",
-                        horizontal: "center",
+                  <Popover
+                    {...bindPopover(popupState)}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "center",
+                    }}
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "center",
+                    }}
+                  >
+                    <div
+                      style={{
+                        borderRadius: " 16px",
+                        padding: " 16px",
+                        textDecoration: "none",
                       }}
                     >
-                      <div style={{ borderRadius: " 16px", padding: " 16px",textDecoration:"none"}}>
-                        <Link
-                          to={{pathname:`/app/ApiaryList/${rowData._id}` , state: { modal: true ,background: location ,id:rowData._id }}}
-                          
-                          onClick={handleClickEdit("body",rowData._id)}
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "flex-start",
-                            cursor: "pointer",
-                            color:"#000",
-                            textDecoration:"none" 
-                          }}
-                        >
-                          <Edit style={{ marginLeft: "16px" }} />
-                        
-                          ویرایش
-                       </Link>
-                        <hr
-                          style={{
-                            borderTop: "1px solid rgb( 240, 240, 240)",
-                            height: "2px",
-                          }}
-                        />
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "flex-start",
-                            cursor: "pointer",
-                            color: "#000",
-
-                          }}
-                        >
-                          <Share style={{ marginLeft: "16px" }} />
-                          اشتراک گذاری
-                        </div>
-                        <hr
-                          style={{
-                            borderTop: "1px solid rgb( 240, 240, 240)",
-                            height: "2px",
-                          }}
-                        />
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "flex-start",
-                            cursor: "pointer",
-                            color: "#000",
-
-                          }}
-                        >
-                          <img
-                            src="/assets/move-svgrepo-com.svg"
-                            style={{ margin: "0 0px 0 24px" }}
-                          />
-                          انتقال
-                        </div>
-                        <hr
-                          style={{
-                            borderTop: "1px solid rgb( 240, 240, 240)",
-                            height: "2px",
-                          }}
-                        />
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            color: "red",
-                            justifyContent: "flex-start",
-                            cursor: "pointer",
-                          }}
-
-                          onClick={handleDeleteOpenRow()}
-                          // onClick={handleDeleteOpen}
-                        >
-                          <img
-                            src="/assets/trash-svgrepo-com-2.svg"
-                            style={{ margin: "0 0px 0 24px" }}
-                          />
-                          حذف
-                        </div>
-                        <Dialog
-              PaperProps={{
-                style: { borderRadius: 12, width: "24%", overflowY:"hidden"
-              },
-              }}
-              open={openDeleteRow}
-              onClose={handleClose}
-              // scroll={scroll}
-              aria-labelledby="scroll-dialog-title"
-              aria-describedby="scroll-dialog-description"
-              maxWidth="xl"
-              style={{background:"rgba(0,0,0,0.6)"}}
-            >
-              <div style={{padding:"48px 16px",textAlign:"center",fontFamily:"Shabnam"}}>
-              <div style={{fontWeight:"600"}}>آیا میخواهید زنبورستان انتخاب شده را حذف نمایید؟</div>
-              <div  style={{marginTop:"32px",display:"flex",justifyContent:"space-around",alignItems:"center"}}>
-                 <Button onClick={() => onRowDelete(rowData,popupState)} className={classes.addButton}>بله</Button>
-                 <Button  onClick={handleClose} className={classes.cancelButton}>خیر</Button>
-              </div></div>
-            </Dialog>
+                      <Link
+                        to={{
+                          pathname: `/app/ApiaryList/${rowData._id}`,
+                          state: {
+                            modal: true,
+                            background: location,
+                            id: rowData._id,
+                          },
+                        }}
+                        onClick={handleClickEdit("body", rowData._id)}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "flex-start",
+                          cursor: "pointer",
+                          color: "#000",
+                          textDecoration: "none",
+                        }}
+                      >
+                        <Edit style={{ marginLeft: "16px" }} />
+                        ویرایش
+                      </Link>
+                      <hr
+                        style={{
+                          borderTop: "1px solid rgb( 240, 240, 240)",
+                          height: "2px",
+                        }}
+                      />
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "flex-start",
+                          cursor: "pointer",
+                          color: "#000",
+                        }}
+                      >
+                        <Share style={{ marginLeft: "16px" }} />
+                        اشتراک گذاری
                       </div>
-                    </Popover>
-                  
+                      <hr
+                        style={{
+                          borderTop: "1px solid rgb( 240, 240, 240)",
+                          height: "2px",
+                        }}
+                      />
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "flex-start",
+                          cursor: "pointer",
+                          color: "#000",
+                        }}
+                      >
+                        <img
+                          src="/assets/move-svgrepo-com.svg"
+                          style={{ margin: "0 0px 0 24px" }}
+                        />
+                        انتقال
+                      </div>
+                      <hr
+                        style={{
+                          borderTop: "1px solid rgb( 240, 240, 240)",
+                          height: "2px",
+                        }}
+                      />
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          color: "red",
+                          justifyContent: "flex-start",
+                          cursor: "pointer",
+                        }}
+                        onClick={handleDeleteOpenRow()}
+                        // onClick={handleDeleteOpen}
+                      >
+                        <img
+                          src="/assets/trash-svgrepo-com-2.svg"
+                          style={{ margin: "0 0px 0 24px" }}
+                        />
+                        حذف
+                      </div>
+                      <Dialog
+                        PaperProps={{
+                          style: {
+                            borderRadius: 12,
+                            width: "24%",
+                            overflowY: "hidden",
+                          },
+                        }}
+                        open={openDeleteRow}
+                        onClose={handleClose}
+                        // scroll={scroll}
+                        aria-labelledby="scroll-dialog-title"
+                        aria-describedby="scroll-dialog-description"
+                        maxWidth="xl"
+                        style={{ background: "rgba(0,0,0,0.6)" }}
+                      >
+                        <div
+                          style={{
+                            padding: "48px 16px",
+                            textAlign: "center",
+                            fontFamily: "Shabnam",
+                          }}
+                        >
+                          <div style={{ fontWeight: "600" }}>
+                            آیا میخواهید زنبورستان انتخاب شده را حذف نمایید؟
+                          </div>
+                          <div
+                            style={{
+                              marginTop: "32px",
+                              display: "flex",
+                              justifyContent: "space-around",
+                              alignItems: "center",
+                            }}
+                          >
+                            <Button
+                              onClick={() => onRowDelete(rowData, popupState)}
+                              className={classes.addButton}
+                            >
+                              بله
+                            </Button>
+                            <Button
+                              onClick={handleClose}
+                              className={classes.cancelButton}
+                            >
+                              خیر
+                            </Button>
+                          </div>
+                        </div>
+                      </Dialog>
+                    </div>
+                  </Popover>
                 </div>
               )}
             </PopupState>
@@ -717,49 +787,49 @@ function ApiaryList() {
     setdownloadOpen(true);
   };
   const downloadExcel = () => {
-    const regionVegetation=(e)=>{
-      console.log("eeeee",e);
+    const regionVegetation = (e) => {
+      console.log("eeeee", e);
       switch (e) {
-        case 'Garden':
-          return "باغ"
-        case 'Farm':
-           return "مزرعه"
-        case 'Mountain':
-          return "مرتع کوهستانی"
-        case 'Plain':
-          return "دشت"
-          case 'Other':
-            return "سایر"
+        case "Garden":
+          return "باغ";
+        case "Farm":
+          return "مزرعه";
+        case "Mountain":
+          return "مرتع کوهستانی";
+        case "Plain":
+          return "دشت";
+        case "Other":
+          return "سایر";
         default:
-          return null
+          return null;
       }
-    }
-    const regionType=(e)=>{
-      console.log("eeeee",e);
+    };
+    const regionType = (e) => {
+      console.log("eeeee", e);
       switch (e) {
-        case 'Urban':
-          return "شهری"
-        case 'Village':
-          return "روستایی"
+        case "Urban":
+          return "شهری";
+        case "Village":
+          return "روستایی";
         default:
-          return null
+          return null;
       }
-    }
-    const apiaryUsage=(e)=>{
-      console.log("eeeee",e);
+    };
+    const apiaryUsage = (e) => {
+      console.log("eeeee", e);
       switch (e) {
-        case 'Queen':
-          return "پرورش ملکه"
-        case 'Royal':
-          return "ژل رویال"
-        case 'Honey':
-          return "تولید عسل"
-        case 'Other':
-            return "سایر"
+        case "Queen":
+          return "پرورش ملکه";
+        case "Royal":
+          return "ژل رویال";
+        case "Honey":
+          return "تولید عسل";
+        case "Other":
+          return "سایر";
         default:
-          return null
+          return null;
       }
-    }
+    };
 
     const newData = ApiariesList.map((row) => {
       // bug
@@ -768,19 +838,19 @@ function ApiaryList() {
       console.log("name", row.name);
 
       console.log("regionType", row.regionType);
-      console.log("123413412342",regionVegetation(row.regionVegetation));
-      console.log("123413412342",regionType(row.regionType));
-      console.log("123413412342",apiaryUsage(row.apiaryUsage));
+      console.log("123413412342", regionVegetation(row.regionVegetation));
+      console.log("123413412342", regionType(row.regionType));
+      console.log("123413412342", apiaryUsage(row.apiaryUsage));
       return {
-        "زنبورستان":row.name,
+        زنبورستان: row.name,
         " پوشش گیاهی منطقه": regionVegetation(row.regionVegetation),
-        "نوع منطقه":regionType(row.regionType),
-        "استان":row.name,
-        "شهر":row.name,
-        "کاربرد":apiaryUsage(row.apiaryUsage),
-        "وضعیت نامناسب":row.hivesWithBadCondition,
-        "نیازمند بازدید":row.hivesWithGoodCondition,
-        "وضعیت مناسب":row.hivesWithVisitRequired      
+        "نوع منطقه": regionType(row.regionType),
+        استان: row.name,
+        شهر: row.name,
+        کاربرد: apiaryUsage(row.apiaryUsage),
+        "وضعیت نامناسب": row.hivesWithBadCondition,
+        "نیازمند بازدید": row.hivesWithGoodCondition,
+        "وضعیت مناسب": row.hivesWithVisitRequired,
       };
     });
     const workSheet = XLSX.utils.json_to_sheet(newData);
@@ -813,58 +883,54 @@ function ApiaryList() {
   };
 
   const handleBulkDelete = () => {
-      setLoading(true);
-      selectedRows.map(async (selectedRow) => {
-        console.log("selectedRow", selectedRow._id);
-        const response = await axios.delete(
-          `http://185.202.113.165:3000/api/apiary/delete-for-user/${selectedRow._id}`,
-          {
-            headers: {
-              token: `${token}`,
-            },
-          },
-        );
-
-        console.log("response delete", response);
-        const updatedData = ApiariesList.filter(
-          (row) => !selectedRows.includes(row),
-        );
-        setApiariesList(updatedData);
-        setLoading(false);
-        setOpenDelete(false);
-        
-        // const newApiary=ApiariesList.filter((item)=>{
-        //       return item.id !== selectedRow._id
-        // })
-        // setApiariesList(newApiary)
-      });
-      // const response = await axios.delete(`http://188.121.121.225/api/user/${selectedRows[0].id}`)
-      // console.log("selectedRows",selectedRows._id);
-    
-  };
-
-  const onRowDelete = async (rowData, popupState) => {
-      setLoading(true);
-      console.log(rowData._id);
+    setLoading(true);
+    selectedRows.map(async (selectedRow) => {
+      console.log("selectedRow", selectedRow._id);
       const response = await axios.delete(
-        `http://185.202.113.165:3000/api/apiary/delete-for-user/${rowData._id}`,
+        `http://185.202.113.165:3000/api/apiary/delete-for-user/${selectedRow._id}`,
         {
           headers: {
             token: `${token}`,
           },
         },
       );
-      console.log("response delete2", response);
+
+      console.log("response delete", response);
       const updatedData = ApiariesList.filter(
-        (row) => ![rowData].includes(row),
+        (row) => !selectedRows.includes(row),
       );
       setApiariesList(updatedData);
       setLoading(false);
-      // console.log("rowData23123", rowData);
-      setOpenDeleteRow(false)
-      popupState.close();
-      // window.location.reload()
-    
+      setOpenDelete(false);
+
+      // const newApiary=ApiariesList.filter((item)=>{
+      //       return item.id !== selectedRow._id
+      // })
+      // setApiariesList(newApiary)
+    });
+    // const response = await axios.delete(`http://188.121.121.225/api/user/${selectedRows[0].id}`)
+    // console.log("selectedRows",selectedRows._id);
+  };
+
+  const onRowDelete = async (rowData, popupState) => {
+    setLoading(true);
+    console.log(rowData._id);
+    const response = await axios.delete(
+      `http://185.202.113.165:3000/api/apiary/delete-for-user/${rowData._id}`,
+      {
+        headers: {
+          token: `${token}`,
+        },
+      },
+    );
+    console.log("response delete2", response);
+    const updatedData = ApiariesList.filter((row) => ![rowData].includes(row));
+    setApiariesList(updatedData);
+    setLoading(false);
+    // console.log("rowData23123", rowData);
+    setOpenDeleteRow(false);
+    popupState.close();
+    // window.location.reload()
   };
 
   const downloadPdf = () => {
@@ -883,16 +949,14 @@ function ApiaryList() {
     doc.text("جدول زنبورستان", 20, 10);
 
     doc.save("table.pdf");
-    
   };
 
-
-  if(status){
+  if (status) {
     console.log("status is true");
-    return <ApiaryList/>
-    }else{
-      console.log("status is false");   
-    }
+    return <ApiaryList />;
+  } else {
+    console.log("status is false");
+  }
   return (
     <>
       {loading ? (
@@ -913,79 +977,106 @@ function ApiaryList() {
               },
             }}
             title=""
-            style={{ borderRadius: "25px",marginTop:"32px"}}
+            style={{ borderRadius: "25px", marginTop: "32px" }}
             data={ApiariesList}
             columns={columns}
             components={{
-              Toolbar:(props)=> 
-              <>
-              {console.log("aasdasdasdasdasd",selectedRows?.length)}
-              {(selectedRows?.length==0||selectedRows?.length==undefined)? 
-              <>     
-               <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"8px 0px"}}>
-                 
-              <div style={{width:"100%"}}><MTableToolbar {...props}/></div>
-              <Grid style={{paddingLeft:"32px"}}>
-              <div
-                    onClick={downloadFile}
-                    style={{
-                      backgroundColor: "black",
-                      cursor: "pointer",
-                      color: "white",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      borderRadius: "8px",
-                      padding: "8px",
-                      boxShadow:"0px 3px 6px 0px rgba(0,0,0,0.16)"
-    
-                      // marginLeft: "32px",
-                    }}
-                  >
-                    <span style={{ fontFamily: "Shabnam", fontSize: "1rem" }}>
-                      دانلود
-                    </span>
-                    <img
-                      src="/assets/download-arrow-svgrepo-com.svg"
-                      style={{ marginRight: "8px" }}
-                    />
-                  </div>
-              </Grid>
-             
-             </div>
-             <Divider style={{background:"rgb( 244 244 244)"}}/>
-             </>   
-             : 
-              <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",background:"#fff4df"}}>
-                  <div><MTableToolbar {...props}/></div>  
-    
-                  <div style={{ marginLeft: "16px"}}>
-                    <PopupState variant="popover" popupId="demo-popup-popover">
-                      {(popupState) => (
-                        <div>
-                          <MoreVertOutlined
-                            variant="contained"
-                            {...bindTrigger(popupState)}
-                            style={{ cursor: "pointer" }}
-    
-                          />
-    
-                          <Popover
-                            {...bindPopover(popupState)}
-                            anchorOrigin={{
-                              vertical: "bottom",
-                              horizontal: "center",
-                            }}
-                            transformOrigin={{
-                              vertical: "top",
-                              horizontal: "center",
+              Toolbar: (props) => (
+                <>
+                  {console.log("aasdasdasdasdasd", selectedRows?.length)}
+                  {selectedRows?.length == 0 ||
+                  selectedRows?.length == undefined ? (
+                    <>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          padding: "8px 0px",
+                        }}
+                      >
+                        <div style={{ width: "100%" }}>
+                          <MTableToolbar {...props} />
+                        </div>
+                        <Grid style={{ paddingLeft: "32px" }}>
+                          <div
+                            onClick={downloadFile}
+                            style={{
+                              backgroundColor: "black",
+                              cursor: "pointer",
+                              color: "white",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              borderRadius: "8px",
+                              padding: "8px",
+                              boxShadow: "0px 3px 6px 0px rgba(0,0,0,0.16)",
+
+                              // marginLeft: "32px",
                             }}
                           >
-                            <div
-                              style={{ borderRadius: " 16px", padding: " 16px" }}
+                            <span
+                              style={{
+                                fontFamily: "Shabnam",
+                                fontSize: "1rem",
+                              }}
                             >
-                       
-                              {/* <Link
+                              دانلود
+                            </span>
+                            <img
+                              src="/assets/download-arrow-svgrepo-com.svg"
+                              style={{ marginRight: "8px" }}
+                            />
+                          </div>
+                        </Grid>
+                      </div>
+                      <Divider style={{ background: "rgb( 244 244 244)" }} />
+                    </>
+                  ) : (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        width: "100%",
+                        background: "#fff4df",
+                      }}
+                    >
+                      <div>
+                        <MTableToolbar {...props} />
+                      </div>
+
+                      <div style={{ marginLeft: "16px" }}>
+                        <PopupState
+                          variant="popover"
+                          popupId="demo-popup-popover"
+                        >
+                          {(popupState) => (
+                            <div>
+                              <MoreVertOutlined
+                                variant="contained"
+                                {...bindTrigger(popupState)}
+                                style={{ cursor: "pointer" }}
+                              />
+
+                              <Popover
+                                {...bindPopover(popupState)}
+                                anchorOrigin={{
+                                  vertical: "bottom",
+                                  horizontal: "center",
+                                }}
+                                transformOrigin={{
+                                  vertical: "top",
+                                  horizontal: "center",
+                                }}
+                              >
+                                <div
+                                  style={{
+                                    borderRadius: " 16px",
+                                    padding: " 16px",
+                                  }}
+                                >
+                                  {/* <Link
                                 to={`/app/ApiaryList/${selectedRows}`}
                                 onClick={handleClickEdit("body")}
                                 style={{
@@ -1004,96 +1095,94 @@ function ApiaryList() {
                                   height: "2px",
                                 }}
                               /> */}
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  justifyContent: "flex-start",
-                                  cursor: "pointer",
-                                }}
-                              >
-                                <Share style={{ marginLeft: "16px" }} />
-                                اشتراک گذاری
-                              </div>
-                              <hr
-                                style={{
-                                  borderTop: "1px solid rgb( 240, 240, 240)",
-                                  height: "2px",
-                                }}
-                              />
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  justifyContent: "flex-start",
-                                  cursor: "pointer",
-                                }}
-                              >
-                                <img
-                                  src="/assets/move-svgrepo-com.svg"
-                                  style={{ margin: "0 0px 0 24px" }}
-                                />
-                                انتقال
-                              </div>
-                              <hr
-                                style={{
-                                  borderTop: "1px solid rgb( 240, 240, 240)",
-                                  height: "2px",
-                                }}
-                              />
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  color: "red",
-                                  justifyContent: "flex-start",
-                                  cursor: "pointer",
-                                }}
-                                onClick={handleDeleteOpen()}
-                              >
-                                <img
-                                  src="/assets/trash-svgrepo-com-2.svg"
-                                  style={{ margin: "0 8px 0 16px" }}
-                                  alt=""
-                                />
-                                 حذف
-                              </div>
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "flex-start",
+                                      cursor: "pointer",
+                                    }}
+                                  >
+                                    <Share style={{ marginLeft: "16px" }} />
+                                    اشتراک گذاری
+                                  </div>
+                                  <hr
+                                    style={{
+                                      borderTop:
+                                        "1px solid rgb( 240, 240, 240)",
+                                      height: "2px",
+                                    }}
+                                  />
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "flex-start",
+                                      cursor: "pointer",
+                                    }}
+                                  >
+                                    <img
+                                      src="/assets/move-svgrepo-com.svg"
+                                      style={{ margin: "0 0px 0 24px" }}
+                                    />
+                                    انتقال
+                                  </div>
+                                  <hr
+                                    style={{
+                                      borderTop:
+                                        "1px solid rgb( 240, 240, 240)",
+                                      height: "2px",
+                                    }}
+                                  />
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      alignItems: "center",
+                                      color: "red",
+                                      justifyContent: "flex-start",
+                                      cursor: "pointer",
+                                    }}
+                                    onClick={handleDeleteOpen()}
+                                  >
+                                    <img
+                                      src="/assets/trash-svgrepo-com-2.svg"
+                                      style={{ margin: "0 8px 0 16px" }}
+                                      alt=""
+                                    />
+                                    حذف
+                                  </div>
+                                </div>
+                              </Popover>
                             </div>
-                          </Popover>
-                        </div>
-                      )}
-                    </PopupState>
-                  </div>
-              
-    
-       
-                
-                
-                </div>
-    }
-    
-           </> ,
-               Pagination: props => (
+                          )}
+                        </PopupState>
+                      </div>
+                    </div>
+                  )}
+                </>
+              ),
+              Pagination: (props) => (
                 <>
-                {/* <div>salam</div> */}
-               <TablePagination
-                 {...props}
-                 
-                 labelRowsPerPage={<div style={{border:"2px solid red"}}>sdcs</div>}
-                 labelDisplayedRows={row => <div style={{border:"2px solid red"}}>dcsd</div>}
-                 showLastButton={true}
-                 SelectProps={{
-                   style:{
-                     fontSize: 14,
-                     border:"2px soldi red",
-                   }
-                 }}
-               />
-               </>
-             )
-             
-             
-             }}
+                  {/* <div>salam</div> */}
+                  <TablePagination
+                    {...props}
+                    labelRowsPerPage={
+                      <div style={{ border: "2px solid red" }}>sdcs</div>
+                    }
+                    labelDisplayedRows={(row) => (
+                      <div style={{ border: "2px solid red" }}>dcsd</div>
+                    )}
+                    showLastButton={true}
+                    SelectProps={{
+                      style: {
+                        fontSize: 14,
+                        border: "2px soldi red",
+                      },
+                    }}
+                  />
+                </>
+              ),
+            }}
             onSelectionChange={(rows) => setSelectedRows(rows)}
             localization={{
               body: {
@@ -1113,8 +1202,8 @@ function ApiaryList() {
               toolbar: {
                 nRowsSelected: "{0} مورد انتخاب شد",
                 searchPlaceholder: "جستجو زنبورستان",
-                addRemoveColumns:"اضافه یا حذف کردن ستون‌ها",
-                showColumnsTitle:"اضافه یا حذف کردن ستون‌ها",
+                addRemoveColumns: "اضافه یا حذف کردن ستون‌ها",
+                showColumnsTitle: "اضافه یا حذف کردن ستون‌ها",
               },
 
               header: {
@@ -1123,7 +1212,6 @@ function ApiaryList() {
 
               body: {
                 emptyDataSourceMessage: "موردی جهت نمایش وجود ندارد.",
-
               },
             }}
             options={{
@@ -1148,7 +1236,7 @@ function ApiaryList() {
               }),
               search: true,
               searchFieldAlignment: "left",
-              toolbarButtonAlignment:"left",
+              toolbarButtonAlignment: "left",
 
               searchFieldStyle: {
                 borderTop: "2px solid  rgb( 240 ,240, 240)",
@@ -1268,8 +1356,7 @@ function ApiaryList() {
                         alignItems: "center",
                         justifyContent: "center",
                         borderRadius: "8px",
-                        boxShadow:"0px 3px 6px 0px rgba(0,0,0,0.16)"
-
+                        boxShadow: "0px 3px 6px 0px rgba(0,0,0,0.16)",
                       }}
                       src="/assets/Group 182.svg"
                     />
@@ -1315,8 +1402,7 @@ function ApiaryList() {
           <div>
             <Dialog
               PaperProps={{
-                style: { borderRadius: 12, width: "60%", overflowY:"hidden"
-              },
+                style: { borderRadius: 12, width: "60%", overflowY: "hidden" },
               }}
               open={open}
               onClose={handleClose}
@@ -1339,7 +1425,7 @@ function ApiaryList() {
           <div>
             <Dialog
               PaperProps={{
-                style: { borderRadius: 12, width: "60%",overflowY:"hidden" },
+                style: { borderRadius: 12, width: "60%", overflowY: "hidden" },
               }}
               open={openEdit}
               onClose={handleClose}
@@ -1357,28 +1443,48 @@ function ApiaryList() {
             </Dialog>
           </div>
 
-
-
           <Dialog
-              PaperProps={{
-                style: { borderRadius: 12, width: "24%", overflowY:"hidden"
-              },
+            PaperProps={{
+              style: { borderRadius: 12, width: "24%", overflowY: "hidden" },
+            }}
+            open={openDelete}
+            onClose={handleClose}
+            // scroll={scroll}
+            aria-labelledby="scroll-dialog-title"
+            aria-describedby="scroll-dialog-description"
+            maxWidth="xl"
+            style={{ background: "rgba(0,0,0,0.6)" }}
+          >
+            <div
+              style={{
+                padding: "48px 16px",
+                textAlign: "center",
+                fontFamily: "Shabnam",
               }}
-              open={openDelete}
-              onClose={handleClose}
-              // scroll={scroll}
-              aria-labelledby="scroll-dialog-title"
-              aria-describedby="scroll-dialog-description"
-              maxWidth="xl"
-              style={{background:"rgba(0,0,0,0.6)"}}
             >
-              <div style={{padding:"48px 16px",textAlign:"center",fontFamily:"Shabnam"}}>
-              <div style={{fontWeight:"600"}}>آیا میخواهید زنبورستان انتخاب شده را حذف نمایید؟</div>
-              <div  style={{marginTop:"32px",display:"flex",justifyContent:"space-around",alignItems:"center"}}>
-                 <Button onClick={() => handleBulkDelete(selectedRows)} className={classes.addButton}>بله</Button>
-                 <Button  onClick={handleClose} className={classes.cancelButton}>خیر</Button>
-              </div></div>
-            </Dialog>
+              <div style={{ fontWeight: "600" }}>
+                آیا میخواهید زنبورستان انتخاب شده را حذف نمایید؟
+              </div>
+              <div
+                style={{
+                  marginTop: "32px",
+                  display: "flex",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                }}
+              >
+                <Button
+                  onClick={() => handleBulkDelete(selectedRows)}
+                  className={classes.addButton}
+                >
+                  بله
+                </Button>
+                <Button onClick={handleClose} className={classes.cancelButton}>
+                  خیر
+                </Button>
+              </div>
+            </div>
+          </Dialog>
 
           <div>
             <Modal
@@ -1390,7 +1496,6 @@ function ApiaryList() {
               <Box
                 sx={{
                   ...style,
-
                 }}
                 className="downloadFile"
                 style={{
@@ -1398,17 +1503,34 @@ function ApiaryList() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  position:"relative",
-
+                  position: "relative",
                 }}
               >
-            <div  onClick={handleClose} style={{position:"absolute",top:"10px",right:"10px",cursor:"pointer"}}><Close/></div>
-            <div onClick={downloadPdf} className="downloadPdf">
-              <img src="/assets/pdf-svgrepo-com (1).svg" width="100px" height="100px"/>
-            </div>
-              <div onClick={downloadExcel} className="downloadPdf">
-                <img src="/assets/excel-svgrepo-com.svg" width="100px"  height="100px"/>
-              </div>
+                <div
+                  onClick={handleClose}
+                  style={{
+                    position: "absolute",
+                    top: "10px",
+                    right: "10px",
+                    cursor: "pointer",
+                  }}
+                >
+                  <Close />
+                </div>
+                <div onClick={downloadPdf} className="downloadPdf">
+                  <img
+                    src="/assets/pdf-svgrepo-com (1).svg"
+                    width="100px"
+                    height="100px"
+                  />
+                </div>
+                <div onClick={downloadExcel} className="downloadPdf">
+                  <img
+                    src="/assets/excel-svgrepo-com.svg"
+                    width="100px"
+                    height="100px"
+                  />
+                </div>
               </Box>
             </Modal>
           </div>
