@@ -19,6 +19,7 @@ import { withStyles } from '@material-ui/styles';
 import IOSSwitch from './IOSSwitch';
 import axios from 'axios';
 import { useUserDispatch, signOut } from "../../../context/UserContext";
+import SmsVerification from './SmsVerification';
 
 function Edituser(props) {
   var userDispatch = useUserDispatch()
@@ -359,7 +360,7 @@ function Edituser(props) {
           aria-labelledby="parent-modal-title"
           aria-describedby="parent-modal-description"
         >
-          <Box sx={{ ...style, width: "40vw" }} >
+          <Box sx={{ ...style, width: "30%" }} >
             <EditPhoneNumber onClose={handleClose} setOpenCode={setOpenCode}/>
           </Box>
           
@@ -388,7 +389,7 @@ function Edituser(props) {
       </Dialog>
       <Dialog
               PaperProps={{
-                style: { borderRadius: 12, width: "24%", overflowY:"hidden"
+                style: { borderRadius: 12, width: "30%", overflowY:"hidden"
               },
               }}
               open={openCode}
@@ -399,11 +400,7 @@ function Edituser(props) {
               maxWidth="xl"
               style={{background:"rgba(0,0,0,0.6)"}}
             >
-              <div style={{padding:"48px 16px",textAlign:"center",fontFamily:"Shabnam"}}>
-              <div style={{fontWeight:"600"}}>کد ارسال شده را وارد نمایید</div>
-              <div  style={{marginTop:"32px",display:"flex",justifyContent:"space-around",alignItems:"center"}}>
-                 <Button  onClick={handleCloseCode} className={classes.cancelButton}>خیر</Button>
-              </div></div>
+              <SmsVerification onClose={handleCloseCode}/>
       </Dialog>
     </Grid>
   )

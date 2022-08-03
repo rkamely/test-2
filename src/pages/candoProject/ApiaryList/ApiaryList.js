@@ -42,6 +42,7 @@ import axios from "axios";
 import { getNamedType } from "graphql";
 import Loading from "../../../components/Loading/Loading";
 import useStyles from "./styles";
+import useAuth from "../../hooks/useAuth";
 
 function ApiaryList() {
   const [open, setOpen] = useState(false);
@@ -256,7 +257,9 @@ function ApiaryList() {
     fetchData();
   }, []);
 
-  console.log("ApiariesList247", ApiariesList);
+  console.log("ApiariesList247", ApiariesList.length);
+  localStorage.setItem("NumberOfApiaries", ApiariesList?.length)
+ 
 
   /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -810,7 +813,6 @@ function ApiaryList() {
   };
 
   const handleBulkDelete = () => {
-    if (window.confirm("آیا از حدف این مورد اطمینان دارید؟")) {
       setLoading(true);
       selectedRows.map(async (selectedRow) => {
         console.log("selectedRow", selectedRow._id);
@@ -829,7 +831,8 @@ function ApiaryList() {
         );
         setApiariesList(updatedData);
         setLoading(false);
-
+        setOpenDelete(false);
+        
         // const newApiary=ApiariesList.filter((item)=>{
         //       return item.id !== selectedRow._id
         // })
@@ -837,11 +840,10 @@ function ApiaryList() {
       });
       // const response = await axios.delete(`http://188.121.121.225/api/user/${selectedRows[0].id}`)
       // console.log("selectedRows",selectedRows._id);
-    }
+    
   };
 
   const onRowDelete = async (rowData, popupState) => {
-    if (window.confirm("آیا از حدف این مورد اطمینان دارید؟")) {
       setLoading(true);
       console.log(rowData._id);
       const response = await axios.delete(
@@ -859,10 +861,10 @@ function ApiaryList() {
       setApiariesList(updatedData);
       setLoading(false);
       // console.log("rowData23123", rowData);
-
+      setOpenDeleteRow(false)
       popupState.close();
       // window.location.reload()
-    }
+    
   };
 
   const downloadPdf = () => {

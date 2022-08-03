@@ -70,6 +70,7 @@ function HiveStatus() {
   console.log("id ro bebin " , id);
 const Apiary_id= localStorage.getItem("Apiary_id")
 const Hive_name= localStorage.getItem("Hive_name")
+const apiaryIdClick =localStorage.getItem("apiaryIdClick")
 localStorage.setItem("Hive_id",id)
 
   const breadcrumbs = [
@@ -84,7 +85,7 @@ localStorage.setItem("Hive_id",id)
 
     </Link>,
         <Link
-        to="/app/ApiaryList/Beehive/2"
+        to={`/app/ApiaryList/Beehive/${apiaryIdClick}`}
         key="2"
         style={{textDecoration:"none",cursor:"pointer"}}
       >

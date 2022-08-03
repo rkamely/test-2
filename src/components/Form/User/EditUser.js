@@ -24,7 +24,7 @@ import PreviewImage from "./PreviewImage";
 function EditUser() {
   const classes = useStyles();
   const phoneRegExp = /9([0-3][0-9])-?[0-9]{3}-?[0-9]{4}/;
-  const FILE_SIZE = 10000*10000;
+  const FILE_SIZE = 10000 * 10000;
 
   const validationSchema = yup.object().shape({
     phoneNumber: yup
@@ -49,12 +49,12 @@ function EditUser() {
     //   }
     // ),
   });
-const [data,setData]=useState({
-    name:"شاهین رضوانی",
-    Username:"shahin2022",
-    phoneNumber:"09120000000",
-    email:"shahin1360@gmail.com"
-})
+  const [data, setData] = useState({
+    name: "شاهین رضوانی",
+    Username: "shahin2022",
+    phoneNumber: "09120000000",
+    email: "shahin1360@gmail.com",
+  });
   const {
     register,
     control,
@@ -62,10 +62,10 @@ const [data,setData]=useState({
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
-    defaultValues:data
+    defaultValues: data,
   });
-  const[selectedFile,setSelectedFile]=useState(null)
-const fileRef=useRef(null)
+  const [selectedFile, setSelectedFile] = useState(null);
+  const fileRef = useRef(null);
   const onSubmit = (data) => {
     console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
@@ -73,7 +73,7 @@ const fileRef=useRef(null)
   };
 
   const fileSelectHandler = (e) => {
-     setSelectedFile(e.target.files[0]);
+    setSelectedFile(e.target.files[0]);
   };
   const fileUploadHandler = () => {};
 
@@ -96,7 +96,8 @@ const fileRef=useRef(null)
         <Grid item xs={6} sm={6} className={classes.TabHeader}>
           <Grid>
             <NavLink
-             exact to={`${url}`}
+              exact
+              to={`${url}`}
               className={classes.item}
               activeClassName={classes.activeItem}
             >
@@ -231,48 +232,46 @@ const fileRef=useRef(null)
                 variant="inherit"
                 color="textSecondary"
                 className={classes.errorTitle}
-         
               >
                 {errors.email?.message}
               </Typography>
             </Grid>
           </div>
-          <Grid
-            item
-            xs={6}
-            sm={6}
-            className={classes.uploaderImageBox}
- 
-          >
+          <Grid item xs={6} sm={6} className={classes.uploaderImageBox}>
             <Typography variant="p">آپلود عکس</Typography>
-        
-          {/* <input type="file"  onChange={fileSelectHandler}  accept="image/png, image/jpeg"   /> */}
-        <div className={classes.uploaderImage}>
 
-            { console.log("selectedFile",selectedFile)}
-{  selectedFile ? <PreviewImage file={selectedFile} />:<Avatar src="./assets/Mask Group 3.svg" alt=""   className={classes.PreviewImage}/>
-}            <Button
-                 variant="contained"
-                 component="label"
-                 onChange={fileSelectHandler} 
-                 style={{fontFamily:"Shabnam"}}
-                 className={classes.EditPhoto}
- 
-             >
-               <img src="./assets/edit-svgrepo-com.svg" className={classes.Edit}/>
+            {/* <input type="file"  onChange={fileSelectHandler}  accept="image/png, image/jpeg"   /> */}
+            <div className={classes.uploaderImage}>
+              {console.log("selectedFile", selectedFile)}
+              {selectedFile ? (
+                <PreviewImage file={selectedFile} />
+              ) : (
+                <Avatar
+                  src="./assets/Mask Group 3.svg"
+                  alt=""
+                  className={classes.PreviewImage}
+                />
+              )}{" "}
+              <Button
+                variant="contained"
+                component="label"
+                onChange={fileSelectHandler}
+                style={{ fontFamily: "Shabnam" }}
+                className={classes.EditPhoto}
+              >
+                <img
+                  src="./assets/edit-svgrepo-com.svg"
+                  className={classes.Edit}
+                />
                 ویرایش
-                
-               <input
+                <input
                   type="file"
-                   hidden
-                   accept= "image/jpg, image/jpeg , image/gif , image/png "
-                   {...register("Img")}
-               />
-           </Button>
-
-
-
-          </div>
+                  hidden
+                  accept="image/jpg, image/jpeg , image/gif , image/png "
+                  {...register("Img")}
+                />
+              </Button>
+            </div>
             {/* <button onClick={()=>{
               // fileRef.current.onClick()
             }}>آپلود
@@ -281,7 +280,7 @@ const fileRef=useRef(null)
         </Grid>
 
         <Box mt={8} style={{ width: "100%" }}>
-          <div  className={classes.button}>
+          <div className={classes.button}>
             <Button variant="contained" className={classes.Button2}>
               انصراف
             </Button>

@@ -4,6 +4,7 @@ import { Link ,useParams,useHistory } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Widget from "../../../components/Widget/Widget";
 import useStyles from "./Style";
+import axios from "axios";
 function LeftCard() {
   const classes = useStyles();
   const history=useHistory()
@@ -14,6 +15,79 @@ function LeftCard() {
   //   setManualVisitBoolean(manualVisit)
   // },[manualVisitBoolean])
   // console.log("manualVisitBoolean",manualVisitBoolean);
+////////////////////////////////////////////////////////////////////////
+const [hiveTable,setHiveTable]=useState([])
+const dataOfHive=localStorage.getItem("dataOfHive")
+const hiveInformation=JSON.parse(dataOfHive)
+console.log("dataOfHive",hiveInformation);
+
+let { id } = useParams();
+
+  useEffect(() => {
+    const fetchData = async (index) => {
+      console.log("salam id",index);
+      // setLoading(true);
+      const token = localStorage.getItem("id_token");
+      const Apiaries_id = localStorage.getItem("Apiaries_id");
+      try {
+        const { data: response } = await axios.get(
+          `http://185.202.113.165:3000/api/hive/get-by-apiary/${Apiaries_id}`,
+          {
+            headers: {
+              token: `${token}`,
+            },
+          },
+        );
+        console.log("show response hive", response.data);
+        setHiveTable(response.data);
+        // setLoading(false);
+      } catch (error) {
+        if (error.response?.status === 401) {
+          localStorage.clear("id_token")
+          console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
+          window.location.reload()
+        }else{
+        console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
+        // history.push("/app/Error")
+        // window.location.reload()
+       }}
+  
+      // setLoading(false);
+    };
+    fetchData();
+  }, []);
+
+const queenType=(e)=>{
+  switch (e) {
+    case "Native":
+      return <p style={{margin:"0"}}>بومی</p>;
+    case "Karnika":
+      return <p style={{margin:"0"}}>کارنیکا</p>;
+    case "Italian":
+      return <p style={{margin:"0"}}>ایتالیایی</p>;
+    case "Caucasian":
+      return <p style={{margin:"0"}}>قفقازی</p>;
+    case "Other":
+      return <p style={{margin:"0"}}>سایر</p>;
+    default:
+      return null;
+  }
+}
+const type=(e)=>{
+  switch (e) {
+    case "Langestrot":
+      return <p style={{margin:"0"}}>لانگستروت</p>;
+    case "Dadanet":
+      return <p style={{margin:"0"}}>دادانت</p>;
+    case "Aquarium":
+      return <p style={{margin:"0"}}>آکواریومی</p>;
+    case "Other":
+      return <p style={{margin:"0"}}>سایر</p>;
+    default:
+      return null;
+  }
+}
+  ////////////////////////////////////////////////////////////////////////
   return (
     <>
     <Grid item  xs={12} className={classes.LeftCard_Container}  style={{ height: "250px" }}>
@@ -43,7 +117,7 @@ function LeftCard() {
                 noWrap
                 style={{ fontWeight: 600 }}
               >
-                کندوی 1-1165793391
+                     {hiveInformation.title}
               </Typography>
               <Typography
                 variant="p"
@@ -52,7 +126,7 @@ function LeftCard() {
                 className={classes.cardSubtitleLeft}
                 style={{ fontWeight: 600, color: "rgb(173 173 173)" }}
               >
-                تهران - خیابان ازادی
+                     {hiveInformation.location}
               </Typography>
             </div>
           </Grid>
@@ -109,7 +183,8 @@ function LeftCard() {
               noWrap
               className={classes.cardSubtitleLeftBottom}
             >
-              1400/01/01
+            {hiveInformation.dateCreated}
+
             </Typography>
           </Grid>
 
@@ -135,7 +210,7 @@ function LeftCard() {
               noWrap
               className={classes.cardSubtitleLeftBottom}
             >
-              نژاد
+              {queenType(hiveInformation.queenType)}
             </Typography>
           </Grid>
 
@@ -161,7 +236,7 @@ function LeftCard() {
               noWrap
               className={classes.cardSubtitleLeftBottom}
             >
-              کندو
+                   {type(hiveInformation.type)}
             </Typography>
           </Grid>
         </Grid>
