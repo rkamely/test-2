@@ -55,9 +55,15 @@ const structure = [
   ],
 },
 {
-  id: -2,
+  id: 11,
   label: "بازدید دستی",
   link: "/app/Question",
+  icon:<img src="/assets/megaphone-svgrepo-com.svg"/>,
+},
+{
+  id:10,
+  label: "پرسشنامه",
+  link: "/app/questionnare",
   icon:<img src="/assets/megaphone-svgrepo-com.svg"/>,
 },
   {

@@ -119,10 +119,11 @@ useEffect(() => {
 ////////////////////////////////////////////////////////////////////////////////
     const onSubmit = async (data) => {
       alert(data)
-      const response = await axios
+    if(data.selected){
+            const response = await axios
         .post(
           `http://185.202.113.165:3000/api/answer`,
-          { selected:`${data.newOptions}` ,question:{_id:`${Question_id}`}, hive:{_id:`${Hive_id}`}},
+          { selected:`${data.selected}` ,question:{_id:`${Question_id}`}, hive:{_id:`${Hive_id}`}},
           {
             headers: {
               token: `${token}`,
@@ -133,6 +134,23 @@ useEffect(() => {
           console.log("response1", response);
           // setApiariesList([...ApiariesList , response.data.data])
         });
+    }else{
+      const response = await axios
+      .post(
+        `http://185.202.113.165:3000/api/answer`,
+        { input:`${data.input}` ,question:{_id:`${Question_id}`}, hive:{_id:`${Hive_id}`}},
+        {
+          headers: {
+            token: `${token}`,
+          },
+        },
+      )
+      .then((response) => {
+        console.log("response1", response);
+        // setApiariesList([...ApiariesList , response.data.data])
+      });
+    }
+
       // setApiariesList([...ApiariesList , data])
       // console.log(ApiariesList, "ApiariesList");
       console.log();
@@ -147,22 +165,23 @@ const Content=()=>{
 
 
     switch (QuestionForm.type) {
+      
       case "InputText":
         return(
           <div className={classes.formContainer}>
           <FormLabel component="legend" className={classes.FormLable}>{QuestionForm.title}</FormLabel>
             <Controller
               control={control}
-              {...register("Input", {
+              {...register("input", {
                 required: "پر کردن این قسمت الزامی است"
               })}
-              name="Input"
+              name="input"
               
               render={({ field }) => (
                 <TextField
                 className={classes.TextField}
                   type="number"
-                  id="Input"
+                  id="input"
                   label="پاسخ"
                   variant="outlined"
                   fullWidth
@@ -173,7 +192,7 @@ const Content=()=>{
             />
             <ErrorMessage
               errors={errors}
-              name="Input"
+              name="input"
               render={({ message }) => <p style={{color:"red"}}>{message}</p>}
             />
           </div>
@@ -188,7 +207,7 @@ const Content=()=>{
             rules={{ required: true }}
             control={control}
 
-            name="promoting2"
+            name="selected"
             render={({ field }) => {
               console.log(field)
               return (
@@ -216,20 +235,20 @@ const Content=()=>{
 
       case "MultipleChoice":
         const handleCheck = checkedId => {
-          const { newOptions: ids } = getValues();
+          const { selected: ids } = getValues();
           const newIds = ids?.includes(checkedId)
             ? ids?.filter(id => id !== checkedId)
             : [...(ids ?? []), checkedId];
           return newIds;
         };
         return(
-          <FormControl error={!!errors.newOptions?.message}  className={classes.formContainer}>
+          <FormControl error={!!errors.selected?.message}  className={classes.formContainer}>
           <FormLabel component="legend" className={classes.FormLable}>{QuestionForm.title}</FormLabel>
-          <FormHelperText>{errors.newOptions?.message}</FormHelperText>
+          <FormHelperText>{errors.selected?.message}</FormHelperText>
           <div  className={classes.formContainerCheckbox}>
           <Controller
   
-            name="newOptions"
+            name="selected"
             render={props =>
               QuestionForm?.options?.map((option, index) => (
                 <FormControlLabel  style={{whiteSpace:"noWrap"}}      
@@ -259,7 +278,7 @@ const Content=()=>{
             rules={{ required: true }}
             control={control}
 
-            name="promoting2"
+            name="selected"
             render={({ field }) => {
               console.log(field)
               return (
@@ -321,7 +340,7 @@ const Content=()=>{
     <FormControl component="fieldset" className={classes.formContainer}>
      <div  className={classes.FormLable}>{QuestionForm.title}</div>
     <Controller
-      name="MUI_Slider"
+      name="input"
       control={control}
       // defaultValue={[0, 10]}
       marks={marks}
@@ -344,7 +363,6 @@ const Content=()=>{
         return(
           <div>لطفا منتظر بمانید</div>
           )
-        break;
     }
 }
 

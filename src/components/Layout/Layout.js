@@ -38,6 +38,7 @@ import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 import tutorialPage from "../../pages/candoProject/tutorialPage/tutorialPage";
 import QRChatPage from "../../pages/candoProject/Support/ChatPage/QRChatPage";
 import AnswerQuestion from "../../pages/candoProject/AnswerQuestion/AnswerQuestion";
+import Questionnare from "../../pages/candoProject/Questionnare/Questionnare";
 
 function Layout(props) {
   var classes = useStyles();
@@ -97,6 +98,7 @@ function Layout(props) {
             <Route path="/app/setting" component={Edituser} />
             <Route path="/app/new" component={discoverPage} />
             <Route path="/app/Question" component={AnswerQuestion} />
+            <Route path="/app/questionnare" component={Questionnare} />
             <Route path="/app/Education" component={tutorialPage} />
             
             <Route path="/app/Error" component={ErrorBoundary} />

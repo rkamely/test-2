@@ -28,18 +28,10 @@ const ApiaryAddList = ({ ApiariesList, setApiariesList, onClose, refresh,setStat
       .required("لطفا نام زنبورستان وارد کنید")
       .min(2, "برای وارد کردن نام حداقل ۲ کاراکتر لازم است")
       .max(20, "Username must not exceed 20 characters"),
-    hivesWithGoodCondition: yup
-      .string()
-      .required(" پر کردن این فیلد الزامی است "),
-    hivesWithBadCondition: yup
-      .string()
-      .required(" پر کردن این فیلد الزامی است "),
-    hivesWithVisitRequired: yup
-      .string()
-      .required(" پر کردن این فیلد الزامی است "),
+
     regionVegetation: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
     regionType: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
-    state: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
+    province: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
     city: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
     apiaryUsage: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
   });
@@ -333,8 +325,8 @@ if(status){
                     className={classes.inputSelect}
                     required
                     variant="outlined"
-                    {...register("state")}
-                    error={errors.state ? true : false}
+                    {...register("province")}
+                    error={errors.province ? true : false}
                     defaultValue="Honey"
                     // onChange={(e) =>
                     //   setValue("select", e.target.value, { shouldValidate: true })
@@ -355,7 +347,7 @@ if(status){
                   color="textSecondary"
                   className={classes.errorTitle}
                 >
-                  {errors.state?.message}
+                  {errors.province?.message}
                 </Typography>
               </Grid>
 
@@ -369,7 +361,6 @@ if(status){
                     variant="outlined"
                     {...register("city")}
                     error={errors.city ? true : false}
-                    defaultValue="Honey"
                     // onChange={(e) =>
                     //   setValue("select", e.target.value, { shouldValidate: true })
                     // } // Using setValue
@@ -403,7 +394,6 @@ if(status){
                     variant="outlined"
                     {...register("apiaryUsage")}
                     error={errors.apiaryUsage ? true : false}
-                    defaultValue="Honey"
 
                     // onChange={(e) =>
                     //   setValue("select", e.target.value, { shouldValidate: true })

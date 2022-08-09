@@ -41,9 +41,8 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
       .required("لطفا نام زنبورستان وارد کنید")
       .min(2, "برای وارد کردن نام حداقل ۲ کاراکتر لازم است")
       .max(20, "Username must not exceed 20 characters"),
-    hivesWithGoodCondition:yup.string().required(" پر کردن این فیلد الزامی است "),
-    hivesWithBadCondition:yup.string().required(" پر کردن این فیلد الزامی است "),
-    hivesWithVisitRequired:yup.string().required(" پر کردن این فیلد الزامی است "),
+      province: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
+      city: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
     regionVegetation: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
     regionType: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
     // select3: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
@@ -83,12 +82,12 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
          reset({ 
           name: responseData.name ,
           // hivesWithGoodCondition: responseData.hivesWithGoodCondition,
-          // hivesWithBadCondition: responseData. hivesWithBadCondition,
-          // hivesWithVisitRequired: responseData.hivesWithVisitRequired,
+          // province: responseData.province,
+          // city: responseData.city,
           regionVegetation: responseData.regionVegetation,
           regionType: responseData.regionType,
           apiaryUsage: responseData.apiaryUsage,
-          users:responseData.users.map((el)=>{return {_id:el}})
+          users:responseData?.users?.map((el)=>{return {_id:el._id}})
         });
         setTicketEdit(response.data)
          setLoading(false)
@@ -276,7 +275,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
                   className={classes.errorTitle}
 
                 >
-                  {errors.firstname?.message}
+                  {errors.name?.message}
                 </Typography>
               </Grid>
 
@@ -489,9 +488,9 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
                     className={classes.inputSelect}
                     required
                     variant="outlined"
-                    {...register("state")}
-                    error={errors.state ? true : false}
-                    defaultValue="Honey"
+                    {...register("province")}
+                    error={errors.province ? true : false}
+                    // value={ticketEdit.province}
                     // onChange={(e) =>
                     //   setValue("select", e.target.value, { shouldValidate: true })
                     // } // Using setValue
@@ -511,7 +510,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
                   color="textSecondary"
                   className={classes.errorTitle}
                 >
-                  {errors.state?.message}
+                  {errors.province?.message}
                 </Typography>
               </Grid>
 
@@ -525,7 +524,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
                     variant="outlined"
                     {...register("city")}
                     error={errors.city ? true : false}
-                    defaultValue="Honey"
+                    defaultValue={ticketEdit.city}
                     // onChange={(e) =>
                     //   setValue("select", e.target.value, { shouldValidate: true })
                     // } // Using setValue

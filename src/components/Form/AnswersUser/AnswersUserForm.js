@@ -8,15 +8,19 @@ function AnswersUsersForm() {
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("id_token");
   const [AnswersList, setAnswersList] = useState([]);
-  const question_id = localStorage.getItem("question_id");
+  const Question_id = localStorage.getItem("Question_id")
+  console.log("Question_id",Question_id);
+  const Hive_id = localStorage.getItem("Hive_id")
+  console.log("Hive_id",Hive_id);
 
+  
   useEffect(() => {
     const fetchData = async () => {
       // setLoading(true);
       try {
         const { data: response } = await axios.get(
           // `http://185.202.113.165:3000/api/answer/get-question-answer/${question_id}/${hive_id}`,
-          `http://185.202.113.165:3000/api/answer/getAll`,
+          `http://185.202.113.165:3000/api/answer/get-question-answer/${Question_id}/${Hive_id}`,
           {
             headers: {
               token: `${token}`,
@@ -28,7 +32,7 @@ function AnswersUsersForm() {
         setLoading(false);
       } catch (error) {
         if (error.response?.status === 401) {
-          localStorage.clear("id_token");
+          // localStorage.clear("id_token");
           console.log(
             "سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" +
               "ApiaryList",
@@ -40,7 +44,7 @@ function AnswersUsersForm() {
               "ApiaryList",
           );
           // history.push("/app/Error")
-          window.location.reload();
+          // window.location.reload();
         }
       }
       // setLoading(false);

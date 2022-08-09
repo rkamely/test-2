@@ -321,7 +321,7 @@ function ApiaryList() {
 
     {
       title: " استان",
-      field: "State",
+      field: "province",
       cellStyle: {
         fontSize: "0.8rem",
       },
@@ -333,7 +333,7 @@ function ApiaryList() {
         fontWeight: "600",
       },
       render: (rowData) => {
-        return <p className="description">{rowData.State}</p>;
+        return <p className="description">{rowData.province}</p>;
       },
     },
     {
@@ -353,23 +353,23 @@ function ApiaryList() {
         return <p className="description">{rowData.city}</p>;
       },
     },
-    {
-      title: " آب و هوا",
-      field: "city",
-      cellStyle: {
-        fontSize: "0.8rem",
-      },
-      headerStyle: {
-        textAlign: "right",
+    // {
+    //   title: " آب و هوا",
+    //   field: "city",
+    //   cellStyle: {
+    //     fontSize: "0.8rem",
+    //   },
+    //   headerStyle: {
+    //     textAlign: "right",
 
-        fontSize: "0.8rem",
-        color: "rgb( 102, 103, 104)",
-        fontWeight: "600",
-      },
-      render: (rowData) => {
-        return <p className="description">{rowData.city}</p>;
-      },
-    },
+    //     fontSize: "0.8rem",
+    //     color: "rgb( 102, 103, 104)",
+    //     fontWeight: "600",
+    //   },
+    //   render: (rowData) => {
+    //     return <p className="description">{rowData.city}</p>;
+    //   },
+    // },
 
     // {
     //   title: "پوشش گیاهی منطقه",
@@ -480,7 +480,7 @@ function ApiaryList() {
     },
     {
       title: "تعداد کندو",
-      field: "Hives",
+      field: "hives.length",
       cellStyle: {
         textAlign: "right",
         fontSize: "0.8rem",
@@ -493,8 +493,8 @@ function ApiaryList() {
         fontWeight: "600",
       },
       render: (rowData) => {
-        return <p className="description">{rowData.Hives}</p>;
-      },
+        console.log("rowData?.Hives?.length",rowData);
+        return <p className="description">{rowData?.hives?.length?<div>{rowData?.hives?.length}</div>:<div>بدون کندو</div>}</p>;      },
     },
     {
       title: "وضعیت نامناسب",
@@ -523,7 +523,7 @@ function ApiaryList() {
               marginRight: "-20px",
             }}
           >
-            <div className="circleRed">{rowData.hivesWithBadCondition}</div>
+            <div className="circleRed">{rowData.hivesWithBadCondition?<div>{rowData.hivesWithBadCondition}</div>:<div>0</div>}</div>
           </div>
         );
         // <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}><div className="circleRed">{rowData.hivesWithBadCondition}</div></div>
@@ -554,7 +554,7 @@ function ApiaryList() {
               marginRight: "-20px",
             }}
           >
-            <div className="circleYellow">{rowData.hivesWithVisitRequired}</div>
+            <div className="circleYellow">{rowData.hivesWithVisitRequired?<div>{rowData.hivesWithVisitRequired}</div>:<div>0</div>}</div>
           </div>
         );
       },
@@ -584,11 +584,12 @@ function ApiaryList() {
               marginRight: "-20px",
             }}
           >
-            <div className="circleGreen">{rowData.hivesWithGoodCondition}</div>
+            <div className="circleGreen">{rowData.hivesWithGoodCondition?<div>{rowData.hivesWithGoodCondition}</div>:<div>0</div>}</div>
           </div>
         );
       },
     },
+    
 
     {
       title: "عملیات",
@@ -1201,7 +1202,7 @@ function ApiaryList() {
 
               toolbar: {
                 nRowsSelected: "{0} مورد انتخاب شد",
-                searchPlaceholder: "جستجو زنبورستان",
+                searchPlaceholder: "جستجو ",
                 addRemoveColumns: "اضافه یا حذف کردن ستون‌ها",
                 showColumnsTitle: "اضافه یا حذف کردن ستون‌ها",
               },

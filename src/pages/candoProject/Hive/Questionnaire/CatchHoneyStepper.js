@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Typography,
   TextField,
@@ -24,12 +24,16 @@ import {
   Controller,
   FormProvider,
   useFormContext,
+  useFieldArray,
 } from "react-hook-form";
 import { ChangeHistory, Close } from "@material-ui/icons";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ErrorMessage } from "@hookform/error-message";
 import useStyles from "./Style";
+import axios from "axios";
+import Bardia from "./Questionnaire";
+import QuestionnaireForm from "../../../../components/Form/Questionnaire/QuestionnaireForm";
 
 
 
@@ -41,15 +45,23 @@ const validationSchema = yup.object().shape({
 });
 
 
+function getSteps(countQuestion) {
+  console.log("console.log(countQuestion);", countQuestion);
+  return countQuestion?.map((el)=>{
+        return[""]
+  })
+  // for (let index = 0; index < 10; index++) {
 
-function getSteps() {
-  return [
-    "سوال اول",
-    "سوال دوم",
+    
+  // }
+  // return [
+  //   "سوال اول",
+  //   "سوال دوم",
+  //   "سوال سوم",
+    
 
 
-
-  ];
+  // ];
 }
 
 
@@ -58,13 +70,52 @@ function getSteps() {
 
 
 
-const FirstQuestion = () => {
+const FirstQuestion = ({step}) => {
   const { control ,register, formState: { errors }} = useFormContext();
   const classes=useStyles()
-
+  const token = localStorage.getItem("id_token");
+  const[questions,setQuestions]=useState()
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data: response } = await axios.get(
+          `http://185.202.113.165:3000/api/questionnaire/get-by-id/62ee0ef6daaf4100126a47e0/62e6786e4f91f400118432ff`,
+          {
+            headers: {
+              token: `${token}`,
+            },
+          },
+        );
+        console.log("show response profile", response.data);
+        console.log(`show response profile ${step}`, response.data.questions[step]);
+        setQuestions(response.data.questions[step]);
+        // setNewQuestion(response.data);
+        // setLoading(false);
+      } catch (error) {
+        if (error.response?.status === 401) {
+        //   localStorage.clear("id_token");
+          console.log(
+            "سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" +
+              "ApiaryList",
+          );
+        //   window.location.reload();
+        } else {
+          console.log(
+            "سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" +
+              "ApiaryList",
+          );
+          // history.push("/app/Error")
+          // window.location.reload()
+        }
+      }
+      // setLoading(false);
+    };
+    fetchData();
+  }, [step]);
+console.log("questions",questions);
   return (
     <>
-    <FormLabel component="legend" className={classes.FormLable}>تعداد برداشت قاب عسل</FormLabel>
+    <FormLabel component="legend" className={classes.FormLable}>{questions?.title}</FormLabel>
       <Controller
         control={control}
         {...register("Frame", {
@@ -90,6 +141,12 @@ const FirstQuestion = () => {
         name="Frame"
         render={({ message }) => <p style={{color:"red"}}>{message}</p>}
       />
+
+
+
+
+
+
     </>
   );
 };
@@ -143,15 +200,75 @@ const SecondQuestion = () => {
 
 
 
-function getStepContent(step) {
+function getStepContent(step,statedynamic,setstatedynamic,countQuestion,fields,remove,activeStep,setActiveStep) {
+  setstatedynamic={
+    ...statedynamic
+  }
+
+console.log("stepp",step);
+  var elements = [];
+  for(let i =0; i < 10; i++){
+      elements.push(<li>{i}</li>);
+  }
+  console.log("element",elements.map((el)=>{
+        return el.props.children
+  }));
+  // return elements;
+
+//   return countQuestion?.map((el)=>{
+//     return["0"]
+// })
+const bardia="bardia"
+const reza="reza"
   switch (step) {
+    
     case 0:
-      return <FirstQuestion />;
+      return <QuestionnaireForm step={step} fields={fields} remove={remove}  activeStep={activeStep} setActiveStep={setActiveStep}/>;
     case 1:
-      return <SecondQuestion />;
+      return <QuestionnaireForm step={step} fields={fields}  remove={remove}  activeStep={activeStep} setActiveStep={setActiveStep}/>;
+    case 2:
+      return <QuestionnaireForm step={step} fields={fields}  remove={remove}  activeStep={activeStep} setActiveStep={setActiveStep}/>;
+    case 3:
+      return <QuestionnaireForm step={step} fields={fields}  remove={remove}  activeStep={activeStep} setActiveStep={setActiveStep}/>;
+      case 4:
+        return <QuestionnaireForm step={step} fields={fields}  remove={remove}  activeStep={activeStep} setActiveStep={setActiveStep}/>;
+      case 5:
+        return <QuestionnaireForm step={step} fields={fields}  remove={remove}  activeStep={activeStep} setActiveStep={setActiveStep}/>;
+      case 6:
+        return <QuestionnaireForm step={step} />;
+      case 7:
+        return <QuestionnaireForm step={step} />;
+        case 8:
+          return <QuestionnaireForm step={step} />;
+        case 9:
+          return <QuestionnaireForm step={step} />;
+        case 10:
+          return <QuestionnaireForm step={step} />;
+        case 11:
+          return <QuestionnaireForm step={step} />;
+          case 12:
+            return <QuestionnaireForm step={step}/>;
+          case 13:
+            return <QuestionnaireForm step={step}/>;
+          case 14:
+            return <QuestionnaireForm step={step}/>;
+          case 15:
+            return <QuestionnaireForm step={step}/>;
+            case 16:
+              return <QuestionnaireForm step={step}/>;
+            case 17:
+              return <QuestionnaireForm step={step}/>;
+              case 18:
+                return <QuestionnaireForm step={step}/>;
+              case 19:
+                return <QuestionnaireForm step={step}/>;
+              case 20:
+                return <QuestionnaireForm step={step}/>;
+              case 21:
+                return <QuestionnaireForm step={step}/>;
 
     default:
-      return "unknown step";
+      return "موردی جهت نمایش وجود ندارد!";
   }
 }
 
@@ -160,14 +277,71 @@ const CatchHoneyStepper = (props) => {
   const classes = useStyles();
   const methods = useForm({
     defaultValues: {
-        Frame: "",
-        Weight:""
+      answers: [{  input: "" , questionId:"" }]
+      // answers: []
 
-    },
+    }
+  });
+  const {
+    fields,
+    append,
+    remove
+
+  } = useFieldArray({
+    control:methods.control,
+    name: "answers"
   });
   const [activeStep, setActiveStep] = useState(0);
   const [skippedSteps, setSkippedSteps] = useState([]);
-  const steps = getSteps();
+  const[statedynamic,setstatedynamic]=useState([])
+  const [countQuestion,setcountQuestion]=useState();
+  const steps = getSteps(countQuestion);
+  // console.log("fieldsfields",fields);
+
+  const token = localStorage.getItem("id_token");
+
+  ///////////////////////////////////////////////////////////
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const { data: response } = await axios.get(
+        `http://185.202.113.165:3000/api/questionnaire/get-by-id/62ee0ef6daaf4100126a47e0/62e6786e4f91f400118432ff`,
+        {
+          headers: {
+            token: `${token}`,
+          },
+        },
+      );
+      console.log("show response profile", response.data);
+      console.log("show response profile", response.data.questions);
+      setcountQuestion(response.data.questions);
+      // setNewQuestion(response.data);
+      // setLoading(false);
+    } catch (error) {
+      if (error.response?.status === 401) {
+      //   localStorage.clear("id_token");
+        console.log(
+          "سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" +
+            "ApiaryList",
+        );
+      //   window.location.reload();
+      } else {
+        console.log(
+          "سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" +
+            "ApiaryList",
+        );
+        // history.push("/app/Error")
+        // window.location.reload()
+      }
+    }
+    // setLoading(false);
+  };
+  fetchData();
+}, []);
+/////////////////////////////////////////////////////
+
+
+
 
   const isStepOptional = (step) => {
     return step === 1 || step === 2;
@@ -178,14 +352,12 @@ const CatchHoneyStepper = (props) => {
   };
 
   const handleNext = (data) => {
-    console.log(data);
+    console.log("dataofwhole",data);
+    append({})
     if (activeStep == steps.length - 1) {
-      fetch("https://jsonplaceholder.typicode.com/comments")
-        .then((data) => data.json())
-        .then((res) => {
-          console.log(res);
+
           setActiveStep(activeStep + 1);
-        });
+       
     } else {
       setActiveStep(activeStep + 1);
       setSkippedSteps(
@@ -196,10 +368,11 @@ const CatchHoneyStepper = (props) => {
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
+
   };
 
   const handleSkip = () => {
-    console.log("methods",methods);
+
     if (!isStepSkipped(activeStep)) {
       setSkippedSteps([...skippedSteps, activeStep]);
     }
@@ -209,10 +382,11 @@ const CatchHoneyStepper = (props) => {
   // const onSubmit = (data) => {
   //   console.log(data);
   // };
+  console.log("methods",methods);
   return (
     <div style={{padding:"16px" }}>
       <Stepper alternativeLabel activeStep={activeStep} >
-        {steps.map((step, index) => {
+        {steps?.map((step, index) => {
           const labelProps = {};
           const stepProps = {};
           // if (isStepOptional(index)) {
@@ -247,7 +421,7 @@ const CatchHoneyStepper = (props) => {
       </Grid>
       </DialogContent >
    <Grid style={{marginTop:"16px"}}>
-      {activeStep === steps.length ? (
+      {activeStep === steps?.length ? (
         <Typography variant="h3" align="center" color="secondary">
           جواب سوالات با موفقیت ثبت شد!
         </Typography>
@@ -255,7 +429,9 @@ const CatchHoneyStepper = (props) => {
         <>
           <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(handleNext)} style={{textAlign:"center",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
-              {getStepContent(activeStep)}
+              {getStepContent(activeStep,statedynamic,setstatedynamic,countQuestion,fields,remove,activeStep,setActiveStep)}
+
+              
               {/* <Grid style={{width:"100%", display:"flex",alignContent:"center",justifyContent:"center"}}>
                {isStepOptional(activeStep) && (
                  <>
@@ -278,23 +454,24 @@ const CatchHoneyStepper = (props) => {
               )}
               </Grid> */}
             <Grid style={{width:"100%", display:"flex",alignContent:"center",justifyContent:"space-evenly",marginTop:"16px"}}>
-              <Button
+              {/* <Button
                 className={classes.button}
                 disabled={activeStep === 0}
                 onClick={handleBack}
                 color="secondary"
               >
                 برگشت
-              </Button>
+              </Button> */}
 
               <Button
                 className={classes.button}
                 variant="contained"
                 color="secondary"
                 // onClick={handleNext}
+
                 type="submit"
               >
-                {activeStep === steps.length - 1 ? "پایان" : "بعدی"}
+                {activeStep === steps?.length - 1 ? "پایان" : "بعدی"}
              </Button> 
              </Grid> 
             </form>
