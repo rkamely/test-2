@@ -27,7 +27,7 @@ const QuestionnaireForm = ({step,fields,remove,setActiveStep,activeStep}) => {
       const fetchData = async () => {
         try {
           const { data: response } = await axios.get(
-            `http://185.202.113.165:3000/api/questionnaire/get-by-id/62ee0ef6daaf4100126a47e0/62e6786e4f91f400118432ff`,
+            `http://185.202.113.165:3000/api/questionnaire/get-by-id/62f399feab0bd10012549dd3/62e6786e4f91f400118432ff`,
             {
               headers: {
                 token: `${token}`,
@@ -115,7 +115,6 @@ const QuestionnaireForm = ({step,fields,remove,setActiveStep,activeStep}) => {
                           <Controller
                             control={control}
                             {...register(`answers[${fields.length-1}].questionId`, {
-                              required: "پر کردن این قسمت الزامی است"
                             })}
                             // name="input"
                             
@@ -152,8 +151,7 @@ const QuestionnaireForm = ({step,fields,remove,setActiveStep,activeStep}) => {
                 questions?.options?.map((option, index) => (
                   <FormControlLabel  style={{whiteSpace:"noWrap"}}      
                     control={
-                      <Checkbox
-                        
+                      <Checkbox             
                         onChange={() => props.field.onChange(handleCheck(option?.text))}
                         // defaultChecked={defaultIds.includes(item.id)}
                       />

@@ -60,6 +60,7 @@ function Questionnare() {
 
   ////////////////////////////////////////////////////////////////////////////////////////////
   //get all answer
+
   useEffect(() => {
     const fetchData = async () => {
       // setLoading(true);
@@ -83,7 +84,9 @@ function Questionnare() {
     fetchData();
   }, []);
 
-  /////////////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////////////////////////////////////////////
+
   console.log("newQuestion", newQuestion);
 
   const handleClickOpen = () => {
@@ -93,11 +96,13 @@ function Questionnare() {
   const handleWatchAnswer = () => {
     setWatchAnswer(true);
   };
+
   const handleClose = () => {
     setOpenQuestion(false);
     setWatchAnswer(false);
     history.push("/app/question");
   };
+
   return (
     <>
       {loading ? (
