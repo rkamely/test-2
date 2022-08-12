@@ -37,7 +37,6 @@ import {
   toggleSidebar,
 } from "../../context/LayoutContext";
 import { useUserDispatch, signOut } from "../../context/UserContext";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 const messages = [

@@ -21,6 +21,7 @@ import MapBox from "../../../components/MapBox/MapBox";
 import axios from "axios";
 import { useParams,useHistory } from "react-router-dom";
 import Loading from "../../Loading/Loading";
+import { axiosInstance } from "../../../pages/api/axios";
 
 const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
   console.log("editApiariesList",ApiariesList);
@@ -72,7 +73,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
      const fetchData = async () =>{
        // setLoading(true);
        try {
-         const {data: response} = await axios.get(`http://185.202.113.165:3000/api/apiary/get-for-user/${edit_id}`,{
+         const {data: response} = await axiosInstance.get(`/apiary/get-for-user/${edit_id}`,{
            headers: {
              'token': `${token}` 
            },
@@ -110,7 +111,7 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
 
   const onSubmit = async (data) => {
 
-    const response = await axios.put(`http://185.202.113.165:3000/api/apiary/update-for-user/${edit_id}`,{...data ,"locationLangitude": 8,
+    const response = await axiosInstance.put(`/apiary/update-for-user/${edit_id}`,{...data ,"locationLangitude": 8,
     "locationLatitude": 10},{
       headers: {
         'token': `${token}` 

@@ -20,6 +20,7 @@ import {
   import { yupResolver } from "@hookform/resolvers/yup";
   import * as yup from "yup";
   import AuthContext from "../../context/AuthProvider";
+import { axiosInstance } from "../../api/axios";
 
 function AddQRcode({handleClose,title,setNewTicket,newTicket}) {
 
@@ -56,7 +57,7 @@ function AddQRcode({handleClose,title,setNewTicket,newTicket}) {
             const text=`تعداد QRCODE درخواستی: ${data.text1} \n  ,
             شرح درخواست: (${data.text2})`
             
-            const response = await axios.post("http://185.202.113.165:3000/api/ticket", {text:text , category:"requestQRCode"} , {
+            const response = await axiosInstance.post("/ticket", {text:text , category:"requestQRCode"} , {
               headers: {
                 'token': `${token}` 
               }

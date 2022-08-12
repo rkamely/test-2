@@ -9,6 +9,7 @@ import {
   useParams,useHistory
 } from "react-router-dom";
 import Title from "../../../../components/Typography/Title/Title";
+import { axiosInstance } from "../../../api/axios";
 // function SupportMessage() {
 
 //   return (
@@ -49,7 +50,7 @@ function SupportMessage() {
     const fetchData = async () =>{
       // setLoading(true);
       try {
-        const {data: response} = await axios.get("http://185.202.113.165:3000/api/message/get-by-user-for-user",{
+        const {data: response} = await axiosInstance.get("/message/get-by-user-for-user",{
           headers: {
             'token': `${token}` 
           },

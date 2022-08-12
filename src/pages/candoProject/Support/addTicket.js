@@ -16,10 +16,10 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 import useStyles from "./Style";
 import { useForm, Controller } from "react-hook-form";
-import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import AuthContext from "../../context/AuthProvider";
+import { axiosInstance } from "../../api/axios";
 
 function AddTicket({input,handleClose,newTicket,setNewTicket,title,style, setShow}) {
   {
@@ -40,8 +40,8 @@ function AddTicket({input,handleClose,newTicket,setNewTicket,title,style, setSho
 
 
 
-  const bardia = localStorage.getItem("id_token")
-  console.log("bardia",bardia);
+  const token = localStorage.getItem("id_token")
+  console.log("token",token);
 
   
 
@@ -85,9 +85,9 @@ function AddTicket({input,handleClose,newTicket,setNewTicket,title,style, setSho
     // console.log(JSON.stringify(data, null, 2));
     // alert(JSON.stringify(data, null, 2));
      
-    const response = await axios.post("http://185.202.113.165:3000/api/ticket", data , {
+    const response = await axiosInstance.post("/ticket", data , {
       headers: {
-        'token': `${bardia}` 
+        'token': `${token}` 
       }
     }).then((res)=>{
       console.log("response1", res.data.data);

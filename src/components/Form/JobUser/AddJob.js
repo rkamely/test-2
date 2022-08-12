@@ -35,6 +35,7 @@ import {
 import { date } from "yup/lib/locale";
 import axios from "axios";
 import { Person } from "@material-ui/icons";
+import { axiosInstance } from "../../../pages/api/axios";
 
 const AddJob = ({ handleClose, onEventAdded }) => {
   const classes = useStyles();
@@ -118,8 +119,8 @@ const AddJob = ({ handleClose, onEventAdded }) => {
     const fetchData = async () => {
       // setLoading(true);
       try {
-        const { data: response } = await axios.post(
-          "http://188.121.121.225/api/event/GetForMonth",
+        const { data: response } = await axiosInstance.post(
+          "/event/GetForMonth",
           { date: "1401/03/01" },
           {
             headers: {

@@ -17,9 +17,9 @@ import AddJob from '../JobUser/AddJob';
 import Title from '../../Typography/Title/Title';
 import { withStyles } from '@material-ui/styles';
 import IOSSwitch from './IOSSwitch';
-import axios from 'axios';
 import { useUserDispatch, signOut } from "../../../context/UserContext";
 import SmsVerification from './SmsVerification';
+import { axiosInstance } from '../../../pages/api/axios';
 
 function Edituser(props) {
   var userDispatch = useUserDispatch()
@@ -88,8 +88,8 @@ function Edituser(props) {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const { data: response } = await axios.get(
-            `http://185.202.113.165:3000/api/auth/me`,
+          const { data: response } = await axiosInstance.get(
+            `/auth/me`,
             {
               headers: {
                 token: `${token}`,

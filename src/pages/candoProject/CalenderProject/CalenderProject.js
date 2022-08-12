@@ -32,6 +32,7 @@ import { Dialog } from "@material-ui/core";
 import axios from "axios";
 // import moment from "moment";
 import moment from "jalali-moment";
+import { axiosInstance } from "../../api/axios";
 export default class CalenderProject extends React.Component {
   constructor() {
     super();
@@ -72,7 +73,7 @@ export default class CalenderProject extends React.Component {
     const priority = event.priority
     const user = event.user._id
     console.log("user",user);
-    await axios.post("http://185.202.113.165:3000/api/event",{
+    await axiosInstance.post("/event",{
       "title": `${title}` ,
       "fromDate": `${fromDate}`,
       "toDate": `${toDate}`,
@@ -121,7 +122,7 @@ export default class CalenderProject extends React.Component {
    async handleDateSet(data) {
     const token = localStorage.getItem("id_token")
     console.log("handleDateSet",data);
-    const response = await axios.post("http://185.202.113.165:3000/api/event/GetForMonth?start="+moment(data.start).toISOString()+"&end"+moment(data.end).toISOString(),{
+    const response = await axiosInstance.post("/event/GetForMonth?start="+moment(data.start).toISOString()+"&end"+moment(data.end).toISOString(),{
       "date":"1401/03/01"
   },{
       headers: {
@@ -204,7 +205,7 @@ export default class CalenderProject extends React.Component {
               m.locale('fa'); // change locale for this moment instance
               m.format('YYYY/M/D');
               console.log("m",m);
-                            return axios.post('http://185.202.113.165:3000/api/event/GetForMonth',{ "date":"1401/03/01"},{
+                            return axiosInstance.post('/event/GetForMonth',{ "date":"1401/05/01"},{
                             headers: {
                               'token': `${token}` 
                             },

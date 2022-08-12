@@ -31,9 +31,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ErrorMessage } from "@hookform/error-message";
 import useStyles from "./Style";
-import axios from "axios";
-import Bardia from "./Questionnaire";
 import QuestionnaireForm from "../../../../components/Form/Questionnaire/QuestionnaireForm";
+import { axiosInstance } from "../../../api/axios";
 
 const validationSchema = yup.object().shape({
   eggs: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
@@ -69,8 +68,8 @@ const FirstQuestion = ({ step }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data: response } = await axios.get(
-          "http://185.202.113.165:3000/api/questionnaire/get-by-id/62ee05429c5ee70012a14505/62e6786e4f91f400118432ff",
+        const { data: response } = await axiosInstance.get(
+          "/questionnaire/get-by-id/62ee05429c5ee70012a14505/62e6786e4f91f400118432ff",
           {
             headers: {
               token: `${token}`,
@@ -211,8 +210,7 @@ function getStepContent(
   //   return countQuestion?.map((el)=>{
   //     return["0"]
   // })
-  const bardia = "bardia";
-  const reza = "reza";
+
   switch (step) {
     case 0:
       return (
@@ -409,8 +407,8 @@ const CatchHoneyStepper = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data: response } = await axios.get(
-          `http://185.202.113.165:3000/api/questionnaire/get-by-id/62ee05429c5ee70012a14505/62e6786e4f91f400118432ff`,
+        const { data: response } = await axiosInstance.get(
+          `/questionnaire/get-by-id/62ee05429c5ee70012a14505/62e6786e4f91f400118432ff`,
           {
             headers: {
               token: `${token}`,

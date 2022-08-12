@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form';
 import useStyles from "./styles";
 import { ErrorMessage } from "@hookform/error-message";
+import { axiosInstance } from '../../../pages/api/axios';
 
 const QuestionnaireForm = ({step,fields,remove,setActiveStep,activeStep}) => {
     const { control,getValues ,register, formState: { errors }} = useFormContext();
@@ -26,8 +27,8 @@ const QuestionnaireForm = ({step,fields,remove,setActiveStep,activeStep}) => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const { data: response } = await axios.get(
-            `http://185.202.113.165:3000/api/questionnaire/get-by-id/62f399feab0bd10012549dd3/62e6786e4f91f400118432ff`,
+          const { data: response } = await axiosInstance.get(
+            `/questionnaire/get-by-id/62f399feab0bd10012549dd3/62e6786e4f91f400118432ff`,
             {
               headers: {
                 token: `${token}`,

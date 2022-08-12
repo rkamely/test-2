@@ -42,6 +42,7 @@ import NutritionStepper from "./Questionnaire/NutritionStepper";
 import CureHiveStepper from "./Questionnaire/CureHiveStepper";
 import CatchHoneyStepper from "./Questionnaire/CatchHoneyStepper";
 import Loading from "../../../components/Loading/Loading";
+import { axiosInstance } from "../../api/axios";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -169,8 +170,8 @@ function Hive() {
       console.log("salam id", index);
       setLoading(true);
       try {
-        const { data: response } = await axios.get(
-          `http://185.202.113.165:3000/api/hive/get-by-apiary/${id}`,
+        const { data: response } = await axiosInstance.get(
+          `/hive/get-by-apiary/${id}`,
           {
             headers: {
               token: `${token}`,
@@ -221,8 +222,8 @@ function Hive() {
     const fetchData = async () => {
       // setLoading(true);
       try {
-        const { data: response } = await axios.get(
-          "http://185.202.113.165:3000/api/apiary/get-for-user",
+        const { data: response } = await axiosInstance.get(
+          "/apiary/get-for-user",
           {
             headers: {
               token: `${token}`,
@@ -836,8 +837,8 @@ function Hive() {
     console.log("salam id", index);
     setLoading(true);
     try {
-      const { data: response } = await axios.get(
-        `http://185.202.113.165:3000/api/hive/get-by-apiary/${index}`,
+      const { data: response } = await axiosInstance.get(
+        `/hive/get-by-apiary/${index}`,
         {
           headers: {
             token: `${token}`,

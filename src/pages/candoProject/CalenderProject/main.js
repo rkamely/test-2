@@ -7,7 +7,6 @@ import {
   DialogTitle,
   Grid,
 } from "@material-ui/core";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
@@ -20,6 +19,7 @@ import {
 } from "react-router-dom";
 import AddJob from "../../../components/Form/JobUser/AddJob";
 import Title from "../../../components/Typography/Title/Title";
+import { axiosInstance } from "../../api/axios";
 import CalenderProject from "./CalenderProject";
 import JobCalender from "./JobCalender/JobCalender";
 import useStyles from "./style";
@@ -47,7 +47,7 @@ function Main() {
         const fetchData = async () =>{
           // setLoading(true);
           try {
-            const {data: response} = await axios.post("http://185.202.113.165:3000/api/event/GetForMonth",{ "date":"1401/03/01"},{
+            const {data: response} = await axiosInstance.post("/event/GetForMonth",{ "date":"1401/03/01"},{
               headers: {
                 'token': `${token}` 
               },

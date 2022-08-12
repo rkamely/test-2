@@ -31,6 +31,7 @@ import { ContentHook } from "@fullcalendar/react";
 import { useParams, useHistory } from "react-router-dom";
 import { ErrorMessage } from "@hookform/error-message";
 import Loading from "../../Loading/Loading";
+import { axiosInstance } from "../../../pages/api/axios";
 
   const AnswerQuestionsForm = ({ newQuestion, onClose, refresh,setStatus,status }) => {
     const classes = useStyles();
@@ -77,8 +78,8 @@ import Loading from "../../Loading/Loading";
     const fetchData = async () => {
       // setLoading(true);
       try {
-        const { data: response } = await axios.get(
-          `http://185.202.113.165:3000/api/question/get-by-id/${Question_id}`, {
+        const { data: response } = await axiosInstance.get(
+          `/question/get-by-id/${Question_id}`, {
             headers: {
               token: `${token}`,
             },
@@ -100,8 +101,8 @@ useEffect(() => {
   const fetchData = async () => {
     // setLoading(true);
     try {
-      const { data: response } = await axios.get(
-        `http://185.202.113.165:3000/api/answer/get-by-id/${Question_id}`, {
+      const { data: response } = await axiosInstance.get(
+        `/answer/get-by-id/${Question_id}`, {
           headers: {
             token: `${token}`,
           },
@@ -120,9 +121,9 @@ useEffect(() => {
     const onSubmit = async (data) => {
       alert(data)
     if(data.selected){
-            const response = await axios
+            const response = await axiosInstance
         .post(
-          `http://185.202.113.165:3000/api/answer`,
+          `/answer`,
           { selected:`${data.selected}` ,question:{_id:`${Question_id}`}, hive:{_id:`${Hive_id}`}},
           {
             headers: {
@@ -135,9 +136,9 @@ useEffect(() => {
           // setApiariesList([...ApiariesList , response.data.data])
         });
     }else{
-      const response = await axios
+      const response = await axiosInstance
       .post(
-        `http://185.202.113.165:3000/api/answer`,
+        `/answer`,
         { input:`${data.input}` ,question:{_id:`${Question_id}`}, hive:{_id:`${Hive_id}`}},
         {
           headers: {

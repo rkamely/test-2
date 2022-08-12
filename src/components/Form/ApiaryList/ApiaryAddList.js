@@ -19,6 +19,7 @@ import * as yup from "yup";
 import Divider from "@material-ui/core/Divider";
 import axios from "axios";
 import ApiaryList from "../../../pages/candoProject/ApiaryList/ApiaryList";
+import { axiosInstance } from "../../../pages/api/axios";
 
 const ApiaryAddList = ({ ApiariesList, setApiariesList, onClose, refresh,setStatus,status }) => {
   const classes = useStyles();
@@ -46,9 +47,9 @@ const ApiaryAddList = ({ ApiariesList, setApiariesList, onClose, refresh,setStat
   const token = localStorage.getItem("id_token");
 
   const onSubmit = async (data) => {
-    const response = await axios
+    const response = await axiosInstance
       .post(
-        "http://185.202.113.165:3000/api/apiary/create-by-user",
+        "/apiary/create-by-user",
         { ...data, locationLangitude: 8, locationLatitude: 10  },
         {
           headers: {

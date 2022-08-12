@@ -17,6 +17,7 @@ import Title from "../../../../components/Typography/Title/Title";
 import classNames from "classnames";
 import fileDownload from "js-file-download";
 import LodaingQr from "./LodaingQr";
+import { axiosInstance } from "../../../api/axios";
 
 function SupportPage() {
   const history = useHistory()
@@ -50,7 +51,7 @@ function SupportPage() {
       const fetchData = async () =>{
         // setLoading(true);
         try {
-          const {data: response} = await axios.get("http://185.202.113.165:3000/api/ticket/get-by-id/" + id,{
+          const {data: response} = await axiosInstance.get("/ticket/get-by-id/" + id,{
             headers: {
               'token': `${token}` 
             },
@@ -76,7 +77,7 @@ function SupportPage() {
       const fetchData = async () =>{
         // setLoading(true);
         try {
-          const {data: response} = await axios.post(`http://185.202.113.165:3000/api/ticket/seen-by-user/${id}`,{"text":"Seen"},{
+          const {data: response} = await axiosInstance.post(`/ticket/seen-by-user/${id}`,{"text":"Seen"},{
             headers: {
               'token': `${token}` 
             },
@@ -92,7 +93,7 @@ function SupportPage() {
     /////////////////////////////////////////////////////////////////////////////////////////
     const download=async (text)=>{
       console.log("texxxxtttt",text);
-      const response = await axios.get(`http://185.202.113.165:3000/api/ticket/download-file/${text}`,{
+      const response = await axiosInstance.get(`/ticket/download-file/${text}`,{
         responseType: 'blob',
       })
       // console.log(`${text}`,text)
@@ -136,7 +137,7 @@ function SupportPage() {
         if(data.file.length > 0){
             convert2base64(data.file[0])
         }
-        const response = await axios.post(`http://185.202.113.165:3000/api/ticket/user-add-message/${id}`, fd ,
+        const response = await axiosInstance.post(`/ticket/user-add-message/${id}`, fd ,
         {
           headers: {
             'token': `${token}` ,
@@ -265,7 +266,7 @@ function SupportPage() {
 const closeTicket= async ()=>{
 
   if(window.confirm("با بستن این تیکت دیگر امکان ارسال پیام در این چت باکس را ندارید")){
-    const response = await axios.post(`http://185.202.113.165:3000/api/ticket/close-by-user/${id}` ,{"text":"close"} ,{
+    const response = await axiosInstance.post(`/ticket/close-by-user/${id}` ,{"text":"close"} ,{
       headers: {
         'token': `${token}` 
       }

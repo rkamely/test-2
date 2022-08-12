@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -8,7 +8,9 @@ import {
   Button,
   Divider,
   Grid,
+  MenuItem,
   Paper,
+  Select,
   TextField,
   Typography,
 } from "@material-ui/core";
@@ -17,26 +19,33 @@ import {
   BrowserRouter as Router,
   Link,
   NavLink,
-  useRouteMatch,
+  useRouteMatch,useParams
 } from "react-router-dom";
 import PreviewImage from "./PreviewImage";
+import { date } from "yup/lib/locale";
+import { axiosInstance } from "../../../pages/api/axios";
 
-function EditUser() {
+function EditUser({setUserList,userList,onClose}) {
   const classes = useStyles();
-  const phoneRegExp = /9([0-3][0-9])-?[0-9]{3}-?[0-9]{4}/;
-  const FILE_SIZE = 10000 * 10000;
+  const {id} = useParams()
+  console.log("id watch",id);
+  // const phoneRegExp = /09([0-3][0-9])-?[0-9]{3}-?[0-9]{4}/;
+  const phoneRegExp = '^0(\\9)?9\\d{9}$';
+  const FILE_SIZE = 10000*10000;
+  const [ loading , setLoading]=useState(true)
 
   const validationSchema = yup.object().shape({
-    phoneNumber: yup
+    mobile: yup
       .string()
       .matches(
-        phoneRegExp,
-        "شماره موبایل را بدون صفر و با حروف انگلیسی وارد کنید",
+        phoneRegExp
       ),
-    Username: yup.string().required("لطفا نام کاربری خود را وارد کنید"),
-    name: yup.string().required("لطفا نام خود را وارد کنید"),
-    family: yup.string().required("لطفا نام خانوادگی خود را وارد کنید"),
-    email: yup.string().email("لطفا ایمیل معتبر وارد کنید"),
+    
+    firstname: yup.string().required("لطفا نام خود را وارد کنید"),
+    lastname: yup.string().required("لطفا نام خانوادگی خود را وارد کنید"),
+    // email: yup.string().required("لطفا ایمیل خود را وارد کنید").email("لطفا ایمیل معتبر وارد کنید"),
+    // isStaff:yup.string().required(" پر کردن این فیلد الزامی است "),
+
     // Img:yup
     // .mixed()
     // .required("لطفا یک فایل انتخاب کنید")
@@ -49,39 +58,98 @@ function EditUser() {
     //   }
     // ),
   });
-  const [data, setData] = useState({
-    name: "شاهین رضوانی",
-    Username: "shahin2022",
-    phoneNumber: "09120000000",
-    email: "shahin1360@gmail.com",
-  });
+const [data,setData]=useState()
   const {
     register,
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors },reset
   } = useForm({
     resolver: yupResolver(validationSchema),
-    defaultValues: data,
+    defaultValues:data
   });
-  const [selectedFile, setSelectedFile] = useState(null);
-  const fileRef = useRef(null);
-  const onSubmit = (data) => {
-    console.log(JSON.stringify(data, null, 2));
-    alert(JSON.stringify(data, null, 2));
-    // history.push("/login/step2")
+  const[selectedFile,setSelectedFile]=useState(null)
+const fileRef=useRef(null)
+
+
+
+
+
+   /////////////////////////////////////////////////////////////////////////////////////////
+   const editUser_id = localStorage.getItem("editUser_id")
+
+   const token = localStorage.getItem("id_token")
+   console.log("token",token);
+   useEffect(() => {
+     const fetchData = async () =>{
+       // setLoading(true);
+       try {
+         const {data: response} = await axiosInstance.get(`/user/${editUser_id}`,{
+           headers: {
+             'token': `${token}` 
+           },
+         },);
+         console.log( "show response edit user" , response.data);
+         const information=response.data
+        //  setData({apiaryUsage:information.apiaryUsage})
+        const responseData = response.data
+console.log("responseDataresponseData",responseData);
+         reset({ firstname: responseData.firstname ,lastname: responseData.lastname,email: responseData.email,mobile: responseData.mobile ,employees:responseData.employees.map((el)=>{return {_id:el._id}}),apiary:responseData.apiary.map((el)=>{return {_id:el._id}})});
+         setData(response.data)
+         setLoading(false)
+       } catch (error) {
+         console.error(error.message);
+       }
+       // setLoading(false);
+     }
+     fetchData();
+   }, [reset]);
+
+
+   console.log("userListBefore",userList);
+
+   /////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+  const onSubmit = async(data) => {
+    // console.log(JSON.stringify(data, null, 2));
+    // alert(JSON.stringify(data, null, 2));
+    const response = await axiosInstance.put(`/user/${editUser_id}`,data,{
+      headers: {
+        'token': `${token}` 
+      },
+    })
+    reset(data);
+    console.log("response update user",response);
+    console.log("userList",userList);
+    const updatedUser=[userList]
+    console.log("updatedUser",updatedUser);
+    const index = updatedUser.indexOf(data);
+    console.log("index",index);
+    // updatedUser[index]={...data};
+    // setUserList({userList:updatedUser})
+    // console.log("ApiaryAfter",updatedUser);
+    window.location.reload()  
+  
   };
 
+
+
+
   const fileSelectHandler = (e) => {
-    setSelectedFile(e.target.files[0]);
+     setSelectedFile(e.target.files[0]);
   };
   const fileUploadHandler = () => {};
 
   let { path, url } = useRouteMatch();
-
+  const option = [  
+    { label: "مدیر", value: "true" },
+    { label: "کارگر" , value: "false" },
+  ]
   return (
     <Paper>
-      <Box px={3} py={2} className={classes.root}>
+      <Box px={8} py={2} className={classes.root}>
         <Typography
           variant="h6"
           align="center"
@@ -89,19 +157,18 @@ function EditUser() {
           color="secondary"
           className={classes.Title}
         >
-          کاربر جدید
+ویرایش کاربر
         </Typography>
         <Divider className={classes.Divider1} />
 
-        <Grid item xs={6} sm={6} className={classes.TabHeader}>
+        <Grid item xs={12} sm={12}  md={5}  className={classes.TabHeader}>
           <Grid>
             <NavLink
-              exact
-              to={`${url}`}
+             exact to={`${url}`}
               className={classes.item}
               activeClassName={classes.activeItem}
             >
-              وضعیت
+              اطلاعات عمومی
             </NavLink>
           </Grid>
           <Grid>
@@ -110,7 +177,7 @@ function EditUser() {
               className={classes.item}
               activeClassName={classes.activeItem}
             >
-              صدا و تصویر
+              دسترسی
             </NavLink>
           </Grid>
         </Grid>
@@ -123,13 +190,13 @@ function EditUser() {
                 <TextField
                   className={classes.TextField}
                   required
-                  id="name"
-                  name="name"
+                  id="firstname"
+                  name="firstname"
                   variant="outlined"
                   fullWidth
                   margin="dense"
-                  {...register("name")}
-                  error={errors.name ? true : false}
+                  {...register("firstname")}
+                  error={errors.firstname ? true : false}
                 />
               </div>
               <Typography
@@ -137,7 +204,7 @@ function EditUser() {
                 color="textSecondary"
                 className={classes.errorTitle}
               >
-                {errors.name?.message}
+                {errors.firstname?.message}
               </Typography>
             </Grid>
 
@@ -147,13 +214,13 @@ function EditUser() {
                 <TextField
                   className={classes.TextField}
                   required
-                  id="family"
-                  name="family"
+                  id="lastname"
+                  name="lastname"
                   variant="outlined"
                   fullWidth
                   margin="dense"
-                  {...register("family")}
-                  error={errors.family ? true : false}
+                  {...register("lastname")}
+                  error={errors.lastname ? true : false}
                 />
               </div>
               <Typography
@@ -161,23 +228,23 @@ function EditUser() {
                 color="textSecondary"
                 className={classes.errorTitle}
               >
-                {errors.family?.message}
+                {errors.lastname?.message}
               </Typography>
             </Grid>
 
-            <Grid item xs={12} sm={12} className={classes.inputText}>
+            {/* <Grid item xs={12} sm={12} className={classes.inputText}>
               <div className={classes.input}>
                 <label className={classes.label}>نام کاربری </label>
                 <TextField
                   className={classes.TextField}
                   required
-                  id="Username"
-                  name="Username"
+                  id="username"
+                  name="username"
                   variant="outlined"
                   fullWidth
                   margin="dense"
-                  {...register("Username")}
-                  error={errors.Username ? true : false}
+                  {...register("username")}
+                  error={errors.username ? true : false}
                 />
               </div>
               <Typography
@@ -185,9 +252,57 @@ function EditUser() {
                 color="textSecondary"
                 className={classes.errorTitle}
               >
-                {errors.Username?.message}
+                {errors.username?.message}
               </Typography>
-            </Grid>
+            </Grid> */}
+{/* 
+            <Grid item xs={12} sm={12} className={classes.inputText}>
+              <div className={classes.input}>
+                <label className={classes.label}>رمز عبور</label>
+                <TextField
+                  className={classes.TextField}
+                  required
+                  type="password"
+                  id="password"
+                  name="password"
+                  variant="outlined"
+                  fullWidth
+                  margin="dense"
+                  {...register("password")}
+                  error={errors.password ? true : false}
+                />
+              </div>
+              <Typography
+                variant="inherit"
+                color="textSecondary"
+                className={classes.errorTitle}
+              >
+                {errors.password?.message}
+              </Typography>
+            </Grid> */}
+            {/* <Grid item xs={12} sm={12} className={classes.inputText}>
+              <div className={classes.input}>
+                <label className={classes.label}>نام کاربری </label>
+                <TextField
+                  className={classes.TextField}
+                  required
+                  id="username"
+                  name="username"
+                  variant="outlined"
+                  fullWidth
+                  margin="dense"
+                  {...register("username")}
+                  error={errors.username ? true : false}
+                />
+              </div>
+              <Typography
+                variant="inherit"
+                color="textSecondary"
+                className={classes.errorTitle}
+              >
+                {errors.username?.message}
+              </Typography>
+            </Grid> */}
 
             <Grid item xs={12} sm={12} className={classes.inputText}>
               <div className={classes.input}>
@@ -195,13 +310,13 @@ function EditUser() {
                 <TextField
                   className={classes.TextField}
                   required
-                  id="phoneNumber"
-                  name="phoneNumber"
+                  id="mobile"
+                  name="mobile"
                   variant="outlined"
                   fullWidth
                   margin="dense"
-                  {...register("phoneNumber")}
-                  error={errors.phoneNumber ? true : false}
+                  {...register("mobile")}
+                  error={errors.mobile ? true : false}
                 />
               </div>
               <Typography
@@ -209,9 +324,11 @@ function EditUser() {
                 color="textSecondary"
                 className={classes.errorTitle}
               >
-                {errors.phoneNumber?.message}
+                {errors.mobile?.message}
               </Typography>
             </Grid>
+
+
 
             <Grid item xs={12} sm={12} className={classes.inputText}>
               <div className={classes.input}>
@@ -232,56 +349,89 @@ function EditUser() {
                 variant="inherit"
                 color="textSecondary"
                 className={classes.errorTitle}
+         
               >
                 {errors.email?.message}
               </Typography>
             </Grid>
-          </div>
-          <Grid item xs={6} sm={6} className={classes.uploaderImageBox}>
-            <Typography variant="p">آپلود عکس</Typography>
 
-            {/* <input type="file"  onChange={fileSelectHandler}  accept="image/png, image/jpeg"   /> */}
-            <div className={classes.uploaderImage}>
-              {console.log("selectedFile", selectedFile)}
-              {selectedFile ? (
-                <PreviewImage file={selectedFile} />
-              ) : (
-                <Avatar
-                  src="./assets/Mask Group 3.svg"
-                  alt=""
-                  className={classes.PreviewImage}
-                />
-              )}{" "}
-              <Button
-                variant="contained"
-                component="label"
-                onChange={fileSelectHandler}
-                style={{ fontFamily: "Shabnam" }}
-                className={classes.EditPhoto}
+            {/* <Grid item xs={12} sm={12}  >
+                <div className={classes.input}>
+                  <label className={classes.label}>سمت شغلی</label>
+                  <Select
+                    className={classes.inputSelect}
+                    required
+                    value={data?.isStaff}
+                    variant="outlined"
+                    {...register("isStaff")}
+
+                  >
+                    {option?.map((option) => {
+                      return (
+                        <MenuItem key={option.value} value={option.value} >
+                          {option.label ?? option.value}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </div>
+  
+                <Typography
+                variant="inherit"
+                color="textSecondary"
+                className={classes.errorTitle}
+         
               >
-                <img
-                  src="./assets/edit-svgrepo-com.svg"
-                  className={classes.Edit}
-                />
-                ویرایش
-                <input
+                {errors.isStaff?.message}
+              </Typography>
+              </Grid> */}
+          </div>
+          <Grid
+            item
+            xs={6}
+            sm={6}
+            className={classes.uploaderImageBox}
+ 
+          >
+            <Typography variant="p">آپلود عکس</Typography>
+        
+          {/* <input type="file"  onChange={fileSelectHandler}  accept="image/png, image/jpeg"   /> */}
+        <div className={classes.uploaderImage}>
+
+            { console.log("selectedFile",selectedFile)}
+{  selectedFile ? <PreviewImage file={selectedFile} />:<Avatar src="./assets/Mask Group 3.svg" alt=""   className={classes.PreviewImage}/>
+}            <Button
+                 variant="contained"
+                 component="label"
+                 onChange={fileSelectHandler} 
+                 style={{fontFamily:"Shabnam"}}
+                 className={classes.EditPhoto}
+ 
+             >
+               <img src="./assets/edit-svgrepo-com.svg" className={classes.Edit}/>
+               {selectedFile?<div>ویرایش</div>:<div style={{fontFamily:"Shabnam"}}>انتخاب عکس</div>}  
+                
+               <input
                   type="file"
-                  hidden
-                  accept="image/jpg, image/jpeg , image/gif , image/png "
-                  {...register("Img")}
-                />
-              </Button>
-            </div>
+                   hidden
+                   accept= "image/jpg, image/jpeg , image/gif , image/png "
+                  //  {...register("Img")}
+               />
+           </Button>
+
+
+
+          </div>
             {/* <button onClick={()=>{
               // fileRef.current.onClick()
             }}>آپلود
             </button> */}
           </Grid>
         </Grid>
-
-        <Box mt={8} style={{ width: "100%" }}>
-          <div className={classes.button}>
-            <Button variant="contained" className={classes.Button2}>
+        <Divider className={classes.Divider2} />
+        <Box  className={classes.ButtonBox} style={{ width: "100%" }}>
+          <div  className={classes.button}>
+            <Button variant="contained" className={classes.Button2} onClick={onClose}>
               انصراف
             </Button>
 
@@ -290,7 +440,7 @@ function EditUser() {
               className={classes.Button1}
               onClick={handleSubmit(onSubmit)}
             >
-              افزودن
+              ثبت
             </Button>
           </div>
         </Box>

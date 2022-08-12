@@ -43,6 +43,7 @@ import { getNamedType } from "graphql";
 import Loading from "../../../components/Loading/Loading";
 import useStyles from "./styles";
 import useAuth from "../../hooks/useAuth";
+import { axiosInstance } from "../../api/axios";
 
 function ApiaryList() {
   const [open, setOpen] = useState(false);
@@ -229,8 +230,8 @@ function ApiaryList() {
     const fetchData = async () => {
       // setLoading(true);
       try {
-        const { data: response } = await axios.get(
-          "http://185.202.113.165:3000/api/apiary/get-for-user",
+        const { data: response } = await axiosInstance.get(
+          "/apiary/get-for-user",
           {
             headers: {
               token: `${token}`,
@@ -887,8 +888,8 @@ function ApiaryList() {
     setLoading(true);
     selectedRows.map(async (selectedRow) => {
       console.log("selectedRow", selectedRow._id);
-      const response = await axios.delete(
-        `http://185.202.113.165:3000/api/apiary/delete-for-user/${selectedRow._id}`,
+      const response = await axiosInstance.delete(
+        `/apiary/delete-for-user/${selectedRow._id}`,
         {
           headers: {
             token: `${token}`,
@@ -916,8 +917,8 @@ function ApiaryList() {
   const onRowDelete = async (rowData, popupState) => {
     setLoading(true);
     console.log(rowData._id);
-    const response = await axios.delete(
-      `http://185.202.113.165:3000/api/apiary/delete-for-user/${rowData._id}`,
+    const response = await axiosInstance.delete(
+      `/apiary/delete-for-user/${rowData._id}`,
       {
         headers: {
           token: `${token}`,

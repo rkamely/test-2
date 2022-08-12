@@ -24,6 +24,7 @@ import axios from "axios";
 import { useUserDispatch } from "../../context/UserContext";
 import { useHistory } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { axiosInstance } from "../api/axios";
 
 const MapBox = React.lazy(() => import("../../components/MapBox/MapBox"));
 
@@ -51,8 +52,8 @@ export default function Dashboard(props) {
     const fetchData = async () => {
       // setLoading(true);
       try {
-        const { data: response } = await axios.get(
-          "http://185.202.113.165:3000/api/apiary/get-for-user",
+        const { data: response } = await axiosInstance.get(
+          "/apiary/get-for-user",
           {
             headers: {
               token: `${token}`,

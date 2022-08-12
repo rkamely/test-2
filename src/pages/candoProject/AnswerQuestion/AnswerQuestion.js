@@ -8,6 +8,7 @@ import AnswerQuestionsForm from "../../../components/Form/AnswerQuestion/AnswerQ
 import Title from "../../../components/Typography/Title/Title";
 import Loading from "../../../components/Loading/Loading";
 import AnswersUsersForm from "../../../components/Form/AnswersUser/AnswersUserForm";
+import { axiosInstance } from "../../api/axios";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -25,8 +26,8 @@ function AnswerQuestion() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data: response } = await axios.get(
-          `http://185.202.113.165:3000/api/question/getAll`,
+        const { data: response } = await axiosInstance.get(
+          `/question/getAll`,
           {
             headers: {
               token: `${token}`,
@@ -64,8 +65,8 @@ function AnswerQuestion() {
     const fetchData = async () => {
       // setLoading(true);
       try {
-        const { data: response } = await axios.get(
-          `http://185.202.113.165:3000/api/answer/getAll`,
+        const { data: response } = await axiosInstance.get(
+          `/answer/getAll`,
           {
             headers: {
               token: `${token}`,

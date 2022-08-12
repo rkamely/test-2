@@ -11,7 +11,6 @@ import useStyles from "./styles";
 // components
 import Widget from "../../../../components/Widget";
 import { Typography } from "../../../../components/Wrappers";
-import Bardia from "../../../../components/Form/CategoryForm/Bardiaadd";
 
 export default function BigStat(props) {
   const { product, total, color, registrations, bounce } = props;

@@ -25,6 +25,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import AuthContext from "../context/AuthProvider";
 import axios from "axios";
+import { axiosInstance } from "../api/axios";
 
 function CompleteInformation(props) {
   var classes = useStyles();
@@ -66,9 +67,9 @@ console.log("setAuth",setAuth);
     try {
       setIsLoading(true);
       console.log("auth.idUser",auth.idUser);
-      const response = await axios
+      const response = await axiosInstance
         .post( 
-          `http://185.202.113.165:3000/api/auth/profile`,
+          `/auth/profile`,
           data,{
           headers: {
             'token': `${token}` ,

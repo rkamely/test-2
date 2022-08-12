@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import useStyles from "./styles";
 import Loading from "../../Loading/Loading";
 import axios from "axios";
+import { axiosInstance } from "../../../pages/api/axios";
 function AnswersUsersForm() {
   const classes = useStyles();
   const [loading, setLoading] = useState(true);
@@ -18,9 +19,9 @@ function AnswersUsersForm() {
     const fetchData = async () => {
       // setLoading(true);
       try {
-        const { data: response } = await axios.get(
+        const { data: response } = await axiosInstance.get(
           // `http://185.202.113.165:3000/api/answer/get-question-answer/${question_id}/${hive_id}`,
-          `http://185.202.113.165:3000/api/answer/get-question-answer/${Question_id}/${Hive_id}`,
+          `/answer/get-question-answer/${Question_id}/${Hive_id}`,
           {
             headers: {
               token: `${token}`,

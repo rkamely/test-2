@@ -8,7 +8,9 @@ import {
   Button,
   Divider,
   Grid,
+  MenuItem,
   Paper,
+  Select,
   TextField,
   Typography,
 } from "@material-ui/core";
@@ -18,25 +20,28 @@ import {
   Link,
   NavLink,
   useRouteMatch,
+  useHistory,
 } from "react-router-dom";
 import PreviewImage from "./PreviewImage";
+import { axiosInstance } from "../../../pages/api/axios";
 
-function Adduser(props) {
+function Adduser({ setUserList, userList, onClose }) {
   const classes = useStyles();
   const phoneRegExp = /9([0-3][0-9])-?[0-9]{3}-?[0-9]{4}/;
-  const FILE_SIZE = 10000*10000;
+  const FILE_SIZE = 10000 * 10000;
 
   const validationSchema = yup.object().shape({
-    phoneNumber: yup
+    mobile: yup
       .string()
       .matches(
         phoneRegExp,
-        "شماره موبایل را بدون صفر و با حروف انگلیسی وارد کنید",
+        " لطفا شماره موبایل با حروف انگلیسی و ۱۱رقم وارد کنید",
       ),
-    Username: yup.string().required("لطفا نام کاربری خود را وارد کنید"),
-    name: yup.string().required("لطفا نام خود را وارد کنید"),
-    family: yup.string().required("لطفا نام خانوادگی خود را وارد کنید"),
+    username: yup.string().required("لطفا نام کاربری خود را وارد کنید"),
+    firstname: yup.string().required("لطفا نام خود را وارد کنید"),
+    lastname: yup.string().required("لطفا نام خانوادگی خود را وارد کنید"),
     email: yup.string().email("لطفا ایمیل معتبر وارد کنید"),
+
     // Img:yup
     // .mixed()
     // .required("لطفا یک فایل انتخاب کنید")
@@ -58,24 +63,53 @@ function Adduser(props) {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
-  const[selectedFile,setSelectedFile]=useState(null)
-const fileRef=useRef(null)
-  const onSubmit = (data) => {
-    console.log(JSON.stringify(data, null, 2));
-    alert(JSON.stringify(data, null, 2));
-    // history.push("/login/step2")
+  const history = useHistory();
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [status, setStatus] = useState();
+  const [errorMessage, setErrMessage] = useState("");
+  const [error, setIserror] = useState(false);
+
+  const fileRef = useRef(null);
+  const token = localStorage.getItem("id_token");
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await axiosInstance
+        .post("/user", data, {
+          headers: {
+            token: `${token}`,
+          },
+        })
+        .then((response) => {
+          console.log("response1", response);
+        });
+      setUserList({ userList: [...userList, data] });
+      setStatus(true);
+      window.location.reload();
+    } catch (error) {
+      if (error.response?.status === 401) {
+        localStorage.clear("id_token");
+      } else if (error.response?.status === 500) {
+        setErrMessage("این  شماره موبایل قبلا در سیستم ثبت شده است");
+      }
+
+      setIserror(true);
+    }
   };
 
   const fileSelectHandler = (e) => {
-     setSelectedFile(e.target.files[0]);
+    setSelectedFile(e.target.files[0]);
   };
   const fileUploadHandler = () => {};
 
   let { path, url } = useRouteMatch();
-
+  const option = [
+    { label: "مدیر", value: "true" },
+    { label: "کارگر", value: "false" },
+  ];
   return (
     <Paper>
-      <Box px={3} py={2} className={classes.root}>
+      <Box px={8} py={2} className={classes.root}>
         <Typography
           variant="h6"
           align="center"
@@ -87,14 +121,15 @@ const fileRef=useRef(null)
         </Typography>
         <Divider className={classes.Divider1} />
 
-        <Grid item xs={12} sm={12} md={6} className={classes.TabHeader}>
+        <Grid item xs={12} sm={12} md={5} className={classes.TabHeader}>
           <Grid>
             <NavLink
-             exact to={`${url}`}
+              exact
+              to={`${url}`}
               className={classes.item}
               activeClassName={classes.activeItem}
             >
-              وضعیت
+              اطلاعات عمومی
             </NavLink>
           </Grid>
           <Grid>
@@ -103,28 +138,26 @@ const fileRef=useRef(null)
               className={classes.item}
               activeClassName={classes.activeItem}
             >
-              صدا و تصویر
+              دسترسی
             </NavLink>
           </Grid>
         </Grid>
 
         <Grid container spacing={1} className={classes.container}>
-
-          <Grid xs={12} md={6}>
-
+          <div>
             <Grid item xs={12} sm={12} className={classes.inputText}>
               <div className={classes.input}>
                 <label className={classes.label}>نام </label>
                 <TextField
                   className={classes.TextField}
                   required
-                  id="name"
-                  name="name"
+                  id="firstname"
+                  name="firstname"
                   variant="outlined"
                   fullWidth
                   margin="dense"
-                  {...register("name")}
-                  error={errors.name ? true : false}
+                  {...register("firstname")}
+                  error={errors.firstname ? true : false}
                 />
               </div>
               <Typography
@@ -132,7 +165,7 @@ const fileRef=useRef(null)
                 color="textSecondary"
                 className={classes.errorTitle}
               >
-                {errors.name?.message}
+                {errors.firstname?.message}
               </Typography>
             </Grid>
 
@@ -142,13 +175,13 @@ const fileRef=useRef(null)
                 <TextField
                   className={classes.TextField}
                   required
-                  id="family"
-                  name="family"
+                  id="lastname"
+                  name="lastname"
                   variant="outlined"
                   fullWidth
                   margin="dense"
-                  {...register("family")}
-                  error={errors.family ? true : false}
+                  {...register("lastname")}
+                  error={errors.lastname ? true : false}
                 />
               </div>
               <Typography
@@ -156,7 +189,7 @@ const fileRef=useRef(null)
                 color="textSecondary"
                 className={classes.errorTitle}
               >
-                {errors.family?.message}
+                {errors.lastname?.message}
               </Typography>
             </Grid>
 
@@ -166,13 +199,13 @@ const fileRef=useRef(null)
                 <TextField
                   className={classes.TextField}
                   required
-                  id="Username"
-                  name="Username"
+                  id="username"
+                  name="username"
                   variant="outlined"
                   fullWidth
                   margin="dense"
-                  {...register("Username")}
-                  error={errors.Username ? true : false}
+                  {...register("username")}
+                  error={errors.username ? true : false}
                 />
               </div>
               <Typography
@@ -180,7 +213,7 @@ const fileRef=useRef(null)
                 color="textSecondary"
                 className={classes.errorTitle}
               >
-                {errors.Username?.message}
+                {errors.username?.message}
               </Typography>
             </Grid>
 
@@ -190,13 +223,13 @@ const fileRef=useRef(null)
                 <TextField
                   className={classes.TextField}
                   required
-                  id="phoneNumber"
-                  name="phoneNumber"
+                  id="mobile"
+                  name="mobile"
                   variant="outlined"
                   fullWidth
                   margin="dense"
-                  {...register("phoneNumber")}
-                  error={errors.phoneNumber ? true : false}
+                  {...register("mobile")}
+                  error={errors.mobile ? true : false}
                 />
               </div>
               <Typography
@@ -204,7 +237,7 @@ const fileRef=useRef(null)
                 color="textSecondary"
                 className={classes.errorTitle}
               >
-                {errors.phoneNumber?.message}
+                {errors.mobile?.message}
               </Typography>
             </Grid>
 
@@ -227,13 +260,11 @@ const fileRef=useRef(null)
                 variant="inherit"
                 color="textSecondary"
                 className={classes.errorTitle}
-         
               >
                 {errors.email?.message}
               </Typography>
             </Grid>
-
-          </Grid>
+          </div>
 
           <Grid
             item
@@ -241,47 +272,91 @@ const fileRef=useRef(null)
             sm={12}
             md={6}
             className={classes.uploaderImageBox}
- 
           >
             <Typography variant="p">آپلود عکس</Typography>
-        
-          {/* <input type="file"  onChange={fileSelectHandler}  accept="image/png, image/jpeg"   /> */}
-        <div className={classes.uploaderImage}>
 
-            { console.log("selectedFile",selectedFile)}
-{  selectedFile ? <PreviewImage file={selectedFile} />:<Avatar src="./assets/Mask Group 3.svg" alt=""   className={classes.PreviewImage}/>
-}            <Button
-                 variant="contained"
-                 component="label"
-                 onChange={fileSelectHandler} 
-                 style={{fontFamily:"Shabnam"}}
-                 className={classes.EditPhoto}
- 
-             >
-               <img src="./assets/edit-svgrepo-com.svg" className={classes.Edit}/>
-                ویرایش
-                
-               <input
+            {/* <input type="file"  onChange={fileSelectHandler}  accept="image/png, image/jpeg"   /> */}
+            <div
+              className={classes.uploaderImage}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                position: "relative"
+              }}
+            >
+              {console.log("selectedFile", selectedFile)}
+              {selectedFile ? (
+                <PreviewImage file={selectedFile} />
+              ) : (
+                <Avatar
+                  src="./assets/Mask Group 3.svg"
+                  alt=""
+                  className={classes.PreviewImage}
+                />
+              )}
+
+              <div
+                variant="contained"
+                component="label"
+                onChange={fileSelectHandler}
+                style={{ fontFamily: "Shabnam" }}
+              >
+                <Button type="file" style={{ transform: "translate(0px,-45px)" }}>
+                  {" "}
+                  <img src="./assets/Subtraction 4.png" width="75%" />
+                </Button>
+                <div className={classes.content}>
+                  <div>
+                    
+                    <img src="./assets/edit-svgrepo-com.svg" />
+                  </div>
+
+                  {selectedFile ? (
+                    <div>ویرایش</div>
+                  ) : (
+                    <div style={{ fontFamily: "Shabnam" }}>انتخاب عکس</div>
+                  )}
+                </div>
+                <input
                   type="file"
-                   hidden
-                   accept= "image/jpg, image/jpeg , image/gif , image/png "
-                   {...register("Img")}
-               />
-           </Button>
-
-
-
-          </div>
+                  hidden
+                  accept="image/jpg, image/jpeg , image/gif , image/png "
+                  //  {...register("Img")}
+                />
+              </div>
+            </div>
             {/* <button onClick={()=>{
               // fileRef.current.onClick()
             }}>آپلود
             </button> */}
           </Grid>
         </Grid>
+        {error ? (
+          <div
+            style={{
+              color: "#000",
+              background: "red",
+              padding: "8px",
+              borderRadius: "8px",
+              textAlign: "center",
+              marginBottom: "16px",
+              transform: "translateY(32px)",
+            }}
+          >
+            {errorMessage}
+          </div>
+        ) : null}
 
-        <Box mt={8} style={{ width: "100%" }}>
-          <div  className={classes.button}>
-            <Button variant="contained" className={classes.Button2}>
+        <Divider className={classes.Divider2} />
+        <Box className={classes.ButtonBox} style={{ width: "100%" }}>
+          <div className={classes.button}>
+            <Button
+              variant="contained"
+              className={classes.Button2}
+              onClick={onClose}
+            >
               انصراف
             </Button>
 

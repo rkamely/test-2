@@ -20,7 +20,7 @@ import { useUserDispatch, loginUser } from "../../context/UserContext";
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import axios, { axiosInstance } from "../api/axios"
+import { axiosInstance } from "../api/axios"
 import  AuthContext from  "../context/AuthProvider"
 // styles
 import useStyles from "./styles";

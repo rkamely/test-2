@@ -4,11 +4,14 @@ export default makeStyles((theme) => ({
   root: {
     width: "100%",
     fontFamily: "Shabnam",
+    position:"relative"
   },
   container:{
     display:"flex",
     flexDirection:"row",
     justifyContent:"space-between",
+// border:"2px solid red",
+marginTop:"-32px"
   },
   label: {
     whiteSpace: "nowrap",
@@ -22,13 +25,43 @@ export default makeStyles((theme) => ({
 
   },
   Title:{
-    fontWeight: "bold" 
-  },
+    fontWeight: "bold" ,
+    color:"rgb( 227 156 0)",
+    marginTop:"8px"
+    },
+    mainLabel: {
+      whiteSpace: "nowrap",
+      marginRight: "25px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      border: "none",
+      fontWeight: "bold",
+      fontFamily: "Shabnam",
+      fontSize:"0.9rem"
+  
+    },
   errorTitle:{ 
-    color: "red"
+    color: "red",
+    fontSize:"0.6rem",
+    fontWeight:"600"
   },
   Divider1:{
-    marginTop: "8px" 
+    marginTop: "24px",
+    width:"97%",
+    position:"absolute",
+    right:"0",
+    left:"0",
+
+  },
+  Divider2:{
+    marginTop: "50px",
+    background:"rgb(244 244 244)",
+
+    width:"97%",
+    position:"absolute",
+    right:"0",
+    left:"0"
   },
 
   PreviewImage:{
@@ -39,12 +72,16 @@ export default makeStyles((theme) => ({
     display: "flex", 
     justifyContent: "space-between"
   },
+  ButtonBox:{
+    width: "100%",padding:"24px 24px 8px 24px" ,marginTop:"50px"
+  },
   Button1: {
     fontFamily: "Shabnam",
     cursor: "pointer",
     border: "none",
+    width:"100px",
 
-    padding: "8px 0px",
+    padding: "10px 30px",
     borderRadius: "16px",
     backgroundColor: "rgb( 26 ,115, 233)",
     color:"#fff",
@@ -52,7 +89,7 @@ export default makeStyles((theme) => ({
     boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
     fontWeight: "bold",
     fontSize: "16px",
-    width: "20%",
+    // width: "20%",
     "&:hover": {
       backgroundColor: "rgb( 26 ,115, 233)",
       borderWidth: 2,
@@ -61,16 +98,17 @@ export default makeStyles((theme) => ({
   },
   Button2: {
     fontFamily: "Shabnam",
+    width:"100px",
     cursor: "pointer",
     border: "none",
-    padding: "8px 0px",
+    padding: "10px 30px",
     borderRadius: "16px",
     backgroundColor: "rgb( 255 255 255)",
 
     boxShadow: "0px 3px 6px rgba(0 ,0, 0, 0.16)",
     fontWeight: "bold",
     fontSize: "16px",
-    width: "20%",
+    // width: "20%",
     "&:hover": {
       backgroundColor: "rgb( 255 255 255)",
       borderWidth: 2,
@@ -80,9 +118,11 @@ export default makeStyles((theme) => ({
   inputText:{
     display: "flex",
     flexDirection:"column",
+
   },
+
   TextField:{
-    width: "250px",
+    width: "200px",
     background:"rgb( 244 244 244)",
     border:"none",
     borderRadius: "10px",
@@ -106,12 +146,15 @@ export default makeStyles((theme) => ({
 
       },
     },
+    [theme.breakpoints.down('md')]: {
+      width:"100%"
+        },
   },
   input: {
     display: "flex",
     justifyContent: "space-between",
     alignItems:"center",
-    marginTop: "32px",
+    marginTop: "8px",
     fontFamily: "Shabnam",
     border: "none",
     "& label.Mui-focused": {
@@ -137,12 +180,13 @@ export default makeStyles((theme) => ({
       },
     },
     [theme.breakpoints.down('md')]: {
-      display: "flex",
-      flexDirection:"column",
-        },
+       width:"100%",display:"flex",flexDirection:"column"
+    },
+
   },
   inputSelect: {
-    width: "250px",
+    width: "200px",
+    marginTop: "8px",
     display:"flex",
     height:"40px",
     backgroundColor: "rgb( 244, 244 ,244)",
@@ -151,11 +195,18 @@ export default makeStyles((theme) => ({
     border: "none",
     // height: "40px",
     fontFamily: "Shabnam",
+
     "&	.MuiSelect-outlined":{
     
       borderRadius: "10px",
     },
+
+    [theme.breakpoints.down('md')]: {
+      width:"100%",
+      marginTop:"8px"
+        },
   },
+
 
 
 
@@ -197,7 +248,7 @@ export default makeStyles((theme) => ({
       },
       activeItem:{
       background:"#fff",
-      padding:"4px 16px",
+      padding:"4px 24px",
       borderRadius:"8px",
       color:"#000",
       textDecoration:"none",
@@ -216,13 +267,14 @@ export default makeStyles((theme) => ({
           " rgba(0, 0, 0, 0.1) 0px 60px 100px -100px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
         color: "rgb( 227, 156, 0)",
         fontWeight: "bold",
-        borderRadius: "15px",
+        borderRadius: "8px",
         fontSize: "1rem",
-        marginBottom:"16px;",
-        marginTop:"16px"
+        marginBottom:"64px;",
+        marginTop:"42px",
+        padding:"0"
       },
       uploaderImageBox:{
-        marginTop: "32px",
+        marginTop: "16px",
          display:"flex",
          flexDirection:"column"
       },
@@ -249,6 +301,13 @@ export default makeStyles((theme) => ({
         }
       },
       Edit:{
-        marginLeft:"8px"
+        marginRight:"8px"
+      },
+      content:{
+        display:"flex",
+        gap:"8px",
+        position:"absolute",
+        top:165,
+        left:200
       }
 }));

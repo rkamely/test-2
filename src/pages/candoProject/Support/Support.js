@@ -23,6 +23,7 @@ import Title from "../../../components/Typography/Title/Title";
 import classNames from "classnames";
 import "./Support.css";
 import Youtube from "./youtube";
+import { axiosInstance } from "../../api/axios";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -41,15 +42,14 @@ function Support() {
 
   /////////////////////////////////////////////////////////////////////////////////////////
 
-  const axiosInstance = useAxiosPrivate();
   const token = localStorage.getItem("id_token");
   console.log("token", token);
   useEffect(() => {
     const fetchData = async () => {
       // setLoading(true);
       try {
-        const { data: response } = await axios.get(
-          "http://185.202.113.165:3000/api/ticket/getUserTickets",
+        const { data: response } = await axiosInstance.get(
+          "/ticket/getUserTickets",
           {
             headers: {
               token: `${token}`,

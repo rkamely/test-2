@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import Widget from "../../../components/Widget/Widget";
 import useStyles from "./Style";
 import axios from "axios";
+import { axiosInstance } from "../../api/axios";
 function LeftCard() {
   const classes = useStyles();
   const history=useHistory()
@@ -30,8 +31,8 @@ let { id } = useParams();
       const token = localStorage.getItem("id_token");
       const Apiaries_id = localStorage.getItem("Apiaries_id");
       try {
-        const { data: response } = await axios.get(
-          `http://185.202.113.165:3000/api/hive/get-by-apiary/${Apiaries_id}`,
+        const { data: response } = await axiosInstance.get(
+          `/hive/get-by-apiary/${Apiaries_id}`,
           {
             headers: {
               token: `${token}`,
