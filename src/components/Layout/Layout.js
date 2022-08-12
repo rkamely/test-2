@@ -25,7 +25,6 @@ import SupportMessage from "../../pages/candoProject/Support/SupportMessage/Supp
 import Login from "../../pages/login/Login";
 import FrequentlyQuestions from "../../pages/candoProject/Support/FrequentlyQuestions/FrequentlyQuestions";
 import SmsVerification from "../../pages/login/SmsVerification";
-import Edituser from "../Form/Setting/Edituser";
 import AboutUsMain from "../../pages/candoProject/AboutUsMain/AboutUsMain";
 import CalenderProject from "../../pages/candoProject/CalenderProject/CalenderProject";
 import JobCalender from "../../pages/candoProject/CalenderProject/JobCalender/JobCalender";
@@ -38,6 +37,7 @@ import QRChatPage from "../../pages/candoProject/Support/ChatPage/QRChatPage";
 import AnswerQuestion from "../../pages/candoProject/AnswerQuestion/AnswerQuestion";
 import Questionnare from "../../pages/candoProject/Questionnare/Questionnare";
 import News from "../../pages/candoProject/News/News";
+import Edituser from "../../pages/candoProject/Setting.js/Edituser";
 
 function Layout(props) {
   var classes = useStyles();

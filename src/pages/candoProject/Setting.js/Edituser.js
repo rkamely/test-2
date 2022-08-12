@@ -10,42 +10,46 @@ import {
 
   } from "react-router-dom" 
 import useStyles from "./styles";
-import Adduser from '../User/Adduser';
-import EditPhoneNumber from './EditPhoneNumber';
-import AddSubmitCode from './AddSubmitCode';
-import AddJob from '../JobUser/AddJob';
-import Title from '../../Typography/Title/Title';
-import { withStyles } from '@material-ui/styles';
+import Title from '../../../components/Typography/Title/Title';
+import { axiosInstance } from '../../api/axios';
+import { signOut, useUserDispatch } from '../../../context/UserContext';
 import IOSSwitch from './IOSSwitch';
-import { useUserDispatch, signOut } from "../../../context/UserContext";
-import SmsVerification from './SmsVerification';
-import { axiosInstance } from '../../../pages/api/axios';
+import EditPhoneNumber from '../../../components/Form/Setting/EditPhoneNumber';
+import SmsVerification from '../../../components/Form/Setting/SmsVerification';
+
+
 
 function Edituser(props) {
-  var userDispatch = useUserDispatch()
-  const firstNames = localStorage.getItem("profileName");
-    const mobile = localStorage.getItem("data")
-    const lastname = localStorage.getItem("lastname")
+     var userDispatch = useUserDispatch()
     const [open, setOpen] = useState(false);
     const [openDelete, setOpenDelete] = useState(false);
     const [setting,setSetting] = useState([]);
     const [openCode,setOpenCode] = useState(false);
+    const firstNames = localStorage.getItem("firstName");
+    const email = localStorage.getItem("email")
+    const lastname = localStorage.getItem("lastname")
     const classes = useStyles();
-     const handleOpen = () => {
-        setOpen(true);
-      };
-      const handleClose = () => {
-        setOpen(false);
-        setOpenDelete(false);
-        // setOpenCode(false)
-      };
-      const handleDeleteOpen = (scrollType) => () => {
-        setOpenDelete(true);
-        // setScroll(scrollType);
-      };
-      const handleCloseCode =()=>{
-                setOpenCode(false)
-      }
+
+    const [state, setState] = useState({
+      manualVisit: true,
+      checkedB: true,
+    });
+
+    const handleOpen = () => {
+      setOpen(true);
+    };
+    const handleClose = () => {
+      setOpen(false);
+      setOpenDelete(false);
+      // setOpenCode(false)
+    };
+    const handleDeleteOpen = (scrollType) => () => {
+      setOpenDelete(true);
+      // setScroll(scrollType);
+    };
+    const handleCloseCode =()=>{
+              setOpenCode(false)
+    }
       const style = {
         position: "absolute",
         top: "50%",
@@ -63,7 +67,7 @@ function Edituser(props) {
 
     const validationSchema = yup.object().shape({
   
-      // phoneNumber:yup.string().matches(phoneRegExp, 'شماره موبایل را بدون صفر و با حروف انگلیسی وارد کنید'),
+      phoneNumber:yup.string().matches(phoneRegExp, 'شماره موبایل را بدون صفر و با حروف انگلیسی وارد کنید'),
       Username:yup.string().required( 'لطفا نام کاربری خود را وارد کنید'),
       name:yup.string().required('لطفا نام خود را وارد کنید'),
       family:yup.string().required('لطفا نام خانوادگی خود را وارد کنید'),
@@ -71,47 +75,54 @@ function Edituser(props) {
   
     });
 
-    // const [data, setData] = useState([
-    //   {
-    //     id: 1,
-    //     titleQuestion:
-    //       "باسلام زنبوردار عزیز از طریق لینک زیر اپلیکیشن کندووان پلاس را بروز رسانی کنید.",
-    //     firstname: "جعفر",
-    //     Date: "1400/01/01",
-    //     Time: "12:14",
-    //   },
+    const [data, setData] = useState([
+      {
+        id: 1,
+        titleQuestion:
+          "باسلام زنبوردار عزیز از طریق لینک زیر اپلیکیشن کندووان پلاس را بروز رسانی کنید.",
+        name: "جعفر",
+        Date: "1400/01/01",
+        Time: "12:14",
+      },
+      {
+        id: 1,
+        titleQuestion: "ممنون از شما حتما رسیدگی خواهد شد.",
+        name: "رضا",
+        Date: "1400/01/01",
+        Time: "12:14",
+      },
+    ]);
 
-    // ]);
 
-    const token = localStorage.getItem("id_token")
+  const token = localStorage.getItem("id_token")
 
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const { data: response } = await axiosInstance.get(
-            `/auth/me`,
-            {
-              headers: {
-                token: `${token}`,
-              },
-            },
-          );
-          console.log("show response profile", response);
-          setSetting(response)
-        } catch (error) {
-          if (error.response?.status === 401) {
-            localStorage.clear("id_token")
-            console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
-            window.location.reload()
-          }else{
-          console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
-          // history.push("/app/Error")
-          // window.location.reload()
-         }}
-        // setLoading(false);
-      };
-      fetchData();
-    }, []);
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const { data: response } = await axiosInstance.get(
+        `/auth/admin/me`,
+        {
+          headers: {
+            token: `${token}`,
+          },
+        },
+      );
+      console.log("show response profile", response.data);
+    } catch (error) {
+      if (error.response?.status === 401) {
+        localStorage.clear("id_token")
+        console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
+        window.location.reload()
+      }else{
+      console.log("سرور دچار مشکل شده است یا اعتبار توکن به پایان رسیده است" + "ApiaryList" );
+      // history.push("/app/Error")
+      // window.location.reload()
+     }}
+    // setLoading(false);
+  };
+  fetchData();
+}, []);
     const {
         register,
         control,
@@ -119,7 +130,7 @@ function Edituser(props) {
         formState: { errors }
       } = useForm({
         resolver: yupResolver(validationSchema),
-        // defaultValues: data
+        defaultValues: data
       });
       const onSubmit = data => {
         console.log(JSON.stringify(data, null, 2));
@@ -132,14 +143,10 @@ function Edituser(props) {
 
 
 
-      const [state, setState] = React.useState({
-        manualVisit: true,
-        checkedB: true,
-      });
+
     
       const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
-        
       };
 
 
@@ -177,8 +184,8 @@ function Edituser(props) {
       <div style={{ fontSize: "16px", fontWeight: "bold" ,display:"flex",alignItems:"center",justifyContent:"center"}}>
           <Avatar src='./assets/HeaderProfile.svg' style={{width:"60px",height:"60px",marginLeft:"8px"}}/>
           <div>
-          <p>{firstNames} {lastname}</p>
-              <p style={{color:"rgb( 102 ,103 ,104)",fontSize:"0.8rem"}}>0{mobile}</p>
+              <p>{firstNames} {lastname}</p>
+              <p style={{color:"rgb( 102 ,103 ,104)",fontSize:"0.8rem"}}>{email}</p>
           </div>
       </div>
       <div style={{backgroundColor:"rgba(227 ,23 ,10, 0.11)",padding:"8px 16px",borderRadius:"8px",
@@ -192,7 +199,6 @@ function Edituser(props) {
 <Grid xs={12} justifyContent='space-between' style={{display:"flex"}}>  
     <TextField
       
-      // style={{direction:"ltr"}}
       className={classes.TextField}
       label="شماره موبایل"
     //   onChange={e => setLoginValue(e.target.value)}
@@ -213,7 +219,6 @@ function Edituser(props) {
 
     <TextField
       
-              // style={{direction:"ltr"}}
                 className={classes.TextField}
               label="نام کاربری"
                 id="Username"
@@ -231,11 +236,10 @@ function Edituser(props) {
 </Grid>
 
 <Grid xs={12} justifyContent='space-between' style={{display:"flex"}}>
-   
-    <TextField      
-      // style={{direction:"ltr"}}
+              <TextField
+      
         className={classes.TextField}
-        label="نام"
+      label="نام"
         id="name"
         name="name"
         variant="outlined"
@@ -253,7 +257,6 @@ function Edituser(props) {
 
       <TextField
       
-      // style={{direction:"ltr"}}
         className={classes.TextField}
       label="نام خانوادگی"
         id="family"
@@ -272,10 +275,9 @@ function Edituser(props) {
 
 </Grid> 
 
-     <Grid style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+     <Grid>
      <TextField
       
-      // style={{direction:"ltr"}}
         className={classes.TextField}
       label="ایمیل"
         id="email"
@@ -287,19 +289,10 @@ function Edituser(props) {
         {...register('email')}
         error={errors.phoneNumber ? true : false}
       />
-
       {/* <Typography variant="inherit" color="textSecondary" style={{color:"red"}}>
         {errors.email?.message}
       </Typography> */}
-         <Button
-                variant="contained"
-                color="secondary"
-                onClick={handleSubmit(onSubmit)}
-              >
-                افزودن
-        </Button>
     </Grid>
-    
     </Grid>
 
 <Grid   xs={12} style={{display:"flex",gap:"36px"}}>
@@ -322,7 +315,7 @@ function Edituser(props) {
       </div>
       
       <FormControlLabel
-        control={<IOSSwitch  checked={state.checkedB} onChange={handleChange} name="checkedB" />}
+        control={<IOSSwitch  checked={state.manualVisit} onClick={localStorage.setItem("manualVisit",state.manualVisit)} onChange={handleChange} name="manualVisit" />}
       />
     </Grid>
 
@@ -344,7 +337,7 @@ function Edituser(props) {
          بازدید دستی
       </div>
       <FormControlLabel
-        control={<IOSSwitch checked={state.manualVisit} onClick={localStorage.setItem("manualVisit",state.manualVisit)} onChange={handleChange} name="manualVisit" />}
+        control={<IOSSwitch checked={state.checkedA} onChange={handleChange} name="checkedA" />}
       />
     </Grid>
 </Grid>
@@ -360,13 +353,12 @@ function Edituser(props) {
           aria-labelledby="parent-modal-title"
           aria-describedby="parent-modal-description"
         >
-          <Box sx={{ ...style, width: "30%" }} >
-            <EditPhoneNumber onClose={handleClose} setOpenCode={setOpenCode}/>
+          <Box sx={{ ...style, width: "30vw",overFlow: "hidden" }} >
+            <EditPhoneNumber  onClose={handleClose} setOpenCode={setOpenCode}/>
           </Box>
           
         </Modal>
     </div>
-
     <Dialog
               PaperProps={{
                 style: { borderRadius: 12, width: "24%", overflowY:"hidden"
@@ -402,6 +394,7 @@ function Edituser(props) {
             >
               <SmsVerification onClose={handleCloseCode}/>
       </Dialog>
+
     </Grid>
   )
 }
