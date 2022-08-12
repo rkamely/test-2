@@ -20,7 +20,7 @@ import { useUserDispatch, loginUser } from "../../context/UserContext";
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import axios from "../api/axios"
+import axios, { axiosInstance } from "../api/axios"
 import  AuthContext from  "../context/AuthProvider"
 // styles
 import useStyles from "./styles";
@@ -81,7 +81,7 @@ const handleChangenumber=(event)=>{
     // data.preventDefault();
     const mobile="0"+data.mobile
     try{
-           const response = axios.post("http://185.202.113.165:3000/api/auth/login",{mobile:mobile},{
+           const response = axiosInstance.post("/auth/login",{mobile:mobile},{
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true
            })

@@ -9,7 +9,6 @@ import useStyles from "./styles";
 import Header from "../Header";
 import Sidebar from "../Sidebar";
 import Dashboard from "../../pages/dashboard";
-import Typography from "../../pages/typography";
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";
@@ -24,7 +23,6 @@ import Support from "../../pages/candoProject/Support/Support";
 import SupportPage from "../../pages/candoProject/Support/ChatPage/ChatPage";
 import SupportMessage from "../../pages/candoProject/Support/SupportMessage/SupportMessage";
 import Login from "../../pages/login/Login";
-import LoginWithPhone from "../../pages/candoProject/Login/Login";
 import FrequentlyQuestions from "../../pages/candoProject/Support/FrequentlyQuestions/FrequentlyQuestions";
 import SmsVerification from "../../pages/login/SmsVerification";
 import Edituser from "../Form/Setting/Edituser";
@@ -33,12 +31,13 @@ import CalenderProject from "../../pages/candoProject/CalenderProject/CalenderPr
 import JobCalender from "../../pages/candoProject/CalenderProject/JobCalender/JobCalender";
 import main from "../../pages/candoProject/CalenderProject/main";
 import AuthContext from "../../pages/context/AuthProvider";
-import discoverPage from "../../pages/candoProject/discoverPage/discoverPage";
+import discoverPage from "../../pages/candoProject/News/News";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 import tutorialPage from "../../pages/candoProject/tutorialPage/tutorialPage";
 import QRChatPage from "../../pages/candoProject/Support/ChatPage/QRChatPage";
 import AnswerQuestion from "../../pages/candoProject/AnswerQuestion/AnswerQuestion";
 import Questionnare from "../../pages/candoProject/Questionnare/Questionnare";
+import News from "../../pages/candoProject/News/News";
 
 function Layout(props) {
   var classes = useStyles();
@@ -74,7 +73,6 @@ function Layout(props) {
             <Route path="/app/ApiaryList/" component={ApiaryList} />
             <Route path="/app/ApiaryList/:id" component={ApiaryList} />
 
-            <Route path="/app/typography" component={Typography} />
             <Route path="/app/user" component={TableofUser} />
             <Route path="/app/JobCalender" component={main} />
 
@@ -96,7 +94,7 @@ function Layout(props) {
             />
             <Route path="/app/Support" component={Support} />
             <Route path="/app/setting" component={Edituser} />
-            <Route path="/app/new" component={discoverPage} />
+            <Route path="/app/new" component={News} />
             <Route path="/app/Question" component={AnswerQuestion} />
             <Route path="/app/questionnare" component={Questionnare} />
             <Route path="/app/Education" component={tutorialPage} />

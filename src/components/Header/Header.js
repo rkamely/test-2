@@ -29,7 +29,6 @@ import useStyles from "./styles";
 
 // components
 import { Badge, Typography, Button } from "../Wrappers";
-import UserAvatar from "../UserAvatar/UserAvatar";
 
 // context
 import {

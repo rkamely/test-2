@@ -1,6 +1,9 @@
 import { makeStyles } from "@material-ui/styles";
 
 export default makeStyles((theme) => ({
+  container:{
+    padding: "32px ",
+  },
     inputSelect: {
         width: "250px",
         display:"flex",
@@ -41,4 +44,11 @@ export default makeStyles((theme) => ({
           border: "none", backgroundColor: "#fff",outline: "2px solid red",      borderRadius: "10px",
         },
       },
+      Loading:{
+        height:"90%",
+        display:"flex",
+        alignItems:"center"  ,
+        justifyContent:"center",
+        marginTop:"232px"
+    }
 }));

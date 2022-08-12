@@ -14,7 +14,6 @@ import {
   Typography,
 } from "@material-ui/core";
 import React, { Children, useEffect, useState } from "react";
-import PageTitle from "../../../components/PageTitle/PageTitle";
 import axios from "axios";
 import useStyles from "./styles";
 import "./Hive.css";

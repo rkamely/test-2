@@ -5,7 +5,7 @@ import { HashRouter, Route, Switch, Redirect, Router } from "react-router-dom";
 import Layout from "./Layout";
 
 // pages
-import Error from "../pages/error";
+import Error from "../pages/error404";
 import Login from "../pages/login";
 
 // context

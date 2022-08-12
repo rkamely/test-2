@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
-import axios from "../api/axios";
+import axios, { axiosInstance } from "../api/axios";
 import AuthContext from "../context/AuthProvider";
 
 // styles
@@ -71,9 +71,9 @@ function SmsVerification(props) {
 
     //کد زیر اعمال شود
     try {
-      const response = await axios
+      const response = await axiosInstance
         .post(
-          "http://185.202.113.165:3000/api/auth/verify",
+          "/auth/verify",
           { code: data.code, mobile: "0"+mobile },
           {
             headers: { "Content-Type": "application/json" },

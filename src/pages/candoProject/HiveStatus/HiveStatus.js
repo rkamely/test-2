@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { Avatar, Breadcrumbs, Button, Dialog, Grid, Slide, Typography } from "@material-ui/core";
-import PageTitle from "../../../components/PageTitle/PageTitle";
-import Widget from "../../../components/Widget/Widget";
 import useStyles from "./Style";
-import Chart from "../../../components/Chart/Chart";
 import "../Support/Support.css"
 import {
   ResponsiveContainer,

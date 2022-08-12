@@ -1,6 +1,6 @@
 import React from 'react'
 import "./style.css"
-function discoverPage() {
+function News() {
     alert("درحال بارگیری سایت کندووان پلاس. لطفا چند لحظه صبر کنید:)")
   return (
 
@@ -8,4 +8,4 @@ function discoverPage() {
   )
 }
 
-export default discoverPage
+export default News
