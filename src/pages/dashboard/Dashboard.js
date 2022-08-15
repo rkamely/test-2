@@ -204,7 +204,7 @@ export default function Dashboard(props) {
                     </Grid>
                     <Grid item>
                       <Typography variant="p" weight="Bold" noWrap>
-                        ۰
+                      {ApiaryList.hives.length}
                       </Typography>
                     </Grid>
                   </Grid>

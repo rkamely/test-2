@@ -1,5 +1,5 @@
 
-import { Breadcrumbs, Button, Grid, TextareaAutosize, TextField, Typography } from "@material-ui/core";
+import { Breadcrumbs, Button, Dialog, Grid, TextareaAutosize, TextField, Typography } from "@material-ui/core";
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import useStyles from "./Style";
@@ -29,7 +29,11 @@ function SupportPage() {
   const[deleteSelectedFile,setDeleteSelectedFile]=useState(true)
   const[Message,setMessage]=useState("")
   const chatRef = useRef(null);
+  const [open, setOpen] = useState(false);
 
+  const handleClose = () => {
+    setOpen(false);
+  };
   const { id } = useParams()
   const[loading,setLoading]=useState(true)
   console.log("idTicket",id);
@@ -261,7 +265,6 @@ function SupportPage() {
   }
   const closeTicket= async ()=>{
 
-    if(window.confirm("با بستن این تیکت دیگر امکان ارسال پیام در این چت باکس را ندارید")){
       const response = await axiosInstance.post(`/ticket/close-by-user/${id}` ,{"text":"close"} ,{
         headers: {
           'token': `${token}` 
@@ -269,7 +272,7 @@ function SupportPage() {
       });
       console.log("response ro see kon to addticket",response);
       history.push("/app/Support")
-    }
+    
   
   }
 
@@ -452,7 +455,7 @@ const statusTickets=(e)=>{
       {/* {!watch("file")||watch("file").length===0 && progress!==0?null:<div style={{marginTop:"16px" , color:"red"}}>لطفا منتظر بمانید...</div>}  */}
       {/* {console.log("watch(file).length!==0",watch("file").length!==0)} */}
 
-      <Grid lg={2} onClick={closeTicket} style={{cursor:"pointer",display: "flex",justifyContent: "flex-start",alignItems: "center" ,marginTop:"16px" }}><Close color="secondary"/><div>بستن تیکت</div></Grid>
+      <Grid lg={2} onClick={()=>setOpen(true)} style={{cursor:"pointer",display: "flex",justifyContent: "flex-start",alignItems: "center" ,marginTop:"16px" }}><Close color="secondary"/><div>بستن تیکت</div></Grid>
       <Button type="submit" className={classes.ButtonSubmitPage} onClick={handleSubmit(onSubmit)} disabled={progress!==0} >ثبت</Button>
 
 </div>
@@ -717,7 +720,48 @@ let btnClass = classNames({
 
             </div> 
     }
-
+          <Dialog
+            PaperProps={{
+              style: { borderRadius: 12, width: "24%", overflowY: "hidden" },
+            }}
+            open={open}
+            onClose={handleClose}
+            // scroll={scroll}
+            aria-labelledby="scroll-dialog-title"
+            aria-describedby="scroll-dialog-description"
+            maxWidth="xl"
+            style={{ background: "rgba(0,0,0,0.6)" }}
+          >
+            <div
+              style={{
+                padding: "48px 16px",
+                textAlign: "center",
+                fontFamily: "Shabnam",
+              }}
+            >
+              <div style={{ fontWeight: "600" }}>
+                آیا میخواهید زنبورستان انتخاب شده را حذف نمایید؟
+              </div>
+              <div
+                style={{
+                  marginTop: "32px",
+                  display: "flex",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                }}
+              >
+                <Button
+                  onClick={closeTicket}
+                  className={classes.addButton}
+                >
+                  بله
+                </Button>
+                <Button onClick={handleClose} className={classes.cancelButton}>
+                  خیر
+                </Button>
+              </div>
+            </div>
+          </Dialog>
     </>
   );
 }
