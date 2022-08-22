@@ -494,8 +494,17 @@ function ApiaryList() {
         fontWeight: "600",
       },
       render: (rowData) => {
-        console.log("rowData?.Hives?.length",rowData);
-        return <p className="description">{rowData?.hives?.length?<div>{rowData?.hives?.length}</div>:<div>بدون کندو</div>}</p>;      },
+        console.log("rowData?.Hives?.length", rowData);
+        return (
+          <p className="description">
+            {rowData?.hives?.length ? (
+              <div>{rowData?.hives?.length}</div>
+            ) : (
+              <div>بدون کندو</div>
+            )}
+          </p>
+        );
+      },
     },
     {
       title: "وضعیت نامناسب",
@@ -524,7 +533,13 @@ function ApiaryList() {
               marginRight: "-20px",
             }}
           >
-            <div className="circleRed">{rowData.hivesWithBadCondition?<div>{rowData.hivesWithBadCondition}</div>:<div>0</div>}</div>
+            <div className="circleRed">
+              {rowData.hivesWithBadCondition ? (
+                <div>{rowData.hivesWithBadCondition}</div>
+              ) : (
+                <div>0</div>
+              )}
+            </div>
           </div>
         );
         // <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}><div className="circleRed">{rowData.hivesWithBadCondition}</div></div>
@@ -555,7 +570,13 @@ function ApiaryList() {
               marginRight: "-20px",
             }}
           >
-            <div className="circleYellow">{rowData.hivesWithVisitRequired?<div>{rowData.hivesWithVisitRequired}</div>:<div>0</div>}</div>
+            <div className="circleYellow">
+              {rowData.hivesWithVisitRequired ? (
+                <div>{rowData.hivesWithVisitRequired}</div>
+              ) : (
+                <div>0</div>
+              )}
+            </div>
           </div>
         );
       },
@@ -585,12 +606,17 @@ function ApiaryList() {
               marginRight: "-20px",
             }}
           >
-            <div className="circleGreen">{rowData.hivesWithGoodCondition?<div>{rowData.hivesWithGoodCondition}</div>:<div>0</div>}</div>
+            <div className="circleGreen">
+              {rowData.hivesWithGoodCondition ? (
+                <div>{rowData.hivesWithGoodCondition}</div>
+              ) : (
+                <div>0</div>
+              )}
+            </div>
           </div>
         );
       },
     },
-    
 
     {
       title: "عملیات",
@@ -935,20 +961,36 @@ function ApiaryList() {
     // window.location.reload()
   };
 
-  const downloadPdf = () => {
+  async function loadFont(src, name, style, weight) {
+    const fontBytes = await fetch(src).then((res) => res.arrayBuffer());
+
+    var filename = src.split("\\").pop().split("/").pop();
+    var base64String = btoa(
+      String.fromCharCode.apply(null, new Uint8Array(fontBytes)),
+    );
+
+    var callAddFont = function () {
+      this.addFileToVFS(filename, base64String);
+      this.addFont(filename, name, style, weight);
+    };
+    jsPDF.API.events.push(["addFonts", callAddFont]);
+  }
+
+  const downloadPdf = async () => {
     const doc = new jsPDF();
-    console.log("doc", doc.text);
+
+    const cols = columns.map((col) => ({ ...col, dataKey: col.field }));
+
+    const body = ApiariesList;
+
+    await loadFont("../../../Iran-Sans.ttf", "Iran-Sans", "normal", 500);
     doc.autoTable({
       theme: "grid",
-      columns: columns.map((col) => ({ ...col, dataKey: col.field })),
-      body: ApiariesList,
+      columns: cols,
+      body: body,
+      headStyles: { font: "Iran-Sans", fontStyle: "normal", halign: "right" },
+      bodyStyles: { font: "Iran-Sans", fontStyle: "normal", halign: "right" },
     });
-    console.log("Apiary", ApiariesList);
-    console.log("columns", columns);
-    // doc.addFileToVFS("Shabnam-normal.ttf", font);
-    // doc.addFont("Shabnam-normal.ttf", "Shabnam", "normal");
-    doc.setFont("Shabnam");
-    doc.text("جدول زنبورستان", 20, 10);
 
     doc.save("table.pdf");
   };
