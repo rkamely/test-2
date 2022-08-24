@@ -34,7 +34,6 @@ function Questionnare() {
             },
           },
         );
-        console.log("show response profile", response.data);
         // setNewQuestion(response.data);
         setLoading(false);
       } catch (error) {
@@ -74,9 +73,7 @@ function Questionnare() {
             },
           },
         );
-        console.log("show response Question", response.data);
         setAnswer(response.data);
-        console.log("answer", response.data);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -88,7 +85,6 @@ function Questionnare() {
 
   //////////////////////////////////////////////////////////////////////////////////////////////
 
-  console.log("newQuestion", newQuestion);
 
   const handleClickOpen = () => {
     setOpenQuestion(true);
@@ -128,7 +124,6 @@ function Questionnare() {
                     background: "#fff",
                     padding: " 16px 32px ",
                     marginTop: "16px",
-
                     borderRadius: "16px",
                     width: "100%",
                     alignItems: "center",

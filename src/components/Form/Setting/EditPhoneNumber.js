@@ -45,7 +45,6 @@ function EditPhoneNumber({onClose,setOpenCode}) {
   const onSubmit = data => {
     // setActiveStep((prevActiveStep) => prevActiveStep + 1);
    
-    console.log(JSON.stringify(data, null, 2));
     setOpenCode(true)
     onClose()
     // history.push("/login/step2")

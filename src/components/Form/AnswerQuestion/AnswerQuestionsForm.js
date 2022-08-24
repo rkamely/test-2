@@ -69,9 +69,7 @@ import { axiosInstance } from "../../../pages/api/axios";
     });
     const token = localStorage.getItem("id_token");
     const Question_id = localStorage.getItem("Question_id")
-    console.log("Question_id",Question_id);
     const Hive_id = localStorage.getItem("Hive_id")
-    console.log("Hive_id",Hive_id);
 
 ////////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
@@ -85,11 +83,9 @@ import { axiosInstance } from "../../../pages/api/axios";
             },
           },
         )
-        console.log("show response Question", response.data);
         setQuestionForm(response.data)
         setLoading(false)
       } catch (error) {
-       console.log(error);
       }
     };
     fetchData();
@@ -108,7 +104,6 @@ useEffect(() => {
           },
         },
       )
-      console.log("show response Question", response.data);
       setQuestionForm(response.data)
       setLoading(false)
     } catch (error) {
@@ -132,7 +127,6 @@ useEffect(() => {
           },
         )
         .then((response) => {
-          console.log("response1", response);
           // setApiariesList([...ApiariesList , response.data.data])
         });
     }else{
@@ -147,14 +141,12 @@ useEffect(() => {
         },
       )
       .then((response) => {
-        console.log("response1", response);
         // setApiariesList([...ApiariesList , response.data.data])
       });
     }
 
       // setApiariesList([...ApiariesList , data])
       // console.log(ApiariesList, "ApiariesList");
-      console.log();
      
     
       onClose();
@@ -210,7 +202,6 @@ const Content=()=>{
 
             name="selected"
             render={({ field }) => {
-              console.log(field)
               return (
 
                 <RadioGroup {...field} row >
@@ -281,7 +272,6 @@ const Content=()=>{
 
             name="selected"
             render={({ field }) => {
-              console.log(field)
               return (
 
                 <RadioGroup {...field} row >

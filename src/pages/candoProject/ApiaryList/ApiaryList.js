@@ -99,14 +99,7 @@ function ApiaryList() {
     history.push("/app/ApiaryList");
   };
 
-  console.log("salam  refs");
-  const refresh = (refs) => {
-    if (refs) {
-      console.log("true refs");
-    } else {
-      console.log("false refs");
-    }
-  };
+
 
   const style = {
     position: "absolute",
@@ -225,7 +218,7 @@ function ApiaryList() {
   /////////////////////////////////////////////////////////////////////////////////////////
 
   const token = localStorage.getItem("id_token");
-  console.log("token", token);
+ 
   useEffect(() => {
     const fetchData = async () => {
       // setLoading(true);
@@ -238,7 +231,7 @@ function ApiaryList() {
             },
           },
         );
-        console.log("show response", response.data);
+ 
         setApiariesList(response.data);
         setLoading(false);
       } catch (error) {
@@ -264,8 +257,7 @@ function ApiaryList() {
     fetchData();
   }, []);
 
-  console.log("ApiariesList247", ApiariesList.length);
-  localStorage.setItem("NumberOfApiaries", ApiariesList?.length);
+
 
   /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -278,7 +270,6 @@ function ApiaryList() {
   //   },
   // });
 
-  console.log(ApiariesList);
   const columns = [
     {
       title: "زنبورستان",
@@ -300,7 +291,6 @@ function ApiaryList() {
       },
 
       render: (rowData) => {
-        console.log("rowData", rowData);
 
         return (
           <Link
@@ -494,7 +484,6 @@ function ApiaryList() {
         fontWeight: "600",
       },
       render: (rowData) => {
-        console.log("rowData?.Hives?.length",rowData);
         return <p className="description">{rowData?.hives?.length?<div>{rowData?.hives?.length}</div>:<div>بدون کندو</div>}</p>;      },
     },
     {
@@ -790,7 +779,6 @@ function ApiaryList() {
   };
   const downloadExcel = () => {
     const regionVegetation = (e) => {
-      console.log("eeeee", e);
       switch (e) {
         case "Garden":
           return "باغ";
@@ -807,7 +795,7 @@ function ApiaryList() {
       }
     };
     const regionType = (e) => {
-      console.log("eeeee", e);
+
       switch (e) {
         case "Urban":
           return "شهری";
@@ -818,7 +806,7 @@ function ApiaryList() {
       }
     };
     const apiaryUsage = (e) => {
-      console.log("eeeee", e);
+  
       switch (e) {
         case "Queen":
           return "پرورش ملکه";
@@ -836,13 +824,9 @@ function ApiaryList() {
     const newData = ApiariesList.map((row) => {
       // bug
       // delete row.tableData;
-      console.log("row", row);
-      console.log("name", row.name);
 
-      console.log("regionType", row.regionType);
-      console.log("123413412342", regionVegetation(row.regionVegetation));
-      console.log("123413412342", regionType(row.regionType));
-      console.log("123413412342", apiaryUsage(row.apiaryUsage));
+
+
       return {
         زنبورستان: row.name,
         " پوشش گیاهی منطقه": regionVegetation(row.regionVegetation),
@@ -876,8 +860,7 @@ function ApiaryList() {
       return row.toLowerCase().includes(searchedVal.toLowerCase());
     });
     setApiary(filteredRows);
-    console.log("Apiary", Apiary);
-    console.log("filteredRows", filteredRows);
+
   };
   const cancelSearch = () => {
     setSearched("");
@@ -887,7 +870,7 @@ function ApiaryList() {
   const handleBulkDelete = () => {
     setLoading(true);
     selectedRows.map(async (selectedRow) => {
-      console.log("selectedRow", selectedRow._id);
+
       const response = await axiosInstance.delete(
         `/apiary/delete-for-user/${selectedRow._id}`,
         {
@@ -897,7 +880,7 @@ function ApiaryList() {
         },
       );
 
-      console.log("response delete", response);
+ 
       const updatedData = ApiariesList.filter(
         (row) => !selectedRows.includes(row),
       );
@@ -916,7 +899,6 @@ function ApiaryList() {
 
   const onRowDelete = async (rowData, popupState) => {
     setLoading(true);
-    console.log(rowData._id);
     const response = await axiosInstance.delete(
       `/apiary/delete-for-user/${rowData._id}`,
       {
@@ -925,11 +907,9 @@ function ApiaryList() {
         },
       },
     );
-    console.log("response delete2", response);
     const updatedData = ApiariesList.filter((row) => ![rowData].includes(row));
     setApiariesList(updatedData);
     setLoading(false);
-    // console.log("rowData23123", rowData);
     setOpenDeleteRow(false);
     popupState.close();
     // window.location.reload()
@@ -937,14 +917,11 @@ function ApiaryList() {
 
   const downloadPdf = () => {
     const doc = new jsPDF();
-    console.log("doc", doc.text);
     doc.autoTable({
       theme: "grid",
       columns: columns.map((col) => ({ ...col, dataKey: col.field })),
       body: ApiariesList,
     });
-    console.log("Apiary", ApiariesList);
-    console.log("columns", columns);
     // doc.addFileToVFS("Shabnam-normal.ttf", font);
     // doc.addFont("Shabnam-normal.ttf", "Shabnam", "normal");
     doc.setFont("Shabnam");
@@ -954,7 +931,6 @@ function ApiaryList() {
   };
 
   if (status) {
-    console.log("status is true");
     return <ApiaryList />;
   } else {
     console.log("status is false");
@@ -985,7 +961,6 @@ function ApiaryList() {
             components={{
               Toolbar: (props) => (
                 <>
-                  {console.log("aasdasdasdasdasd", selectedRows?.length)}
                   {selectedRows?.length == 0 ||
                   selectedRows?.length == undefined ? (
                     <>
@@ -1232,7 +1207,7 @@ function ApiaryList() {
               selectionProps: (rowData) => ({
                 // checked: Apiary?.includes(rowData.value) ? true: false,
                 onClick: () => {
-                  console.log("clicked asdasda");
+             
                   setToolbar(true);
                 },
               }),
@@ -1419,7 +1394,7 @@ function ApiaryList() {
                 ApiariesList={ApiariesList}
                 setApiariesList={setApiariesList}
                 onClose={handleClose}
-                refresh={(e) => refresh(e)}
+         
               />
             </Dialog>
           </div>

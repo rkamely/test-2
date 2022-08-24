@@ -31,93 +31,83 @@ import * as yup from "yup";
 import { ErrorMessage } from "@hookform/error-message";
 import useStyles from "./Style";
 
-
-
 const validationSchema = yup.object().shape({
   eggs: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
   Queen: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
   Spawning: yup.string().required("لطفا یک گزینه را انتخاب کنید."),
-
 });
 
-
-
 function getSteps() {
-  return [
-    "سوال اول",
-    "سوال دوم",
-
-
-
-  ];
+  return ["سوال اول", "سوال دوم"];
 }
 
-
-
-
-
-
-
 const FirstQuestion = () => {
-    const options = [
-        {
-          label: "تیمول",
-          value: "تیمول",
-        },
-        {
-          label: "اسید اگزالیک",
-          value: "اسید اگزالیک",
-        }
-      ];
-      const { control ,register, formState: { errors }} = useFormContext();
-      const classes=useStyles()
-      return( 
-    <Grid item xs={12} sm={12} className={classes.Select} >
-    <div className={classes.input}>
-      <label className={classes.FormLable}>دارو مورد استفاده</label>
-      <Select
-        className={classes.inputSelect}
-        required
-        placeholder="دارو مورد استفاده"
-        variant="outlined"
-        {...register("Medication")}
-        error={errors.regionVegetation ? true : false}
-      >
-        {options?.map((option) => {
-          return (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label ?? option.value}
-            </MenuItem>
-          );
-        })}
-      </Select>
-    </div>
-    {/* {errors.regionVegetation && <p>{errors.regionVegetation.message}</p>} */}
-    <ErrorMessage
-          errors={errors}
-          name="Medication"
-          render={({ message }) => <p>{message}</p>}
-        />
-  </Grid>
-  
-      )};
-
+  const options = [
+    {
+      label: "تیمول",
+      value: "تیمول",
+    },
+    {
+      label: "اسید اگزالیک",
+      value: "اسید اگزالیک",
+    },
+  ];
+  const {
+    control,
+    register,
+    formState: { errors },
+  } = useFormContext();
+  const classes = useStyles();
+  return (
+    <Grid item xs={12} sm={12} className={classes.Select}>
+      <div className={classes.input}>
+        <label className={classes.FormLable}>دارو مورد استفاده</label>
+        <Select
+          className={classes.inputSelect}
+          required
+          placeholder="دارو مورد استفاده"
+          variant="outlined"
+          {...register("Medication")}
+          error={errors.regionVegetation ? true : false}
+        >
+          {options?.map((option) => {
+            return (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label ?? option.value}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </div>
+      {/* {errors.regionVegetation && <p>{errors.regionVegetation.message}</p>} */}
+      <ErrorMessage
+        errors={errors}
+        name="Medication"
+        render={({ message }) => <p>{message}</p>}
+      />
+    </Grid>
+  );
+};
 
 const SecondQuestion = () => {
-
-  const { control ,register, formState: { errors }} = useFormContext();
-  const classes=useStyles()
+  const {
+    control,
+    register,
+    formState: { errors },
+  } = useFormContext();
+  const classes = useStyles();
 
   return (
     <>
-    <FormLabel component="legend" className={classes.FormLable}>تعداد قاب زنبور</FormLabel>
+      <FormLabel component="legend" className={classes.FormLable}>
+        تعداد قاب زنبور
+      </FormLabel>
       <Controller
         control={control}
         {...register("Frame", {
-          required: "پر کردن این قسمت الزامی است"
+          required: "پر کردن این قسمت الزامی است",
         })}
         name="Frame"
-        
         render={({ field }) => (
           <TextField
             type="number"
@@ -140,17 +130,6 @@ const SecondQuestion = () => {
   );
 };
 
-
-
-
-
-
-
-
-
-
-
-
 function getStepContent(step) {
   switch (step) {
     case 0:
@@ -163,14 +142,12 @@ function getStepContent(step) {
   }
 }
 
-
 const CureHiveStepper = (props) => {
   const classes = useStyles();
   const methods = useForm({
     defaultValues: {
-        Medication: "",
-        Frame:""
-
+      Medication: "",
+      Frame: "",
     },
   });
   const [activeStep, setActiveStep] = useState(0);
@@ -186,18 +163,16 @@ const CureHiveStepper = (props) => {
   };
 
   const handleNext = (data) => {
-    console.log(data);
     if (activeStep == steps.length - 1) {
       fetch("https://jsonplaceholder.typicode.com/comments")
         .then((data) => data.json())
         .then((res) => {
-          console.log(res);
           setActiveStep(activeStep + 1);
         });
     } else {
       setActiveStep(activeStep + 1);
       setSkippedSteps(
-        skippedSteps.filter((skipItem) => skipItem !== activeStep)
+        skippedSteps.filter((skipItem) => skipItem !== activeStep),
       );
     }
   };
@@ -207,7 +182,6 @@ const CureHiveStepper = (props) => {
   };
 
   const handleSkip = () => {
-    console.log("methods",methods);
     if (!isStepSkipped(activeStep)) {
       setSkippedSteps([...skippedSteps, activeStep]);
     }
@@ -215,11 +189,10 @@ const CureHiveStepper = (props) => {
   };
 
   // const onSubmit = (data) => {
-  //   console.log(data);
   // };
   return (
-    <div style={{padding:"16px" }}>
-      <Stepper alternativeLabel activeStep={activeStep} >
+    <div style={{ padding: "16px" }}>
+      <Stepper alternativeLabel activeStep={activeStep}>
         {steps.map((step, index) => {
           const labelProps = {};
           const stepProps = {};
@@ -238,33 +211,57 @@ const CureHiveStepper = (props) => {
             stepProps.completed = false;
           }
           return (
-            <Step   {...stepProps} key={index}>
-              <StepLabel   {...labelProps}>{step}</StepLabel>
+            <Step {...stepProps} key={index}>
+              <StepLabel {...labelProps}>{step}</StepLabel>
             </Step>
           );
         })}
       </Stepper>
       <DialogContent>
-      <Grid  container style={{display:"flex",alignItems:"flex-start" ,justifyContent:"space-between",boxShadow:"0px 3px 6px 0px rgba( 0, 0 ,0, 0.16)",padding:"16px 8px 32px"}} >
-                <Grid item   style={{display:"flex",flexDirection:"column" }}>
-                <Typography variant='p'>عملیات: باز کردن کندو و دادن دارو برای مبارزه با آکنه</Typography>
-                    <Typography variant='p'>نکات: دقت شود که دارو به اندازه استفاده شود و
-      برای آشنایی بیشتر لینک ویدیو</Typography>
-                </Grid>
-                <Grid item onClick={props.onClose} ><Close color='secondary'/></Grid>
-      </Grid>
-      </DialogContent >
-   <Grid style={{marginTop:"16px"}}>
-      {activeStep === steps.length ? (
-        <Typography variant="h3" align="center" color="secondary">
-          جواب سوالات با موفقیت ثبت شد!
-        </Typography>
-      ) : (
-        <>
-          <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(handleNext)} style={{textAlign:"center",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
-              {getStepContent(activeStep)}
-              {/* <Grid style={{width:"100%", display:"flex",alignContent:"center",justifyContent:"center"}}>
+        <Grid
+          container
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+            boxShadow: "0px 3px 6px 0px rgba( 0, 0 ,0, 0.16)",
+            padding: "16px 8px 32px",
+          }}
+        >
+          <Grid item style={{ display: "flex", flexDirection: "column" }}>
+            <Typography variant="p">
+              عملیات: باز کردن کندو و دادن دارو برای مبارزه با آکنه
+            </Typography>
+            <Typography variant="p">
+              نکات: دقت شود که دارو به اندازه استفاده شود و برای آشنایی بیشتر
+              لینک ویدیو
+            </Typography>
+          </Grid>
+          <Grid item onClick={props.onClose}>
+            <Close color="secondary" />
+          </Grid>
+        </Grid>
+      </DialogContent>
+      <Grid style={{ marginTop: "16px" }}>
+        {activeStep === steps.length ? (
+          <Typography variant="h3" align="center" color="secondary">
+            جواب سوالات با موفقیت ثبت شد!
+          </Typography>
+        ) : (
+          <>
+            <FormProvider {...methods}>
+              <form
+                onSubmit={methods.handleSubmit(handleNext)}
+                style={{
+                  textAlign: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                {getStepContent(activeStep)}
+                {/* <Grid style={{width:"100%", display:"flex",alignContent:"center",justifyContent:"center"}}>
                {isStepOptional(activeStep) && (
                  <>
                 <Button
@@ -285,31 +282,39 @@ const CureHiveStepper = (props) => {
                 </Button></>
               )}
               </Grid> */}
-            <Grid style={{width:"100%", display:"flex",alignContent:"center",justifyContent:"space-evenly",marginTop:"16px"}}>
-              <Button
-                className={classes.button}
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                color="secondary"
-              >
-                برگشت
-              </Button>
+                <Grid
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    alignContent: "center",
+                    justifyContent: "space-evenly",
+                    marginTop: "16px",
+                  }}
+                >
+                  <Button
+                    className={classes.button}
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                    color="secondary"
+                  >
+                    برگشت
+                  </Button>
 
-              <Button
-                className={classes.button}
-                variant="contained"
-                color="secondary"
-                // onClick={handleNext}
-                type="submit"
-              >
-                {activeStep === steps.length - 1 ? "پایان" : "بعدی"}
-             </Button> 
-             </Grid> 
-            </form>
-          </FormProvider>
-        </>
-      )}
-    </Grid>
+                  <Button
+                    className={classes.button}
+                    variant="contained"
+                    color="secondary"
+                    // onClick={handleNext}
+                    type="submit"
+                  >
+                    {activeStep === steps.length - 1 ? "پایان" : "بعدی"}
+                  </Button>
+                </Grid>
+              </form>
+            </FormProvider>
+          </>
+        )}
+      </Grid>
     </div>
   );
 };

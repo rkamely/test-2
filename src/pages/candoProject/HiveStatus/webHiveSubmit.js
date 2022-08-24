@@ -16,7 +16,6 @@ function WebHiveSubmit(props) {
     formState: { errors }
   } = useForm();
   const onSubmit = data => {
-    console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
   };
   const steps = [
@@ -95,7 +94,6 @@ function WebHiveSubmit(props) {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-    console.log("props",props)
     const classes = useStyles();
   return (
       <div className={classes.DialogBox}>

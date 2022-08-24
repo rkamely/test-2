@@ -147,7 +147,7 @@ const changeIcon=()=>{
       <List className={classes.sidebarList} >
       <div className={classes.mobileBackButton}>
         <IconButton onClick={() => toggleSidebar(layoutDispatch)}> 
-          {icon?<ArrowForwardRounded 
+          {isSidebarOpened?<ArrowForwardRounded 
           onClick={changeIcon}
             classes={{
               root: classNames(classes.headerIcon, classes.headerIconCollapse),
@@ -162,7 +162,7 @@ const changeIcon=()=>{
 
 
 
-       {icon?<div className={classes.candoTopSidebar}> 
+       {isSidebarOpened?<div className={classes.candoTopSidebar}> 
           <div className={classes.candoLogo}>
             <img src="./assets/لوگو کندووان پلاس2 (1).png" alt="عکس زنبور" width="100px" style={{marginRight: "-16px"}}/>
           </div>

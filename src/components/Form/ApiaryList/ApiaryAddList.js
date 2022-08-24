@@ -58,19 +58,17 @@ const ApiaryAddList = ({ ApiariesList, setApiariesList, onClose, refresh,setStat
         },
       )
       .then((response) => {
-        console.log("response1", response);
+       
         setApiariesList([...ApiariesList , response.data.data])
       });
     // setApiariesList([...ApiariesList , data])
-    console.log(ApiariesList, "ApiariesList");
-    console.log();
+
+
    
     // refresh("f")
     onClose();
   };
-if(status){
-  console.log("true ststus");
-}
+
   const options = [
     { label: "باغ", value: "Garden" },
     { label: "مزرعه", value: "Farm" },
@@ -105,7 +103,6 @@ if(status){
         const { data: response } = await axios.get(
           "https://iran-locations-api.vercel.app/api/v1/states"
         ).then((res)=>setStates(res.data))
-        console.log("show response state1", response.data.data);
 
       } catch (error) {
        console.log(error);
@@ -119,7 +116,6 @@ if(status){
   const[city,setCities]=useState([])
   const changeState= async (state)=>{
    
-    console.log("state cities",state);
     try {
       const { data: response } = await axios.get(
         `https://iran-locations-api.vercel.app/api/v1/cities?state=${state}`
@@ -367,7 +363,6 @@ if(status){
                     // } // Using setValue
                   >
                     {city?.map((option) => {
-                      console.log("option city state",option.name);
                       return (
                         <MenuItem key={option.name} value={option.name}>
                           {option.label ?? option.name}

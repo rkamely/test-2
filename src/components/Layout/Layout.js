@@ -44,7 +44,7 @@ function Layout(props) {
   // global
   var layoutState = useLayoutState();
   const {  auth  } = useContext(AuthContext)
-  console.log("auth ro see kon to layout",auth);
+
 
   return (
     <div className={classes.root} >

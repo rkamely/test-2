@@ -36,7 +36,6 @@ function SupportPage() {
   };
   const { id } = useParams()
   const[loading,setLoading]=useState(true)
-  console.log("idTicket",id);
   const validationSchema = yup.object().shape({
     // name: yup
     //   .string()
@@ -50,7 +49,6 @@ function SupportPage() {
       });
     /////////////////////////////////////////////////////////////////////////////////////////
     const token = localStorage.getItem("id_token")
-    console.log("token",token);
     useEffect(() => {
       const fetchData = async () =>{
         // setLoading(true);
@@ -60,7 +58,6 @@ function SupportPage() {
               'token': `${token}` 
             },
           },);
-          console.log( "show response" , response.data);
           setNewTicket(response.data.messages )
           setNewTicketStatus(response.data)
           setLoading(false);
@@ -85,7 +82,7 @@ function SupportPage() {
             headers: {
               'token': `${token}` 
             },
-          },).then((el)=>console.log("elll",el.data))
+          },)
         } catch (error) {
           console.error(error.message);
         }
@@ -96,11 +93,9 @@ function SupportPage() {
 
     /////////////////////////////////////////////////////////////////////////////////////////
     const download=async (text)=>{
-      console.log("texxxxtttt",text);
       const response = await axiosInstance.get(`/ticket/download-file/${text}`,{
         responseType: 'blob',
       })
-      // console.log(`${text}`,text)
       fileDownload(response.data,`${text}`)
    }
    /////////////////////////////////////////////////////////////////////////////////////
@@ -127,7 +122,6 @@ function SupportPage() {
         e.preventDefault()
         const fd = new FormData()
   
-        console.log("data.file[0]",data.file[0])
 
         if(data.file[0]){
           fd.append('file',data.file[0])
@@ -148,15 +142,13 @@ function SupportPage() {
           },
           onUploadProgress:ProgressEvent => {
             let percent = Math.round(ProgressEvent.loaded/ProgressEvent.total*100)
-            console.log("percent",percent);
-            console.log("در حال بارگذاری"+Math.round(ProgressEvent.loaded/ProgressEvent.total*100)+"%");
+
             setProgress(percent)
           }
           // headers: {
           //   "Content-Type": "multipart/form-data",
           // },
         },).then((respon) => setNewTicket(respon.data.data.messages))
-        // console.log("response adduserticket",response.data.data.messages)
         setProgress(0)
         setMessage("ارسال با موفقیت انجام شد")
         const timer = setTimeout(() => {
@@ -270,7 +262,6 @@ function SupportPage() {
           'token': `${token}` 
         }
       });
-      console.log("response ro see kon to addticket",response);
       history.push("/app/Support")
     
   
@@ -453,7 +444,6 @@ const statusTickets=(e)=>{
 <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
       
       {/* {!watch("file")||watch("file").length===0 && progress!==0?null:<div style={{marginTop:"16px" , color:"red"}}>لطفا منتظر بمانید...</div>}  */}
-      {/* {console.log("watch(file).length!==0",watch("file").length!==0)} */}
 
       <Grid lg={2} onClick={()=>setOpen(true)} style={{cursor:"pointer",display: "flex",justifyContent: "flex-start",alignItems: "center" ,marginTop:"16px" }}><Close color="secondary"/><div>بستن تیکت</div></Grid>
       <Button type="submit" className={classes.ButtonSubmitPage} onClick={handleSubmit(onSubmit)} disabled={progress!==0} >ثبت</Button>
@@ -504,7 +494,6 @@ const statusTickets=(e)=>{
 
   }
 }
-console.log("newTicketStatus",newTicketStatus);
 let btnClass = classNames({
              
   [classes.openTicket]: newTicketStatus.status==="Open",

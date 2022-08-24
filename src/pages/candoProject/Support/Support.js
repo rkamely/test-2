@@ -43,7 +43,6 @@ function Support() {
   /////////////////////////////////////////////////////////////////////////////////////////
 
   const token = localStorage.getItem("id_token");
-  console.log("token", token);
   useEffect(() => {
     const fetchData = async () => {
       // setLoading(true);
@@ -56,10 +55,9 @@ function Support() {
             },
           },
         );
-        console.log("show response", response.data);
-        console.log("show response lenght", response.data.length);
+
         const length = response.data.length;
-        console.log("auth ro see kon to support", auth);
+
         setNewTicket(response.data);
         setLoading(false);
         if (length != 0) {
@@ -81,12 +79,10 @@ function Support() {
     };
     fetchData();
   }, []);
-  console.log("auth ro see kon to support", auth);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   const m = moment();
   m.locale("fa");
-  console.log(m.format("YY-MM-DD"));
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -160,12 +156,8 @@ function Support() {
   const wavebye = () => {
     setAddTickets(true);
   };
-  // console.log("11111111",newTicket)
 
-  console.log("newTicket", newTicket);
-  // const AddTicket=localStorage.getItem("AddTicket")
-  // console.log("AddTicket",AddTicket);
-  console.log("show", show);
+
 
 
 
@@ -182,7 +174,6 @@ function Support() {
 
     // <Title key="3" title={id}/>
   ];
-console.log("show",show);
   return (
     <div className={classes.container}>
       <Breadcrumbs
@@ -435,7 +426,7 @@ console.log("show",show);
             onClose={handleClose}
             aria-describedby="alert-dialog-slide-description"
           >
-            {console.log(AddTickets)}
+ 
             {AddTickets ? (
               <AddQRcode
                 input={false}

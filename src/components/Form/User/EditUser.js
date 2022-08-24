@@ -28,7 +28,7 @@ import { axiosInstance } from "../../../pages/api/axios";
 function EditUser({setUserList,userList,onClose}) {
   const classes = useStyles();
   const {id} = useParams()
-  console.log("id watch",id);
+
   // const phoneRegExp = /09([0-3][0-9])-?[0-9]{3}-?[0-9]{4}/;
   const phoneRegExp = '^0(\\9)?9\\d{9}$';
   const FILE_SIZE = 10000*10000;
@@ -53,7 +53,6 @@ function EditUser({setUserList,userList,onClose}) {
     //   "fileSize",
     //   "قایل انتخابی حجم زیادی دارد",
     //   (value) => {
-    //     console.log("vlaue",value?.size)
     //     return value && value?.size <= FILE_SIZE
     //   }
     // ),
@@ -79,7 +78,6 @@ const fileRef=useRef(null)
    const editUser_id = localStorage.getItem("editUser_id")
 
    const token = localStorage.getItem("id_token")
-   console.log("token",token);
    useEffect(() => {
      const fetchData = async () =>{
        // setLoading(true);
@@ -89,11 +87,9 @@ const fileRef=useRef(null)
              'token': `${token}` 
            },
          },);
-         console.log( "show response edit user" , response.data);
          const information=response.data
         //  setData({apiaryUsage:information.apiaryUsage})
         const responseData = response.data
-console.log("responseDataresponseData",responseData);
          reset({ firstname: responseData.firstname ,lastname: responseData.lastname,email: responseData.email,mobile: responseData.mobile ,employees:responseData.employees.map((el)=>{return {_id:el._id}}),apiary:responseData.apiary.map((el)=>{return {_id:el._id}})});
          setData(response.data)
          setLoading(false)
@@ -106,14 +102,12 @@ console.log("responseDataresponseData",responseData);
    }, [reset]);
 
 
-   console.log("userListBefore",userList);
 
    /////////////////////////////////////////////////////////////////////////////////////////
 
 
 
   const onSubmit = async(data) => {
-    // console.log(JSON.stringify(data, null, 2));
     // alert(JSON.stringify(data, null, 2));
     const response = await axiosInstance.put(`/user/${editUser_id}`,data,{
       headers: {
@@ -121,15 +115,14 @@ console.log("responseDataresponseData",responseData);
       },
     })
     reset(data);
-    console.log("response update user",response);
-    console.log("userList",userList);
+
     const updatedUser=[userList]
-    console.log("updatedUser",updatedUser);
+
     const index = updatedUser.indexOf(data);
-    console.log("index",index);
+
     // updatedUser[index]={...data};
     // setUserList({userList:updatedUser})
-    // console.log("ApiaryAfter",updatedUser);
+
     window.location.reload()  
   
   };
@@ -398,7 +391,7 @@ console.log("responseDataresponseData",responseData);
           {/* <input type="file"  onChange={fileSelectHandler}  accept="image/png, image/jpeg"   /> */}
         <div className={classes.uploaderImage}>
 
-            { console.log("selectedFile",selectedFile)}
+
 {  selectedFile ? <PreviewImage file={selectedFile} />:<Avatar src="./assets/Mask Group 3.svg" alt=""   className={classes.PreviewImage}/>
 }            <Button
                  variant="contained"

@@ -23,13 +23,11 @@ import "./App.css"
 export default function App() {
   // global
   const { isAuthenticated } = useUserState();
-  console.log("isAuthenticated", isAuthenticated);
   const { auth, setAuth } = useContext(AuthContext);
 
   const apolloClient = useAppApolloClient();
 
-  console.log("new use ro bede bezanim berim!!!",auth);
-  console.log("new use ro bede bezanim berim!!!", auth.newUser);
+
 
     
 

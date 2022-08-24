@@ -109,15 +109,14 @@ export default function Header(props) {
 
   const history = useHistory();
   const firstName = localStorage.getItem("profileName");
-  // console.log("firstName",firstName);
+
   const email = localStorage.getItem("email");
   const lastname = localStorage.getItem("lastname");
 
-  console.log("email", email);
-  console.log("email", firstName);
+
 
   if (!firstName) {
-    //  console.log("login dispach access",!!firstName);
+
     localStorage.clear("id_token");
 
     userDispatch({ type: "SIGN_OUT_SUCCESS" });

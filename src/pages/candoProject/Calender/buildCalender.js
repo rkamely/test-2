@@ -3,9 +3,7 @@ export default function buildCalender(value) {
   const endDay = value.locale("fa").clone().endOf("month").endOf("week");
   const day = startDay.clone().subtract(1, "day");
   const calender = [];
-console.log("startDay",startDay)
-console.log("endDay",endDay)
-console.log("day",day)
+
 
 
   while (day.isBefore(endDay, "day")) {

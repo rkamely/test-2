@@ -63,11 +63,8 @@ function SmsVerification(props) {
 
   const onSubmit = async (data) => {
     const mobile = localStorage.getItem("data");
-    // console.log(JSON.stringify(data, null, 2));
-    // alert(JSON.stringify({ code: data.code, mobile: mobile }, null, 2));
-    // history.push("/login/step2")
-    console.log("mobileNumber", mobile);
-    // removeAuthtoken()
+
+
 
     //کد زیر اعمال شود
     try {
@@ -81,17 +78,14 @@ function SmsVerification(props) {
           },
         )
         .then((respons) => respons.data);
-        console.log("response smsVerify",response);
         localStorage.setItem("profileName",response.data.firstname)
         localStorage.setItem("email",response.data.email)
         localStorage.setItem("lastname",response.data.lastname)
         const token = response?.token;
         const idUser =response.data._id
-        console.log("idUser",idUser);
         const newPerson = response.data.username
         const isStaff = response.data.isStaff
         localStorage.setItem("isStaff",isStaff);
-        console.log("isStaff",isStaff);
       // setAuth({mobile:mobile,code:data.code,token})
 
       if (token) {
@@ -109,12 +103,9 @@ function SmsVerification(props) {
 
       }
       //  userDispatch({ type: 'LOGIN_SUCCESS' })
-      console.log("token", token);
-      console.log("response", response.data.newUser);
-      console.log(response?.token);
-      console.log(response?.message);
+
     } catch (err) {
-      console.log("err.response", err.response);
+
       if (!err?.response) {
         setErrMsg(
           " پاسخی از سرور دریافت نشد لطفا از وصل بودن اینترنت خود اطمینان حاصل نمایید و مجدد تلاش کنید",
@@ -137,7 +128,6 @@ function SmsVerification(props) {
   };
 
 
-  console.log("auuuuuuutttttthhhhhh",auth);
 
   return (
     <div className="containerLogin">

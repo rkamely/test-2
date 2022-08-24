@@ -32,8 +32,6 @@ function CompleteInformation(props) {
   const history = useHistory();
   const { auth , setAuth } = useContext(AuthContext);
 
-console.log("Auth",auth);
-console.log("setAuth",setAuth);
   // global
   var userDispatch = useUserDispatch();
   // const phoneRegExp = /09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}/
@@ -60,13 +58,10 @@ console.log("setAuth",setAuth);
   });
   const onSubmit = async (data) => {
     const token = localStorage.getItem("id_token")
-    // console.log("firstname",data.firstname);
-    // console.log("token",token);
-    // console.log(JSON.stringify(data, null, 2));
+
     // alert(JSON.stringify(data, null, 2));
     try {
       setIsLoading(true);
-      console.log("auth.idUser",auth.idUser);
       const response = await axiosInstance
         .post( 
           `/auth/profile`,

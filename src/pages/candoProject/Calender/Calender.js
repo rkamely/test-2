@@ -17,7 +17,6 @@ function Calender() {
   const classes = useStyles();
   const [calender, setCalender] = useState([]);
   const [value, setValue] = useState(moment());
-  console.log("value", value);
 
   useEffect(() => {
     setCalender(buildCalender(value));
@@ -29,7 +28,6 @@ function Calender() {
     return value.clone().add(1, "days");
   }
 
-  //   console.log("startDay", startDay);
   return (
     <div className={classes.container}>
       <div className={classes.header}>
@@ -46,11 +44,8 @@ function Calender() {
    
       spaceBetween={20}
       slidesPerView={7}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
       // scrollbar={{ draggable: true }}
     >
-      {  console.log("calender",calender)}
       <div style={{border:"2px solid red"}}>
         {calender.map((week) => (
         

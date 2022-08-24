@@ -54,8 +54,7 @@ function Hive() {
   const location = useLocation();
   // window.localStorage.getItem(location.state.rowDatas)
   // const rowDatas= window.localStorage.setItem()
-  // console.log("location",location)
-  // console.log("rowDatanew",rowDatas)
+
   const [openNutrition, setOpenNutrition] = useState(false);
   const [openCatchHoney, setopenCatchHoney] = useState(false);
   const [openCureHive, setOpenCureHive] = useState(false);
@@ -105,9 +104,7 @@ function Hive() {
     setOpenDelete(false);
   };
 
-  useEffect(() => {
-    console.log("Hive", Hive);
-  }, [Hive]);
+
 
   const style = {
     position: "absolute",
@@ -161,13 +158,10 @@ function Hive() {
   const classes = useStyles();
   /////////////////////////////////////////////////////////////////////////////////////////
   const Apiary_id = localStorage.getItem("Apiary_id");
-  console.log("Apiary_id", Apiary_id);
   const token = localStorage.getItem("id_token");
-  console.log("token", token);
 
   useEffect(() => {
     const fetchData = async (index) => {
-      console.log("salam id", index);
       setLoading(true);
       try {
         const { data: response } = await axiosInstance.get(
@@ -178,7 +172,6 @@ function Hive() {
             },
           },
         );
-        console.log("show response hive", response.data);
         setHiveTable(response.data);
         // const dataOfHive = {
         //   title: `${response?.data?.title}`,
@@ -217,7 +210,6 @@ function Hive() {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   const [filter, setFilter] = useState([]);
-  console.log("token", token);
   useEffect(() => {
     const fetchData = async () => {
       // setLoading(true);
@@ -230,7 +222,6 @@ function Hive() {
             },
           },
         );
-        console.log("show response", response.data);
         setFilter(response.data);
       } catch (error) {
         if (error.response?.status === 401) {
@@ -256,7 +247,6 @@ function Hive() {
   }, []);
 
   ////////////////////////////////////////////////
-  console.log(Company);
   const columns = [
     {
       title: "نام کندو",
@@ -276,7 +266,6 @@ function Hive() {
       },
 
       render: (rowData) => {
-        console.log("rowData", rowData);
 
         return (
           <Link
@@ -768,7 +757,6 @@ function Hive() {
   };
   const downloadExcel = () => {
     const type = (e) => {
-      console.log("eeeee", e);
       switch (e) {
         case "Langestrot":
           return "لانگستروت";
@@ -783,7 +771,6 @@ function Hive() {
       }
     };
     const queenType = (e) => {
-      console.log("eeeee", e);
       switch (e) {
         case "Native":
           return "بومی";
@@ -803,12 +790,7 @@ function Hive() {
     const newData = hiveTable.map((row) => {
       // bug
       // delete row.tableData;
-      console.log("row", row);
-      console.log("name", row.name);
 
-      console.log("regionType", row.regionType);
-      console.log("123413412342", type(row.type));
-      console.log("123413412342", queenType(row.queenType));
       return {
         "نام کندو": row.title,
         " نوع کندو": type(row.type),
@@ -834,7 +816,6 @@ function Hive() {
   const [searched, setSearched] = useState();
   ////////////////////////////////////////////////////////////////////
   const changeApiary = async (index) => {
-    console.log("salam id", index);
     setLoading(true);
     try {
       const { data: response } = await axiosInstance.get(
@@ -845,7 +826,6 @@ function Hive() {
           },
         },
       );
-      console.log("show response hive", response.data);
       setHiveTable(response.data);
       setLoading(false);
     } catch (error) {
@@ -872,14 +852,12 @@ function Hive() {
     const filteredRows = hiveTable
       .map((rows) => {
         return rows.name;
-        // console.log("rows.title",rows)
       })
       .filter((row) => {
         return row.toLowerCase().includes(searchedVal.toLowerCase());
       });
     setHiveTable(filteredRows);
-    console.log("hiveTable", hiveTable);
-    console.log("filteredRows", filteredRows);
+
   };
 
   const cancelSearch = () => {
@@ -889,7 +867,6 @@ function Hive() {
   const handleBulkDelete = async () => {
     if (window.confirm("آیا از حدف این مورد اطمینان دارید؟")) {
       // const response = await axios.delete(`https://sdfsdf/${selectedRows[0].id}`)
-      console.log("selectedRows", selectedRows[0].id);
 
       const updatedData = hiveTable.filter(
         (row) => !selectedRows.includes(row),
@@ -901,7 +878,6 @@ function Hive() {
   const onRowDelete = async (rowData) => {
     if (window.confirm("آیا از حدف این مورد اطمینان دارید؟")) {
       // const response = await axios.delete(`https://sdfsdf/${rowData.id}`)
-      console.log("rowData", rowData.id);
       const updatedData = hiveTable.filter((row) => ![rowData].includes(row));
       setHiveTable(updatedData);
     }
@@ -918,12 +894,9 @@ function Hive() {
     doc.setFont("Iran-Sans"); // set custom font
     doc.save("table.pdf");
   };
-  const add = () => {
-    return console.log("click");
-  };
+
 
   localStorage.setItem("apiaryIdClick", id);
-  console.log("id ro bebin ", id);
   const breadcrumbs = [
     <Link
       to="/app/ApiaryList"
@@ -1029,7 +1002,6 @@ function Hive() {
               selectionProps: (rowData) => ({
                 // checked: Company?.includes(rowData.value) ? true: false,
                 onClick: () => {
-                  console.log("clicked asdasda");
                   setToolbar(true);
                 },
               }),

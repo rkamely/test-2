@@ -72,11 +72,10 @@ const handleChangenumber=(event)=>{
 }
 
 
- console.log("state",state)
+
 
 
   const onSubmit = (data) => {
-    // console.log(JSON.stringify(data, null, 2));
     // alert(JSON.stringify(data, null, 2));
     // data.preventDefault();
     const mobile="0"+data.mobile
@@ -85,8 +84,7 @@ const handleChangenumber=(event)=>{
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true
            })
-           console.log("response login",response);
-           console.log(JSON.stringify(response))       
+
 
            history.push(
            { 
@@ -95,7 +93,6 @@ const handleChangenumber=(event)=>{
            }
            );
            localStorage.setItem("data",data.mobile.toString())
-           console.log("phone", data.mobile.toString());
 
     }catch (err) {
       if (!err?.response) {

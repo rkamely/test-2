@@ -35,10 +35,21 @@ export default function SidebarLink({
   var isLinkActive =
     link &&
     (location.pathname === link || location.pathname.indexOf(link) !== -1);
- 
+   let btnClass = classnames({
+    [classes.aboutUsPart1]: isSidebarOpened === true,
+    [classes.aboutUsPart2]: isSidebarOpened === false,
+  });
+  let btnClasse2 = classnames({
+    [classes.bottomSettingPart1]: isSidebarOpened === true,
+    [classes.bottomSettingPart2]: isSidebarOpened === false,
+  });
+  let btnDivider = classnames({
+    [classes.bottombtnDivider1]: isSidebarOpened === true,
+    [classes.bottombtnDivider2]: isSidebarOpened === false,
+  });
     if (type === "title")
     return (
-      <div style={{position:"fixed",bottom:"50px",width:"279px",background:"rgb( 53 53 53)"}}>
+      <div className={btnClass}>
       
       <ListItem
       button
@@ -84,7 +95,7 @@ export default function SidebarLink({
     );
     if (type === "title2")
     return (
-      <div style={{position:"fixed",bottom:"0px",width:"279px" ,   background:"rgb( 53 53 53)"}} >
+      <div className={btnClasse2}>
       
       <ListItem
       button
@@ -129,7 +140,7 @@ export default function SidebarLink({
       // </Typography>
     );
 
-  if (type === "divider") return <Divider className={classes.divider} />;
+    if (type === "divider") return <div className={btnDivider}></div>;
 
   if (link && link.includes('http')) {
     return (

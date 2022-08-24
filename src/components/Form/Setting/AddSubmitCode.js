@@ -32,7 +32,6 @@ function AddSubmitCode() {
     resolver: yupResolver(validationSchema)
   });
   const onSubmit = data => {
-    console.log(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
     // history.push("/login/step2")
 
@@ -76,9 +75,7 @@ function AddSubmitCode() {
 
 
 <Button
- onClick={() =>        
-    console.log("click")
-}
+
     variant="contained"
     className={classes.buttonLogin}
   >
