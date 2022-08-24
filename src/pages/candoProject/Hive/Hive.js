@@ -214,7 +214,6 @@ function Hive() {
 
   ////////////////////////////////////////////////////////////////////
 
-
   /////////////////////////////////////////////////////////////////////////////////////////
   const [filter, setFilter] = useState([]);
   console.log("token", token);
@@ -289,8 +288,7 @@ function Hive() {
             className="description"
             onClick={() => {
               localStorage.setItem("Hive_name", rowData.title);
-              localStorage.setItem("dataOfHive",JSON.stringify(rowData));  
-
+              localStorage.setItem("dataOfHive", JSON.stringify(rowData));
             }}
           >
             {rowData.title}
@@ -907,15 +905,41 @@ function Hive() {
     }
   };
 
-  const downloadPdf = () => {
+  async function loadFont(src, name, style, weight) {
+    const fontBytes = await fetch(src).then((res) => res.arrayBuffer());
+
+    var filename = src.split("\\").pop().split("/").pop();
+    var base64String = btoa(
+      String.fromCharCode.apply(null, new Uint8Array(fontBytes)),
+    );
+
+    var callAddFont = function () {
+      this.addFileToVFS(filename, base64String);
+      this.addFont(filename, name, style, weight);
+    };
+    jsPDF.API.events.push(["addFonts", callAddFont]);
+  }
+
+  const downloadPdf = async () => {
+    await loadFont("../../../Iran-Sans.ttf", "Iran-Sans", "normal", 500);
+
+    const cols = columns.map((col) => ({ ...col, dataKey: col.field }));
+
+    const body = hiveTable;
+
     const doc = new jsPDF();
-    doc.text("جزییات زنبورستان", 20, 10);
     doc.autoTable({
       theme: "grid",
       columns: columns.map((col) => ({ ...col, dataKey: col.field })),
       body: hiveTable,
+      headStyles: { font: "Iran-Sans", fontStyle: "normal", halign: "right" },
+      bodyStyles: { font: "Iran-Sans", fontStyle: "normal", halign: "right" },
     });
-    doc.setFont("Iran-Sans"); // set custom font
+
+    console.log(
+      doc.getFontList()
+    )
+
     doc.save("table.pdf");
   };
   const add = () => {
@@ -1000,8 +1024,8 @@ function Hive() {
               toolbar: {
                 nRowsSelected: "{0} مورد انتخاب شد",
                 searchPlaceholder: "جستجو ",
-                addRemoveColumns:"اضافه یا حذف کردن ستون‌ها",
-                showColumnsTitle:"اضافه یا حذف کردن ستون‌ها",
+                addRemoveColumns: "اضافه یا حذف کردن ستون‌ها",
+                showColumnsTitle: "اضافه یا حذف کردن ستون‌ها",
               },
               header: {
                 actions: "عملیات",

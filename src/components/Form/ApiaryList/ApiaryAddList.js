@@ -21,7 +21,14 @@ import axios from "axios";
 import ApiaryList from "../../../pages/candoProject/ApiaryList/ApiaryList";
 import { axiosInstance } from "../../../pages/api/axios";
 
-const ApiaryAddList = ({ ApiariesList, setApiariesList, onClose, refresh,setStatus,status }) => {
+const ApiaryAddList = ({
+  ApiariesList,
+  setApiariesList,
+  onClose,
+  refresh,
+  setStatus,
+  status,
+}) => {
   const classes = useStyles();
   const validationSchema = yup.object().shape({
     name: yup
@@ -50,7 +57,7 @@ const ApiaryAddList = ({ ApiariesList, setApiariesList, onClose, refresh,setStat
     const response = await axiosInstance
       .post(
         "/apiary/create-by-user",
-        { ...data, locationLangitude: 8, locationLatitude: 10  },
+        { ...data, locationLangitude: 8, locationLatitude: 10 },
         {
           headers: {
             token: `${token}`,
@@ -59,18 +66,18 @@ const ApiaryAddList = ({ ApiariesList, setApiariesList, onClose, refresh,setStat
       )
       .then((response) => {
         console.log("response1", response);
-        setApiariesList([...ApiariesList , response.data.data])
+        setApiariesList([...ApiariesList, response.data.data]);
       });
     // setApiariesList([...ApiariesList , data])
     console.log(ApiariesList, "ApiariesList");
     console.log();
-   
+
     // refresh("f")
     onClose();
   };
-if(status){
-  console.log("true ststus");
-}
+  if (status) {
+    console.log("true ststus");
+  }
   const options = [
     { label: "باغ", value: "Garden" },
     { label: "مزرعه", value: "Farm" },
@@ -94,7 +101,7 @@ if(status){
     overflow: "hidden",
     marginTop: "10px",
   };
-  const[states,setStates]=useState([])
+  const [states, setStates] = useState([]);
 
   ///////////////////////////////////////////////////////////////////////////////////////////
   //استان
@@ -102,81 +109,76 @@ if(status){
     const fetchData = async () => {
       // setLoading(true);
       try {
-        const { data: response } = await axios.get(
-          "https://iran-locations-api.vercel.app/api/v1/states"
-        ).then((res)=>setStates(res.data))
+        const { data: response } = await axios
+          .get("https://iran-locations-api.vercel.app/api/v1/states")
+          .then((res) => setStates(res.data));
         console.log("show response state1", response.data.data);
-
       } catch (error) {
-       console.log(error);
+        console.log(error);
       }
     };
     fetchData();
   }, []);
-//////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
   //شهر
-  const[city,setCities]=useState([])
-  const changeState= async (state)=>{
-   
-    console.log("state cities",state);
+  const [city, setCities] = useState([]);
+  const changeState = async (state) => {
+    console.log("state cities", state);
     try {
-      const { data: response } = await axios.get(
-        `https://iran-locations-api.vercel.app/api/v1/cities?state=${state}`
-      ).then((res)=> setCities( res.data.cities))
+      const { data: response } = await axios
+        .get(
+          `https://iran-locations-api.vercel.app/api/v1/cities?state=${state}`,
+        )
+        .then((res) => setCities(res.data.cities));
       // console.log("show response city12", response.data.data.cities);
-
     } catch (error) {
-     console.log(error);
+      console.log(error);
     }
-  
-  }
+  };
 
+  //////////////////////////////////////////////////////////////////////////////////////////////
 
+  return (
+    <Box px={3} py={2} className={classes.root}>
+      <Typography
+        variant="h6"
+        align="center"
+        margin="dense"
+        className={classes.Title}
+        color="secondary"
+      >
+        افزودن زنبورستان جدید
+      </Typography>
 
+      <Divider className={classes.Divider} />
+      <Grid container spacing={1} className={classes.container}>
+        <div className={classes.main}>
+          <Grid item xs={12} sm={12} className={classes.inputText}>
+            <div className={classes.input}>
+              <label className={classes.mainLabel}>نام زنبورستان</label>
+              <TextField
+                className={classes.TextField}
+                required
+                id="name"
+                name="name"
+                variant="outlined"
+                fullWidth
+                margin="dense"
+                {...register("name")}
+                error={errors.name ? true : false}
+              />
+            </div>
+            <Typography
+              variant="inherit"
+              color="textSecondary"
+              className={classes.errorTitle}
+            >
+              {errors.name?.message}
+            </Typography>
+          </Grid>
 
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-      return (
-        <Box px={3} py={2} className={classes.root}>
-          <Typography
-            variant="h6"
-            align="center"
-            margin="dense"
-            className={classes.Title}
-            color="secondary"
-          >
-            افزودن زنبورستان جدید 
-          </Typography>
-
-          <Divider className={classes.Divider} />
-          <Grid container spacing={1} className={classes.container}>
-            <div className={classes.main}>
-              <Grid item xs={12} sm={12} className={classes.inputText}>
-                <div className={classes.input}>
-                <label className={classes.mainLabel}>نام زنبورستان</label>
-                  <TextField
-                    className={classes.TextField}
-                    required
-                    id="name"
-                    name="name"
-                    variant="outlined"
-                    fullWidth
-                    margin="dense"
-                    {...register("name")}
-                    error={errors.name ? true : false}
-                  />
-                </div>
-                <Typography
-                  variant="inherit"
-                  color="textSecondary"
-                  className={classes.errorTitle}
-                >
-                  {errors.name?.message}
-                </Typography>
-              </Grid>
-
-              {/* <Grid item xs={12} sm={12} className={classes.inputText}>
+          {/* <Grid item xs={12} sm={12} className={classes.inputText}>
                 <div className={classes.input}>
                   <label className={classes.label}>وضعیت مناسب</label>
                   <TextField
@@ -249,202 +251,206 @@ if(status){
                 </Typography>
               </Grid> */}
 
-              
+          <Grid item xs={12} sm={12} className={classes.Select}>
+            <div className={classes.input}>
+              <label className={classes.label}>پوشش گیاهی منطقه</label>
+              <Select
+                className={classes.inputSelect}
+                required
+                variant="outlined"
+                {...register("regionVegetation")}
+                error={errors.regionVegetation ? true : false}
+                defaultValue="Garden"
 
-              <Grid item xs={12} sm={12} className={classes.Select}>
-                <div className={classes.input}>
-                  <label className={classes.label}>پوشش گیاهی منطقه</label>
-                  <Select
-                    className={classes.inputSelect}
-                    required
-                    variant="outlined"
-                    {...register("regionVegetation")}
-                    error={errors.regionVegetation ? true : false}
-                    defaultValue="Garden"
-
-                    // onChange={(e) =>
-                    //   setValue("regionVegetation", e.target.value, { shouldValidate: true })
-                    // } // Using setValue
-                  >
-                    {options?.map((option) => {
-                      return (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label ?? option.value}
-                        </MenuItem>
-                      );
-                    })}
-                  </Select>
-                </div>
-                {/* {errors.regionVegetation && <p>{errors.regionVegetation.message}</p>} */}
-                <Typography
-                  variant="inherit"
-                  color="textSecondary"
-                  className={classes.errorTitle}
-                >
-                  {errors.regionVegetation?.message}
-                </Typography>
-              </Grid>
-
-              <Grid item xs={12} sm={12}>
-                <div className={classes.input}>
-                  <label className={classes.label}>نوع منطقه</label>
-                  <Select
-                    className={classes.inputSelect}
-                    required
-                    variant="outlined"
-                    {...register("regionType")}
-                    error={errors.regionType ? true : false}
-                    defaultValue="Urban"
-
-                    // onChange={(e) =>
-                    //   setValue("select", e.target.value, { shouldValidate: true })
-                    // } // Using setValue
-                  >
-                    {option2?.map((option) => {
-                      return (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label ?? option.value}
-                        </MenuItem>
-                      );
-                    })}
-                  </Select>
-                </div>
-                {/* {errors.select && <p>{errors.select.message}</p>} */}
-                <Typography
-                  variant="inherit"
-                  color="textSecondary"
-                  className={classes.errorTitle}
-                >
-                  {errors.regionType?.message}
-                </Typography>
-              </Grid>
-
-              <Grid item xs={12} sm={12}>
-                <div className={classes.input}>
-                  <label className={classes.label}>استان</label>
-                  <Select
-                    className={classes.inputSelect}
-                    required
-                    variant="outlined"
-                    {...register("province")}
-                    error={errors.province ? true : false}
-                    defaultValue="Honey"
-                    // onChange={(e) =>
-                    //   setValue("select", e.target.value, { shouldValidate: true })
-                    // } // Using setValue
-                  >
-                    {states?.map((option) => {
-                      return (
-                        <MenuItem key={option.name} value={option.name} onClick={()=>changeState(option.name)}>
-                          {option.label ?? option.name}
-                        </MenuItem>
-                      );
-                    })}
-                  </Select>
-                </div>
-                {/* {errors.select && <p>{errors.select.message}</p>} */}
-                <Typography
-                  variant="inherit"
-                  color="textSecondary"
-                  className={classes.errorTitle}
-                >
-                  {errors.province?.message}
-                </Typography>
-              </Grid>
-
-
-              <Grid item xs={12} sm={12}>
-                <div className={classes.input}>
-                  <label className={classes.label}>شهر</label>
-                  <Select
-                    className={classes.inputSelect}
-                    required
-                    variant="outlined"
-                    {...register("city")}
-                    error={errors.city ? true : false}
-                    // onChange={(e) =>
-                    //   setValue("select", e.target.value, { shouldValidate: true })
-                    // } // Using setValue
-                  >
-                    {city?.map((option) => {
-                      console.log("option city state",option.name);
-                      return (
-                        <MenuItem key={option.name} value={option.name}>
-                          {option.label ?? option.name}
-                        </MenuItem>
-                      );
-                    })}
-                  </Select>
-                </div>
-                {/* {errors.select && <p>{errors.select.message}</p>} */}
-                <Typography
-                  variant="inherit"
-                  color="textSecondary"
-                  className={classes.errorTitle}
-                >
-                  {errors.city?.message}
-                </Typography>
-              </Grid>
-
-              <Grid item xs={12} sm={12}>
-                <div className={classes.input}>
-                  <label className={classes.label}>کاربرد </label>
-                  <Select
-                    className={classes.inputSelect}
-                    required
-                    variant="outlined"
-                    {...register("apiaryUsage")}
-                    error={errors.apiaryUsage ? true : false}
-
-                    // onChange={(e) =>
-                    //   setValue("select", e.target.value, { shouldValidate: true })
-                    // } // Using setValue
-                  >
-                    {option3?.map((option) => {
-                      return (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label ?? option.value}
-                        </MenuItem>
-                      );
-                    })}
-                  </Select>
-                </div>
-                {/* {errors.select && <p>{errors.select.message}</p>} */}
-                <Typography
-                  variant="inherit"
-                  color="textSecondary"
-                  className={classes.errorTitle}
-                >
-                  {errors.apiaryUsage?.message}
-                </Typography>
-              </Grid>
+                // onChange={(e) =>
+                //   setValue("regionVegetation", e.target.value, { shouldValidate: true })
+                // } // Using setValue
+              >
+                {options?.map((option) => {
+                  return (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label ?? option.value}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
             </div>
-
-            <Grid item xs={12} lg={5}  className={classes.Map}>
-              <div className={classes.mapTitle}>انتخاب مکان از روی نقشه</div>
-              <MapBox style={style} />
-            </Grid>
+            {/* {errors.regionVegetation && <p>{errors.regionVegetation.message}</p>} */}
+            <Typography
+              variant="inherit"
+              color="textSecondary"
+              className={classes.errorTitle}
+            >
+              {errors.regionVegetation?.message}
+            </Typography>
           </Grid>
 
-          <Divider className={classes.Divider2}/>
-          <Box  className={classes.ButtonBox} >
-            <div className={classes.button}>
-              <Button variant="contained" className={classes.Button2} onClick={onClose}>
-                انصراف
-              </Button>
+          <Grid item xs={12} sm={12}>
+            <div className={classes.input}>
+              <label className={classes.label}>نوع منطقه</label>
+              <Select
+                className={classes.inputSelect}
+                required
+                variant="outlined"
+                {...register("regionType")}
+                error={errors.regionType ? true : false}
+                defaultValue="Urban"
 
-              <Button
-                variant="contained"
-                className={classes.Button1}
-                onClick={handleSubmit(onSubmit)}
+                // onChange={(e) =>
+                //   setValue("select", e.target.value, { shouldValidate: true })
+                // } // Using setValue
               >
-                افزودن
-              </Button>
+                {option2?.map((option) => {
+                  return (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label ?? option.value}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
             </div>
-          </Box>
-        </Box>
-      );
+            {/* {errors.select && <p>{errors.select.message}</p>} */}
+            <Typography
+              variant="inherit"
+              color="textSecondary"
+              className={classes.errorTitle}
+            >
+              {errors.regionType?.message}
+            </Typography>
+          </Grid>
 
-  };
+          <Grid item xs={12} sm={12}>
+            <div className={classes.input}>
+              <label className={classes.label}>استان</label>
+              <Select
+                className={classes.inputSelect}
+                required
+                variant="outlined"
+                {...register("province")}
+                error={errors.province ? true : false}
+                defaultValue="Honey"
+                // onChange={(e) =>
+                //   setValue("select", e.target.value, { shouldValidate: true })
+                // } // Using setValue
+              >
+                {states?.map((option) => {
+                  return (
+                    <MenuItem
+                      key={option.name}
+                      value={option.name}
+                      onClick={() => changeState(option.name)}
+                    >
+                      {option.label ?? option.name}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </div>
+            {/* {errors.select && <p>{errors.select.message}</p>} */}
+            <Typography
+              variant="inherit"
+              color="textSecondary"
+              className={classes.errorTitle}
+            >
+              {errors.province?.message}
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12} sm={12}>
+            <div className={classes.input}>
+              <label className={classes.label}>شهر</label>
+              <Select
+                className={classes.inputSelect}
+                required
+                variant="outlined"
+                {...register("city")}
+                error={errors.city ? true : false}
+                // onChange={(e) =>
+                //   setValue("select", e.target.value, { shouldValidate: true })
+                // } // Using setValue
+              >
+                {city?.map((option) => {
+                  console.log("option city state", option.name);
+                  return (
+                    <MenuItem key={option.name} value={option.name}>
+                      {option.label ?? option.name}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </div>
+            {/* {errors.select && <p>{errors.select.message}</p>} */}
+            <Typography
+              variant="inherit"
+              color="textSecondary"
+              className={classes.errorTitle}
+            >
+              {errors.city?.message}
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12} sm={12}>
+            <div className={classes.input}>
+              <label className={classes.label}>کاربرد </label>
+              <Select
+                className={classes.inputSelect}
+                required
+                variant="outlined"
+                {...register("apiaryUsage")}
+                error={errors.apiaryUsage ? true : false}
+
+                // onChange={(e) =>
+                //   setValue("select", e.target.value, { shouldValidate: true })
+                // } // Using setValue
+              >
+                {option3?.map((option) => {
+                  return (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label ?? option.value}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </div>
+            {/* {errors.select && <p>{errors.select.message}</p>} */}
+            <Typography
+              variant="inherit"
+              color="textSecondary"
+              className={classes.errorTitle}
+            >
+              {errors.apiaryUsage?.message}
+            </Typography>
+          </Grid>
+        </div>
+
+        <Grid item xs={12} lg={5} className={classes.Map}>
+          <div className={classes.mapTitle}>انتخاب مکان از روی نقشه</div>
+          <MapBox />
+        </Grid>
+      </Grid>
+
+      <Divider className={classes.Divider2} />
+      <Box className={classes.ButtonBox}>
+        <div className={classes.button}>
+          <Button
+            variant="contained"
+            className={classes.Button2}
+            onClick={onClose}
+          >
+            انصراف
+          </Button>
+
+          <Button
+            variant="contained"
+            className={classes.Button1}
+            onClick={handleSubmit(onSubmit)}
+          >
+            افزودن
+          </Button>
+        </div>
+      </Box>
+    </Box>
+  );
+};
 
 export default ApiaryAddList;
