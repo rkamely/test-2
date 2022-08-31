@@ -8,6 +8,7 @@ import {
   Radio,
   RadioGroup,
   Slider,
+  Step,
   TextField,
 } from "@material-ui/core";
 import axios from "axios";
@@ -23,6 +24,7 @@ const QuestionnaireForm = ({
   remove,
   setActiveStep,
   activeStep,
+  activeStep,handleNext
 }) => {
   const {
     control,
@@ -57,7 +59,6 @@ const QuestionnaireForm = ({
             },
           },
         );
-        console.log("show response profile", response.data);
         console.log(
           `show response profile ${step}`,
           response.data.questions[step],
@@ -101,6 +102,30 @@ const QuestionnaireForm = ({
   // },[questions?.type])
 
   const QuestinsofQuestionnaire = (index) => {
+
+
+
+
+
+
+
+  var array_data = ['HTML','CSS','JavaScript','jQuery','Bootstrap'];
+  /* Holder array vairable  */
+  var data_holder = [];
+  for(var x = 0; x < array_data.length; x++){
+     data_holder.push({
+        "data" : array_data[x],
+        "data_key" : x
+     });
+  }
+  /* The output data in JSON format */
+
+
+
+
+
+const [inputTextValue,setInputTextValue]=useState()
+  const QuestinsofQuestionnaire = (i,index,item) => {
     switch (questions?.type) {
       case "InputText":
         return (
@@ -109,14 +134,8 @@ const QuestionnaireForm = ({
               <FormLabel component="legend" className={classes.FormLable}>
                 {questions?.title}
               </FormLabel>
-              <Controller
-                control={control}
-                {...register(`answers[${fields.length - 1}].input`, {
-                  required: "پر کردن این قسمت الزامی است",
-                })}
-                // name="input"
 
-                render={({ field }) => (
+
                   <TextField
                     className={classes.TextField}
                     type="text"
@@ -125,10 +144,12 @@ const QuestionnaireForm = ({
                     variant="outlined"
                     fullWidth
                     margin="normal"
-                    {...field}
+                    value={inputTextValue}
+                    onChange={(e)=>setInputTextValue(e.target.value)}
+                    
                   />
-                )}
-              />
+               
+     
               <ErrorMessage
                 errors={errors}
                 // name="input"
@@ -137,19 +158,17 @@ const QuestionnaireForm = ({
                 )}
               />
             </div>
-            <div className={classes.formContainer}>
+            <div className={classes.formContainer} style={{visibility: "hidden"}}>
               <FormLabel component="legend" className={classes.FormLable}>
                 {questions?.title}
               </FormLabel>
               <Controller
                 control={control}
-                {...register(`answers[${fields.length - 1}].questionId`, {})}
+                {...register(`answers[${step}].questionId`, {})}
                 // name="input"
 
                 render={({ field }) => (
                   <>
-                    {console.log("fieldfield", questions?.title)}
-
                     <TextField
                       className={classes.TextField}
                       type="text"
@@ -179,7 +198,7 @@ const QuestionnaireForm = ({
                   //   required: "پر کردن این قسمت الزامی است"
                   // })}
 
-                  name={`answers[${fields.length - 1}].selected`}
+                  name={`answers[${step}].selected`}
                   render={(props) =>
                     questions?.options?.map((option, index) => (
                       <FormControlLabel
@@ -211,12 +230,11 @@ const QuestionnaireForm = ({
             <Controller
               rules={{ required: true }}
               control={control}
-              {...register(`answers[${fields.length - 1}].selected`, {
+              {...register(`answers[${step}].selected`, {
                 required: "پر کردن این قسمت الزامی است",
               })}
               // name="selected"
               render={({ field }) => {
-                console.log(field);
                 return (
                   <RadioGroup {...field} row>
                     <FormControlLabel
@@ -259,7 +277,7 @@ const QuestionnaireForm = ({
                 //   required: "پر کردن این قسمت الزامی است"
                 // })}
 
-                name={`answers[${fields.length - 1}].selected`}
+                name={`answers[${step}].selected`}
                 render={(props) =>
                   questions?.options?.map((option, index) => (
                     <FormControlLabel
@@ -292,15 +310,16 @@ const QuestionnaireForm = ({
               control={control}
               name="selected"
               render={({ field }) => {
-                console.log(field);
                 return (
                   <RadioGroup {...field} row>
                     {questions?.options?.map((option) => {
                       return (
                         <FormControlLabel
-                          value={option?.text}
+                          // value={option?.text}
                           control={<Radio />}
                           label={option?.text}
+                          value={inputTextValue}
+                          onChange={(e)=>setInputTextValue(e.target.value)}
                         />
                       );
                     })}
@@ -346,8 +365,10 @@ const QuestionnaireForm = ({
           <FormControl component="fieldset" className={classes.formContainer}>
             <div className={classes.FormLable}>{questions?.title}</div>
             <Controller
-              name={`answers[${fields.length - 1}].input`}
+              name={`answers[${step}].input`}
               control={control}
+              value={inputTextValue}
+              onChange={(e)=>setInputTextValue(e.target.value)}
               // defaultValue={[0, 10]}
               marks={marks}
               render={(props) => (
@@ -373,7 +394,7 @@ const QuestionnaireForm = ({
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
-    remove(fields.length - 1);
+   
   };
 
   return (
@@ -406,28 +427,27 @@ const QuestionnaireForm = ({
           render={({ message }) => <p style={{color:"red"}}>{message}</p>}
         /> */}
 
-      {fields.slice(-1).map((field, item, index) => {
-        console.log("fields", field);
-        console.log("item", item);
-        console.log("index", index);
+      {fields?.map((field, item, index) => {
 
-        return (
-          <>
-            <div>{QuestinsofQuestionnaire(index, item)}</div>
-            <Button
-              className={classes.button}
-              disabled={activeStep === 0}
-              onClick={handleBack}
-              // onClick={() => remove(fields.length-1)}
-              color="secondary"
-            >
-              برگشت
-            </Button>
-          </>
-        );
+        
+          return (
+            <>
+              <div>{QuestinsofQuestionnaire(index, item)}</div>
+              <Button
+                className={classes.button}
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                // onClick={() => remove(fields.length-1)}
+                color="secondary"
+              >
+                برگشت
+              </Button>
+            </>
+          );
+        
       })}
     </>
   );
 };
 
-export default QuestionnaireForm;
+export default QuestionnaireForm

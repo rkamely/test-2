@@ -34,7 +34,6 @@ function AnswerQuestion() {
             },
           },
         );
-        console.log("show response profile", response.data);
         setNewQuestion(response.data);
         setLoading(false);
       } catch (error) {
@@ -73,9 +72,7 @@ function AnswerQuestion() {
             },
           },
         );
-        console.log("show response Question", response.data);
         setAnswer(response.data);
-        console.log("answer", response.data);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -85,7 +82,6 @@ function AnswerQuestion() {
   }, []);
 
   /////////////////////////////////////////////////////////
-  console.log("newQuestion", newQuestion);
 
   const handleClickOpen = () => {
     setOpenQuestion(true);

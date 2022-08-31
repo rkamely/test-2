@@ -42,7 +42,6 @@ function Main() {
       /////////////////////////////////////////////////////////////////////////////////////////
   
       const token = localStorage.getItem("id_token")
-   console.log(token);
       useEffect(() => {
         const fetchData = async () =>{
           // setLoading(true);
@@ -52,7 +51,6 @@ function Main() {
                 'token': `${token}` 
               },
             },);
-            console.log( "show response" , response.data);
             // setApiariesList(response.data )
             // setLoading(false)
           } catch (error) {

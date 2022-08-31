@@ -125,7 +125,6 @@ import AddJob from "../../../../components/Form/JobUser/AddJob";
     
     const classes = useStyles();
   
-    console.log(Company);
     const columns = [
   
       {
@@ -147,7 +146,6 @@ import AddJob from "../../../../components/Form/JobUser/AddJob";
         },
   
         render: (rowData) => {
-          console.log("rowData", rowData);
           return (
             <Link to={`/app/Beehive/${rowData.id}`} className="title" style={{ display: "flex"}}>
               <p className="title">{rowData.Priority}</p>
@@ -383,20 +381,17 @@ import AddJob from "../../../../components/Form/JobUser/AddJob";
     const requestSearch = (searchedVal) => {
       const filteredRows = Company.map((rows) => {
         return rows.name;
-        // console.log("rows.title",rows)
       }).filter((row) => {
         return row.toLowerCase().includes(searchedVal.toLowerCase());
       });
       setCompany(filteredRows);
-      console.log("Company", Company);
-      console.log("filteredRows", filteredRows);
+
     };
     const cancelSearch = () => {
       setSearched("");
       requestSearch(searched);
     };
     const handleBulkDelete = () => {
-      console.log(selectedRows);
       const updatedData = Company.filter((row) => !selectedRows.includes(row));
       setCompany(updatedData);
     };
@@ -509,7 +504,6 @@ import AddJob from "../../../../components/Form/JobUser/AddJob";
             selectionProps: (rowData) => ({
               // checked: Company?.includes(rowData.value) ? true: false,
               onClick: () => {
-                console.log("clicked asdasda");
                 setToolbar(true);
               },
             }),

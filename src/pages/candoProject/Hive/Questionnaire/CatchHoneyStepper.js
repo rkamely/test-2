@@ -41,7 +41,6 @@ const validationSchema = yup.object().shape({
 });
 
 function getSteps(countQuestion) {
-  console.log("console.log(countQuestion);", countQuestion);
   return countQuestion?.map((el) => {
     return [""];
   });
@@ -76,7 +75,6 @@ const FirstQuestion = ({ step }) => {
             },
           },
         );
-        console.log("show response profile", response.data);
         console.log(
           `show response profile ${step}`,
           response.data.questions[step],
@@ -105,7 +103,6 @@ const FirstQuestion = ({ step }) => {
     };
     fetchData();
   }, [step]);
-  console.log("questions", questions);
   return (
     <>
       <FormLabel component="legend" className={classes.FormLable}>
@@ -189,12 +186,12 @@ function getStepContent(
   remove,
   activeStep,
   setActiveStep,
+  handleNext,
 ) {
   setstatedynamic = {
     ...statedynamic,
   };
 
-  console.log("stepp", step);
   var elements = [];
   for (let i = 0; i < 10; i++) {
     elements.push(<li>{i}</li>);
@@ -220,6 +217,7 @@ function getStepContent(
           remove={remove}
           activeStep={activeStep}
           setActiveStep={setActiveStep}
+          handleNext={handleNext}
         />
       );
     case 1:
@@ -230,6 +228,7 @@ function getStepContent(
           remove={remove}
           activeStep={activeStep}
           setActiveStep={setActiveStep}
+          handleNext={handleNext}
         />
       );
     case 2:
@@ -240,6 +239,7 @@ function getStepContent(
           remove={remove}
           activeStep={activeStep}
           setActiveStep={setActiveStep}
+          handleNext={handleNext}
         />
       );
     case 3:
@@ -250,6 +250,7 @@ function getStepContent(
           remove={remove}
           activeStep={activeStep}
           setActiveStep={setActiveStep}
+          handleNext={handleNext}
         />
       );
     case 4:
@@ -260,6 +261,7 @@ function getStepContent(
           remove={remove}
           activeStep={activeStep}
           setActiveStep={setActiveStep}
+          handleNext={handleNext}
         />
       );
     case 5:
@@ -270,6 +272,7 @@ function getStepContent(
           remove={remove}
           activeStep={activeStep}
           setActiveStep={setActiveStep}
+          handleNext={handleNext}
         />
       );
     case 6:
@@ -280,6 +283,7 @@ function getStepContent(
           remove={remove}
           activeStep={activeStep}
           setActiveStep={setActiveStep}
+          handleNext={handleNext}
         />
       );
     case 7:
@@ -290,6 +294,7 @@ function getStepContent(
           remove={remove}
           activeStep={activeStep}
           setActiveStep={setActiveStep}
+          handleNext={handleNext}
         />
       );
     case 8:
@@ -300,6 +305,7 @@ function getStepContent(
           remove={remove}
           activeStep={activeStep}
           setActiveStep={setActiveStep}
+          handleNext={handleNext}
         />
       );
     case 9:
@@ -310,6 +316,7 @@ function getStepContent(
           remove={remove}
           activeStep={activeStep}
           setActiveStep={setActiveStep}
+          handleNext={handleNext}
         />
       );
     case 10:
@@ -320,6 +327,7 @@ function getStepContent(
           remove={remove}
           activeStep={activeStep}
           setActiveStep={setActiveStep}
+          handleNext={handleNext}
         />
       );
     case 11:
@@ -399,7 +407,6 @@ const CatchHoneyStepper = (props) => {
   const [statedynamic, setstatedynamic] = useState([]);
   const [countQuestion, setcountQuestion] = useState();
   const steps = getSteps(countQuestion);
-  // console.log("fieldsfields",fields);
 
   const token = localStorage.getItem("id_token");
 
@@ -415,8 +422,7 @@ const CatchHoneyStepper = (props) => {
             },
           },
         );
-        console.log("show response profile", response.data);
-        console.log("show response profile", response.data.questions);
+
         setcountQuestion(response.data.questions);
         // setNewQuestion(response.data);
         // setLoading(false);
@@ -453,7 +459,6 @@ const CatchHoneyStepper = (props) => {
 
   const handleNext = (data) => {
     console.log("dataofwhole", data);
-    append({});
     if (activeStep == steps?.length - 1) {
       setActiveStep(activeStep + 1);
     } else {
@@ -475,10 +480,7 @@ const CatchHoneyStepper = (props) => {
     setActiveStep(activeStep + 1);
   };
 
-  // const onSubmit = (data) => {
-  //   console.log(data);
-  // };
-  console.log("methods", methods);
+
   return (
     <div style={{ padding: "16px" }}>
       <Stepper alternativeLabel activeStep={activeStep}>
@@ -555,7 +557,7 @@ const CatchHoneyStepper = (props) => {
                   fields,
                   remove,
                   activeStep,
-                  setActiveStep,
+                  setActiveStep,handleNext
                 )}
 
                 {/* <Grid style={{width:"100%", display:"flex",alignContent:"center",justifyContent:"center"}}>

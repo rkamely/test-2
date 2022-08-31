@@ -212,12 +212,10 @@ const NutritionStepper = (props) => {
   };
 
   const handleNext = (data) => {
-    console.log(data);
     if (activeStep == steps.length - 1) {
       fetch("https://jsonplaceholder.typicode.com/comments")
         .then((data) => data.json())
         .then((res) => {
-          console.log(res);
           setActiveStep(activeStep + 1);
         });
     } else {
@@ -233,7 +231,6 @@ const NutritionStepper = (props) => {
   };
 
   const handleSkip = () => {
-    console.log("methods",methods);
     if (!isStepSkipped(activeStep)) {
       setSkippedSteps([...skippedSteps, activeStep]);
     }
@@ -241,7 +238,6 @@ const NutritionStepper = (props) => {
   };
 
   // const onSubmit = (data) => {
-  //   console.log(data);
   // };
   return (
     <div style={{padding:"16px" }}>

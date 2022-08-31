@@ -24,18 +24,16 @@ import Loading from "../../Loading/Loading";
 import { axiosInstance } from "../../../pages/api/axios";
 
 const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
-  console.log("editApiariesList",ApiariesList);
   const params = useParams();
   const history = useHistory()
-  console.log("params", params.id)
-  console.log("props.Apiary",ApiariesList);
+
   const classes = useStyles();
   const [errorMessage,setErrMessage] = useState()
   const [error,setIserror] = useState()
   const [ loading , setLoading]=useState(true)
 
   const edit_id = localStorage.getItem("edit_id")
-  console.log("edit_id",edit_id);
+
   const validationSchema = yup.object().shape({
     name: yup
       .string()
@@ -68,7 +66,6 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
    /////////////////////////////////////////////////////////////////////////////////////////
    const [ticketEdit,setTicketEdit]=useState([])
    const token = localStorage.getItem("id_token")
-   console.log("token",token);
    useEffect(() => {
      const fetchData = async () =>{
        // setLoading(true);
@@ -78,7 +75,6 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
              'token': `${token}` 
            },
          },);
-         console.log( "show response" , response.data);
          const responseData = response.data;
          reset({ 
           name: responseData.name ,
@@ -119,41 +115,11 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
     })
     // setApiariesList([...ApiariesList , data])
     const {id}=response.data
-    console.log("log response",response);
     setApiariesList(ApiariesList.map((apiary) => apiary.id === edit_id ? apiary : data))
     setStatus(true)
-    // const updatedApiary=ApiariesList
-    // console.log("updatedApiary",updatedApiary);
-  
-
-    // const Index=updatedApiary.findIndex((edit)=>{
-    //        return edit._id===edit_id
-                       
-    // })
-    // console.log("copy",Index);
-    // // const index=updatedApiary.indexOf([copy]);
-    // // console.log("indexxxxxx",index);
-    // // console.log("data ro bede to dast man",response.data.data._id);
-    // const index = updatedApiary.indexOf(data._id);
-    // // console.log("datashow",data);
-    // // console.log("dataIndex",index);
-    // updatedApiary[Index]={...data};
-    // // console.log("updatedApiary2",updatedApiary);
-
-    // // console.log("data ro bede to dast man 2", updatedApiary[1]);
-    // setApiariesList(updatedApiary)
+   
     onClose();
-    // console.log("ApiariesListedit",ApiariesList);
-    // history.push("/app/apiaryList")
-    // setApiariesList([...ApiariesList , {ApiariesList:updatedApiary}])
-    // window.location.reload()
-    // const updatedApiary=[Apiary]
-    // const index = updatedApiary.indexOf(data);
-    // updatedApiary[index]={...data};
-    // setApiary({Apiary:updatedApiary})
-    // history.push("/app/apiaryList")
-    // setApiariesList([...ApiariesList , {ApiariesList:updatedApiary}])
-    // window.location.reload()
+   
   };
 
   // useEffect(() => {
@@ -177,7 +143,6 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
           const { data: response } = await axios.get(
             "https://iran-locations-api.vercel.app/api/v1/states"
           ).then((res)=>setStates(res.data))
-          console.log("show response state1", response.data.data);
   
         } catch (error) {
          console.log(error);
@@ -191,12 +156,10 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
     const[city,setCities]=useState([])
     const changeState= async (state)=>{
      
-      console.log("state cities",state);
       try {
         const { data: response } = await axios.get(
           `https://iran-locations-api.vercel.app/api/v1/cities?state=${state}`
         ).then((res)=> setCities( res.data.cities))
-        // console.log("show response city12", response.data.data.cities);
   
       } catch (error) {
        console.log(error);
@@ -531,7 +494,6 @@ const ApiaryUpdateList = ({ApiariesList,setApiariesList,onClose,setStatus}) => {
                     // } // Using setValue
                   >
                     {city?.map((option) => {
-                      console.log("option city state",option.name);
                       return (
                         <MenuItem key={option.name} value={option.name}>
                           {option.label ?? option.name}

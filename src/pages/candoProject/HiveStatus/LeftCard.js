@@ -10,23 +10,19 @@ function LeftCard() {
   const classes = useStyles();
   const history=useHistory()
   const manualVisit=localStorage.getItem("manualVisit")
-  console.log("manualVisit",manualVisit);
   // const[manualVisitBoolean,setManualVisitBoolean]=useState(true)
   // useEffect(()=>{
   //   setManualVisitBoolean(manualVisit)
   // },[manualVisitBoolean])
-  // console.log("manualVisitBoolean",manualVisitBoolean);
 ////////////////////////////////////////////////////////////////////////
 const [hiveTable,setHiveTable]=useState([])
 const dataOfHive=localStorage.getItem("dataOfHive")
 const hiveInformation=JSON.parse(dataOfHive)
-console.log("dataOfHive",hiveInformation);
 
 let { id } = useParams();
 
   useEffect(() => {
     const fetchData = async (index) => {
-      console.log("salam id",index);
       // setLoading(true);
       const token = localStorage.getItem("id_token");
       const Apiaries_id = localStorage.getItem("Apiaries_id");
@@ -39,7 +35,6 @@ let { id } = useParams();
             },
           },
         );
-        console.log("show response hive", response.data);
         setHiveTable(response.data);
         // setLoading(false);
       } catch (error) {

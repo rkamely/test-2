@@ -30,7 +30,6 @@ import * as yup from "yup";
          reader.readAsDataURL(file)
      }
     const onSubmit=(data)=>{
-        console.log("dataaaa",data);
         if(data.files.length > 0){
             convert2base64(data.files[0])
         }

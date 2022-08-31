@@ -22,8 +22,7 @@ function PersistLogin() {
      !Auth?.Token? VerifyRefreshToken():setIsLoadong(false);
  },[])
  useEffect(()=>{
-  console.log(`isLoading : ${isLoading}`)
-  console.log(`aT:${Json.stringify(auth?.Token)}`);
+
 
  },[isLoading])
   return (

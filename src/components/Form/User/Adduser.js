@@ -49,7 +49,6 @@ function Adduser({ setUserList, userList, onClose }) {
     //   "fileSize",
     //   "قایل انتخابی حجم زیادی دارد",
     //   (value) => {
-    //     console.log("vlaue",value?.size)
     //     return value && value?.size <= FILE_SIZE
     //   }
     // ),
@@ -81,7 +80,6 @@ function Adduser({ setUserList, userList, onClose }) {
           },
         })
         .then((response) => {
-          console.log("response1", response);
         });
       setUserList({ userList: [...userList, data] });
       setStatus(true);
@@ -286,7 +284,6 @@ function Adduser({ setUserList, userList, onClose }) {
                 position: "relative"
               }}
             >
-              {console.log("selectedFile", selectedFile)}
               {selectedFile ? (
                 <PreviewImage file={selectedFile} />
               ) : (

@@ -45,7 +45,6 @@ export default function Dashboard(props) {
   //   }))
   const token = localStorage.getItem("id_token");
 
-  console.log("token", token);
 
   ////////////////////////////////////////////////////////////
   useEffect(() => {
@@ -60,7 +59,6 @@ export default function Dashboard(props) {
             },
           },
         );
-        console.log("show response", response.data);
         setApiariesList(response.data);
         // setLoading(false);
       } catch (error) {
@@ -92,7 +90,6 @@ export default function Dashboard(props) {
   const firstName = localStorage.getItem("profileName");
 
   if (!firstName) {
-    //  console.log("login dispach access",!!firstName);
     localStorage.clear("id_token");
     userDispatch({ type: "SIGN_OUT_SUCCESS" });
     history.push("/login");
@@ -184,7 +181,6 @@ export default function Dashboard(props) {
               className={classes.card}
             >
               {ApiariesList?.map((ApiaryList) => {
-                console.log("ApiaryList?.title",ApiaryList.name);
                 return (
                   <Grid
                     container

@@ -10,9 +10,7 @@ function AnswersUsersForm() {
   const token = localStorage.getItem("id_token");
   const [AnswersList, setAnswersList] = useState([]);
   const Question_id = localStorage.getItem("Question_id")
-  console.log("Question_id",Question_id);
   const Hive_id = localStorage.getItem("Hive_id")
-  console.log("Hive_id",Hive_id);
 
   
   useEffect(() => {
@@ -28,7 +26,6 @@ function AnswersUsersForm() {
             },
           },
         );
-        console.log("show response", response.data);
         setAnswersList(response.data);
         setLoading(false);
       } catch (error) {

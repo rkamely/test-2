@@ -60,11 +60,10 @@ function HiveStatus() {
     setOpen(false);
   };
   let { path, url } = useRouteMatch();
-  console.log(path,"path")
-  console.log(url,"url")
+
   let { id } = useParams();
   
-  console.log("id ro bebin " , id);
+
 const Apiary_id= localStorage.getItem("Apiary_id")
 const Hive_name= localStorage.getItem("Hive_name")
 const apiaryIdClick =localStorage.getItem("apiaryIdClick")

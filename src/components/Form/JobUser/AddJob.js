@@ -114,7 +114,7 @@ const AddJob = ({ handleClose, onEventAdded }) => {
   /////////////////////////////////////////////////////////////////////////////////////////
 
   const token = localStorage.getItem("id_token");
-  console.log(token);
+
   useEffect(() => {
     const fetchData = async () => {
       // setLoading(true);
@@ -128,7 +128,7 @@ const AddJob = ({ handleClose, onEventAdded }) => {
             },
           },
         );
-        console.log("show response", response.data);
+
         // setApiariesList(response.data )
         // setLoading(false)
       } catch (error) {
@@ -149,14 +149,7 @@ const AddJob = ({ handleClose, onEventAdded }) => {
   /////////////////////////////////////////////////////////////////////////////////////////
 
   const onSubmit = async (data) => {
-    // console.log(JSON.stringify(data, null, 2));
-    // alert(JSON.stringify(data, null, 2));
-    // const response = await axios.post("http://185.202.113.165:3000/api/event", data ,{
-    //   headers: {
-    //     'token': `${token}`
-    //   },
-    // },).then((response)=>{console.log("response1",response)})
-    // event.preventDefault();
+   
     const reza = data.fromTime;
     const fromTime = moment(data.fromTime).format("LT");
     const toTime = moment(data.toTime).format("LT");
@@ -177,7 +170,7 @@ const AddJob = ({ handleClose, onEventAdded }) => {
       },
     });
 
-    console.log("data.fromTime");
+
     // props.onClose()
     // history.push("/login/step2")
   };
@@ -191,7 +184,6 @@ const AddJob = ({ handleClose, onEventAdded }) => {
     { label: "بیماری زنبور", value: "بیماری زنبور" },
   ];
 
-  console.log("whatch", watch("fromDate"));
 
   return (
     <Paper style={{overflowX:"hidden"}}>

@@ -84,9 +84,7 @@
 //     },
 //   ];
   
-//   const changeColor = (index) => {
-//     console.log(index);
-//   };
+
 //   const handleChange = (event) => {
 //     setValue(event.target.value);
 //   };
@@ -248,9 +246,7 @@ export default function SimpleAccordion() {
     },
   ];
   
-  const changeColor = (index) => {
-    console.log(index);
-  };
+
   const handleChange = (event) => {
     setValue(event.target.value);
   };

@@ -24,7 +24,6 @@ const LinearProgresses = withStyles((theme) => ({
   },
 }))(LinearProgress);
 function LinearProgressWithLabel(props) {
-  console.log("props Value",props)
   return (
     
     <Box display="flex" alignItems="center" style={{width:"200px"}}>

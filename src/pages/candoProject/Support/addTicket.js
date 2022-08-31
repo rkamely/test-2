@@ -22,9 +22,7 @@ import AuthContext from "../../context/AuthProvider";
 import { axiosInstance } from "../../api/axios";
 
 function AddTicket({input,handleClose,newTicket,setNewTicket,title,style, setShow}) {
-  {
-    console.log(input);
-  }
+
   const validationSchema = yup.object().shape({
     // name: yup
     //   .string()
@@ -41,7 +39,6 @@ function AddTicket({input,handleClose,newTicket,setNewTicket,title,style, setSho
 
 
   const token = localStorage.getItem("id_token")
-  console.log("token",token);
 
   
 
@@ -82,7 +79,6 @@ function AddTicket({input,handleClose,newTicket,setNewTicket,title,style, setSho
   ];
   
   const onSubmit = async(data) => {
-    // console.log(JSON.stringify(data, null, 2));
     // alert(JSON.stringify(data, null, 2));
      
     const response = await axiosInstance.post("/ticket", data , {
@@ -90,11 +86,9 @@ function AddTicket({input,handleClose,newTicket,setNewTicket,title,style, setSho
         'token': `${token}` 
       }
     }).then((res)=>{
-      console.log("response1", res.data.data);
       setNewTicket([res.data.data  , ...newTicket])
       setShow(true)
     })
-    console.log("response ro see kon to addticket",response);
     reset({
       text: "",
       category:""

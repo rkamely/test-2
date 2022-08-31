@@ -181,10 +181,7 @@ function Diagram() {
 
   var tooltip;
   const CustomizedTooltip = ({ active, payload, label }) => {
-    console.log("active", active);
-    console.log("payload", payload);
-    console.log("label", label);
-    console.log("tooltip", tooltip);
+
     if (!active || !tooltip) return null;
     for (const bar of payload)
       if (bar.dataKey === tooltip)
@@ -328,7 +325,6 @@ function Diagram() {
             />
             <Tooltip />
             {/* {data.map((el) => {
-              console.log(el.total["monthly"]);
               return (
                 <Line
                   type="natural"
@@ -346,8 +342,7 @@ function Diagram() {
                 />
               );
             })} */}
-            {console.log("data.total", data.total)}
-            {console.log("date", date)}
+
             <Line
               type="natural"
               // label={{ fill: "red", marginTop: "16px" }}

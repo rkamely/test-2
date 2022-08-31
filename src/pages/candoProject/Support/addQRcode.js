@@ -38,7 +38,6 @@ function AddQRcode({handleClose,title,setNewTicket,newTicket}) {
           });
           // const [newTicket , setNewTicket] = useState()
           const token = localStorage.getItem("id_token")
-          console.log("token",token);
 
         const {
             register,
@@ -62,14 +61,12 @@ function AddQRcode({handleClose,title,setNewTicket,newTicket}) {
                 'token': `${token}` 
               }
             }).then((res)=>{
-              console.log("response1", res.data.data);
               setNewTicket([res.data.data  , ...newTicket])
             })
             reset({
               text: "",
         
             })
-            console.log("response ro see kon to addticket",response);
             // setData({ data: [...data, data] });
             handleClose()
           };

@@ -61,7 +61,7 @@ export default class CalenderProject extends React.Component {
 
 
     const token = localStorage.getItem("id_token")
-    console.log("data.event bar",event);
+
     const title= event.title
     // const fromDate =event.fromDate
     const fromDate = moment(event.fromDate).locale('fa').format('YYYY/MM/DD')
@@ -72,7 +72,7 @@ export default class CalenderProject extends React.Component {
     const category = event.category
     const priority = event.priority
     const user = event.user._id
-    console.log("user",user);
+  
     await axiosInstance.post("/event",{
       "title": `${title}` ,
       "fromDate": `${fromDate}`,
@@ -92,9 +92,9 @@ export default class CalenderProject extends React.Component {
 
 
 
-    console.log("onEventAdded",event);
+
     let calenderApi = this.calenderRef.current.getApi();
-    console.log("calenderApi",calenderApi);
+
 
     calenderApi.addEvent({
       start:moment(event.fromDate).toDate(),
@@ -105,23 +105,17 @@ export default class CalenderProject extends React.Component {
 
 
     });
-    console.log("event", event);
+
   };
 
   async handleEventAdd(data) {
-    console.log("handleEventAdd",data);
-  // const token = localStorage.getItem("id_token")
-  //   console.log("data.event bar",data.event);
-  //  await axios.post("http://185.202.113.165:3000/api/event",data.event,{
-  //     headers: {
-  //       'token': `${token}` 
-  //     },
-  //   },).then((response)=>{console.log("response1",response)})
+
+
 
   }
    async handleDateSet(data) {
     const token = localStorage.getItem("id_token")
-    console.log("handleDateSet",data);
+
     const response = await axiosInstance.post("/event/GetForMonth?start="+moment(data.start).toISOString()+"&end"+moment(data.end).toISOString(),{
       "date":"1401/03/01"
   },{
@@ -129,49 +123,15 @@ export default class CalenderProject extends React.Component {
         'token': `${token}` 
       },
     },).then((respon)=>{   
-      console.log("respon.data.data",respon.data.data); 
       this.setState({
        events:respon.data.data
     });})
-    console.log("response.data",response);
 
 
   }
    
 
-  //     /////////////////////////////////////////////////////////////////////////////////////////
-  
-  //     const token = localStorage.getItem("id_token")
-  //  console.log(token);
-  //     useEffect(() => {
-  //       const fetchData = async () =>{
-  //         // setLoading(true);
-  //         try {
-  //           const {data: response} = await axios.post("http://185.202.113.165:3000/api/event/GetForMonth",{ "date":"1401/03/01"},{
-  //             headers: {
-  //               'token': `${token}` 
-  //             },
-  //           },);
-  //           console.log( "show response" , response.data);
-  //           // setApiariesList(response.data )
-  //           // setLoading(false)
-  //         } catch (error) {
-  //         //  if (error.response?.status === 401) {
-  //         //    localStorage.clear("id_token")
-  //         //  }
-  //          console.error("سرور دچار مشکل شده است"+"ApiaryList");
-  //         //  setErrMessage("  با عرض پوزش سرور دچار مشکل شده است")
-  //         //  setIserror(true)
-  //         //  history.push("/app/Error")
-  //         //  window.location.reload()
-  //         }
-  //         // setLoading(false);
-  //       }
-  //       fetchData();
-  //     }, []);
-   
 
-  //     /////////////////////////////////////////////////////////////////////////////////////////
 
   render() {
     return (
@@ -204,15 +164,14 @@ export default class CalenderProject extends React.Component {
               const m = moment('1989/1/24', 'YYYY/M/D');
               m.locale('fa'); // change locale for this moment instance
               m.format('YYYY/M/D');
-              console.log("m",m);
+       
                             return axiosInstance.post('/event/GetForMonth',{ "date":"1401/05/01"},{
                             headers: {
                               'token': `${token}` 
                             },
               },).then((respone)=>
                  respone.data.data.map((el)=>{
-                  console.log("el,el",el);
-                   console.log("Sdfsdfs",new Date("1400-12-04"));
+ 
                    const day="2022-06-14"
                   return {
                     start:day,
@@ -316,7 +275,6 @@ export default class CalenderProject extends React.Component {
         allDay: selectInfo.allDay,
       });
     }
-    console.log("calendarApi", calendarApi);
   };
 
   handleEventClick = (clickInfo) => {
@@ -331,7 +289,7 @@ export default class CalenderProject extends React.Component {
   };
 
   handleEvents = (events) => {
-    console.log("handleEvents",events);
+
     this.setState({
       currentEvents: events,
     });
@@ -340,7 +298,7 @@ export default class CalenderProject extends React.Component {
 
 
 function renderEventContent(eventInfo) {
-  console.log("eventInfo",eventInfo);
+
   
   return (
     <>

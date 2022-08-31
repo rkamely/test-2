@@ -45,7 +45,6 @@ function SupportMessage() {
   /////////////////////////////////////////////////////////////////////////////////////////
   
   const token = localStorage.getItem("id_token")
-  console.log("token",token);
   useEffect(() => {
     const fetchData = async () =>{
       // setLoading(true);
@@ -55,7 +54,6 @@ function SupportMessage() {
             'token': `${token}` 
           },
         },)
-        console.log( "show response support" , response.data);
         setNewTicket(response.data )
         setLoading(false)
         if(response.data ){
@@ -170,12 +168,7 @@ function SupportMessage() {
       </Grid>
 
       {data.map((element) => {
-    //  if(moment().locale('fa').format("YYYY/MM/DD") == "1401/03/20" )  {
-    //   console.log("true");
-    //  } else{
-    //    console.log("false");
-    //  }
-    console.log("data.Date",element.Date);
+
         
         return (
           <>

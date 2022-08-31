@@ -108,7 +108,6 @@ useEffect(() => {
           },
         },
       );
-      console.log("show response profile", response.data);
     } catch (error) {
       if (error.response?.status === 401) {
         localStorage.clear("id_token")
