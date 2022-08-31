@@ -25,7 +25,7 @@ function Edituser(props) {
     const [openDelete, setOpenDelete] = useState(false);
     const [setting,setSetting] = useState([]);
     const [openCode,setOpenCode] = useState(false);
-    const firstNames = localStorage.getItem("firstName");
+    const firstNames = localStorage.getItem("profileName");
     const email = localStorage.getItem("email")
     const lastname = localStorage.getItem("lastname")
     const classes = useStyles();
@@ -101,7 +101,7 @@ useEffect(() => {
   const fetchData = async () => {
     try {
       const { data: response } = await axiosInstance.get(
-        `/auth/admin/me`,
+        `/auth/me`,
         {
           headers: {
             token: `${token}`,
