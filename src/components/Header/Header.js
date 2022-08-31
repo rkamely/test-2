@@ -115,7 +115,7 @@ export default function Header(props) {
 
 
 
-  if (!firstName) {
+  if (firstName == undefined) {
 
     localStorage.clear("id_token");
 

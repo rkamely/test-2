@@ -23,7 +23,9 @@ export default makeStyles((theme) => ({
   },
 
   linkNested: {
-    paddingRight: 0,
+    display:"flex",
+    flexDirection:"row-reverse",
+    marginRight: "0px",
     "&:hover, &:focus": {
       backgroundColor: "rgb( 255 ,176 ,4)",
     },
