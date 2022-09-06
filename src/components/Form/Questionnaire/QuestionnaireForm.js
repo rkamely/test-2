@@ -18,12 +18,12 @@ import useStyles from "./styles";
 import { ErrorMessage } from "@hookform/error-message";
 import { axiosInstance } from "../../../pages/api/axios";
 
-const QuestionnaireForm = ({
+ const QuestionnaireForm = ({
   step,
   fields,
   remove,
   setActiveStep,
-  activeStep,
+
   activeStep,handleNext
 }) => {
   const {
@@ -101,7 +101,7 @@ const QuestionnaireForm = ({
 
   // },[questions?.type])
 
-  const QuestinsofQuestionnaire = (index) => {
+    const QuestinsofQuestionnaire = (index) => {
 
 
 
@@ -124,7 +124,7 @@ const QuestionnaireForm = ({
 
 
 
-const [inputTextValue,setInputTextValue]=useState()
+   const [inputTextValue,setInputTextValue]=useState()
   const QuestinsofQuestionnaire = (i,index,item) => {
     switch (questions?.type) {
       case "InputText":
@@ -448,6 +448,8 @@ const [inputTextValue,setInputTextValue]=useState()
       })}
     </>
   );
-};
+   };
 
-export default QuestionnaireForm
+  }
+
+  export default QuestionnaireForm

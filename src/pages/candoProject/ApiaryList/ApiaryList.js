@@ -951,12 +951,14 @@ function ApiaryList() {
     const doc = new jsPDF();
     doc.autoTable({
       theme: "grid",
-      columns: cols,
-      body: body,
+      // columns: cols,
+      // body: body,
       headStyles: { font: "Iran-Sans", fontStyle: "normal", halign: "right" },
 
-    doc.save("table.pdf");
-  };
+   
+  })
+   doc.save("table.pdf");
+  }
 
   if (status) {
     return <ApiaryList />;
